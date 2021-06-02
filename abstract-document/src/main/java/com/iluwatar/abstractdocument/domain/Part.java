@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * Part entity.
  */
-public class Part extends AbstractDocument implements HasType, HasModel, HasPrice {
+public class Part extends AbstractDocument implements HasType, HasModel, HasPrice, HasWeight {
 
   public Part(Map<String, Object> properties) {
     super(properties);

@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * Car entity.
  */
-public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts {
+public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts, HasWeight {
 
   public Car(Map<String, Object> properties) {
     super(properties);
