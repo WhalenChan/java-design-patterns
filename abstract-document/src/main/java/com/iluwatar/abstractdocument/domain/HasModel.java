@@ -29,6 +29,7 @@ import java.util.Optional;
 
 /**
  * HasModel trait for static access to 'model' property.
+ * 包含模型特征。
  */
 public interface HasModel extends Document {
 

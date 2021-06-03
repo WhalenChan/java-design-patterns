@@ -45,7 +45,7 @@ import java.util.Map;
  * 的所有接口，然后定义特征以允许以通常的静态方式访问属性。
  * </p>
  * <p>Traits：特征，特点</p>
- * <p>这篇文章写得较好，可帮助理解</p>
+ * <p>这篇文章写得较好，可帮助理解 https://www.cnblogs.com/evan-liang/p/12233924.html</p>
  *
  * @author win10
  */
@@ -60,27 +60,27 @@ public class App {
     public static void main(String[] args) {
         LOGGER.info("Constructing parts and car");
 
-        //车轮的所有属性
+        //创建车轮的所有属性
         var wheelProperties = Map.of(
                 Property.TYPE.toString(), "wheel",
                 Property.MODEL.toString(), "15C",
                 Property.WEIGHT.toString(), "10Kg",
                 Property.PRICE.toString(), 100L);
 
-        //车门的所有属性
+        //创建车门的所有属性
         var doorProperties = Map.of(
                 Property.TYPE.toString(), "door",
                 Property.MODEL.toString(), "Lambo",
                 Property.WEIGHT.toString(), "20Kg",
                 Property.PRICE.toString(), 300L);
-        //小车的所有属性
+        //创建小车的所有属性
         var carProperties = Map.of(
                 Property.MODEL.toString(), "300SL",
                 Property.WEIGHT.toString(), "100Kg",
                 Property.PRICE.toString(), 10000L,
                 Property.PARTS.toString(), List.of(wheelProperties, doorProperties));
 
-        //小车组装
+        //创建小车的所有属性
         var car = new Car(carProperties);
 
         LOGGER.info("Here is our car:");

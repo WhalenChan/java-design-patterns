@@ -7,6 +7,7 @@ import java.util.Optional;
 
 /**
  * HasWeight trait for static access to 'weight' property.
+ * 包含重量特征。
  *
  * @author chenrunhui
  * @date 2021/6/2 11:33

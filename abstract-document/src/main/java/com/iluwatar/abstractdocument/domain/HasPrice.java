@@ -29,6 +29,7 @@ import java.util.Optional;
 
 /**
  * HasPrice trait for static access to 'price' property.
+ * 包含价格特征。
  */
 public interface HasPrice extends Document {
 

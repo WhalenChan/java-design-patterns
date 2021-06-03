@@ -28,6 +28,7 @@ import java.util.Map;
 
 /**
  * Part entity.
+ * 组成部分实体类。包含类型、模型、价格、重量等属性。
  */
 public class Part extends AbstractDocument implements HasType, HasModel, HasPrice, HasWeight {
 

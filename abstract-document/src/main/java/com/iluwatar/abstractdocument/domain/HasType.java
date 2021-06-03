@@ -29,6 +29,7 @@ import java.util.Optional;
 
 /**
  * HasType trait for static access to 'type' property.
+ * 包含类型特征。
  */
 public interface HasType extends Document {
 

@@ -29,6 +29,7 @@ import java.util.stream.Stream;
 
 /**
  * HasParts trait for static access to 'parts' property.
+ * 包含组成部分特征。
  */
 public interface HasParts extends Document {
 

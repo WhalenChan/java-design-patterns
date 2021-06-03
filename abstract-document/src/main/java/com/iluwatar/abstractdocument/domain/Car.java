@@ -28,6 +28,7 @@ import java.util.Map;
 
 /**
  * Car entity.
+ * 小车实体类，包含模型、价格、组成部分、重量等属性
  */
 public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts, HasWeight {
 
