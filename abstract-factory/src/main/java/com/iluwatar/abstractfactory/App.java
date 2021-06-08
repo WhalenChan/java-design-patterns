@@ -46,7 +46,6 @@ import lombok.extern.slf4j.Slf4j;
  *     并依赖于对象组合，因为对象创建是在工厂接口中公开的方法中实现的。
  * </p>
  *  其他实现参考： https://www.runoob.com/design-pattern/abstract-factory-pattern.html
- * @author win10
  */
 @Slf4j
 public class App implements Runnable {

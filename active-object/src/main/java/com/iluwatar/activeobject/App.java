@@ -42,7 +42,6 @@ import java.util.List;
  * </p>
  * 其他实现参考：http://ifeve.com/java-active-object/
  *
- * @author win10
  */
 public class App implements Runnable {
 

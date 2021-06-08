@@ -23,15 +23,18 @@
 
 package com.iluwatar.ambassador;
 
+import lombok.extern.slf4j.Slf4j;
+
 import static com.iluwatar.ambassador.RemoteServiceStatus.FAILURE;
 import static java.lang.Thread.sleep;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * ServiceAmbassador provides an interface for a ({@link Client}) to access ({@link RemoteService}).
  * The interface adds logging, latency testing and usage of the service in a safe way that will not
  * add stress to the remote service when connectivity issues occur.
+ *
+ * <p>ServiceAmbassador 为 ({@link Client}) 提供了访问 ({@link RemoteService}) 的接口。 该接口以一种安全的方式
+ * 添加了服务的日志记录、延迟测试和使用，不会在出现连接问题时给远程服务增加压力。
  */
 @Slf4j
 public class ServiceAmbassador implements RemoteServiceInterface {

@@ -38,6 +38,12 @@ package com.iluwatar.ambassador;
  * <p>In this example, we will the ({@link ServiceAmbassador}) class represents the ambassador while
  * the
  * ({@link RemoteService}) class represents a remote application.
+ *
+ * <p>大使模式创建一个帮助程序服务，代表客户端发送网络请求。它通常用于基于云的应用程序来卸载远程服务的功能。
+ * <p>大使服务可以被认为是与客户端位于同一位置的进程外代理。类似于代理设计模式，大使服务为另一个远程服务提供了一个接口。
+ * 除了界面之外，大使还提供额外的功能和特性，特别是卸载常见的连接任务。 这通常包括监控、日志记录、路由、安全等。
+ * 这在代码库难以修改的遗留应用程序中非常有用，并且允许改进应用程序的网络功能。
+ * <p>在此示例中，我们将 ({@link ServiceAmbassador}) 类表示大使，而 ({@link RemoteService}) 类表示远程应用程序。
  */
 public class App {
 

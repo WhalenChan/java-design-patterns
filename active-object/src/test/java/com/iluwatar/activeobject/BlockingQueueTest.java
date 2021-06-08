@@ -38,6 +38,9 @@ public class BlockingQueueTest {
         Thread.sleep(5 * 1000);
     }
 
+    /**
+     * 参考 https://www.zhihu.com/question/41048032
+     */
     @Test
     void test2() throws Exception {
 

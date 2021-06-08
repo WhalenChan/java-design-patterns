@@ -43,7 +43,6 @@ package com.iluwatar.acyclicvisitor;
  * </p>
  * 这个模式结合etc下面的png图片会更好理解一点
  *
- * @author win10
  */
 public class App {
 
