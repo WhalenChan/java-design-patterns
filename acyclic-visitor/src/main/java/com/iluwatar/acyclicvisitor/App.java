@@ -33,22 +33,39 @@ package com.iluwatar.acyclicvisitor;
  * its own visitor interface {@link HayesVisitor} and {@link ZoomVisitor} respectively. {@link
  * ConfigureForUnixVisitor} and {@link ConfigureForDosVisitor} implement each derivative's visit
  * method only if it is required
+ *
+ * <p>
+ * 通过使访问者基类退化，非循环访问者模式允许将新函数添加到现有的类层次结构而不影响这些层次结构，并且不会创建 GoF
+ * 访问者模式固有的依赖循环
+ * </p>
+ * <p>
+ * 非循环访问者模式
+ * </p>
+ * 这个模式结合etc下面的png图片会更好理解一点
+ *
+ * @author win10
  */
 public class App {
 
-  /**
-   * Program's entry point.
-   */
-  public static void main(String[] args) {
-    var conUnix = new ConfigureForUnixVisitor();
-    var conDos = new ConfigureForDosVisitor();
+    /**
+     * Program's entry point.
+     */
+    public static void main(String[] args) {
+        var conUnix = new ConfigureForUnixVisitor(); //只有ZoomVisitor的接口能力
+        var conDos = new ConfigureForDosVisitor(); //实现了AllZoomVisitor所有接口，具有ZoomVisitor和HayesVisitor的能力
 
-    var zoom = new Zoom();
-    var hayes = new Hayes();
+        var zoom = new Zoom();
+        var hayes = new Hayes();
 
-    hayes.accept(conDos); // Hayes modem with Dos configurator
-    zoom.accept(conDos); // Zoom modem with Dos configurator
-    hayes.accept(conUnix); // Hayes modem with Unix configurator
-    zoom.accept(conUnix); // Zoom modem with Unix configurator   
-  }
+        // Hayes modem with Dos configurator
+        hayes.accept(conDos);
+        // Hayes modem with Unix configurator
+        hayes.accept(conUnix); //Only HayesVisitor is allowed to visit Hayes modem - 因为 ConfigureForUnixVisitor 只实现了ZoomVisitor接口
+
+        // Zoom modem with Dos configurator
+        zoom.accept(conDos);
+        // Zoom modem with Unix configurator
+        zoom.accept(conUnix);
+
+    }
 }
