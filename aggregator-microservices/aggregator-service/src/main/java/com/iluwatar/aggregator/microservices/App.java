@@ -27,7 +27,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Spring Boot EntryPoint Class.
+ * 聚合器微服务设计模式
  */
 @SpringBootApplication
 public class App {

@@ -23,11 +23,12 @@
 
 package com.iluwatar.aggregator.microservices;
 
-import static java.util.Objects.requireNonNullElse;
-
-import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+
+import static java.util.Objects.requireNonNullElse;
 
 /**
  * The aggregator aggregates calls on various micro-services, collects data and further publishes
@@ -43,6 +44,8 @@ public class Aggregator {
   private ProductInventoryClient inventoryClient;
 
   /**
+   * 从不同的微服务中获取Product的信息
+   *
    * Retrieves product data.
    *
    * @return a Product.
@@ -51,6 +54,7 @@ public class Aggregator {
   public Product getProduct() {
 
     var product = new Product();
+
     var productTitle = informationClient.getProductTitle();
     var productInventory = inventoryClient.getProductInventories();
 

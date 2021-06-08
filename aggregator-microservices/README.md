@@ -1,6 +1,6 @@
 ---
 layout: pattern
-title: Aggregator Microservices
+title: 聚合器微服务设计模式
 folder: aggregator-microservices
 permalink: /patterns/aggregator-microservices/
 categories: Architectural
