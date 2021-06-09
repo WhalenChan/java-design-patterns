@@ -1,6 +1,6 @@
 ---
 layout: pattern
-title: API Gateway
+title: API网关模式
 folder: api-gateway
 permalink: /patterns/api-gateway/
 categories: Architectural
