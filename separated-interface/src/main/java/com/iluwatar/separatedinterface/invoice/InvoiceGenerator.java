@@ -29,23 +29,23 @@ package com.iluwatar.separatedinterface.invoice;
  */
 public class InvoiceGenerator {
 
-  /**
-   * The TaxCalculator interface to calculate the payable tax.
-   */
-  private final TaxCalculator taxCalculator;
+    /**
+     * The TaxCalculator interface to calculate the payable tax.
+     */
+    private final TaxCalculator taxCalculator;
 
-  /**
-   * The base product amount without tax.
-   */
-  private final double amount;
+    /**
+     * The base product amount without tax.
+     */
+    private final double amount;
 
-  public InvoiceGenerator(double amount, TaxCalculator taxCalculator) {
-    this.amount = amount;
-    this.taxCalculator = taxCalculator;
-  }
+    public InvoiceGenerator(double amount, TaxCalculator taxCalculator) {
+        this.amount = amount;
+        this.taxCalculator = taxCalculator;
+    }
 
-  public double getAmountWithTax() {
-    return amount + taxCalculator.calculate(amount);
-  }
+    public double getAmountWithTax() {
+        return amount + taxCalculator.calculate(amount);
+    }
 
 }

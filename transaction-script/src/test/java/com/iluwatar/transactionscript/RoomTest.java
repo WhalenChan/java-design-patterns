@@ -23,73 +23,73 @@
 
 package com.iluwatar.transactionscript;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * Tests {@link Room}.
  */
 class RoomTest {
 
-  private Room room;
-  private static final int ID = 1;
-  private static final String ROOMTYPE = "Single";
-  private static final int PRICE = 50;
-  private static final boolean BOOKED = false;
+    private Room room;
+    private static final int ID = 1;
+    private static final String ROOMTYPE = "Single";
+    private static final int PRICE = 50;
+    private static final boolean BOOKED = false;
 
-  @BeforeEach
-  void setUp() {
-    room = new Room(ID, ROOMTYPE, PRICE, BOOKED);
-  }
+    @BeforeEach
+    void setUp() {
+        room = new Room(ID, ROOMTYPE, PRICE, BOOKED);
+    }
 
-  @Test
-  void getAndSetId() {
-    final var newId = 2;
-    room.setId(newId);
-    assertEquals(newId, room.getId());
-  }
+    @Test
+    void getAndSetId() {
+        final var newId = 2;
+        room.setId(newId);
+        assertEquals(newId, room.getId());
+    }
 
-  @Test
-  void getAndSetRoomType() {
-    final var newRoomType = "Double";
-    room.setRoomType(newRoomType);
-    assertEquals(newRoomType, room.getRoomType());
-  }
+    @Test
+    void getAndSetRoomType() {
+        final var newRoomType = "Double";
+        room.setRoomType(newRoomType);
+        assertEquals(newRoomType, room.getRoomType());
+    }
 
-  @Test
-  void getAndSetLastName() {
-    final var newPrice = 60;
-    room.setPrice(newPrice);
-    assertEquals(newPrice, room.getPrice());
-  }
+    @Test
+    void getAndSetLastName() {
+        final var newPrice = 60;
+        room.setPrice(newPrice);
+        assertEquals(newPrice, room.getPrice());
+    }
 
-  @Test
-  void notEqualWithDifferentId() {
-    final var newId = 2;
-    final var otherRoom = new Room(newId, ROOMTYPE, PRICE, BOOKED);
-    assertNotEquals(room, otherRoom);
-    assertNotEquals(room.hashCode(), otherRoom.hashCode());
-  }
+    @Test
+    void notEqualWithDifferentId() {
+        final var newId = 2;
+        final var otherRoom = new Room(newId, ROOMTYPE, PRICE, BOOKED);
+        assertNotEquals(room, otherRoom);
+        assertNotEquals(room.hashCode(), otherRoom.hashCode());
+    }
 
-  @Test
-  void equalsWithSameObjectValues() {
-    final var otherRoom = new Room(ID, ROOMTYPE, PRICE, BOOKED);
-    assertEquals(room, otherRoom);
-    assertEquals(room.hashCode(), otherRoom.hashCode());
-  }
+    @Test
+    void equalsWithSameObjectValues() {
+        final var otherRoom = new Room(ID, ROOMTYPE, PRICE, BOOKED);
+        assertEquals(room, otherRoom);
+        assertEquals(room.hashCode(), otherRoom.hashCode());
+    }
 
-  @Test
-  void equalsWithSameObjects() {
-    assertEquals(room, room);
-    assertEquals(room.hashCode(), room.hashCode());
-  }
+    @Test
+    void equalsWithSameObjects() {
+        assertEquals(room, room);
+        assertEquals(room.hashCode(), room.hashCode());
+    }
 
-  @Test
-  void testToString() {
-    assertEquals(String.format("Room(id=%s, roomType=%s, price=%s, booked=%s)",
-        room.getId(), room.getRoomType(), room.getPrice(), room.isBooked()), room.toString());
-  }
+    @Test
+    void testToString() {
+        assertEquals(String.format("Room(id=%s, roomType=%s, price=%s, booked=%s)",
+                room.getId(), room.getRoomType(), room.getPrice(), room.isBooked()), room.toString());
+    }
 }

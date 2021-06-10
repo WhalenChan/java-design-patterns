@@ -28,5 +28,5 @@ package com.iluwatar.acyclicvisitor;
  * visited hierarchy. Each derivative's visit method is declared in its own visitor interface
  */
 public interface ModemVisitor {
-  // Visitor is a degenerate base class for all visitors.
+    // Visitor is a degenerate base class for all visitors.
 }

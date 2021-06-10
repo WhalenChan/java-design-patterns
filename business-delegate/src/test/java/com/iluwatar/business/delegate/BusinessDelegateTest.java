@@ -26,63 +26,60 @@ package com.iluwatar.business.delegate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Tests for the {@link BusinessDelegate}
  */
 class BusinessDelegateTest {
 
-  private NetflixService netflixService;
+    private NetflixService netflixService;
 
-  private YouTubeService youTubeService;
+    private YouTubeService youTubeService;
 
-  private BusinessDelegate businessDelegate;
+    private BusinessDelegate businessDelegate;
 
-  /**
-   * This method sets up the instance variables of this test class. It is executed before the
-   * execution of every test.
-   */
-  @BeforeEach
-  public void setup() {
-    netflixService = spy(new NetflixService());
-    youTubeService = spy(new YouTubeService());
+    /**
+     * This method sets up the instance variables of this test class. It is executed before the
+     * execution of every test.
+     */
+    @BeforeEach
+    public void setup() {
+        netflixService = spy(new NetflixService());
+        youTubeService = spy(new YouTubeService());
 
-    BusinessLookup businessLookup = spy(new BusinessLookup());
-    businessLookup.setNetflixService(netflixService);
-    businessLookup.setYouTubeService(youTubeService);
+        BusinessLookup businessLookup = spy(new BusinessLookup());
+        businessLookup.setNetflixService(netflixService);
+        businessLookup.setYouTubeService(youTubeService);
 
-    businessDelegate = spy(new BusinessDelegate());
-    businessDelegate.setLookupService(businessLookup);
-  }
+        businessDelegate = spy(new BusinessDelegate());
+        businessDelegate.setLookupService(businessLookup);
+    }
 
-  /**
-   * In this example the client ({@link MobileClient}) utilizes a business delegate (
-   * {@link BusinessDelegate}) to execute a task. The Business Delegate then selects the appropriate
-   * service and makes the service call.
-   */
-  @Test
-  void testBusinessDelegate() {
+    /**
+     * In this example the client ({@link MobileClient}) utilizes a business delegate (
+     * {@link BusinessDelegate}) to execute a task. The Business Delegate then selects the appropriate
+     * service and makes the service call.
+     */
+    @Test
+    void testBusinessDelegate() {
 
-    // setup a client object
-    var client = new MobileClient(businessDelegate);
+        // setup a client object
+        var client = new MobileClient(businessDelegate);
 
-    // action
-    client.playbackMovie("Die hard");
+        // action
+        client.playbackMovie("Die hard");
 
-    // verifying that the businessDelegate was used by client during playbackMovie() method.
-    verify(businessDelegate).playbackMovie(anyString());
-    verify(netflixService).doProcessing();
+        // verifying that the businessDelegate was used by client during playbackMovie() method.
+        verify(businessDelegate).playbackMovie(anyString());
+        verify(netflixService).doProcessing();
 
-    // action
-    client.playbackMovie("Maradona");
+        // action
+        client.playbackMovie("Maradona");
 
-    // verifying that the businessDelegate was used by client during doTask() method.
-    verify(businessDelegate, times(2)).playbackMovie(anyString());
-    verify(youTubeService).doProcessing();
-  }
+        // verifying that the businessDelegate was used by client during doTask() method.
+        verify(businessDelegate, times(2)).playbackMovie(anyString());
+        verify(youTubeService).doProcessing();
+    }
 }

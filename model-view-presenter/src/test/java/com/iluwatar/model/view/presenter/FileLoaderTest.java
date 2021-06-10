@@ -23,9 +23,9 @@
 
 package com.iluwatar.model.view.presenter;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Date: 12/21/15 - 12:12 PM
@@ -34,11 +34,11 @@ import org.junit.jupiter.api.Test;
  */
 public class FileLoaderTest {
 
-  @Test
-  void testLoadData() {
-    final var fileLoader = new FileLoader();
-    fileLoader.setFileName("non-existing-file");
-    assertNull(fileLoader.loadData());
-  }
+    @Test
+    void testLoadData() {
+        final var fileLoader = new FileLoader();
+        fileLoader.setFileName("non-existing-file");
+        assertNull(fileLoader.loadData());
+    }
 
 }

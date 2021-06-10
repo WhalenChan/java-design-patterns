@@ -1,10 +1,6 @@
 package com.iluwatar.tablemodule;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 
 /**
@@ -16,8 +12,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 @AllArgsConstructor
 public class User {
-  private int id;
-  private String username;
-  private String password;
+    private int id;
+    private String username;
+    private String password;
 
 }

@@ -23,32 +23,32 @@
 
 package com.iluwatar.pageobject;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.gargoylesoftware.htmlunit.WebClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test Login Page Object
  */
 public class LoginPageTest {
 
-  private final LoginPage loginPage = new LoginPage(new WebClient());
+    private final LoginPage loginPage = new LoginPage(new WebClient());
 
-  @BeforeEach
-  public void setUp() {
-    loginPage.navigateToPage();
-  }
+    @BeforeEach
+    public void setUp() {
+        loginPage.navigateToPage();
+    }
 
-  @Test
-  void testLogin() {
-    var albumListPage = loginPage
-        .enterUsername("admin")
-        .enterPassword("password")
-        .login();
-    albumListPage.navigateToPage();
-    assertTrue(albumListPage.isAt());
-  }
+    @Test
+    void testLogin() {
+        var albumListPage = loginPage
+                .enterUsername("admin")
+                .enterPassword("password")
+                .login();
+        albumListPage.navigateToPage();
+        assertTrue(albumListPage.isAt());
+    }
 
 }

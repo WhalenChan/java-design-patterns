@@ -33,21 +33,21 @@ import java.util.HashMap;
 
 public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
 
-  private final HashMap<Integer, Bubble> bubbles;
-  private final QuadTree quadTree;
+    private final HashMap<Integer, Bubble> bubbles;
+    private final QuadTree quadTree;
 
-  SpatialPartitionBubbles(HashMap<Integer, Bubble> bubbles, QuadTree quadTree) {
-    this.bubbles = bubbles;
-    this.quadTree = quadTree;
-  }
+    SpatialPartitionBubbles(HashMap<Integer, Bubble> bubbles, QuadTree quadTree) {
+        this.bubbles = bubbles;
+        this.quadTree = quadTree;
+    }
 
-  void handleCollisionsUsingQt(Bubble b) {
-    // finding points within area of a square drawn with centre same as
-    // centre of bubble and length = radius of bubble
-    var rect = new Rect(b.coordinateX, b.coordinateY, 2D * b.radius, 2D * b.radius);
-    var quadTreeQueryResult = new ArrayList<Point>();
-    this.quadTree.query(rect, quadTreeQueryResult);
-    //handling these collisions
-    b.handleCollision(quadTreeQueryResult, this.bubbles);
-  }
+    void handleCollisionsUsingQt(Bubble b) {
+        // finding points within area of a square drawn with centre same as
+        // centre of bubble and length = radius of bubble
+        var rect = new Rect(b.coordinateX, b.coordinateY, 2D * b.radius, 2D * b.radius);
+        var quadTreeQueryResult = new ArrayList<Point>();
+        this.quadTree.query(rect, quadTreeQueryResult);
+        //handling these collisions
+        b.handleCollision(quadTreeQueryResult, this.bubbles);
+    }
 }

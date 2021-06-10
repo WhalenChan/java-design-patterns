@@ -23,29 +23,29 @@
 
 package com.iluwatar.strangler;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Test methods in NewArithmetic
  */
 class NewArithmeticTest {
-  private static final NewArithmetic arithmetic = new NewArithmetic(new NewSource());
+    private static final NewArithmetic arithmetic = new NewArithmetic(new NewSource());
 
-  @Test
-  void testSum() {
-    assertEquals(0, arithmetic.sum(-1, 0, 1));
-  }
+    @Test
+    void testSum() {
+        assertEquals(0, arithmetic.sum(-1, 0, 1));
+    }
 
-  @Test
-  void testMul() {
-    assertEquals(0, arithmetic.mul(-1, 0, 1));
-  }
+    @Test
+    void testMul() {
+        assertEquals(0, arithmetic.mul(-1, 0, 1));
+    }
 
-  @Test
-  void testIfHasZero() {
-    assertTrue(arithmetic.ifHasZero(-1, 0, 1));
-  }
+    @Test
+    void testIfHasZero() {
+        assertTrue(arithmetic.ifHasZero(-1, 0, 1));
+    }
 }

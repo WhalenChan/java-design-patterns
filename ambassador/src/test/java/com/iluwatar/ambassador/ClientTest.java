@@ -32,11 +32,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class ClientTest {
 
-  @Test
-  void test() {
-    Client client = new Client();
-    var result = client.useService(10);
+    @Test
+    void test() {
+        Client client = new Client();
+        var result = client.useService(10);
 
-    assertTrue(result == 100 || result == RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue());
-  }
+        assertTrue(result == 100 || result == RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue());
+    }
 }

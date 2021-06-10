@@ -35,14 +35,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PriceController {
 
-  /**
-   * An endpoint for a user to retrieve a product's price.
-   *
-   * @return A product's price
-   */
-  @GetMapping("/price")
-  public String getPrice() {
-    LOGGER.info("Successfully found price info");
-    return "20";
-  }
+    /**
+     * An endpoint for a user to retrieve a product's price.
+     *
+     * @return A product's price
+     */
+    @GetMapping("/price")
+    public String getPrice() {
+        LOGGER.info("Successfully found price info");
+        return "20";
+    }
 }

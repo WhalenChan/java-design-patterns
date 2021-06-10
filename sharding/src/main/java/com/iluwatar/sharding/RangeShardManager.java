@@ -32,28 +32,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RangeShardManager extends ShardManager {
 
-  @Override
-  public int storeData(Data data) {
-    var shardId = allocateShard(data);
-    var shard = shardMap.get(shardId);
-    shard.storeData(data);
-    LOGGER.info(data.toString() + " is stored in Shard " + shardId);
-    return shardId;
-  }
-
-  @Override
-  protected int allocateShard(Data data) {
-    var type = data.getType();
-    switch (type) {
-      case TYPE_1:
-        return 1;
-      case TYPE_2:
-        return 2;
-      case TYPE_3:
-        return 3;
-      default:
-        return -1;
+    @Override
+    public int storeData(Data data) {
+        var shardId = allocateShard(data);
+        var shard = shardMap.get(shardId);
+        shard.storeData(data);
+        LOGGER.info(data.toString() + " is stored in Shard " + shardId);
+        return shardId;
     }
-  }
+
+    @Override
+    protected int allocateShard(Data data) {
+        var type = data.getType();
+        switch (type) {
+            case TYPE_1:
+                return 1;
+            case TYPE_2:
+                return 2;
+            case TYPE_3:
+                return 3;
+            default:
+                return -1;
+        }
+    }
 
 }

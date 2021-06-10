@@ -34,17 +34,17 @@ package com.iluwatar.state;
  */
 public class App {
 
-  /**
-   * Program entry point.
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     */
+    public static void main(String[] args) {
 
-    var mammoth = new Mammoth();
-    mammoth.observe();
-    mammoth.timePasses();
-    mammoth.observe();
-    mammoth.timePasses();
-    mammoth.observe();
+        var mammoth = new Mammoth();
+        mammoth.observe();
+        mammoth.timePasses();
+        mammoth.observe();
+        mammoth.timePasses();
+        mammoth.observe();
 
-  }
+    }
 }

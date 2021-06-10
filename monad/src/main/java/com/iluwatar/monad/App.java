@@ -23,10 +23,11 @@
 
 package com.iluwatar.monad;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Monad pattern defines a monad structure, that enables chaining operations in pipelines and
@@ -46,17 +47,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    var user = new User("user", 24, Sex.FEMALE, "foobar.com");
-    LOGGER.info(Validator.of(user).validate(User::getName, Objects::nonNull, "name is null")
-        .validate(User::getName, name -> !name.isEmpty(), "name is empty")
-        .validate(User::getEmail, email -> !email.contains("@"), "email doesn't contains '@'")
-        .validate(User::getAge, age -> age > 20 && age < 30, "age isn't between...").get()
-        .toString());
-  }
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        var user = new User("user", 24, Sex.FEMALE, "foobar.com");
+        LOGGER.info(Validator.of(user).validate(User::getName, Objects::nonNull, "name is null")
+                .validate(User::getName, name -> !name.isEmpty(), "name is empty")
+                .validate(User::getEmail, email -> !email.contains("@"), "email doesn't contains '@'")
+                .validate(User::getAge, age -> age > 20 && age < 30, "age isn't between...").get()
+                .toString());
+    }
 }

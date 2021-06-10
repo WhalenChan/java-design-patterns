@@ -31,16 +31,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RenderComponent implements Component {
 
-  @Override
-  public void update() {
-    // do nothing
-  }
+    @Override
+    public void update() {
+        // do nothing
+    }
 
-  /**
-   * render.
-   */
-  @Override
-  public void render() {
-    LOGGER.info("Render Component");
-  }
+    /**
+     * render.
+     */
+    @Override
+    public void render() {
+        LOGGER.info("Render Component");
+    }
 }

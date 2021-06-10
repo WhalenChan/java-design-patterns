@@ -23,11 +23,9 @@
 
 package com.iluwatar.doubledispatch;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Date: 12/10/15 - 11:31 PM
@@ -36,72 +34,72 @@ import org.junit.jupiter.api.Test;
  */
 class FlamingAsteroidTest extends CollisionTest<FlamingAsteroid> {
 
-  @Override
-  final FlamingAsteroid getTestedObject() {
-    return new FlamingAsteroid(1, 2, 3, 4);
-  }
+    @Override
+    final FlamingAsteroid getTestedObject() {
+        return new FlamingAsteroid(1, 2, 3, 4);
+    }
 
-  /**
-   * Test the constructor parameters
-   */
-  @Test
-  void testConstructor() {
-    final var asteroid = new FlamingAsteroid(1, 2, 3, 4);
-    assertEquals(1, asteroid.getLeft());
-    assertEquals(2, asteroid.getTop());
-    assertEquals(3, asteroid.getRight());
-    assertEquals(4, asteroid.getBottom());
-    assertTrue(asteroid.isOnFire());
-    assertFalse(asteroid.isDamaged());
-    assertEquals("FlamingAsteroid at [1,2,3,4] damaged=false onFire=true", asteroid.toString());
-  }
+    /**
+     * Test the constructor parameters
+     */
+    @Test
+    void testConstructor() {
+        final var asteroid = new FlamingAsteroid(1, 2, 3, 4);
+        assertEquals(1, asteroid.getLeft());
+        assertEquals(2, asteroid.getTop());
+        assertEquals(3, asteroid.getRight());
+        assertEquals(4, asteroid.getBottom());
+        assertTrue(asteroid.isOnFire());
+        assertFalse(asteroid.isDamaged());
+        assertEquals("FlamingAsteroid at [1,2,3,4] damaged=false onFire=true", asteroid.toString());
+    }
 
-  /**
-   * Test what happens we collide with an asteroid
-   */
-  @Test
-  void testCollideFlamingAsteroid() {
-    testCollision(
-        new FlamingAsteroid(1, 2, 3, 4),
-        false, true,
-        false, true
-    );
-  }
+    /**
+     * Test what happens we collide with an asteroid
+     */
+    @Test
+    void testCollideFlamingAsteroid() {
+        testCollision(
+                new FlamingAsteroid(1, 2, 3, 4),
+                false, true,
+                false, true
+        );
+    }
 
-  /**
-   * Test what happens we collide with an meteoroid
-   */
-  @Test
-  void testCollideMeteoroid() {
-    testCollision(
-        new Meteoroid(1, 1, 3, 4),
-        false, false,
-        false, true
-    );
-  }
+    /**
+     * Test what happens we collide with an meteoroid
+     */
+    @Test
+    void testCollideMeteoroid() {
+        testCollision(
+                new Meteoroid(1, 1, 3, 4),
+                false, false,
+                false, true
+        );
+    }
 
-  /**
-   * Test what happens we collide with ISS
-   */
-  @Test
-  void testCollideSpaceStationIss() {
-    testCollision(
-        new SpaceStationIss(1, 1, 3, 4),
-        true, true,
-        false, true
-    );
-  }
+    /**
+     * Test what happens we collide with ISS
+     */
+    @Test
+    void testCollideSpaceStationIss() {
+        testCollision(
+                new SpaceStationIss(1, 1, 3, 4),
+                true, true,
+                false, true
+        );
+    }
 
-  /**
-   * Test what happens we collide with MIR
-   */
-  @Test
-  void testCollideSpaceStationMir() {
-    testCollision(
-        new SpaceStationMir(1, 1, 3, 4),
-        true, true,
-        false, true
-    );
-  }
+    /**
+     * Test what happens we collide with MIR
+     */
+    @Test
+    void testCollideSpaceStationMir() {
+        testCollision(
+                new SpaceStationMir(1, 1, 3, 4),
+                true, true,
+                false, true
+        );
+    }
 
 }

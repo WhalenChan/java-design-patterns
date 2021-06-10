@@ -23,18 +23,19 @@
 
 package com.iluwatar.event.aggregator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.IntStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/12/15 - 3:04 PM
@@ -43,56 +44,56 @@ import org.slf4j.LoggerFactory;
  */
 class KingJoffreyTest {
 
-  private InMemoryAppender appender;
+    private InMemoryAppender appender;
 
-  @BeforeEach
-  void setUp() {
-    appender = new InMemoryAppender(KingJoffrey.class);
-  }
-
-  @AfterEach
-  void tearDown() {
-    appender.stop();
-  }
-
-  /**
-   * Test if {@link KingJoffrey} tells us what event he received
-   */
-  @Test
-  void testOnEvent() {
-    final var kingJoffrey = new KingJoffrey();
-
-    IntStream.range(0, Event.values().length).forEach(i -> {
-      assertEquals(i, appender.getLogSize());
-      var event = Event.values()[i];
-      kingJoffrey.onEvent(event);
-      final var expectedMessage = "Received event from the King's Hand: " + event.toString();
-      assertEquals(expectedMessage, appender.getLastMessage());
-      assertEquals(i + 1, appender.getLogSize());
-    });
-
-  }
-
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private final List<ILoggingEvent> log = new LinkedList<>();
-
-    public InMemoryAppender(Class<?> clazz) {
-      ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
-      start();
+    @BeforeEach
+    void setUp() {
+        appender = new InMemoryAppender(KingJoffrey.class);
     }
 
-    @Override
-    protected void append(ILoggingEvent eventObject) {
-      log.add(eventObject);
+    @AfterEach
+    void tearDown() {
+        appender.stop();
     }
 
-    public String getLastMessage() {
-      return log.get(log.size() - 1).getFormattedMessage();
+    /**
+     * Test if {@link KingJoffrey} tells us what event he received
+     */
+    @Test
+    void testOnEvent() {
+        final var kingJoffrey = new KingJoffrey();
+
+        IntStream.range(0, Event.values().length).forEach(i -> {
+            assertEquals(i, appender.getLogSize());
+            var event = Event.values()[i];
+            kingJoffrey.onEvent(event);
+            final var expectedMessage = "Received event from the King's Hand: " + event.toString();
+            assertEquals(expectedMessage, appender.getLastMessage());
+            assertEquals(i + 1, appender.getLogSize());
+        });
+
     }
 
-    public int getLogSize() {
-      return log.size();
+    private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+        private final List<ILoggingEvent> log = new LinkedList<>();
+
+        public InMemoryAppender(Class<?> clazz) {
+            ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
+            start();
+        }
+
+        @Override
+        protected void append(ILoggingEvent eventObject) {
+            log.add(eventObject);
+        }
+
+        public String getLastMessage() {
+            return log.get(log.size() - 1).getFormattedMessage();
+        }
+
+        public int getLogSize() {
+            return log.size();
+        }
     }
-  }
 
 }

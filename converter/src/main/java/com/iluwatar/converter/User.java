@@ -36,8 +36,8 @@ import lombok.ToString;
 @Getter
 @RequiredArgsConstructor
 public class User {
-  private final String firstName;
-  private final String lastName;
-  private final boolean active;
-  private final String userId;
+    private final String firstName;
+    private final String lastName;
+    private final boolean active;
+    private final String userId;
 }

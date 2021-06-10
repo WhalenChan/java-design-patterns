@@ -57,22 +57,22 @@ import com.iluwatar.hexagonal.sampledata.SampleData;
  */
 public class App {
 
-  /**
-   * Program entry point.
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     */
+    public static void main(String[] args) {
 
-    var injector = Guice.createInjector(new LotteryTestingModule());
+        var injector = Guice.createInjector(new LotteryTestingModule());
 
-    // start new lottery round
-    var administration = injector.getInstance(LotteryAdministration.class);
-    administration.resetLottery();
+        // start new lottery round
+        var administration = injector.getInstance(LotteryAdministration.class);
+        administration.resetLottery();
 
-    // submit some lottery tickets
-    var service = injector.getInstance(LotteryService.class);
-    SampleData.submitTickets(service, 20);
+        // submit some lottery tickets
+        var service = injector.getInstance(LotteryService.class);
+        SampleData.submitTickets(service, 20);
 
-    // perform lottery
-    administration.performLottery();
-  }
+        // perform lottery
+        administration.performLottery();
+    }
 }

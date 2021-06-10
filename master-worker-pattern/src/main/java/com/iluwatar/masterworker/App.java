@@ -57,25 +57,25 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
 
-  public static void main(String[] args) {
-    var mw = new ArrayTransposeMasterWorker();
-    var rows = 10;
-    var columns = 20;
-    var inputMatrix = ArrayUtilityMethods.createRandomIntMatrix(rows, columns);
-    var input = new ArrayInput(inputMatrix);
-    var result = (ArrayResult) mw.getResult(input);
-    if (result != null) {
-      ArrayUtilityMethods.printMatrix(inputMatrix);
-      ArrayUtilityMethods.printMatrix(result.data);
-    } else {
-      LOGGER.info("Please enter non-zero input");
+    public static void main(String[] args) {
+        var mw = new ArrayTransposeMasterWorker();
+        var rows = 10;
+        var columns = 20;
+        var inputMatrix = ArrayUtilityMethods.createRandomIntMatrix(rows, columns);
+        var input = new ArrayInput(inputMatrix);
+        var result = (ArrayResult) mw.getResult(input);
+        if (result != null) {
+            ArrayUtilityMethods.printMatrix(inputMatrix);
+            ArrayUtilityMethods.printMatrix(result.data);
+        } else {
+            LOGGER.info("Please enter non-zero input");
+        }
     }
-  }
 
 }

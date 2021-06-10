@@ -33,15 +33,15 @@ import lombok.Setter;
 @Setter
 public class Product {
 
-  /**
-   * The title of the product.
-   */
-  private String title;
+    /**
+     * The title of the product.
+     */
+    private String title;
 
 
-  /**
-   * The inventories of the product.
-   */
-  private int productInventories;
+    /**
+     * The inventories of the product.
+     */
+    private int productInventories;
 
 }

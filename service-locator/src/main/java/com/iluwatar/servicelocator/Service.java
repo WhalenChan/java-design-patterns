@@ -32,18 +32,18 @@ package com.iluwatar.servicelocator;
  */
 public interface Service {
 
-  /*
-   * The human readable name of the service
-   */
-  String getName();
+    /*
+     * The human readable name of the service
+     */
+    String getName();
 
-  /*
-   * Unique ID of the particular service
-   */
-  int getId();
+    /*
+     * Unique ID of the particular service
+     */
+    int getId();
 
-  /*
-   * The workflow method that defines what this service does
-   */
-  void execute();
+    /*
+     * The workflow method that defines what this service does
+     */
+    void execute();
 }

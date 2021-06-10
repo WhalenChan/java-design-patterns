@@ -27,40 +27,38 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class WorldTest {
 
-  private static World world;
+    private static World world;
 
-  @BeforeAll
-  public static void setup() {
-    world = new World();
-  }
+    @BeforeAll
+    public static void setup() {
+        world = new World();
+    }
 
-  @AfterAll
-  public static void tearDown() {
-    world = null;
-  }
+    @AfterAll
+    public static void tearDown() {
+        world = null;
+    }
 
-  @Test
-  void testRun() {
-    world.run();
-    assertTrue(world.isRunning);
-  }
+    @Test
+    void testRun() {
+        world.run();
+        assertTrue(world.isRunning);
+    }
 
-  @Test
-  void testStop() {
-    world.stop();
-    assertFalse(world.isRunning);
-  }
+    @Test
+    void testStop() {
+        world.stop();
+        assertFalse(world.isRunning);
+    }
 
-  @Test
-  void testAddEntity() {
-    var entity = new Skeleton(1);
-    world.addEntity(entity);
-    assertEquals(entity, world.entities.get(0));
-  }
+    @Test
+    void testAddEntity() {
+        var entity = new Skeleton(1);
+        world.addEntity(entity);
+        assertEquals(entity, world.entities.get(0));
+    }
 }

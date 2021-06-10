@@ -28,5 +28,5 @@ package com.iluwatar.commander.exceptions;
  */
 
 public class ItemUnavailableException extends Exception {
-  private static final long serialVersionUID = 575940L;
+    private static final long serialVersionUID = 575940L;
 }

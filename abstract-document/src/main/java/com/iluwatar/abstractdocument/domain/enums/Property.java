@@ -27,6 +27,6 @@ package com.iluwatar.abstractdocument.domain.enums;
  * Enum To Describe Property type.
  */
 public enum Property {
-  //weight是我自己加上的属性
-  PARTS, TYPE, PRICE, MODEL, WEIGHT
+    //weight是我自己加上的属性
+    PARTS, TYPE, PRICE, MODEL, WEIGHT
 }

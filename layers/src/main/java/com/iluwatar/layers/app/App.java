@@ -36,6 +36,7 @@ import com.iluwatar.layers.exception.CakeBakingException;
 import com.iluwatar.layers.service.CakeBakingService;
 import com.iluwatar.layers.service.CakeBakingServiceImpl;
 import com.iluwatar.layers.view.CakeViewImpl;
+
 import java.util.List;
 
 /**
@@ -76,59 +77,58 @@ import java.util.List;
  * @see CakeInfo
  * @see CakeToppingInfo
  * @see CakeLayerInfo
- *
  */
 public class App {
 
-  private static final CakeBakingService cakeBakingService = new CakeBakingServiceImpl();
-  public static final String STRAWBERRY = "strawberry";
+    private static final CakeBakingService cakeBakingService = new CakeBakingServiceImpl();
+    public static final String STRAWBERRY = "strawberry";
 
-  /**
-   * Application entry point.
-   *
-   * @param args Command line parameters
-   */
-  public static void main(String[] args) {
+    /**
+     * Application entry point.
+     *
+     * @param args Command line parameters
+     */
+    public static void main(String[] args) {
 
-    // initialize example data
-    initializeData(cakeBakingService);
+        // initialize example data
+        initializeData(cakeBakingService);
 
-    // create view and render it
-    var cakeView = new CakeViewImpl(cakeBakingService);
-    cakeView.render();
-  }
-
-  /**
-   * Initializes the example data.
-   */
-  private static void initializeData(CakeBakingService cakeBakingService) {
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("chocolate", 1200));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("banana", 900));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo(STRAWBERRY, 950));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("lemon", 950));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("vanilla", 950));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo(STRAWBERRY, 950));
-
-    cakeBakingService.saveNewTopping(new CakeToppingInfo("candies", 350));
-    cakeBakingService.saveNewTopping(new CakeToppingInfo("cherry", 350));
-
-    var cake1 = new CakeInfo(new CakeToppingInfo("candies", 0), List.of(
-        new CakeLayerInfo("chocolate", 0),
-        new CakeLayerInfo("banana", 0),
-        new CakeLayerInfo(STRAWBERRY, 0)));
-    try {
-      cakeBakingService.bakeNewCake(cake1);
-    } catch (CakeBakingException e) {
-      e.printStackTrace();
+        // create view and render it
+        var cakeView = new CakeViewImpl(cakeBakingService);
+        cakeView.render();
     }
-    var cake2 = new CakeInfo(new CakeToppingInfo("cherry", 0), List.of(
-        new CakeLayerInfo("vanilla", 0),
-        new CakeLayerInfo("lemon", 0),
-        new CakeLayerInfo(STRAWBERRY, 0)));
-    try {
-      cakeBakingService.bakeNewCake(cake2);
-    } catch (CakeBakingException e) {
-      e.printStackTrace();
+
+    /**
+     * Initializes the example data.
+     */
+    private static void initializeData(CakeBakingService cakeBakingService) {
+        cakeBakingService.saveNewLayer(new CakeLayerInfo("chocolate", 1200));
+        cakeBakingService.saveNewLayer(new CakeLayerInfo("banana", 900));
+        cakeBakingService.saveNewLayer(new CakeLayerInfo(STRAWBERRY, 950));
+        cakeBakingService.saveNewLayer(new CakeLayerInfo("lemon", 950));
+        cakeBakingService.saveNewLayer(new CakeLayerInfo("vanilla", 950));
+        cakeBakingService.saveNewLayer(new CakeLayerInfo(STRAWBERRY, 950));
+
+        cakeBakingService.saveNewTopping(new CakeToppingInfo("candies", 350));
+        cakeBakingService.saveNewTopping(new CakeToppingInfo("cherry", 350));
+
+        var cake1 = new CakeInfo(new CakeToppingInfo("candies", 0), List.of(
+                new CakeLayerInfo("chocolate", 0),
+                new CakeLayerInfo("banana", 0),
+                new CakeLayerInfo(STRAWBERRY, 0)));
+        try {
+            cakeBakingService.bakeNewCake(cake1);
+        } catch (CakeBakingException e) {
+            e.printStackTrace();
+        }
+        var cake2 = new CakeInfo(new CakeToppingInfo("cherry", 0), List.of(
+                new CakeLayerInfo("vanilla", 0),
+                new CakeLayerInfo("lemon", 0),
+                new CakeLayerInfo(STRAWBERRY, 0)));
+        try {
+            cakeBakingService.bakeNewCake(cake2);
+        } catch (CakeBakingException e) {
+            e.printStackTrace();
+        }
     }
-  }
 }

@@ -23,15 +23,16 @@
 
 package com.iluwatar.dependency.injection;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.iluwatar.dependency.injection.utils.InMemoryAppender;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/10/15 - 8:57 PM
@@ -40,74 +41,74 @@ import org.junit.jupiter.api.Test;
  */
 class GuiceWizardTest {
 
-  private InMemoryAppender appender;
+    private InMemoryAppender appender;
 
-  @BeforeEach
-  void setUp() {
-    appender = new InMemoryAppender(Tobacco.class);
-  }
+    @BeforeEach
+    void setUp() {
+        appender = new InMemoryAppender(Tobacco.class);
+    }
 
-  @AfterEach
-  void tearDown() {
-    appender.stop();
-  }
+    @AfterEach
+    void tearDown() {
+        appender.stop();
+    }
 
-  /**
-   * Test if the {@link GuiceWizard} smokes whatever instance of {@link Tobacco} is passed to him
-   * through the constructor parameter
-   */
-  @Test
-  void testSmokeEveryThingThroughConstructor() throws Exception {
+    /**
+     * Test if the {@link GuiceWizard} smokes whatever instance of {@link Tobacco} is passed to him
+     * through the constructor parameter
+     */
+    @Test
+    void testSmokeEveryThingThroughConstructor() throws Exception {
 
-    List<Tobacco> tobaccos = List.of(
-        new OldTobyTobacco(),
-        new RivendellTobacco(),
-        new SecondBreakfastTobacco()
-    );
+        List<Tobacco> tobaccos = List.of(
+                new OldTobyTobacco(),
+                new RivendellTobacco(),
+                new SecondBreakfastTobacco()
+        );
 
-    // Verify if the wizard is smoking the correct tobacco ...
-    tobaccos.forEach(tobacco -> {
-      final GuiceWizard guiceWizard = new GuiceWizard(tobacco);
-      guiceWizard.smoke();
-      String lastMessage = appender.getLastMessage();
-      assertEquals("GuiceWizard smoking " + tobacco.getClass().getSimpleName(), lastMessage);
-    });
+        // Verify if the wizard is smoking the correct tobacco ...
+        tobaccos.forEach(tobacco -> {
+            final GuiceWizard guiceWizard = new GuiceWizard(tobacco);
+            guiceWizard.smoke();
+            String lastMessage = appender.getLastMessage();
+            assertEquals("GuiceWizard smoking " + tobacco.getClass().getSimpleName(), lastMessage);
+        });
 
-    // ... and nothing else is happening.
-    assertEquals(tobaccos.size(), appender.getLogSize());
-  }
+        // ... and nothing else is happening.
+        assertEquals(tobaccos.size(), appender.getLogSize());
+    }
 
-  /**
-   * Test if the {@link GuiceWizard} smokes whatever instance of {@link Tobacco} is passed to him
-   * through the Guice google inject framework
-   */
-  @Test
-  void testSmokeEveryThingThroughInjectionFramework() throws Exception {
+    /**
+     * Test if the {@link GuiceWizard} smokes whatever instance of {@link Tobacco} is passed to him
+     * through the Guice google inject framework
+     */
+    @Test
+    void testSmokeEveryThingThroughInjectionFramework() throws Exception {
 
-    List<Class<? extends Tobacco>> tobaccos = List.of(
-        OldTobyTobacco.class,
-        RivendellTobacco.class,
-        SecondBreakfastTobacco.class
-    );
+        List<Class<? extends Tobacco>> tobaccos = List.of(
+                OldTobyTobacco.class,
+                RivendellTobacco.class,
+                SecondBreakfastTobacco.class
+        );
 
-    // Configure the tobacco in the injection framework ...
-    // ... and create a new wizard with it
-    // Verify if the wizard is smoking the correct tobacco ...
-    tobaccos.forEach(tobaccoClass -> {
-      final var injector = Guice.createInjector(new AbstractModule() {
-        @Override
-        protected void configure() {
-          bind(Tobacco.class).to(tobaccoClass);
-        }
-      });
-      final var guiceWizard = injector.getInstance(GuiceWizard.class);
-      guiceWizard.smoke();
-      String lastMessage = appender.getLastMessage();
-      assertEquals("GuiceWizard smoking " + tobaccoClass.getSimpleName(), lastMessage);
-    });
+        // Configure the tobacco in the injection framework ...
+        // ... and create a new wizard with it
+        // Verify if the wizard is smoking the correct tobacco ...
+        tobaccos.forEach(tobaccoClass -> {
+            final var injector = Guice.createInjector(new AbstractModule() {
+                @Override
+                protected void configure() {
+                    bind(Tobacco.class).to(tobaccoClass);
+                }
+            });
+            final var guiceWizard = injector.getInstance(GuiceWizard.class);
+            guiceWizard.smoke();
+            String lastMessage = appender.getLastMessage();
+            assertEquals("GuiceWizard smoking " + tobaccoClass.getSimpleName(), lastMessage);
+        });
 
-    // ... and nothing else is happening.
-    assertEquals(tobaccos.size(), appender.getLogSize());
-  }
+        // ... and nothing else is happening.
+        assertEquals(tobaccos.size(), appender.getLogSize());
+    }
 
 }

@@ -26,11 +26,12 @@ package com.iluwatar.fluentinterface.app;
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API.
@@ -46,85 +47,85 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     */
+    public static void main(String[] args) {
 
-    var integerList = List.of(1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68);
+        var integerList = List.of(1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68);
 
-    prettyPrint("The initial list contains: ", integerList);
+        prettyPrint("The initial list contains: ", integerList);
 
-    var firstFiveNegatives = SimpleFluentIterable
-        .fromCopyOf(integerList)
-        .filter(negatives())
-        .first(3)
-        .asList();
-    prettyPrint("The first three negative values are: ", firstFiveNegatives);
-
-
-    var lastTwoPositives = SimpleFluentIterable
-        .fromCopyOf(integerList)
-        .filter(positives())
-        .last(2)
-        .asList();
-    prettyPrint("The last two positive values are: ", lastTwoPositives);
-
-    SimpleFluentIterable
-        .fromCopyOf(integerList)
-        .filter(number -> number % 2 == 0)
-        .first()
-        .ifPresent(evenNumber -> LOGGER.info("The first even number is: {}", evenNumber));
+        var firstFiveNegatives = SimpleFluentIterable
+                .fromCopyOf(integerList)
+                .filter(negatives())
+                .first(3)
+                .asList();
+        prettyPrint("The first three negative values are: ", firstFiveNegatives);
 
 
-    var transformedList = SimpleFluentIterable
-        .fromCopyOf(integerList)
-        .filter(negatives())
-        .map(transformToString())
-        .asList();
-    prettyPrint("A string-mapped list of negative numbers contains: ", transformedList);
+        var lastTwoPositives = SimpleFluentIterable
+                .fromCopyOf(integerList)
+                .filter(positives())
+                .last(2)
+                .asList();
+        prettyPrint("The last two positive values are: ", lastTwoPositives);
+
+        SimpleFluentIterable
+                .fromCopyOf(integerList)
+                .filter(number -> number % 2 == 0)
+                .first()
+                .ifPresent(evenNumber -> LOGGER.info("The first even number is: {}", evenNumber));
 
 
-    var lastTwoOfFirstFourStringMapped = LazyFluentIterable
-        .from(integerList)
-        .filter(positives())
-        .first(4)
-        .last(2)
-        .map(number -> "String[" + number + "]")
-        .asList();
-    prettyPrint("The lazy list contains the last two of the first four positive numbers "
-        + "mapped to Strings: ", lastTwoOfFirstFourStringMapped);
+        var transformedList = SimpleFluentIterable
+                .fromCopyOf(integerList)
+                .filter(negatives())
+                .map(transformToString())
+                .asList();
+        prettyPrint("A string-mapped list of negative numbers contains: ", transformedList);
 
-    LazyFluentIterable
-        .from(integerList)
-        .filter(negatives())
-        .first(2)
-        .last()
-        .ifPresent(number -> LOGGER.info("Last amongst first two negatives: {}", number));
-  }
 
-  private static Function<Integer, String> transformToString() {
-    return integer -> "String[" + integer + "]";
-  }
+        var lastTwoOfFirstFourStringMapped = LazyFluentIterable
+                .from(integerList)
+                .filter(positives())
+                .first(4)
+                .last(2)
+                .map(number -> "String[" + number + "]")
+                .asList();
+        prettyPrint("The lazy list contains the last two of the first four positive numbers "
+                + "mapped to Strings: ", lastTwoOfFirstFourStringMapped);
 
-  private static Predicate<? super Integer> negatives() {
-    return integer -> integer < 0;
-  }
+        LazyFluentIterable
+                .from(integerList)
+                .filter(negatives())
+                .first(2)
+                .last()
+                .ifPresent(number -> LOGGER.info("Last amongst first two negatives: {}", number));
+    }
 
-  private static Predicate<? super Integer> positives() {
-    return integer -> integer > 0;
-  }
+    private static Function<Integer, String> transformToString() {
+        return integer -> "String[" + integer + "]";
+    }
 
-  private static <E> void prettyPrint(String prefix, Iterable<E> iterable) {
-    prettyPrint(", ", prefix, iterable);
-  }
+    private static Predicate<? super Integer> negatives() {
+        return integer -> integer < 0;
+    }
 
-  private static <E> void prettyPrint(
-      String delimiter, String prefix,
-      Iterable<E> iterable
-  ) {
-    var joiner = new StringJoiner(delimiter, prefix, ".");
-    iterable.forEach(e -> joiner.add(e.toString()));
-    LOGGER.info(joiner.toString());
-  }
+    private static Predicate<? super Integer> positives() {
+        return integer -> integer > 0;
+    }
+
+    private static <E> void prettyPrint(String prefix, Iterable<E> iterable) {
+        prettyPrint(", ", prefix, iterable);
+    }
+
+    private static <E> void prettyPrint(
+            String delimiter, String prefix,
+            Iterable<E> iterable
+    ) {
+        var joiner = new StringJoiner(delimiter, prefix, ".");
+        iterable.forEach(e -> joiner.add(e.toString()));
+        LOGGER.info(joiner.toString());
+    }
 }

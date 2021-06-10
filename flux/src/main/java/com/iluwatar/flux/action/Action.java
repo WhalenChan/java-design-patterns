@@ -33,6 +33,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public abstract class Action {
 
-  private final ActionType type;
+    private final ActionType type;
 
 }

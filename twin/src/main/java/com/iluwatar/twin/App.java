@@ -34,36 +34,36 @@ package com.iluwatar.twin;
 
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) throws Exception {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) throws Exception {
 
-    var ballItem = new BallItem();
-    var ballThread = new BallThread();
+        var ballItem = new BallItem();
+        var ballThread = new BallThread();
 
-    ballItem.setTwin(ballThread);
-    ballThread.setTwin(ballItem);
+        ballItem.setTwin(ballThread);
+        ballThread.setTwin(ballItem);
 
-    ballThread.start();
+        ballThread.start();
 
-    waiting();
+        waiting();
 
-    ballItem.click();
+        ballItem.click();
 
-    waiting();
+        waiting();
 
-    ballItem.click();
+        ballItem.click();
 
-    waiting();
+        waiting();
 
-    // exit
-    ballThread.stopMe();
-  }
+        // exit
+        ballThread.stopMe();
+    }
 
-  private static void waiting() throws Exception {
-    Thread.sleep(750);
-  }
+    private static void waiting() throws Exception {
+        Thread.sleep(750);
+    }
 }

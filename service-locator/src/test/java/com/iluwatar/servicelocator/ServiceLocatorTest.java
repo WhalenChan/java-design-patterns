@@ -23,14 +23,11 @@
 
 package com.iluwatar.servicelocator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Date: 12/29/15 - 19:07 PM
@@ -39,30 +36,30 @@ import org.junit.jupiter.api.Test;
  */
 class ServiceLocatorTest {
 
-  /**
-   * Verify if we just receive 'null' when requesting a non-existing service
-   */
-  @Test
-  void testGetNonExistentService() {
-    assertNull(ServiceLocator.getService("fantastic/unicorn/service"));
-    assertNull(ServiceLocator.getService("another/fantastic/unicorn/service"));
-  }
-
-  /**
-   * Verify if we get the same cached instance when requesting the same service twice
-   */
-  @Test
-  void testServiceCache() {
-    final var serviceNames = List.of("jndi/serviceA", "jndi/serviceB");
-
-    for (final var serviceName : serviceNames) {
-      final var service = ServiceLocator.getService(serviceName);
-      assertNotNull(service);
-      assertEquals(serviceName, service.getName());
-      assertTrue(service.getId() > 0); // The id is generated randomly, but the minimum value is '1'
-      assertSame(service, ServiceLocator.getService(serviceName));
+    /**
+     * Verify if we just receive 'null' when requesting a non-existing service
+     */
+    @Test
+    void testGetNonExistentService() {
+        assertNull(ServiceLocator.getService("fantastic/unicorn/service"));
+        assertNull(ServiceLocator.getService("another/fantastic/unicorn/service"));
     }
 
-  }
+    /**
+     * Verify if we get the same cached instance when requesting the same service twice
+     */
+    @Test
+    void testServiceCache() {
+        final var serviceNames = List.of("jndi/serviceA", "jndi/serviceB");
+
+        for (final var serviceName : serviceNames) {
+            final var service = ServiceLocator.getService(serviceName);
+            assertNotNull(service);
+            assertEquals(serviceName, service.getName());
+            assertTrue(service.getId() > 0); // The id is generated randomly, but the minimum value is '1'
+            assertSame(service, ServiceLocator.getService(serviceName));
+        }
+
+    }
 
 }

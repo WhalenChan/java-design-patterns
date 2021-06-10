@@ -31,34 +31,34 @@ package com.iluwatar.servicelocator;
  */
 public final class ServiceLocator {
 
-  private static final ServiceCache serviceCache = new ServiceCache();
+    private static final ServiceCache serviceCache = new ServiceCache();
 
-  private ServiceLocator() {
-  }
-
-  /**
-   * Fetch the service with the name param from the cache first, if no service is found, lookup the
-   * service from the {@link InitContext} and then add the newly created service into the cache map
-   * for future requests.
-   *
-   * @param serviceJndiName a string
-   * @return {@link Service}
-   */
-  public static Service getService(String serviceJndiName) {
-    var serviceObj = serviceCache.getService(serviceJndiName);
-    if (serviceObj != null) {
-      return serviceObj;
-    } else {
-      /*
-       * If we are unable to retrieve anything from cache, then lookup the service and add it in the
-       * cache map
-       */
-      var ctx = new InitContext();
-      serviceObj = (Service) ctx.lookup(serviceJndiName);
-      if (serviceObj != null) { // Only cache a service if it actually exists
-        serviceCache.addService(serviceObj);
-      }
-      return serviceObj;
+    private ServiceLocator() {
     }
-  }
+
+    /**
+     * Fetch the service with the name param from the cache first, if no service is found, lookup the
+     * service from the {@link InitContext} and then add the newly created service into the cache map
+     * for future requests.
+     *
+     * @param serviceJndiName a string
+     * @return {@link Service}
+     */
+    public static Service getService(String serviceJndiName) {
+        var serviceObj = serviceCache.getService(serviceJndiName);
+        if (serviceObj != null) {
+            return serviceObj;
+        } else {
+            /*
+             * If we are unable to retrieve anything from cache, then lookup the service and add it in the
+             * cache map
+             */
+            var ctx = new InitContext();
+            serviceObj = (Service) ctx.lookup(serviceJndiName);
+            if (serviceObj != null) { // Only cache a service if it actually exists
+                serviceCache.addService(serviceObj);
+            }
+            return serviceObj;
+        }
+    }
 }

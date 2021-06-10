@@ -23,17 +23,18 @@
 
 package com.iluwatar.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.sql.SQLException;
-import javax.sql.DataSource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * This case is Just for test the Annotation Based configuration
@@ -42,30 +43,30 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest(classes = {AppConfig.class})
 class AppConfigTest {
 
-  @Autowired
-  DataSource dataSource;
+    @Autowired
+    DataSource dataSource;
 
-  /**
-   * Test for bean instance
-   */
-  @Test
-  void testDataSource() {
-    assertNotNull(dataSource);
-  }
-
-  /**
-   * Test for correct query execution
-   */
-  @Test
-  @Transactional
-  void testQuery() throws SQLException {
-    var resultSet = dataSource.getConnection().createStatement().executeQuery("SELECT 1");
-    var expected = "1";
-    String result = null;
-    while (resultSet.next()) {
-      result = resultSet.getString(1);
+    /**
+     * Test for bean instance
+     */
+    @Test
+    void testDataSource() {
+        assertNotNull(dataSource);
     }
-    assertEquals(expected, result);
-  }
+
+    /**
+     * Test for correct query execution
+     */
+    @Test
+    @Transactional
+    void testQuery() throws SQLException {
+        var resultSet = dataSource.getConnection().createStatement().executeQuery("SELECT 1");
+        var expected = "1";
+        String result = null;
+        while (resultSet.next()) {
+            result = resultSet.getString(1);
+        }
+        assertEquals(expected, result);
+    }
 
 }

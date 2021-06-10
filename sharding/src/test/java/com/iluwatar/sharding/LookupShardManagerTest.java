@@ -23,47 +23,48 @@
 
 package com.iluwatar.sharding;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Unit tests for LookupShardManager class.
  */
 class LookupShardManagerTest {
 
-  private LookupShardManager lookupShardManager;
+    private LookupShardManager lookupShardManager;
 
-  /**
-   * Initialize lookupShardManager instance.
-   */
-  @BeforeEach
-  public void setup() {
-    lookupShardManager = new LookupShardManager();
-    var shard1 = new Shard(1);
-    var shard2 = new Shard(2);
-    var shard3 = new Shard(3);
-    lookupShardManager.addNewShard(shard1);
-    lookupShardManager.addNewShard(shard2);
-    lookupShardManager.addNewShard(shard3);
-  }
-
-  @Test
-  void testStoreData() {
-    try {
-      var data = new Data(1, "test", Data.DataType.TYPE_1);
-      lookupShardManager.storeData(data);
-      var field = LookupShardManager.class.getDeclaredField("lookupMap");
-      field.setAccessible(true);
-      var lookupMap = (Map<Integer, Integer>) field.get(lookupShardManager);
-      var shardId = lookupMap.get(1);
-      var shard = lookupShardManager.getShardById(shardId);
-      assertEquals(data, shard.getDataById(1));
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      fail("Fail to modify field access.");
+    /**
+     * Initialize lookupShardManager instance.
+     */
+    @BeforeEach
+    public void setup() {
+        lookupShardManager = new LookupShardManager();
+        var shard1 = new Shard(1);
+        var shard2 = new Shard(2);
+        var shard3 = new Shard(3);
+        lookupShardManager.addNewShard(shard1);
+        lookupShardManager.addNewShard(shard2);
+        lookupShardManager.addNewShard(shard3);
     }
-  }
+
+    @Test
+    void testStoreData() {
+        try {
+            var data = new Data(1, "test", Data.DataType.TYPE_1);
+            lookupShardManager.storeData(data);
+            var field = LookupShardManager.class.getDeclaredField("lookupMap");
+            field.setAccessible(true);
+            var lookupMap = (Map<Integer, Integer>) field.get(lookupShardManager);
+            var shardId = lookupMap.get(1);
+            var shard = lookupShardManager.getShardById(shardId);
+            assertEquals(data, shard.getDataById(1));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            fail("Fail to modify field access.");
+        }
+    }
 }

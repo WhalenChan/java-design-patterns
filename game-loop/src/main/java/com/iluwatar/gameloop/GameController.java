@@ -29,33 +29,33 @@ package com.iluwatar.gameloop;
  */
 public class GameController {
 
-  protected final Bullet bullet;
+    protected final Bullet bullet;
 
-  /**
-   * Initialize Bullet instance.
-   */
-  public GameController() {
-    bullet = new Bullet();
-  }
+    /**
+     * Initialize Bullet instance.
+     */
+    public GameController() {
+        bullet = new Bullet();
+    }
 
-  /**
-   * Move bullet position by the provided offset.
-   *
-   * @param offset moving offset
-   */
-  public void moveBullet(float offset) {
-    var currentPosition = bullet.getPosition();
-    bullet.setPosition(currentPosition + offset);
-  }
+    /**
+     * Move bullet position by the provided offset.
+     *
+     * @param offset moving offset
+     */
+    public void moveBullet(float offset) {
+        var currentPosition = bullet.getPosition();
+        bullet.setPosition(currentPosition + offset);
+    }
 
-  /**
-   * Get current position of the bullet.
-   *
-   * @return position of bullet
-   */
-  public float getBulletPosition() {
-    return bullet.getPosition();
-  }
+    /**
+     * Get current position of the bullet.
+     *
+     * @return position of bullet
+     */
+    public float getBulletPosition() {
+        return bullet.getPosition();
+    }
 
 }
 

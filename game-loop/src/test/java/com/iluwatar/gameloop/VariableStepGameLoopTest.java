@@ -33,21 +33,21 @@ import org.junit.jupiter.api.Test;
  */
 class VariableStepGameLoopTest {
 
-  private VariableStepGameLoop gameLoop;
+    private VariableStepGameLoop gameLoop;
 
-  @BeforeEach
-  void setup() {
-    gameLoop = new VariableStepGameLoop();
-  }
+    @BeforeEach
+    void setup() {
+        gameLoop = new VariableStepGameLoop();
+    }
 
-  @AfterEach
-  void tearDown() {
-    gameLoop = null;
-  }
+    @AfterEach
+    void tearDown() {
+        gameLoop = null;
+    }
 
-  @Test
-  void testUpdate() {
-    gameLoop.update(20L);
-    Assertions.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
-  }
+    @Test
+    void testUpdate() {
+        gameLoop.update(20L);
+        Assertions.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
+    }
 }

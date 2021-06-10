@@ -23,14 +23,14 @@
 
 package com.iluwatar.specification.selector;
 
+import com.iluwatar.specification.creature.Creature;
+import com.iluwatar.specification.property.Color;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Color;
-import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 7:35 PM
@@ -39,21 +39,21 @@ import org.junit.jupiter.api.Test;
  */
 class ColorSelectorTest {
 
-  /**
-   * Verify if the color selector gives the correct results
-   */
-  @Test
-  void testColor() {
-    final var greenCreature = mock(Creature.class);
-    when(greenCreature.getColor()).thenReturn(Color.GREEN);
+    /**
+     * Verify if the color selector gives the correct results
+     */
+    @Test
+    void testColor() {
+        final var greenCreature = mock(Creature.class);
+        when(greenCreature.getColor()).thenReturn(Color.GREEN);
 
-    final var redCreature = mock(Creature.class);
-    when(redCreature.getColor()).thenReturn(Color.RED);
+        final var redCreature = mock(Creature.class);
+        when(redCreature.getColor()).thenReturn(Color.RED);
 
-    final var greenSelector = new ColorSelector(Color.GREEN);
-    assertTrue(greenSelector.test(greenCreature));
-    assertFalse(greenSelector.test(redCreature));
+        final var greenSelector = new ColorSelector(Color.GREEN);
+        assertTrue(greenSelector.test(greenCreature));
+        assertFalse(greenSelector.test(redCreature));
 
-  }
+    }
 
 }

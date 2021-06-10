@@ -28,6 +28,6 @@ package com.iluwatar.aggregator.microservices;
  */
 public interface ProductInformationClient {
 
-  String getProductTitle();
+    String getProductTitle();
 
 }

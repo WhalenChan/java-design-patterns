@@ -23,69 +23,67 @@
 
 package com.iluwatar.roleobject;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerCoreTest {
 
-  @Test
-  void addRole() {
-    var core = new CustomerCore();
-    assertTrue(core.addRole(Role.Borrower));
-  }
+    @Test
+    void addRole() {
+        var core = new CustomerCore();
+        assertTrue(core.addRole(Role.Borrower));
+    }
 
-  @Test
-  void hasRole() {
-    var core = new CustomerCore();
-    core.addRole(Role.Borrower);
-    assertTrue(core.hasRole(Role.Borrower));
-    assertFalse(core.hasRole(Role.Investor));
-  }
+    @Test
+    void hasRole() {
+        var core = new CustomerCore();
+        core.addRole(Role.Borrower);
+        assertTrue(core.hasRole(Role.Borrower));
+        assertFalse(core.hasRole(Role.Investor));
+    }
 
-  @Test
-  void remRole() {
-    var core = new CustomerCore();
-    core.addRole(Role.Borrower);
+    @Test
+    void remRole() {
+        var core = new CustomerCore();
+        core.addRole(Role.Borrower);
 
-    var bRole = core.getRole(Role.Borrower, BorrowerRole.class);
-    assertTrue(bRole.isPresent());
+        var bRole = core.getRole(Role.Borrower, BorrowerRole.class);
+        assertTrue(bRole.isPresent());
 
-    assertTrue(core.remRole(Role.Borrower));
+        assertTrue(core.remRole(Role.Borrower));
 
-    var empt = core.getRole(Role.Borrower, BorrowerRole.class);
-    assertFalse(empt.isPresent());
-  }
+        var empt = core.getRole(Role.Borrower, BorrowerRole.class);
+        assertFalse(empt.isPresent());
+    }
 
-  @Test
-  void getRole() {
-    var core = new CustomerCore();
-    core.addRole(Role.Borrower);
+    @Test
+    void getRole() {
+        var core = new CustomerCore();
+        core.addRole(Role.Borrower);
 
-    var bRole = core.getRole(Role.Borrower, BorrowerRole.class);
-    assertTrue(bRole.isPresent());
+        var bRole = core.getRole(Role.Borrower, BorrowerRole.class);
+        assertTrue(bRole.isPresent());
 
-    var nonRole = core.getRole(Role.Borrower, InvestorRole.class);
-    assertFalse(nonRole.isPresent());
+        var nonRole = core.getRole(Role.Borrower, InvestorRole.class);
+        assertFalse(nonRole.isPresent());
 
-    var invRole = core.getRole(Role.Investor, InvestorRole.class);
-    assertFalse(invRole.isPresent());
-  }
+        var invRole = core.getRole(Role.Investor, InvestorRole.class);
+        assertFalse(invRole.isPresent());
+    }
 
-  @Test
-  void toStringTest() {
-    var core = new CustomerCore();
-    core.addRole(Role.Borrower);
-    assertEquals("Customer{roles=[Borrower]}", core.toString());
+    @Test
+    void toStringTest() {
+        var core = new CustomerCore();
+        core.addRole(Role.Borrower);
+        assertEquals("Customer{roles=[Borrower]}", core.toString());
 
-    core = new CustomerCore();
-    core.addRole(Role.Investor);
-    assertEquals("Customer{roles=[Investor]}", core.toString());
+        core = new CustomerCore();
+        core.addRole(Role.Investor);
+        assertEquals("Customer{roles=[Investor]}", core.toString());
 
-    core = new CustomerCore();
-    assertEquals("Customer{roles=[]}", core.toString());
-  }
+        core = new CustomerCore();
+        assertEquals("Customer{roles=[]}", core.toString());
+    }
 
 }

@@ -32,16 +32,16 @@ import java.util.Optional;
  */
 public class SoldierVisitorTest extends VisitorTest<SoldierVisitor> {
 
-  /**
-   * Create a new test instance for the given visitor.
-   */
-  public SoldierVisitorTest() {
-    super(
-        new SoldierVisitor(),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of("Greetings soldier")
-    );
-  }
+    /**
+     * Create a new test instance for the given visitor.
+     */
+    public SoldierVisitorTest() {
+        super(
+                new SoldierVisitor(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.of("Greetings soldier")
+        );
+    }
 
 }

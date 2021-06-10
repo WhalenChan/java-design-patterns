@@ -23,23 +23,23 @@
 
 package units;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Created by Srdjan on 03-May-17.
  */
 class SergeantUnitTest {
 
-  @Test
-  void getUnitExtension() {
-    final var unit = new SergeantUnit("SergeantUnitName");
+    @Test
+    void getUnitExtension() {
+        final var unit = new SergeantUnit("SergeantUnitName");
 
-    assertNull(unit.getUnitExtension("SoldierExtension"));
-    assertNotNull(unit.getUnitExtension("SergeantExtension"));
-    assertNull(unit.getUnitExtension("CommanderExtension"));
-  }
+        assertNull(unit.getUnitExtension("SoldierExtension"));
+        assertNotNull(unit.getUnitExtension("SergeantExtension"));
+        assertNull(unit.getUnitExtension("CommanderExtension"));
+    }
 
 }

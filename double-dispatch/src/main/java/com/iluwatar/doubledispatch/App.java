@@ -23,8 +23,9 @@
 
 package com.iluwatar.doubledispatch;
 
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
 
 /**
  * When a message with a parameter is sent to an object, the resultant behaviour is defined by the
@@ -48,32 +49,32 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    // initialize game objects and print their status
-    var objects = List.of(
-        new FlamingAsteroid(0, 0, 5, 5),
-        new SpaceStationMir(1, 1, 2, 2),
-        new Meteoroid(10, 10, 15, 15),
-        new SpaceStationIss(12, 12, 14, 14)
-    );
-    objects.forEach(o -> LOGGER.info(o.toString()));
-    LOGGER.info("");
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        // initialize game objects and print their status
+        var objects = List.of(
+                new FlamingAsteroid(0, 0, 5, 5),
+                new SpaceStationMir(1, 1, 2, 2),
+                new Meteoroid(10, 10, 15, 15),
+                new SpaceStationIss(12, 12, 14, 14)
+        );
+        objects.forEach(o -> LOGGER.info(o.toString()));
+        LOGGER.info("");
 
-    // collision check
-    objects.forEach(o1 -> objects.forEach(o2 -> {
-      if (o1 != o2 && o1.intersectsWith(o2)) {
-        o1.collision(o2);
-      }
-    }));
-    LOGGER.info("");
+        // collision check
+        objects.forEach(o1 -> objects.forEach(o2 -> {
+            if (o1 != o2 && o1.intersectsWith(o2)) {
+                o1.collision(o2);
+            }
+        }));
+        LOGGER.info("");
 
-    // output eventual object statuses
-    objects.forEach(o -> LOGGER.info(o.toString()));
-    LOGGER.info("");
-  }
+        // output eventual object statuses
+        objects.forEach(o -> LOGGER.info(o.toString()));
+        LOGGER.info("");
+    }
 }

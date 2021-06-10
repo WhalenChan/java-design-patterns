@@ -23,9 +23,10 @@
 
 package com.iluwatar.queue.load.leveling;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * MessageQueue class. In this class we will create a Blocking Queue and submit/retrieve all the
@@ -34,37 +35,37 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MessageQueue {
 
-  private final BlockingQueue<Message> blkQueue;
+    private final BlockingQueue<Message> blkQueue;
 
-  // Default constructor when called creates Blocking Queue object. 
-  public MessageQueue() {
-    this.blkQueue = new ArrayBlockingQueue<>(1024);
-  }
-
-  /**
-   * All the TaskGenerator threads will call this method to insert the Messages in to the Blocking
-   * Queue.
-   */
-  public void submitMsg(Message msg) {
-    try {
-      if (null != msg) {
-        blkQueue.add(msg);
-      }
-    } catch (Exception e) {
-      LOGGER.error(e.getMessage());
+    // Default constructor when called creates Blocking Queue object.
+    public MessageQueue() {
+        this.blkQueue = new ArrayBlockingQueue<>(1024);
     }
-  }
 
-  /**
-   * All the messages will be retrieved by the ServiceExecutor by calling this method and process
-   * them. Retrieves and removes the head of this queue, or returns null if this queue is empty.
-   */
-  public Message retrieveMsg() {
-    try {
-      return blkQueue.poll();
-    } catch (Exception e) {
-      LOGGER.error(e.getMessage());
+    /**
+     * All the TaskGenerator threads will call this method to insert the Messages in to the Blocking
+     * Queue.
+     */
+    public void submitMsg(Message msg) {
+        try {
+            if (null != msg) {
+                blkQueue.add(msg);
+            }
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
     }
-    return null;
-  }
+
+    /**
+     * All the messages will be retrieved by the ServiceExecutor by calling this method and process
+     * them. Retrieves and removes the head of this queue, or returns null if this queue is empty.
+     */
+    public Message retrieveMsg() {
+        try {
+            return blkQueue.poll();
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        return null;
+    }
 }

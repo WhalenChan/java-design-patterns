@@ -39,14 +39,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class SplitterRoute extends RouteBuilder {
 
-  /**
-   * Configures the route.
-   *
-   * @throws Exception in case of exception during configuration
-   */
-  @Override
-  public void configure() throws Exception {
-    // Main route
-    from("{{entry}}").split().body().to("{{endpoint}}");
-  }
+    /**
+     * Configures the route.
+     *
+     * @throws Exception in case of exception during configuration
+     */
+    @Override
+    public void configure() throws Exception {
+        // Main route
+        from("{{entry}}").split().body().to("{{endpoint}}");
+    }
 }

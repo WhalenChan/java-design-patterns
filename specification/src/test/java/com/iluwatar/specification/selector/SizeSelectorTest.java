@@ -23,14 +23,14 @@
 
 package com.iluwatar.specification.selector;
 
+import com.iluwatar.specification.creature.Creature;
+import com.iluwatar.specification.property.Size;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Size;
-import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 7:43 PM
@@ -39,20 +39,20 @@ import org.junit.jupiter.api.Test;
  */
 public class SizeSelectorTest {
 
-  /**
-   * Verify if the size selector gives the correct results
-   */
-  @Test
-  void testMovement() {
-    final var normalCreature = mock(Creature.class);
-    when(normalCreature.getSize()).thenReturn(Size.NORMAL);
+    /**
+     * Verify if the size selector gives the correct results
+     */
+    @Test
+    void testMovement() {
+        final var normalCreature = mock(Creature.class);
+        when(normalCreature.getSize()).thenReturn(Size.NORMAL);
 
-    final var smallCreature = mock(Creature.class);
-    when(smallCreature.getSize()).thenReturn(Size.SMALL);
+        final var smallCreature = mock(Creature.class);
+        when(smallCreature.getSize()).thenReturn(Size.SMALL);
 
-    final var normalSelector = new SizeSelector(Size.NORMAL);
-    assertTrue(normalSelector.test(normalCreature));
-    assertFalse(normalSelector.test(smallCreature));
-  }
+        final var normalSelector = new SizeSelector(Size.NORMAL);
+        assertTrue(normalSelector.test(normalCreature));
+        assertFalse(normalSelector.test(smallCreature));
+    }
 
 }

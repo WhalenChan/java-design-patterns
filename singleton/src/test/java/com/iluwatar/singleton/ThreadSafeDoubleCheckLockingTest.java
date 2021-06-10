@@ -23,10 +23,11 @@
 
 package com.iluwatar.singleton;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Date: 12/29/15 - 19:26 PM.
@@ -35,22 +36,22 @@ import org.junit.jupiter.api.Test;
  */
 class ThreadSafeDoubleCheckLockingTest extends SingletonTest<ThreadSafeDoubleCheckLocking> {
 
-  /**
-   * Create a new singleton test instance using the given 'getInstance' method.
-   */
-  public ThreadSafeDoubleCheckLockingTest() {
-    super(ThreadSafeDoubleCheckLocking::getInstance);
-  }
+    /**
+     * Create a new singleton test instance using the given 'getInstance' method.
+     */
+    public ThreadSafeDoubleCheckLockingTest() {
+        super(ThreadSafeDoubleCheckLocking::getInstance);
+    }
 
-  /**
-   * Test creating new instance by refection.
-   */
-  @Test
-  void testCreatingNewInstanceByRefection() throws Exception {
-    ThreadSafeDoubleCheckLocking.getInstance();
-    var constructor = ThreadSafeDoubleCheckLocking.class.getDeclaredConstructor();
-    constructor.setAccessible(true);
-    assertThrows(InvocationTargetException.class, () -> constructor.newInstance((Object[]) null));
-  }
+    /**
+     * Test creating new instance by refection.
+     */
+    @Test
+    void testCreatingNewInstanceByRefection() throws Exception {
+        ThreadSafeDoubleCheckLocking.getInstance();
+        var constructor = ThreadSafeDoubleCheckLocking.class.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        assertThrows(InvocationTargetException.class, () -> constructor.newInstance((Object[]) null));
+    }
 
 }

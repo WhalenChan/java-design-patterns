@@ -23,16 +23,16 @@
 
 package com.iluwatar.roleobject;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BorrowerRoleTest {
 
-  @Test
-  void borrowTest() {
-    var borrowerRole = new BorrowerRole();
-    borrowerRole.setName("test");
-    assertEquals("Borrower test wants to get some money.", borrowerRole.borrow());
-  }
+    @Test
+    void borrowTest() {
+        var borrowerRole = new BorrowerRole();
+        borrowerRole.setName("test");
+        assertEquals("Borrower test wants to get some money.", borrowerRole.borrow());
+    }
 }

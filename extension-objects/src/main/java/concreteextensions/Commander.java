@@ -37,11 +37,11 @@ import units.CommanderUnit;
 @Slf4j
 public class Commander implements CommanderExtension {
 
-  private final CommanderUnit unit;
+    private final CommanderUnit unit;
 
-  @Override
-  public void commanderReady() {
-    LOGGER.info("[Commander] " + unit.getName() + " is ready!");
-  }
+    @Override
+    public void commanderReady() {
+        LOGGER.info("[Commander] " + unit.getName() + " is ready!");
+    }
 
 }

@@ -23,38 +23,39 @@
 
 package com.iluwatar.guarded.suspension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Guarded Queue
  */
 public class GuardedQueueTest {
-  private volatile Integer value;
+    private volatile Integer value;
 
-  @Test
-  void testGet() {
-    var g = new GuardedQueue();
-    var executorService = Executors.newFixedThreadPool(2);
-    executorService.submit(() -> value = g.get());
-    executorService.submit(() -> g.put(10));
-    executorService.shutdown();
-    try {
-      executorService.awaitTermination(30, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    @Test
+    void testGet() {
+        var g = new GuardedQueue();
+        var executorService = Executors.newFixedThreadPool(2);
+        executorService.submit(() -> value = g.get());
+        executorService.submit(() -> g.put(10));
+        executorService.shutdown();
+        try {
+            executorService.awaitTermination(30, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertEquals(Integer.valueOf(10), value);
     }
-    assertEquals(Integer.valueOf(10), value);
-  }
 
-  @Test
-  void testPut() {
-    var g = new GuardedQueue();
-    g.put(12);
-    assertEquals(Integer.valueOf(12), g.get());
-  }
+    @Test
+    void testPut() {
+        var g = new GuardedQueue();
+        g.put(12);
+        assertEquals(Integer.valueOf(12), g.get());
+    }
 
 }

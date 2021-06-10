@@ -23,7 +23,6 @@
 
 package com.iluwatar.module;
 
-import java.io.FileNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -34,8 +33,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
  */
 final class AppTest {
 
-  @Test
-  void shouldExecuteWithoutException() {
-    assertDoesNotThrow((Executable) App::main);
-  }
+    @Test
+    void shouldExecuteWithoutException() {
+        assertDoesNotThrow((Executable) App::main);
+    }
 }

@@ -40,17 +40,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class WireTapRoute extends RouteBuilder {
 
-  /**
-   * Configures the route.
-   *
-   * @throws Exception in case of exception during configuration
-   */
-  @Override
-  public void configure() throws Exception {
-    // Main route
-    from("{{entry}}").wireTap("direct:wireTap").to("{{endpoint}}");
+    /**
+     * Configures the route.
+     *
+     * @throws Exception in case of exception during configuration
+     */
+    @Override
+    public void configure() throws Exception {
+        // Main route
+        from("{{entry}}").wireTap("direct:wireTap").to("{{endpoint}}");
 
-    // Wire tap route
-    from("direct:wireTap").log("Message: ${body}").to("{{wireTapEndpoint}}");
-  }
+        // Wire tap route
+        from("direct:wireTap").log("Message: ${body}").to("{{wireTapEndpoint}}");
+    }
 }

@@ -23,23 +23,21 @@
 
 package domainapp.integtests.tests;
 
-import org.junit.BeforeClass;
-
+import domainapp.integtests.bootstrap.SimpleAppSystemInitializer;
 import org.apache.isis.core.integtestsupport.IntegrationTestAbstract;
 import org.apache.isis.core.integtestsupport.scenarios.ScenarioExecutionForIntegration;
-
-import domainapp.integtests.bootstrap.SimpleAppSystemInitializer;
+import org.junit.BeforeClass;
 
 /**
  * SimpleApp Integration Tests will implement this Abstract Class.
  */
 public abstract class SimpleAppIntegTest extends IntegrationTestAbstract {
 
-  @BeforeClass
-  public static void initClass() {
-    SimpleAppSystemInitializer.initIsft();
+    @BeforeClass
+    public static void initClass() {
+        SimpleAppSystemInitializer.initIsft();
 
-    // instantiating will install onto ThreadLocal
-    new ScenarioExecutionForIntegration();
-  }
+        // instantiating will install onto ThreadLocal
+        new ScenarioExecutionForIntegration();
+    }
 }

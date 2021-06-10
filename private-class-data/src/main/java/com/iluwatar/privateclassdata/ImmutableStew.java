@@ -31,18 +31,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ImmutableStew {
 
-  private final StewData data;
+    private final StewData data;
 
-  public ImmutableStew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
-    data = new StewData(numPotatoes, numCarrots, numMeat, numPeppers);
-  }
+    public ImmutableStew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
+        data = new StewData(numPotatoes, numCarrots, numMeat, numPeppers);
+    }
 
-  /**
-   * Mix the stew.
-   */
-  public void mix() {
-    LOGGER
-        .info("Mixing the immutable stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
-            data.getNumPotatoes(), data.getNumCarrots(), data.getNumMeat(), data.getNumPeppers());
-  }
+    /**
+     * Mix the stew.
+     */
+    public void mix() {
+        LOGGER
+                .info("Mixing the immutable stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
+                        data.getNumPotatoes(), data.getNumCarrots(), data.getNumMeat(), data.getNumPeppers());
+    }
 }

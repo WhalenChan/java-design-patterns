@@ -23,11 +23,9 @@
 
 package com.iluwatar.arrangeactassert;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * ({@link CashAAATest}) is an anti-example of AAA pattern. This test is functionally correct, but
@@ -39,22 +37,22 @@ import org.junit.jupiter.api.Test;
 
 class CashAntiAAATest {
 
-  @Test
-  void testCash() {
-    //initialize
-    var cash = new Cash(3);
-    //test plus
-    cash.plus(4);
-    assertEquals(7, cash.count());
-    //test minus
-    cash = new Cash(8);
-    assertTrue(cash.minus(5));
-    assertEquals(3, cash.count());
-    assertFalse(cash.minus(6));
-    assertEquals(3, cash.count());
-    //test update
-    cash.plus(5);
-    assertTrue(cash.minus(5));
-    assertEquals(3, cash.count());
-  }
+    @Test
+    void testCash() {
+        //initialize
+        var cash = new Cash(3);
+        //test plus
+        cash.plus(4);
+        assertEquals(7, cash.count());
+        //test minus
+        cash = new Cash(8);
+        assertTrue(cash.minus(5));
+        assertEquals(3, cash.count());
+        assertFalse(cash.minus(6));
+        assertEquals(3, cash.count());
+        //test update
+        cash.plus(5);
+        assertTrue(cash.minus(5));
+        assertEquals(3, cash.count());
+    }
 }

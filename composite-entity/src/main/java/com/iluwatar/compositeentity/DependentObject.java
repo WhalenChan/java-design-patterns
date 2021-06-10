@@ -8,13 +8,13 @@ package com.iluwatar.compositeentity;
 
 public abstract class DependentObject<T> {
 
-  T data;
+    T data;
 
-  public void setData(T message) {
-    this.data = message;
-  }
+    public void setData(T message) {
+        this.data = message;
+    }
 
-  public T getData() {
-    return data;
-  }
+    public T getData() {
+        return data;
+    }
 }

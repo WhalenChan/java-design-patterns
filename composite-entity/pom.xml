@@ -26,7 +26,8 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.iluwatar.composite-entity.com.iluwatar.compositeentity.App</mainClass>
+                                    <mainClass>com.iluwatar.composite-entity.com.iluwatar.compositeentity.App
+                                    </mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

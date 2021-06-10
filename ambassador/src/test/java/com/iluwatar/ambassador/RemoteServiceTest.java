@@ -23,40 +23,40 @@
 
 package com.iluwatar.ambassador;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.iluwatar.ambassador.util.RandomProvider;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for {@link RemoteService}
  */
 class RemoteServiceTest {
 
-  @Test
-  void testFailedCall() {
-    var remoteService = new RemoteService(new StaticRandomProvider(0.21));
-    var result = remoteService.doRemoteFunction(10);
-    assertEquals(RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue(), result);
-  }
-
-  @Test
-  void testSuccessfulCall() {
-    var remoteService = new RemoteService(new StaticRandomProvider(0.2));
-    var result = remoteService.doRemoteFunction(10);
-    assertEquals(100, result);
-  }
-
-  private static class StaticRandomProvider implements RandomProvider {
-    private final double value;
-
-    StaticRandomProvider(double value) {
-      this.value = value;
+    @Test
+    void testFailedCall() {
+        var remoteService = new RemoteService(new StaticRandomProvider(0.21));
+        var result = remoteService.doRemoteFunction(10);
+        assertEquals(RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue(), result);
     }
 
-    @Override
-    public double random() {
-      return value;
+    @Test
+    void testSuccessfulCall() {
+        var remoteService = new RemoteService(new StaticRandomProvider(0.2));
+        var result = remoteService.doRemoteFunction(10);
+        assertEquals(100, result);
     }
-  }
+
+    private static class StaticRandomProvider implements RandomProvider {
+        private final double value;
+
+        StaticRandomProvider(double value) {
+            this.value = value;
+        }
+
+        @Override
+        public double random() {
+            return value;
+        }
+    }
 }

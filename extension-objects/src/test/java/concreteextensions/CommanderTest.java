@@ -37,29 +37,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by Srdjan on 03-May-17.
- *
+ * <p>
  * Modified by ToxicDreamz on 15-Aug-20
  */
 class CommanderTest {
 
-  @Test
-  void shouldExecuteCommanderReady() {
+    @Test
+    void shouldExecuteCommanderReady() {
 
-    Logger commanderLogger = (Logger) LoggerFactory.getLogger(Commander.class);
+        Logger commanderLogger = (Logger) LoggerFactory.getLogger(Commander.class);
 
-    ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
-    listAppender.start();
+        ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
+        listAppender.start();
 
-    commanderLogger.addAppender(listAppender);
+        commanderLogger.addAppender(listAppender);
 
-    final var commander = new Commander(new CommanderUnit("CommanderUnitTest"));
-    commander.commanderReady();
+        final var commander = new Commander(new CommanderUnit("CommanderUnitTest"));
+        commander.commanderReady();
 
-    List<ILoggingEvent> logsList = listAppender.list;
-    assertEquals("[Commander] " + commander.getUnit().getName() + " is ready!", logsList.get(0)
-        .getMessage());
-    assertEquals(Level.INFO, logsList.get(0)
-        .getLevel());
-  }
+        List<ILoggingEvent> logsList = listAppender.list;
+        assertEquals("[Commander] " + commander.getUnit().getName() + " is ready!", logsList.get(0)
+                .getMessage());
+        assertEquals(Level.INFO, logsList.get(0)
+                .getLevel());
+    }
 
 }

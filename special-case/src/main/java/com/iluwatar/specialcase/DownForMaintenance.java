@@ -28,10 +28,10 @@ import org.slf4j.LoggerFactory;
 
 public class DownForMaintenance implements ReceiptViewModel {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(DownForMaintenance.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DownForMaintenance.class);
 
-  @Override
-  public void show() {
-    LOGGER.info("Down for maintenance");
-  }
+    @Override
+    public void show() {
+        LOGGER.info("Down for maintenance");
+    }
 }

@@ -31,28 +31,28 @@ import java.util.List;
  */
 public abstract class LetterComposite {
 
-  private final List<LetterComposite> children = new ArrayList<>();
+    private final List<LetterComposite> children = new ArrayList<>();
 
-  public void add(LetterComposite letter) {
-    children.add(letter);
-  }
+    public void add(LetterComposite letter) {
+        children.add(letter);
+    }
 
-  public int count() {
-    return children.size();
-  }
+    public int count() {
+        return children.size();
+    }
 
-  protected void printThisBefore() {
-  }
+    protected void printThisBefore() {
+    }
 
-  protected void printThisAfter() {
-  }
+    protected void printThisAfter() {
+    }
 
-  /**
-   * Print.
-   */
-  public void print() {
-    printThisBefore();
-    children.forEach(LetterComposite::print);
-    printThisAfter();
-  }
+    /**
+     * Print.
+     */
+    public void print() {
+        printThisBefore();
+        children.forEach(LetterComposite::print);
+        printThisAfter();
+    }
 }

@@ -30,18 +30,18 @@ import java.util.List;
  */
 public class DisjunctionSelector<T> extends AbstractSelector<T> {
 
-  private final List<AbstractSelector<T>> leafComponents;
+    private final List<AbstractSelector<T>> leafComponents;
 
-  @SafeVarargs
-  DisjunctionSelector(AbstractSelector<T>... selectors) {
-    this.leafComponents = List.of(selectors);
-  }
+    @SafeVarargs
+    DisjunctionSelector(AbstractSelector<T>... selectors) {
+        this.leafComponents = List.of(selectors);
+    }
 
-  /**
-   * Tests if *at least one* selector passes the test.
-   */
-  @Override
-  public boolean test(T t) {
-    return leafComponents.stream().anyMatch(comp -> comp.test(t));
-  }
+    /**
+     * Tests if *at least one* selector passes the test.
+     */
+    @Override
+    public boolean test(T t) {
+        return leafComponents.stream().anyMatch(comp -> comp.test(t));
+    }
 }

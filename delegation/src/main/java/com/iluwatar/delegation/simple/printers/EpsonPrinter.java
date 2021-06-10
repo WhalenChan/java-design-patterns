@@ -35,12 +35,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EpsonPrinter implements Printer {
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void print(String message) {
-    LOGGER.info("Epson Printer : {}", message);
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void print(String message) {
+        LOGGER.info("Epson Printer : {}", message);
+    }
 
 }

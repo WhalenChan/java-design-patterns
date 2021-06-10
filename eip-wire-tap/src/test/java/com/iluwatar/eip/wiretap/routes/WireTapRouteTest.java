@@ -23,8 +23,6 @@
 
 package com.iluwatar.eip.wiretap.routes;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.apache.camel.EndpointInject;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.mock.MockEndpoint;
@@ -36,6 +34,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test class for <i>WireTapRoute</i>.
@@ -51,35 +51,35 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ComponentScan
 class WireTapRouteTest {
 
-  @EndpointInject(uri = "{{entry}}")
-  private ProducerTemplate entry;
+    @EndpointInject(uri = "{{entry}}")
+    private ProducerTemplate entry;
 
-  @EndpointInject(uri = "{{endpoint}}")
-  private MockEndpoint endpoint;
+    @EndpointInject(uri = "{{endpoint}}")
+    private MockEndpoint endpoint;
 
-  @EndpointInject(uri = "{{wireTapEndpoint}}")
-  private MockEndpoint wireTapEndpoint;
+    @EndpointInject(uri = "{{wireTapEndpoint}}")
+    private MockEndpoint wireTapEndpoint;
 
-  /**
-   * Test if both endpoints receive exactly one message containing the same, unchanged body.
-   *
-   * @throws Exception in case of en exception during the test
-   */
-  @Test
-  @DirtiesContext
-  void testWireTap() throws Exception {
-    entry.sendBody("TEST");
+    /**
+     * Test if both endpoints receive exactly one message containing the same, unchanged body.
+     *
+     * @throws Exception in case of en exception during the test
+     */
+    @Test
+    @DirtiesContext
+    void testWireTap() throws Exception {
+        entry.sendBody("TEST");
 
-    endpoint.expectedMessageCount(1);
-    wireTapEndpoint.expectedMessageCount(1);
+        endpoint.expectedMessageCount(1);
+        wireTapEndpoint.expectedMessageCount(1);
 
-    endpoint.assertIsSatisfied();
-    wireTapEndpoint.assertIsSatisfied();
+        endpoint.assertIsSatisfied();
+        wireTapEndpoint.assertIsSatisfied();
 
-    var endpointIn = endpoint.getExchanges().get(0).getIn();
-    var wireTapEndpointIn = wireTapEndpoint.getExchanges().get(0).getIn();
+        var endpointIn = endpoint.getExchanges().get(0).getIn();
+        var wireTapEndpointIn = wireTapEndpoint.getExchanges().get(0).getIn();
 
-    assertEquals("TEST", endpointIn.getBody());
-    assertEquals("TEST", wireTapEndpointIn.getBody());
-  }
+        assertEquals("TEST", endpointIn.getBody());
+        assertEquals("TEST", wireTapEndpointIn.getBody());
+    }
 }

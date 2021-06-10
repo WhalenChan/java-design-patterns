@@ -28,5 +28,5 @@ package abstractextensions;
  */
 public interface SergeantExtension extends UnitExtension {
 
-  void sergeantReady();
+    void sergeantReady();
 }

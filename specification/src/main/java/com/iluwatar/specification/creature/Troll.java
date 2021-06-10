@@ -33,11 +33,11 @@ import com.iluwatar.specification.property.Size;
  */
 public class Troll extends AbstractCreature {
 
-  public Troll() {
-    this(new Mass(4000.0));
-  }
+    public Troll() {
+        this(new Mass(4000.0));
+    }
 
-  public Troll(Mass mass) {
-    super("Troll", Size.LARGE, Movement.WALKING, Color.DARK, mass);
-  }
+    public Troll(Mass mass) {
+        super("Troll", Size.LARGE, Movement.WALKING, Color.DARK, mass);
+    }
 }

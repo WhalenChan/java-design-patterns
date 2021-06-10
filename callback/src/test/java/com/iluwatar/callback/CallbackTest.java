@@ -23,9 +23,9 @@
 
 package com.iluwatar.callback;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Add a field as a counter. Every time the callback method is called increment this field. Unit
@@ -35,23 +35,23 @@ import org.junit.jupiter.api.Test;
  */
 public class CallbackTest {
 
-  private Integer callingCount = 0;
+    private Integer callingCount = 0;
 
-  @Test
-  void test() {
-    Callback callback = () -> callingCount++;
+    @Test
+    void test() {
+        Callback callback = () -> callingCount++;
 
-    var task = new SimpleTask();
+        var task = new SimpleTask();
 
-    assertEquals(Integer.valueOf(0), callingCount, "Initial calling count of 0");
+        assertEquals(Integer.valueOf(0), callingCount, "Initial calling count of 0");
 
-    task.executeWith(callback);
+        task.executeWith(callback);
 
-    assertEquals(Integer.valueOf(1), callingCount, "Callback called once");
+        assertEquals(Integer.valueOf(1), callingCount, "Callback called once");
 
-    task.executeWith(callback);
+        task.executeWith(callback);
 
-    assertEquals(Integer.valueOf(2), callingCount, "Callback called twice");
+        assertEquals(Integer.valueOf(2), callingCount, "Callback called twice");
 
-  }
+    }
 }

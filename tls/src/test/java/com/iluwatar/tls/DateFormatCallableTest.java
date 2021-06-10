@@ -23,15 +23,16 @@
 
 package com.iluwatar.tls;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Executors;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Test of the Callable
@@ -50,97 +51,97 @@ import org.junit.jupiter.api.Test;
  */
 public class DateFormatCallableTest {
 
-  // Class variables used in setup() have to be static because setup() has to be static
-  /**
-   * Result object given back by DateFormatCallable -- Array with converted date values -- Array
-   * with thrown exceptions
-   */
-  private static Result result;
+    // Class variables used in setup() have to be static because setup() has to be static
+    /**
+     * Result object given back by DateFormatCallable -- Array with converted date values -- Array
+     * with thrown exceptions
+     */
+    private static Result result;
 
-  /**
-   * The date values created by the run of of DateFormatRunnalbe. List will be filled in the setup()
-   * method
-   */
-  private static List<String> createdDateValues = new ArrayList<>();
+    /**
+     * The date values created by the run of of DateFormatRunnalbe. List will be filled in the setup()
+     * method
+     */
+    private static List<String> createdDateValues = new ArrayList<>();
 
-  /**
-   * Expected number of date values in the date value list created by the run of DateFormatRunnalbe
-   */
-  private final int expectedCounterDateValues = 5;
+    /**
+     * Expected number of date values in the date value list created by the run of DateFormatRunnalbe
+     */
+    private final int expectedCounterDateValues = 5;
 
-  /**
-   * Expected number of exceptions in the exception list created by the run of DateFormatRunnalbe.
-   */
-  private final int expectedCounterExceptions = 0;
+    /**
+     * Expected number of exceptions in the exception list created by the run of DateFormatRunnalbe.
+     */
+    private final int expectedCounterExceptions = 0;
 
-  /**
-   * Expected content of the list containing the date values created by the run of
-   * DateFormatRunnalbe
-   */
-  private final List<String> expectedDateValues =
-      List.of("15.11.2015", "15.11.2015", "15.11.2015", "15.11.2015", "15.11.2015");
+    /**
+     * Expected content of the list containing the date values created by the run of
+     * DateFormatRunnalbe
+     */
+    private final List<String> expectedDateValues =
+            List.of("15.11.2015", "15.11.2015", "15.11.2015", "15.11.2015", "15.11.2015");
 
-  /**
-   * Run Callable and prepare results for usage in the test methods
-   */
-  @BeforeAll
-  public static void setup() {
-    // Create a callable
-    var callableDf = new DateFormatCallable("dd/MM/yyyy", "15/12/2015");
-    // start thread using the Callable instance
-    var executor = Executors.newCachedThreadPool();
-    var futureResult = executor.submit(callableDf);
-    try {
-      result = futureResult.get();
-      createdDateValues = convertDatesToString(result);
-    } catch (Exception e) {
-      fail("Setup failed: " + e);
+    /**
+     * Run Callable and prepare results for usage in the test methods
+     */
+    @BeforeAll
+    public static void setup() {
+        // Create a callable
+        var callableDf = new DateFormatCallable("dd/MM/yyyy", "15/12/2015");
+        // start thread using the Callable instance
+        var executor = Executors.newCachedThreadPool();
+        var futureResult = executor.submit(callableDf);
+        try {
+            result = futureResult.get();
+            createdDateValues = convertDatesToString(result);
+        } catch (Exception e) {
+            fail("Setup failed: " + e);
+        }
+        executor.shutdown();
     }
-    executor.shutdown();
-  }
 
-  private static List<String> convertDatesToString(Result res) {
-    // Format date value as DD.MM.YYYY
-    if (res == null || res.getDateList() == null || res.getDateList().size() == 0) {
-      return null;
+    private static List<String> convertDatesToString(Result res) {
+        // Format date value as DD.MM.YYYY
+        if (res == null || res.getDateList() == null || res.getDateList().size() == 0) {
+            return null;
+        }
+        var returnList = new ArrayList<String>();
+
+        for (var dt : res.getDateList()) {
+            var cal = Calendar.getInstance();
+            cal.setTime(dt);
+            returnList.add(cal.get(Calendar.DAY_OF_MONTH) + "."
+                    + cal.get(Calendar.MONTH) + "."
+                    + cal.get(Calendar.YEAR)
+            );
+        }
+        return returnList;
     }
-    var returnList = new ArrayList<String>();
 
-    for (var dt : res.getDateList()) {
-      var cal = Calendar.getInstance();
-      cal.setTime(dt);
-      returnList.add(cal.get(Calendar.DAY_OF_MONTH) + "."
-          + cal.get(Calendar.MONTH) + "."
-          + cal.get(Calendar.YEAR)
-      );
+    /**
+     * Test date values after the run of DateFormatRunnalbe. A correct run should deliver 5 times
+     * 15.12.2015
+     */
+    @Test
+    void testDateValues() {
+        assertEquals(expectedDateValues, createdDateValues);
     }
-    return returnList;
-  }
 
-  /**
-   * Test date values after the run of DateFormatRunnalbe. A correct run should deliver 5 times
-   * 15.12.2015
-   */
-  @Test
-  void testDateValues() {
-    assertEquals(expectedDateValues, createdDateValues);
-  }
+    /**
+     * Test number of dates in the list after the run of DateFormatRunnalbe. A correct run should
+     * deliver 5 date values
+     */
+    @Test
+    void testCounterDateValues() {
+        assertEquals(expectedCounterDateValues, result.getDateList().size());
+    }
 
-  /**
-   * Test number of dates in the list after the run of DateFormatRunnalbe. A correct run should
-   * deliver 5 date values
-   */
-  @Test
-  void testCounterDateValues() {
-    assertEquals(expectedCounterDateValues, result.getDateList().size());
-  }
-
-  /**
-   * Test number of Exceptions in the list after the run of DateFormatRunnalbe. A correct run should
-   * deliver no exceptions
-   */
-  @Test
-  void testCounterExceptions() {
-    assertEquals(expectedCounterExceptions, result.getExceptionList().size());
-  }
+    /**
+     * Test number of Exceptions in the list after the run of DateFormatRunnalbe. A correct run should
+     * deliver no exceptions
+     */
+    @Test
+    void testCounterExceptions() {
+        assertEquals(expectedCounterExceptions, result.getExceptionList().size());
+    }
 }

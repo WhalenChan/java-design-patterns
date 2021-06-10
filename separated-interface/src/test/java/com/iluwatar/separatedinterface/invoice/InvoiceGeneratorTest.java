@@ -23,29 +23,26 @@
 
 package com.iluwatar.separatedinterface.invoice;
 
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.*;
+
 class InvoiceGeneratorTest {
 
-  private InvoiceGenerator target;
+    private InvoiceGenerator target;
 
-  @Test
-  void testGenerateTax() {
-    var productCost = 50.0;
-    var tax = 10.0;
-    TaxCalculator taxCalculatorMock = mock(TaxCalculator.class);
-    doReturn(tax).when(taxCalculatorMock).calculate(productCost);
+    @Test
+    void testGenerateTax() {
+        var productCost = 50.0;
+        var tax = 10.0;
+        TaxCalculator taxCalculatorMock = mock(TaxCalculator.class);
+        doReturn(tax).when(taxCalculatorMock).calculate(productCost);
 
-    target = new InvoiceGenerator(productCost, taxCalculatorMock);
+        target = new InvoiceGenerator(productCost, taxCalculatorMock);
 
-    Assertions.assertEquals(target.getAmountWithTax(), productCost + tax);
-    verify(taxCalculatorMock, times(1)).calculate(productCost);
-  }
+        Assertions.assertEquals(target.getAmountWithTax(), productCost + tax);
+        verify(taxCalculatorMock, times(1)).calculate(productCost);
+    }
 
 }

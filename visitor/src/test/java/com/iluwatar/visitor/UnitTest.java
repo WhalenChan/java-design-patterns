@@ -23,14 +23,13 @@
 
 package com.iluwatar.visitor;
 
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.function.Function;
-import org.junit.jupiter.api.Test;
+
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/30/15 - 18:59 PM. Test related to Units
@@ -40,42 +39,42 @@ import org.junit.jupiter.api.Test;
  */
 public abstract class UnitTest<U extends Unit> {
 
-  /**
-   * Factory to create new instances of the tested unit.
-   */
-  private final Function<Unit[], U> factory;
+    /**
+     * Factory to create new instances of the tested unit.
+     */
+    private final Function<Unit[], U> factory;
 
-  /**
-   * Create a new test instance for the given unit type {@link U}.
-   *
-   * @param factory Factory to create new instances of the tested unit
-   */
-  public UnitTest(final Function<Unit[], U> factory) {
-    this.factory = factory;
-  }
+    /**
+     * Create a new test instance for the given unit type {@link U}.
+     *
+     * @param factory Factory to create new instances of the tested unit
+     */
+    public UnitTest(final Function<Unit[], U> factory) {
+        this.factory = factory;
+    }
 
-  @Test
-  void testAccept() {
-    final var children = new Unit[5];
-    Arrays.setAll(children, (i) -> mock(Unit.class));
+    @Test
+    void testAccept() {
+        final var children = new Unit[5];
+        Arrays.setAll(children, (i) -> mock(Unit.class));
 
-    final var unit = this.factory.apply(children);
-    final var visitor = mock(UnitVisitor.class);
-    unit.accept(visitor);
-    verifyVisit(unit, visitor);
+        final var unit = this.factory.apply(children);
+        final var visitor = mock(UnitVisitor.class);
+        unit.accept(visitor);
+        verifyVisit(unit, visitor);
 
-    Arrays.stream(children).forEach(child -> verify(child).accept(eq(visitor)));
+        Arrays.stream(children).forEach(child -> verify(child).accept(eq(visitor)));
 
-    verifyNoMoreInteractions(children);
-    verifyNoMoreInteractions(visitor);
-  }
+        verifyNoMoreInteractions(children);
+        verifyNoMoreInteractions(visitor);
+    }
 
-  /**
-   * Verify if the correct visit method is called on the mock, depending on the tested instance.
-   *
-   * @param unit          The tested unit instance
-   * @param mockedVisitor The mocked {@link UnitVisitor} who should have gotten a visit by the unit
-   */
-  abstract void verifyVisit(final U unit, final UnitVisitor mockedVisitor);
+    /**
+     * Verify if the correct visit method is called on the mock, depending on the tested instance.
+     *
+     * @param unit          The tested unit instance
+     * @param mockedVisitor The mocked {@link UnitVisitor} who should have gotten a visit by the unit
+     */
+    abstract void verifyVisit(final U unit, final UnitVisitor mockedVisitor);
 
 }

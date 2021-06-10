@@ -27,6 +27,7 @@ import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
+
 import java.util.Set;
 
 /**
@@ -34,20 +35,20 @@ import java.util.Set;
  */
 public class LotteryTestUtils {
 
-  /**
-   * @return lottery ticket
-   */
-  public static LotteryTicket createLotteryTicket() {
-    return createLotteryTicket("foo@bar.com", "12231-213132", "+99324554", Set.of(1, 2, 3, 4));
-  }
+    /**
+     * @return lottery ticket
+     */
+    public static LotteryTicket createLotteryTicket() {
+        return createLotteryTicket("foo@bar.com", "12231-213132", "+99324554", Set.of(1, 2, 3, 4));
+    }
 
-  /**
-   * @return lottery ticket
-   */
-  public static LotteryTicket createLotteryTicket(String email, String account, String phone,
-                                                  Set<Integer> givenNumbers) {
-    var details = new PlayerDetails(email, account, phone);
-    var numbers = LotteryNumbers.create(givenNumbers);
-    return new LotteryTicket(new LotteryTicketId(), details, numbers);
-  }
+    /**
+     * @return lottery ticket
+     */
+    public static LotteryTicket createLotteryTicket(String email, String account, String phone,
+                                                    Set<Integer> givenNumbers) {
+        var details = new PlayerDetails(email, account, phone);
+        var numbers = LotteryNumbers.create(givenNumbers);
+        return new LotteryTicket(new LotteryTicketId(), details, numbers);
+    }
 }

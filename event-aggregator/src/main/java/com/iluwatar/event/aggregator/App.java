@@ -41,25 +41,25 @@ import java.util.function.Consumer;
  */
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
 
-    var kingJoffrey = new KingJoffrey();
-    var kingsHand = new KingsHand(kingJoffrey);
+        var kingJoffrey = new KingJoffrey();
+        var kingsHand = new KingsHand(kingJoffrey);
 
-    var emitters = List.of(
-        kingsHand,
-        new LordBaelish(kingsHand),
-        new LordVarys(kingsHand),
-        new Scout(kingsHand)
-    );
+        var emitters = List.of(
+                kingsHand,
+                new LordBaelish(kingsHand),
+                new LordVarys(kingsHand),
+                new Scout(kingsHand)
+        );
 
-    Arrays.stream(Weekday.values())
-        .<Consumer<? super EventEmitter>>map(day -> emitter -> emitter.timePasses(day))
-        .forEachOrdered(emitters::forEach);
-  }
+        Arrays.stream(Weekday.values())
+                .<Consumer<? super EventEmitter>>map(day -> emitter -> emitter.timePasses(day))
+                .forEachOrdered(emitters::forEach);
+    }
 }

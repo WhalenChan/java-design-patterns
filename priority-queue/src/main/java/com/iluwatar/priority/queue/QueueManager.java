@@ -27,32 +27,32 @@ package com.iluwatar.priority.queue;
  * Manage priority queue.
  */
 public class QueueManager {
-  /*
-     Priority message
-   */
-  private final PriorityMessageQueue<Message> messagePriorityMessageQueue;
+    /*
+       Priority message
+     */
+    private final PriorityMessageQueue<Message> messagePriorityMessageQueue;
 
-  public QueueManager(int initialCapacity) {
-    messagePriorityMessageQueue = new PriorityMessageQueue<>(new Message[initialCapacity]);
-  }
-
-  /**
-   * Publish message to queue.
-   */
-  public void publishMessage(Message message) {
-    messagePriorityMessageQueue.add(message);
-  }
-
-
-  /**
-   * Receive message from queue.
-   */
-  public Message receiveMessage() {
-    if (messagePriorityMessageQueue.isEmpty()) {
-      return null;
+    public QueueManager(int initialCapacity) {
+        messagePriorityMessageQueue = new PriorityMessageQueue<>(new Message[initialCapacity]);
     }
-    return messagePriorityMessageQueue.remove();
-  }
+
+    /**
+     * Publish message to queue.
+     */
+    public void publishMessage(Message message) {
+        messagePriorityMessageQueue.add(message);
+    }
+
+
+    /**
+     * Receive message from queue.
+     */
+    public Message receiveMessage() {
+        if (messagePriorityMessageQueue.isEmpty()) {
+            return null;
+        }
+        return messagePriorityMessageQueue.remove();
+    }
 
 
 }

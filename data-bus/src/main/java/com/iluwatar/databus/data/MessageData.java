@@ -37,9 +37,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public class MessageData extends AbstractDataType {
 
-  private final String message;
+    private final String message;
 
-  public static DataType of(final String message) {
-    return new MessageData(message);
-  }
+    public static DataType of(final String message) {
+        return new MessageData(message);
+    }
 }

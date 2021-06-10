@@ -32,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
  */
 class BullyAppTest {
 
-  @Test
-  void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> BullyApp.main(new String[]{}));
-  }
+    @Test
+    void shouldExecuteApplicationWithoutException() {
+        assertDoesNotThrow(() -> BullyApp.main(new String[]{}));
+    }
 
 }

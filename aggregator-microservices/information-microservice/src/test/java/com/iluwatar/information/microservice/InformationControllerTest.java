@@ -32,11 +32,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class InformationControllerTest {
 
-  @Test
-  void shouldGetProductTitle() {
-    var infoController = new InformationController();
-    var title = infoController.getProductTitle();
-    assertEquals("The Product Title.", title);
-  }
+    @Test
+    void shouldGetProductTitle() {
+        var infoController = new InformationController();
+        var title = infoController.getProductTitle();
+        assertEquals("The Product Title.", title);
+    }
 
 }

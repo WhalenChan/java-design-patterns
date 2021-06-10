@@ -28,6 +28,6 @@ package com.iluwatar.prototype;
  */
 public interface Prototype {
 
-  Object copy();
+    Object copy();
 
 }

@@ -35,10 +35,10 @@ import com.iluwatar.hexagonal.eventlog.StdOutEventLog;
  * Guice module for testing dependencies.
  */
 public class LotteryTestingModule extends AbstractModule {
-  @Override
-  protected void configure() {
-    bind(LotteryTicketRepository.class).to(InMemoryTicketRepository.class);
-    bind(LotteryEventLog.class).to(StdOutEventLog.class);
-    bind(WireTransfers.class).to(InMemoryBank.class);
-  }
+    @Override
+    protected void configure() {
+        bind(LotteryTicketRepository.class).to(InMemoryTicketRepository.class);
+        bind(LotteryEventLog.class).to(StdOutEventLog.class);
+        bind(WireTransfers.class).to(InMemoryBank.class);
+    }
 }

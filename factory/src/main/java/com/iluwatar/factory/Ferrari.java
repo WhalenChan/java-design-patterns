@@ -28,10 +28,10 @@ package com.iluwatar.factory;
  */
 public class Ferrari implements Car {
 
-  static final String DESCRIPTION = "This is Ferrari.";
+    static final String DESCRIPTION = "This is Ferrari.";
 
-  @Override
-  public String getDescription() {
-    return DESCRIPTION;
-  }
+    @Override
+    public String getDescription() {
+        return DESCRIPTION;
+    }
 }

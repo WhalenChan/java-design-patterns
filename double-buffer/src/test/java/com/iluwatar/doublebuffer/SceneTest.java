@@ -23,52 +23,53 @@
 
 package com.iluwatar.doublebuffer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Scene unit tests.
  */
 class SceneTest {
 
-  @Test
-  void testGetBuffer() {
-    try {
-      var scene = new Scene();
-      var field1 = Scene.class.getDeclaredField("current");
-      field1.setAccessible(true);
-      field1.set(scene, 0);
-      var frameBuffers = new FrameBuffer[2];
-      var frameBuffer = new FrameBuffer();
-      frameBuffer.draw(0, 0);
-      frameBuffers[0] = frameBuffer;
-      var field2 = Scene.class.getDeclaredField("frameBuffers");
-      field2.setAccessible(true);
-      field2.set(scene, frameBuffers);
-      assertEquals(frameBuffer, scene.getBuffer());
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      fail("Fail to access private field.");
+    @Test
+    void testGetBuffer() {
+        try {
+            var scene = new Scene();
+            var field1 = Scene.class.getDeclaredField("current");
+            field1.setAccessible(true);
+            field1.set(scene, 0);
+            var frameBuffers = new FrameBuffer[2];
+            var frameBuffer = new FrameBuffer();
+            frameBuffer.draw(0, 0);
+            frameBuffers[0] = frameBuffer;
+            var field2 = Scene.class.getDeclaredField("frameBuffers");
+            field2.setAccessible(true);
+            field2.set(scene, frameBuffers);
+            assertEquals(frameBuffer, scene.getBuffer());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            fail("Fail to access private field.");
+        }
     }
-  }
 
-  @Test
-  void testDraw() {
-    try {
-      var scene = new Scene();
-      var field1 = Scene.class.getDeclaredField("current");
-      var field2 = Scene.class.getDeclaredField("next");
-      field1.setAccessible(true);
-      field1.set(scene, 0);
-      field2.setAccessible(true);
-      field2.set(scene, 1);
-      scene.draw(new ArrayList<>());
-      assertEquals(1, field1.get(scene));
-      assertEquals(0, field2.get(scene));
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      fail("Fail to access private field");
+    @Test
+    void testDraw() {
+        try {
+            var scene = new Scene();
+            var field1 = Scene.class.getDeclaredField("current");
+            var field2 = Scene.class.getDeclaredField("next");
+            field1.setAccessible(true);
+            field1.set(scene, 0);
+            field2.setAccessible(true);
+            field2.set(scene, 1);
+            scene.draw(new ArrayList<>());
+            assertEquals(1, field1.get(scene));
+            assertEquals(0, field2.get(scene));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            fail("Fail to access private field");
+        }
     }
-  }
 }

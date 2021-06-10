@@ -23,10 +23,11 @@
 
 package com.iluwatar.reader.writer.lock;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * In a multiple thread applications, the threads may try to synchronize the shared resources
@@ -47,55 +48,55 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
 
-    var executeService = Executors.newFixedThreadPool(10);
-    var lock = new ReaderWriterLock();
+        var executeService = Executors.newFixedThreadPool(10);
+        var lock = new ReaderWriterLock();
 
-    // Start writers
-    for (var i = 0; i < 5; i++) {
-      var writingTime = ThreadLocalRandom.current().nextLong(5000);
-      executeService.submit(new Writer("Writer " + i, lock.writeLock(), writingTime));
+        // Start writers
+        for (var i = 0; i < 5; i++) {
+            var writingTime = ThreadLocalRandom.current().nextLong(5000);
+            executeService.submit(new Writer("Writer " + i, lock.writeLock(), writingTime));
+        }
+        LOGGER.info("Writers added...");
+
+        // Start readers
+        for (var i = 0; i < 5; i++) {
+            var readingTime = ThreadLocalRandom.current().nextLong(10);
+            executeService.submit(new Reader("Reader " + i, lock.readLock(), readingTime));
+        }
+        LOGGER.info("Readers added...");
+
+        try {
+            Thread.sleep(5000L);
+        } catch (InterruptedException e) {
+            LOGGER.error("Error sleeping before adding more readers", e);
+            Thread.currentThread().interrupt();
+        }
+
+        // Start readers
+        for (var i = 6; i < 10; i++) {
+            var readingTime = ThreadLocalRandom.current().nextLong(10);
+            executeService.submit(new Reader("Reader " + i, lock.readLock(), readingTime));
+        }
+        LOGGER.info("More readers added...");
+
+
+        // In the system console, it can see that the read operations are executed concurrently while
+        // write operations are exclusive.
+        executeService.shutdown();
+        try {
+            executeService.awaitTermination(5, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            LOGGER.error("Error waiting for ExecutorService shutdown", e);
+            Thread.currentThread().interrupt();
+        }
+
     }
-    LOGGER.info("Writers added...");
-
-    // Start readers
-    for (var i = 0; i < 5; i++) {
-      var readingTime = ThreadLocalRandom.current().nextLong(10);
-      executeService.submit(new Reader("Reader " + i, lock.readLock(), readingTime));
-    }
-    LOGGER.info("Readers added...");
-
-    try {
-      Thread.sleep(5000L);
-    } catch (InterruptedException e) {
-      LOGGER.error("Error sleeping before adding more readers", e);
-      Thread.currentThread().interrupt();
-    }
-
-    // Start readers
-    for (var i = 6; i < 10; i++) {
-      var readingTime = ThreadLocalRandom.current().nextLong(10);
-      executeService.submit(new Reader("Reader " + i, lock.readLock(), readingTime));
-    }
-    LOGGER.info("More readers added...");
-
-
-    // In the system console, it can see that the read operations are executed concurrently while
-    // write operations are exclusive.
-    executeService.shutdown();
-    try {
-      executeService.awaitTermination(5, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown", e);
-      Thread.currentThread().interrupt();
-    }
-
-  }
 
 }

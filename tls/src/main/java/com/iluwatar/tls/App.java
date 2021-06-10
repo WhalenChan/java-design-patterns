@@ -23,9 +23,10 @@
 
 package com.iluwatar.tls;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Calendar;
 import java.util.concurrent.Executors;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * ThreadLocal pattern
@@ -60,83 +61,83 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    var counterDateValues = 0;
-    var counterExceptions = 0;
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        var counterDateValues = 0;
+        var counterExceptions = 0;
 
-    // Create a callable
-    var callableDf = new DateFormatCallable("dd/MM/yyyy", "15/12/2015");
-    // start 4 threads, each using the same Callable instance
-    var executor = Executors.newCachedThreadPool();
+        // Create a callable
+        var callableDf = new DateFormatCallable("dd/MM/yyyy", "15/12/2015");
+        // start 4 threads, each using the same Callable instance
+        var executor = Executors.newCachedThreadPool();
 
-    var futureResult1 = executor.submit(callableDf);
-    var futureResult2 = executor.submit(callableDf);
-    var futureResult3 = executor.submit(callableDf);
-    var futureResult4 = executor.submit(callableDf);
-    try {
-      var result = new Result[4];
-      result[0] = futureResult1.get();
-      result[1] = futureResult2.get();
-      result[2] = futureResult3.get();
-      result[3] = futureResult4.get();
+        var futureResult1 = executor.submit(callableDf);
+        var futureResult2 = executor.submit(callableDf);
+        var futureResult3 = executor.submit(callableDf);
+        var futureResult4 = executor.submit(callableDf);
+        try {
+            var result = new Result[4];
+            result[0] = futureResult1.get();
+            result[1] = futureResult2.get();
+            result[2] = futureResult3.get();
+            result[3] = futureResult4.get();
 
-      // Print results of thread executions (converted dates and raised exceptions)
-      // and count them
-      for (var value : result) {
-        counterDateValues = counterDateValues + printAndCountDates(value);
-        counterExceptions = counterExceptions + printAndCountExceptions(value);
-      }
+            // Print results of thread executions (converted dates and raised exceptions)
+            // and count them
+            for (var value : result) {
+                counterDateValues = counterDateValues + printAndCountDates(value);
+                counterExceptions = counterExceptions + printAndCountExceptions(value);
+            }
 
-      // a correct run should deliver 20 times 15.12.2015
-      // and a correct run shouldn't deliver any exception
-      LOGGER.info("The List dateList contains " + counterDateValues + " date values");
-      LOGGER.info("The List exceptionList contains " + counterExceptions + " exceptions");
+            // a correct run should deliver 20 times 15.12.2015
+            // and a correct run shouldn't deliver any exception
+            LOGGER.info("The List dateList contains " + counterDateValues + " date values");
+            LOGGER.info("The List exceptionList contains " + counterExceptions + " exceptions");
 
-    } catch (Exception e) {
-      LOGGER.info("Abnormal end of program. Program throws exception: " + e);
+        } catch (Exception e) {
+            LOGGER.info("Abnormal end of program. Program throws exception: " + e);
+        }
+        executor.shutdown();
     }
-    executor.shutdown();
-  }
 
-  /**
-   * Print result (date values) of a thread execution and count dates.
-   *
-   * @param res contains results of a thread execution
-   */
-  private static int printAndCountDates(Result res) {
-    // a correct run should deliver 5 times 15.12.2015 per each thread
-    var counter = 0;
-    for (var dt : res.getDateList()) {
-      counter++;
-      var cal = Calendar.getInstance();
-      cal.setTime(dt);
-      // Formatted output of the date value: DD.MM.YYYY
-      LOGGER.info(cal.get(Calendar.DAY_OF_MONTH) + "."
-          + cal.get(Calendar.MONTH) + "."
-          + cal.get(Calendar.YEAR)
-      );
+    /**
+     * Print result (date values) of a thread execution and count dates.
+     *
+     * @param res contains results of a thread execution
+     */
+    private static int printAndCountDates(Result res) {
+        // a correct run should deliver 5 times 15.12.2015 per each thread
+        var counter = 0;
+        for (var dt : res.getDateList()) {
+            counter++;
+            var cal = Calendar.getInstance();
+            cal.setTime(dt);
+            // Formatted output of the date value: DD.MM.YYYY
+            LOGGER.info(cal.get(Calendar.DAY_OF_MONTH) + "."
+                    + cal.get(Calendar.MONTH) + "."
+                    + cal.get(Calendar.YEAR)
+            );
+        }
+        return counter;
     }
-    return counter;
-  }
 
-  /**
-   * Print result (exceptions) of a thread execution and count exceptions.
-   *
-   * @param res contains results of a thread execution
-   * @return number of dates
-   */
-  private static int printAndCountExceptions(Result res) {
-    // a correct run shouldn't deliver any exception
-    var counter = 0;
-    for (var ex : res.getExceptionList()) {
-      counter++;
-      LOGGER.info(ex);
+    /**
+     * Print result (exceptions) of a thread execution and count exceptions.
+     *
+     * @param res contains results of a thread execution
+     * @return number of dates
+     */
+    private static int printAndCountExceptions(Result res) {
+        // a correct run shouldn't deliver any exception
+        var counter = 0;
+        for (var ex : res.getExceptionList()) {
+            counter++;
+            LOGGER.info(ex);
+        }
+        return counter;
     }
-    return counter;
-  }
 }

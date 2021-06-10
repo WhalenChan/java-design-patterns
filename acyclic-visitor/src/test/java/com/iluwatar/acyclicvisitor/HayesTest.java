@@ -33,22 +33,22 @@ import static org.mockito.Mockito.*;
  */
 class HayesTest {
 
-  @Test
-  void testAcceptForDos() {
-    var hayes = new Hayes();
-    var mockVisitor = mock(ConfigureForDosVisitor.class);
+    @Test
+    void testAcceptForDos() {
+        var hayes = new Hayes();
+        var mockVisitor = mock(ConfigureForDosVisitor.class);
 
-    hayes.accept(mockVisitor);
-    verify((HayesVisitor) mockVisitor).visit(eq(hayes));
-  }
+        hayes.accept(mockVisitor);
+        verify((HayesVisitor) mockVisitor).visit(eq(hayes));
+    }
 
-  @Test
-  void testAcceptForUnix() {
-    var hayes = new Hayes();
-    var mockVisitor = mock(ConfigureForUnixVisitor.class);
+    @Test
+    void testAcceptForUnix() {
+        var hayes = new Hayes();
+        var mockVisitor = mock(ConfigureForUnixVisitor.class);
 
-    hayes.accept(mockVisitor);
+        hayes.accept(mockVisitor);
 
-    verifyZeroInteractions(mockVisitor);
-  }
+        verifyZeroInteractions(mockVisitor);
+    }
 }

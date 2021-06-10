@@ -32,23 +32,23 @@ import org.hibernate.criterion.Restrictions;
  */
 public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements SpellbookDao {
 
-  @Override
-  public Spellbook findByName(String name) {
-    Transaction tx = null;
-    Spellbook result;
-    try (var session = getSessionFactory().openSession()) {
-      tx = session.beginTransaction();
-      var criteria = session.createCriteria(persistentClass);
-      criteria.add(Restrictions.eq("name", name));
-      result = (Spellbook) criteria.uniqueResult();
-      tx.commit();
-    } catch (Exception e) {
-      if (tx != null) {
-        tx.rollback();
-      }
-      throw e;
+    @Override
+    public Spellbook findByName(String name) {
+        Transaction tx = null;
+        Spellbook result;
+        try (var session = getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            var criteria = session.createCriteria(persistentClass);
+            criteria.add(Restrictions.eq("name", name));
+            result = (Spellbook) criteria.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw e;
+        }
+        return result;
     }
-    return result;
-  }
 
 }

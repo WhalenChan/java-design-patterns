@@ -33,14 +33,14 @@ import lombok.Setter;
 @Setter
 public class DesktopProduct {
 
-  /**
-   * The price of the product.
-   */
-  private String price;
+    /**
+     * The price of the product.
+     */
+    private String price;
 
-  /**
-   * The path to the image of the product.
-   */
-  private String imagePath;
+    /**
+     * The path to the image of the product.
+     */
+    private String imagePath;
 
 }

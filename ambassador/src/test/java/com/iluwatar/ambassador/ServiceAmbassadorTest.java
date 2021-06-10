@@ -32,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class ServiceAmbassadorTest {
 
-  @Test
-  void test() {
-    long result = new ServiceAmbassador().doRemoteFunction(10);
-    assertTrue(result == 100 || result == RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue());
-  }
+    @Test
+    void test() {
+        long result = new ServiceAmbassador().doRemoteFunction(10);
+        assertTrue(result == 100 || result == RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue());
+    }
 }

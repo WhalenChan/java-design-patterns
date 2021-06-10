@@ -23,15 +23,14 @@
 
 package com.iluwatar.tolerantreader;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Date: 12/30/15 - 18:39 PM
@@ -41,58 +40,58 @@ import org.junit.jupiter.api.io.TempDir;
 
 class RainbowFishSerializerTest {
 
-  /**
-   * Create a temporary folder, used to generate files in during this test
-   */
-  @TempDir
-  static Path testFolder;
+    /**
+     * Create a temporary folder, used to generate files in during this test
+     */
+    @TempDir
+    static Path testFolder;
 
-  @BeforeEach
-  void beforeEach() {
-    assertTrue(Files.isDirectory(testFolder));
-  }
+    @BeforeEach
+    void beforeEach() {
+        assertTrue(Files.isDirectory(testFolder));
+    }
 
-  /**
-   * Rainbow fish version 1 used during the tests
-   */
-  private static final RainbowFish V1 = new RainbowFish("version1", 1, 2, 3);
+    /**
+     * Rainbow fish version 1 used during the tests
+     */
+    private static final RainbowFish V1 = new RainbowFish("version1", 1, 2, 3);
 
-  /**
-   * Rainbow fish version 2 used during the tests
-   */
-  private static final RainbowFishV2 V2 = new RainbowFishV2("version2", 4, 5, 6, true, false, true);
+    /**
+     * Rainbow fish version 2 used during the tests
+     */
+    private static final RainbowFishV2 V2 = new RainbowFishV2("version2", 4, 5, 6, true, false, true);
 
-  /**
-   * Verify if a fish, written as version 1 can be read back as version 1
-   */
-  @Test
-  void testWriteV1ReadV1() throws Exception {
-    final var outputPath = Files.createFile(testFolder.resolve("outputFile"));
-    RainbowFishSerializer.writeV1(V1, outputPath.toString());
+    /**
+     * Verify if a fish, written as version 1 can be read back as version 1
+     */
+    @Test
+    void testWriteV1ReadV1() throws Exception {
+        final var outputPath = Files.createFile(testFolder.resolve("outputFile"));
+        RainbowFishSerializer.writeV1(V1, outputPath.toString());
 
-    final var fish = RainbowFishSerializer.readV1(outputPath.toString());
-    assertNotSame(V1, fish);
-    assertEquals(V1.getName(), fish.getName());
-    assertEquals(V1.getAge(), fish.getAge());
-    assertEquals(V1.getLengthMeters(), fish.getLengthMeters());
-    assertEquals(V1.getWeightTons(), fish.getWeightTons());
+        final var fish = RainbowFishSerializer.readV1(outputPath.toString());
+        assertNotSame(V1, fish);
+        assertEquals(V1.getName(), fish.getName());
+        assertEquals(V1.getAge(), fish.getAge());
+        assertEquals(V1.getLengthMeters(), fish.getLengthMeters());
+        assertEquals(V1.getWeightTons(), fish.getWeightTons());
 
-  }
+    }
 
-  /**
-   * Verify if a fish, written as version 2 can be read back as version 1
-   */
-  @Test
-  void testWriteV2ReadV1() throws Exception {
-    final var outputPath = Files.createFile(testFolder.resolve("outputFile2"));
-    RainbowFishSerializer.writeV2(V2, outputPath.toString());
+    /**
+     * Verify if a fish, written as version 2 can be read back as version 1
+     */
+    @Test
+    void testWriteV2ReadV1() throws Exception {
+        final var outputPath = Files.createFile(testFolder.resolve("outputFile2"));
+        RainbowFishSerializer.writeV2(V2, outputPath.toString());
 
-    final var fish = RainbowFishSerializer.readV1(outputPath.toString());
-    assertNotSame(V2, fish);
-    assertEquals(V2.getName(), fish.getName());
-    assertEquals(V2.getAge(), fish.getAge());
-    assertEquals(V2.getLengthMeters(), fish.getLengthMeters());
-    assertEquals(V2.getWeightTons(), fish.getWeightTons());
-  }
+        final var fish = RainbowFishSerializer.readV1(outputPath.toString());
+        assertNotSame(V2, fish);
+        assertEquals(V2.getName(), fish.getName());
+        assertEquals(V2.getAge(), fish.getAge());
+        assertEquals(V2.getLengthMeters(), fish.getLengthMeters());
+        assertEquals(V2.getWeightTons(), fish.getWeightTons());
+    }
 
 }

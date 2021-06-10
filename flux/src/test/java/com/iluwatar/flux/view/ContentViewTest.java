@@ -23,15 +23,11 @@
 
 package com.iluwatar.flux.view;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-
 import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.store.ContentStore;
 import org.junit.jupiter.api.Test;
+
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/12/15 - 10:31 PM
@@ -40,16 +36,16 @@ import org.junit.jupiter.api.Test;
  */
 public class ContentViewTest {
 
-  @Test
-  void testStoreChanged() {
-    final var store = mock(ContentStore.class);
-    when(store.getContent()).thenReturn(Content.PRODUCTS);
+    @Test
+    void testStoreChanged() {
+        final var store = mock(ContentStore.class);
+        when(store.getContent()).thenReturn(Content.PRODUCTS);
 
-    final var view = new ContentView();
-    view.storeChanged(store);
+        final var view = new ContentView();
+        view.storeChanged(store);
 
-    verify(store, times(1)).getContent();
-    verifyNoMoreInteractions(store);
-  }
+        verify(store, times(1)).getContent();
+        verifyNoMoreInteractions(store);
+    }
 
 }

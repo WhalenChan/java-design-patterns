@@ -28,11 +28,11 @@ package com.iluwatar.property;
  */
 public interface Prototype {
 
-  Integer get(Stats stat);
+    Integer get(Stats stat);
 
-  boolean has(Stats stat);
+    boolean has(Stats stat);
 
-  void set(Stats stat, Integer val);
+    void set(Stats stat, Integer val);
 
-  void remove(Stats stat);
+    void remove(Stats stat);
 }

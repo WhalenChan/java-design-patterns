@@ -23,8 +23,9 @@
 
 package com.iluwatar.datatransfer.customer;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 /**
  * The resource class which serves customer information. This class act as server in the demo. Which
@@ -32,32 +33,32 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public class CustomerResource {
-  private final List<CustomerDto> customers;
+    private final List<CustomerDto> customers;
 
-  /**
-   * Get all customers.
-   *
-   * @return : all customers in list.
-   */
-  public List<CustomerDto> getAllCustomers() {
-    return customers;
-  }
+    /**
+     * Get all customers.
+     *
+     * @return : all customers in list.
+     */
+    public List<CustomerDto> getAllCustomers() {
+        return customers;
+    }
 
-  /**
-   * Save new customer.
-   *
-   * @param customer save new customer to list.
-   */
-  public void save(CustomerDto customer) {
-    customers.add(customer);
-  }
+    /**
+     * Save new customer.
+     *
+     * @param customer save new customer to list.
+     */
+    public void save(CustomerDto customer) {
+        customers.add(customer);
+    }
 
-  /**
-   * Delete customer with given id.
-   *
-   * @param customerId delete customer with id {@code customerId}
-   */
-  public void delete(String customerId) {
-    customers.removeIf(customer -> customer.getId().equals(customerId));
-  }
+    /**
+     * Delete customer with given id.
+     *
+     * @param customerId delete customer with id {@code customerId}
+     */
+    public void delete(String customerId) {
+        customers.removeIf(customer -> customer.getId().equals(customerId));
+    }
 }

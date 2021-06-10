@@ -28,5 +28,5 @@ package com.iluwatar.doubledispatch.constants;
  */
 public class AppConstants {
 
-  public static final String HITS = "{} hits {}.";
+    public static final String HITS = "{} hits {}.";
 }

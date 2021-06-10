@@ -23,8 +23,9 @@
 
 package com.iluwatar.reader.writer.lock;
 
-import java.util.concurrent.locks.Lock;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.locks.Lock;
 
 /**
  * Writer class, write when it acquired the write lock.
@@ -32,55 +33,55 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Writer implements Runnable {
 
-  private final Lock writeLock;
+    private final Lock writeLock;
 
-  private final String name;
+    private final String name;
 
-  private final long writingTime;
+    private final long writingTime;
 
-  /**
-   * Create new Writer who writes for 250ms.
-   *
-   * @param name      - Name of the thread owning the writer
-   * @param writeLock - Lock for this writer
-   */
-  public Writer(String name, Lock writeLock) {
-    this(name, writeLock, 250L);
-  }
-
-  /**
-   * Create new Writer.
-   *
-   * @param name        - Name of the thread owning the writer
-   * @param writeLock   - Lock for this writer
-   * @param writingTime - amount of time (in milliseconds) for this reader to engage writing
-   */
-  public Writer(String name, Lock writeLock, long writingTime) {
-    this.name = name;
-    this.writeLock = writeLock;
-    this.writingTime = writingTime;
-  }
-
-
-  @Override
-  public void run() {
-    writeLock.lock();
-    try {
-      write();
-    } catch (InterruptedException e) {
-      LOGGER.info("InterruptedException when writing", e);
-      Thread.currentThread().interrupt();
-    } finally {
-      writeLock.unlock();
+    /**
+     * Create new Writer who writes for 250ms.
+     *
+     * @param name      - Name of the thread owning the writer
+     * @param writeLock - Lock for this writer
+     */
+    public Writer(String name, Lock writeLock) {
+        this(name, writeLock, 250L);
     }
-  }
 
-  /**
-   * Simulate the write operation.
-   */
-  public void write() throws InterruptedException {
-    LOGGER.info("{} begin", name);
-    Thread.sleep(writingTime);
-    LOGGER.info("{} finished after writing {}ms", name, writingTime);
-  }
+    /**
+     * Create new Writer.
+     *
+     * @param name        - Name of the thread owning the writer
+     * @param writeLock   - Lock for this writer
+     * @param writingTime - amount of time (in milliseconds) for this reader to engage writing
+     */
+    public Writer(String name, Lock writeLock, long writingTime) {
+        this.name = name;
+        this.writeLock = writeLock;
+        this.writingTime = writingTime;
+    }
+
+
+    @Override
+    public void run() {
+        writeLock.lock();
+        try {
+            write();
+        } catch (InterruptedException e) {
+            LOGGER.info("InterruptedException when writing", e);
+            Thread.currentThread().interrupt();
+        } finally {
+            writeLock.unlock();
+        }
+    }
+
+    /**
+     * Simulate the write operation.
+     */
+    public void write() throws InterruptedException {
+        LOGGER.info("{} begin", name);
+        Thread.sleep(writingTime);
+        LOGGER.info("{} finished after writing {}ms", name, writingTime);
+    }
 }

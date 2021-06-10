@@ -35,12 +35,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class HpPrinter implements Printer {
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void print(String message) {
-    LOGGER.info("HP Printer : {}", message);
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void print(String message) {
+        LOGGER.info("HP Printer : {}", message);
+    }
 
 }

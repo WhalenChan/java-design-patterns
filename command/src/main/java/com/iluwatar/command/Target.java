@@ -35,31 +35,31 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public abstract class Target {
 
-  private Size size;
+    private Size size;
 
-  private Visibility visibility;
+    private Visibility visibility;
 
-  /**
-   * Print status.
-   */
-  public void printStatus() {
-    LOGGER.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
-  }
+    /**
+     * Print status.
+     */
+    public void printStatus() {
+        LOGGER.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
+    }
 
-  /**
-   * Changes the size of the target.
-   */
-  public void changeSize() {
-    var oldSize = getSize() == Size.NORMAL ? Size.SMALL : Size.NORMAL;
-    setSize(oldSize);
-  }
+    /**
+     * Changes the size of the target.
+     */
+    public void changeSize() {
+        var oldSize = getSize() == Size.NORMAL ? Size.SMALL : Size.NORMAL;
+        setSize(oldSize);
+    }
 
-  /**
-   * Changes the visibility of the target.
-   */
-  public void changeVisibility() {
-    var visible = getVisibility() == Visibility.INVISIBLE
-            ? Visibility.VISIBLE : Visibility.INVISIBLE;
-    setVisibility(visible);
-  }
+    /**
+     * Changes the visibility of the target.
+     */
+    public void changeVisibility() {
+        var visible = getVisibility() == Visibility.INVISIBLE
+                ? Visibility.VISIBLE : Visibility.INVISIBLE;
+        setVisibility(visible);
+    }
 }

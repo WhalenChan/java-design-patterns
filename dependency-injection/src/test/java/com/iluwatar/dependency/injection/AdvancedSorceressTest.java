@@ -23,13 +23,14 @@
 
 package com.iluwatar.dependency.injection;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.iluwatar.dependency.injection.utils.InMemoryAppender;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
@@ -40,42 +41,42 @@ import org.junit.jupiter.api.Test;
 
 class AdvancedSorceressTest {
 
-  private InMemoryAppender appender;
+    private InMemoryAppender appender;
 
-  @BeforeEach
-  void setUp() {
-    appender = new InMemoryAppender(Tobacco.class);
-  }
+    @BeforeEach
+    void setUp() {
+        appender = new InMemoryAppender(Tobacco.class);
+    }
 
-  @AfterEach
-  void tearDown() {
-    appender.stop();
-  }
+    @AfterEach
+    void tearDown() {
+        appender.stop();
+    }
 
-  /**
-   * Test if the {@link AdvancedSorceress} smokes whatever instance of {@link Tobacco} is passed to
-   * her through the setter's parameter
-   */
-  @Test
-  void testSmokeEveryThing() throws Exception {
+    /**
+     * Test if the {@link AdvancedSorceress} smokes whatever instance of {@link Tobacco} is passed to
+     * her through the setter's parameter
+     */
+    @Test
+    void testSmokeEveryThing() throws Exception {
 
-    List<Tobacco> tobaccos = List.of(
-        new OldTobyTobacco(),
-        new RivendellTobacco(),
-        new SecondBreakfastTobacco()
-    );
+        List<Tobacco> tobaccos = List.of(
+                new OldTobyTobacco(),
+                new RivendellTobacco(),
+                new SecondBreakfastTobacco()
+        );
 
-    // Verify if the sorceress is smoking the correct tobacco ...
-    tobaccos.forEach(tobacco -> {
-      final var advancedSorceress = new AdvancedSorceress();
-      advancedSorceress.setTobacco(tobacco);
-      advancedSorceress.smoke();
-      String lastMessage = appender.getLastMessage();
-      assertEquals("AdvancedSorceress smoking " + tobacco.getClass().getSimpleName(), lastMessage);
-    });
+        // Verify if the sorceress is smoking the correct tobacco ...
+        tobaccos.forEach(tobacco -> {
+            final var advancedSorceress = new AdvancedSorceress();
+            advancedSorceress.setTobacco(tobacco);
+            advancedSorceress.smoke();
+            String lastMessage = appender.getLastMessage();
+            assertEquals("AdvancedSorceress smoking " + tobacco.getClass().getSimpleName(), lastMessage);
+        });
 
-    // ... and nothing else is happening.
-    assertEquals(tobaccos.size(), appender.getLogSize());
+        // ... and nothing else is happening.
+        assertEquals(tobaccos.size(), appender.getLogSize());
 
-  }
+    }
 }

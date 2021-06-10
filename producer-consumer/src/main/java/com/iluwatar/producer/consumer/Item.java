@@ -28,23 +28,23 @@ package com.iluwatar.producer.consumer;
  */
 public class Item {
 
-  private final String producer;
+    private final String producer;
 
-  private final int id;
+    private final int id;
 
-  public Item(String producer, int id) {
-    this.id = id;
-    this.producer = producer;
-  }
+    public Item(String producer, int id) {
+        this.id = id;
+        this.producer = producer;
+    }
 
-  public int getId() {
+    public int getId() {
 
-    return id;
-  }
+        return id;
+    }
 
-  public String getProducer() {
+    public String getProducer() {
 
-    return producer;
-  }
+        return producer;
+    }
 
 }

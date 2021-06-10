@@ -23,9 +23,10 @@
 
 package com.iluwatar.servicelocator;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.HashMap;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * The service cache implementation which will cache services that are being created. On first hit,
@@ -38,35 +39,35 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ServiceCache {
 
-  private final Map<String, Service> serviceCache;
+    private final Map<String, Service> serviceCache;
 
-  public ServiceCache() {
-    serviceCache = new HashMap<>();
-  }
-
-  /**
-   * Get the service from the cache. null if no service is found matching the name
-   *
-   * @param serviceName a string
-   * @return {@link Service}
-   */
-  public Service getService(String serviceName) {
-    if (serviceCache.containsKey(serviceName)) {
-      var cachedService = serviceCache.get(serviceName);
-      var name = cachedService.getName();
-      var id = cachedService.getId();
-      LOGGER.info("(cache call) Fetched service {}({}) from cache... !", name, id);
-      return cachedService;
+    public ServiceCache() {
+        serviceCache = new HashMap<>();
     }
-    return null;
-  }
 
-  /**
-   * Adds the service into the cache map.
-   *
-   * @param newService a {@link Service}
-   */
-  public void addService(Service newService) {
-    serviceCache.put(newService.getName(), newService);
-  }
+    /**
+     * Get the service from the cache. null if no service is found matching the name
+     *
+     * @param serviceName a string
+     * @return {@link Service}
+     */
+    public Service getService(String serviceName) {
+        if (serviceCache.containsKey(serviceName)) {
+            var cachedService = serviceCache.get(serviceName);
+            var name = cachedService.getName();
+            var id = cachedService.getId();
+            LOGGER.info("(cache call) Fetched service {}({}) from cache... !", name, id);
+            return cachedService;
+        }
+        return null;
+    }
+
+    /**
+     * Adds the service into the cache map.
+     *
+     * @param newService a {@link Service}
+     */
+    public void addService(Service newService) {
+        serviceCache.put(newService.getName(), newService);
+    }
 }

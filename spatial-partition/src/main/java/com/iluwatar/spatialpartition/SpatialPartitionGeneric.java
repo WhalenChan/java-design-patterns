@@ -34,13 +34,13 @@ import java.util.Hashtable;
 
 public abstract class SpatialPartitionGeneric<T> {
 
-  Hashtable<Integer, T> playerPositions;
-  QuadTree quadTree;
+    Hashtable<Integer, T> playerPositions;
+    QuadTree quadTree;
 
-  /**
-   * handles collisions for object obj using quadtree.
-   *
-   * @param obj is the object for which collisions need to be checked
-   */
-  abstract void handleCollisionsUsingQt(T obj);
+    /**
+     * handles collisions for object obj using quadtree.
+     *
+     * @param obj is the object for which collisions need to be checked
+     */
+    abstract void handleCollisionsUsingQt(T obj);
 }

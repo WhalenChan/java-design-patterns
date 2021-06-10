@@ -28,14 +28,14 @@ import org.junit.jupiter.api.Test;
 
 class ForeignTaxCalculatorTest {
 
-  private ForeignTaxCalculator target;
+    private ForeignTaxCalculator target;
 
-  @Test
-  void testTaxCalculation() {
-    target = new ForeignTaxCalculator();
+    @Test
+    void testTaxCalculation() {
+        target = new ForeignTaxCalculator();
 
-    var tax = target.calculate(100.0);
-    Assertions.assertEquals(tax, 60.0);
-  }
+        var tax = target.calculate(100.0);
+        Assertions.assertEquals(tax, 60.0);
+    }
 
 }

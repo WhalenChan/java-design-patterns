@@ -23,9 +23,9 @@
 
 package com.iluwatar.tolerantreader;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/30/15 - 18:34 PM
@@ -34,16 +34,16 @@ import org.junit.jupiter.api.Test;
  */
 class RainbowFishTest {
 
-  /**
-   * Verify if the getters of a {@link RainbowFish} return the expected values
-   */
-  @Test
-  void testValues() {
-    final var fish = new RainbowFish("name", 1, 2, 3);
-    assertEquals("name", fish.getName());
-    assertEquals(1, fish.getAge());
-    assertEquals(2, fish.getLengthMeters());
-    assertEquals(3, fish.getWeightTons());
-  }
+    /**
+     * Verify if the getters of a {@link RainbowFish} return the expected values
+     */
+    @Test
+    void testValues() {
+        final var fish = new RainbowFish("name", 1, 2, 3);
+        assertEquals("name", fish.getName());
+        assertEquals(1, fish.getAge());
+        assertEquals(2, fish.getLengthMeters());
+        assertEquals(3, fish.getWeightTons());
+    }
 
 }

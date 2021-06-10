@@ -30,6 +30,6 @@ import lombok.AllArgsConstructor;
  */
 @AllArgsConstructor
 public class User {
-  String name;
-  String address;
+    String name;
+    String address;
 }

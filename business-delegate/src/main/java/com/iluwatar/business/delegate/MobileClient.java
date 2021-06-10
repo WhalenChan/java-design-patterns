@@ -28,13 +28,13 @@ package com.iluwatar.business.delegate;
  */
 public class MobileClient {
 
-  private final BusinessDelegate businessDelegate;
+    private final BusinessDelegate businessDelegate;
 
-  public MobileClient(BusinessDelegate businessDelegate) {
-    this.businessDelegate = businessDelegate;
-  }
+    public MobileClient(BusinessDelegate businessDelegate) {
+        this.businessDelegate = businessDelegate;
+    }
 
-  public void playbackMovie(String movie) {
-    businessDelegate.playbackMovie(movie);
-  }
+    public void playbackMovie(String movie) {
+        businessDelegate.playbackMovie(movie);
+    }
 }

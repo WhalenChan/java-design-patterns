@@ -25,6 +25,7 @@ package com.iluwatar.abstractdocument.domain;
 
 import com.iluwatar.abstractdocument.Document;
 import com.iluwatar.abstractdocument.domain.enums.Property;
+
 import java.util.Optional;
 
 /**
@@ -33,8 +34,8 @@ import java.util.Optional;
  */
 public interface HasPrice extends Document {
 
-  default Optional<Number> getPrice() {
-    return Optional.ofNullable((Number) get(Property.PRICE.toString()));
-  }
+    default Optional<Number> getPrice() {
+        return Optional.ofNullable((Number) get(Property.PRICE.toString()));
+    }
 
 }

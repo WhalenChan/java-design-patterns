@@ -36,5 +36,5 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class User {
 
-  private final String username;
+    private final String username;
 }

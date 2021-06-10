@@ -38,75 +38,75 @@ import java.util.stream.Stream;
  * @param <T> is  type for returning result.
  */
 public interface Trampoline<T> {
-  T get();
+    T get();
 
 
-  /**
-   * Jump to next stage.
-   *
-   * @return next stage
-   */
-  default Trampoline<T> jump() {
-    return this;
-  }
+    /**
+     * Jump to next stage.
+     *
+     * @return next stage
+     */
+    default Trampoline<T> jump() {
+        return this;
+    }
 
 
-  default T result() {
-    return get();
-  }
+    default T result() {
+        return get();
+    }
 
-  /**
-   * Checks if complete.
-   *
-   * @return true if complete
-   */
-  default boolean complete() {
-    return true;
-  }
+    /**
+     * Checks if complete.
+     *
+     * @return true if complete
+     */
+    default boolean complete() {
+        return true;
+    }
 
-  /**
-   * Created a completed Trampoline.
-   *
-   * @param result Completed result
-   * @return Completed Trampoline
-   */
-  static <T> Trampoline<T> done(final T result) {
-    return () -> result;
-  }
+    /**
+     * Created a completed Trampoline.
+     *
+     * @param result Completed result
+     * @return Completed Trampoline
+     */
+    static <T> Trampoline<T> done(final T result) {
+        return () -> result;
+    }
 
 
-  /**
-   * Create a Trampoline that has more work to do.
-   *
-   * @param trampoline Next stage in Trampoline
-   * @return Trampoline with more work
-   */
-  static <T> Trampoline<T> more(final Trampoline<Trampoline<T>> trampoline) {
-    return new Trampoline<T>() {
-      @Override
-      public boolean complete() {
-        return false;
-      }
+    /**
+     * Create a Trampoline that has more work to do.
+     *
+     * @param trampoline Next stage in Trampoline
+     * @return Trampoline with more work
+     */
+    static <T> Trampoline<T> more(final Trampoline<Trampoline<T>> trampoline) {
+        return new Trampoline<T>() {
+            @Override
+            public boolean complete() {
+                return false;
+            }
 
-      @Override
-      public Trampoline<T> jump() {
-        return trampoline.result();
-      }
+            @Override
+            public Trampoline<T> jump() {
+                return trampoline.result();
+            }
 
-      @Override
-      public T get() {
-        return trampoline(this);
-      }
+            @Override
+            public T get() {
+                return trampoline(this);
+            }
 
-      T trampoline(final Trampoline<T> trampoline) {
-        return Stream.iterate(trampoline, Trampoline::jump)
-            .filter(Trampoline::complete)
-            .findFirst()
-            .map(Trampoline::result)
-            .get();
-      }
-    };
-  }
+            T trampoline(final Trampoline<T> trampoline) {
+                return Stream.iterate(trampoline, Trampoline::jump)
+                        .filter(Trampoline::complete)
+                        .findFirst()
+                        .map(Trampoline::result)
+                        .get();
+            }
+        };
+    }
 
 
 }

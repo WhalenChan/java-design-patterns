@@ -40,24 +40,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class SoldierTest {
 
-  @Test
-  void soldierReady() {
+    @Test
+    void soldierReady() {
 
-    Logger soldierLogger = (Logger) LoggerFactory.getLogger(Soldier.class);
+        Logger soldierLogger = (Logger) LoggerFactory.getLogger(Soldier.class);
 
-    ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
-    listAppender.start();
+        ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
+        listAppender.start();
 
-    soldierLogger.addAppender(listAppender);
+        soldierLogger.addAppender(listAppender);
 
-    final var soldier = new Soldier(new SoldierUnit("SoldierUnitTest"));
-    soldier.soldierReady();
+        final var soldier = new Soldier(new SoldierUnit("SoldierUnitTest"));
+        soldier.soldierReady();
 
-    List<ILoggingEvent> logsList = listAppender.list;
-    assertEquals("[Soldier] " + soldier.getUnit().getName() + " is ready!", logsList.get(0)
-        .getMessage());
-    assertEquals(Level.INFO, logsList.get(0)
-        .getLevel());
-  }
+        List<ILoggingEvent> logsList = listAppender.list;
+        assertEquals("[Soldier] " + soldier.getUnit().getName() + " is ready!", logsList.get(0)
+                .getMessage());
+        assertEquals(Level.INFO, logsList.get(0)
+                .getLevel());
+    }
 
 }

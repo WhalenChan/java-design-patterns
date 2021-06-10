@@ -28,18 +28,18 @@ package com.iluwatar.hexagonal.administration;
  */
 public interface ConsoleAdministrationSrv {
 
-  /**
-   * Get all submitted tickets.
-   */
-  void getAllSubmittedTickets();
+    /**
+     * Get all submitted tickets.
+     */
+    void getAllSubmittedTickets();
 
-  /**
-   * Draw lottery numbers.
-   */
-  void performLottery();
+    /**
+     * Draw lottery numbers.
+     */
+    void performLottery();
 
-  /**
-   * Begin new lottery round.
-   */
-  void resetLottery();
+    /**
+     * Begin new lottery round.
+     */
+    void resetLottery();
 }

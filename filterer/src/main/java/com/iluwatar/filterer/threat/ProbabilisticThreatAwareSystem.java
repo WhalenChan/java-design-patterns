@@ -32,18 +32,20 @@ import java.util.List;
  */
 public interface ProbabilisticThreatAwareSystem extends ThreatAwareSystem {
 
-  /**
-   * {@inheritDoc}
-   * @return
-   */
-  @Override
-  List<? extends ProbableThreat> threats();
+    /**
+     * {@inheritDoc}
+     *
+     * @return
+     */
+    @Override
+    List<? extends ProbableThreat> threats();
 
-  /**
-   * {@inheritDoc}
-   * @return
-   */
-  @Override
-  Filterer<? extends ProbabilisticThreatAwareSystem, ? extends ProbableThreat> filtered();
+    /**
+     * {@inheritDoc}
+     *
+     * @return
+     */
+    @Override
+    Filterer<? extends ProbabilisticThreatAwareSystem, ? extends ProbableThreat> filtered();
 }
 

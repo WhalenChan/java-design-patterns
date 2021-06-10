@@ -32,16 +32,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class User {
 
-  private final String name;
+    private final String name;
 
-  /**
-   * {@inheritDoc}
-   *
-   * @return The {@link String} representation of the User, in this case just return the name of the
-   *     user.
-   */
-  @Override
-  public String toString() {
-    return name;
-  }
+    /**
+     * {@inheritDoc}
+     *
+     * @return The {@link String} representation of the User, in this case just return the name of the
+     * user.
+     */
+    @Override
+    public String toString() {
+        return name;
+    }
 }

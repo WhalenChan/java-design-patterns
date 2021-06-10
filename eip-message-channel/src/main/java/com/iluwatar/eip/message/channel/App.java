@@ -50,23 +50,23 @@ import org.apache.camel.impl.DefaultCamelContext;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   */
-  public static void main(String[] args) throws Exception {
-    var context = new DefaultCamelContext();
+    /**
+     * Program entry point.
+     */
+    public static void main(String[] args) throws Exception {
+        var context = new DefaultCamelContext();
 
-    context.addRoutes(new RouteBuilder() {
+        context.addRoutes(new RouteBuilder() {
 
-      @Override
-      public void configure() throws Exception {
-        from("stream:in").to("direct:greetings");
-        from("direct:greetings").to("stream:out");
-      }
-    });
+            @Override
+            public void configure() throws Exception {
+                from("stream:in").to("direct:greetings");
+                from("direct:greetings").to("stream:out");
+            }
+        });
 
-    context.start();
-    context.getRoutes().forEach(r -> LOGGER.info(r.toString()));
-    context.stop();
-  }
+        context.start();
+        context.getRoutes().forEach(r -> LOGGER.info(r.toString()));
+        context.stop();
+    }
 }

@@ -31,16 +31,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PhysicsComponent implements Component {
 
-  /**
-   * update physics component of game.
-   */
-  @Override
-  public void update() {
-    LOGGER.info("Update physics component of game");
-  }
+    /**
+     * update physics component of game.
+     */
+    @Override
+    public void update() {
+        LOGGER.info("Update physics component of game");
+    }
 
-  @Override
-  public void render() {
-    // do nothing
-  }
+    @Override
+    public void render() {
+        // do nothing
+    }
 }

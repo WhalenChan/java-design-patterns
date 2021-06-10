@@ -38,44 +38,44 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public final class App {
 
-  private static final String STUDENT_STRING = "App.main(), student : ";
+    private static final String STUDENT_STRING = "App.main(), student : ";
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args.
-   */
-  public static void main(final String... args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args.
+     */
+    public static void main(final String... args) {
 
-    /* Create new data mapper for type 'first' */
-    final var mapper = new StudentDataMapperImpl();
+        /* Create new data mapper for type 'first' */
+        final var mapper = new StudentDataMapperImpl();
 
-    /* Create new student */
-    var student = new Student(1, "Adam", 'A');
+        /* Create new student */
+        var student = new Student(1, "Adam", 'A');
 
-    /* Add student in respectibe store */
-    mapper.insert(student);
+        /* Add student in respectibe store */
+        mapper.insert(student);
 
-    LOGGER.debug(STUDENT_STRING + student + ", is inserted");
+        LOGGER.debug(STUDENT_STRING + student + ", is inserted");
 
-    /* Find this student */
-    final var studentToBeFound = mapper.find(student.getStudentId());
+        /* Find this student */
+        final var studentToBeFound = mapper.find(student.getStudentId());
 
-    LOGGER.debug(STUDENT_STRING + studentToBeFound + ", is searched");
+        LOGGER.debug(STUDENT_STRING + studentToBeFound + ", is searched");
 
-    /* Update existing student object */
-    student = new Student(student.getStudentId(), "AdamUpdated", 'A');
+        /* Update existing student object */
+        student = new Student(student.getStudentId(), "AdamUpdated", 'A');
 
-    /* Update student in respectibe db */
-    mapper.update(student);
+        /* Update student in respectibe db */
+        mapper.update(student);
 
-    LOGGER.debug(STUDENT_STRING + student + ", is updated");
-    LOGGER.debug(STUDENT_STRING + student + ", is going to be deleted");
+        LOGGER.debug(STUDENT_STRING + student + ", is updated");
+        LOGGER.debug(STUDENT_STRING + student + ", is going to be deleted");
 
-    /* Delete student in db */
-    mapper.delete(student);
-  }
+        /* Delete student in db */
+        mapper.delete(student);
+    }
 
-  private App() {
-  }
+    private App() {
+    }
 }

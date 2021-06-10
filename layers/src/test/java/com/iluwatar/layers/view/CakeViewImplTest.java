@@ -23,10 +23,6 @@
 
 package com.iluwatar.layers.view;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
@@ -34,12 +30,17 @@ import com.iluwatar.layers.dto.CakeInfo;
 import com.iluwatar.layers.dto.CakeLayerInfo;
 import com.iluwatar.layers.dto.CakeToppingInfo;
 import com.iluwatar.layers.service.CakeBakingService;
-import java.util.LinkedList;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Date: 12/15/15 - 10:04 PM
@@ -48,65 +49,65 @@ import org.slf4j.LoggerFactory;
  */
 public class CakeViewImplTest {
 
-  private InMemoryAppender appender;
+    private InMemoryAppender appender;
 
-  @BeforeEach
-  public void setUp() {
-    appender = new InMemoryAppender(CakeViewImpl.class);
-  }
-
-  @AfterEach
-  public void tearDown() {
-    appender.stop();
-  }
-
-  /**
-   * Verify if the cake view renders the expected result
-   */
-  @Test
-  void testRender() {
-
-    final var layers = List.of(
-        new CakeLayerInfo("layer1", 1000),
-        new CakeLayerInfo("layer2", 2000),
-        new CakeLayerInfo("layer3", 3000));
-
-    final var cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
-    final var cakes = List.of(cake);
-
-    final var bakingService = mock(CakeBakingService.class);
-    when(bakingService.getAllCakes()).thenReturn(cakes);
-
-    final var cakeView = new CakeViewImpl(bakingService);
-
-    assertEquals(0, appender.getLogSize());
-
-    cakeView.render();
-    assertEquals(cake.toString(), appender.getLastMessage());
-
-  }
-
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-
-    private final List<ILoggingEvent> log = new LinkedList<>();
-
-    public InMemoryAppender(Class clazz) {
-      ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
-      start();
+    @BeforeEach
+    public void setUp() {
+        appender = new InMemoryAppender(CakeViewImpl.class);
     }
 
-    @Override
-    protected void append(ILoggingEvent eventObject) {
-      log.add(eventObject);
+    @AfterEach
+    public void tearDown() {
+        appender.stop();
     }
 
-    public String getLastMessage() {
-      return log.get(log.size() - 1).getFormattedMessage();
+    /**
+     * Verify if the cake view renders the expected result
+     */
+    @Test
+    void testRender() {
+
+        final var layers = List.of(
+                new CakeLayerInfo("layer1", 1000),
+                new CakeLayerInfo("layer2", 2000),
+                new CakeLayerInfo("layer3", 3000));
+
+        final var cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
+        final var cakes = List.of(cake);
+
+        final var bakingService = mock(CakeBakingService.class);
+        when(bakingService.getAllCakes()).thenReturn(cakes);
+
+        final var cakeView = new CakeViewImpl(bakingService);
+
+        assertEquals(0, appender.getLogSize());
+
+        cakeView.render();
+        assertEquals(cake.toString(), appender.getLastMessage());
+
     }
 
-    public int getLogSize() {
-      return log.size();
+    private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+
+        private final List<ILoggingEvent> log = new LinkedList<>();
+
+        public InMemoryAppender(Class clazz) {
+            ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
+            start();
+        }
+
+        @Override
+        protected void append(ILoggingEvent eventObject) {
+            log.add(eventObject);
+        }
+
+        public String getLastMessage() {
+            return log.get(log.size() - 1).getFormattedMessage();
+        }
+
+        public int getLogSize() {
+            return log.size();
+        }
     }
-  }
 
 }

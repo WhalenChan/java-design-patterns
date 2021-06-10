@@ -32,28 +32,28 @@ package com.iluwatar.priority.queue;
  * @see "https://docs.microsoft.com/en-us/previous-versions/msp-n-p/dn589794(v=pandp.10)"
  */
 public class Application {
-  /**
-   * main entry.
-   */
-  public static void main(String[] args) throws Exception {
+    /**
+     * main entry.
+     */
+    public static void main(String[] args) throws Exception {
 
-    var queueManager = new QueueManager(10);
+        var queueManager = new QueueManager(10);
 
-    // push some message to queue
-    // Low Priority message
-    for (var i = 0; i < 10; i++) {
-      queueManager.publishMessage(new Message("Low Message Priority", 0));
+        // push some message to queue
+        // Low Priority message
+        for (var i = 0; i < 10; i++) {
+            queueManager.publishMessage(new Message("Low Message Priority", 0));
+        }
+
+        // High Priority message
+        for (var i = 0; i < 10; i++) {
+            queueManager.publishMessage(new Message("High Message Priority", 1));
+        }
+
+        // run worker
+        var worker = new Worker(queueManager);
+        worker.run();
+
+
     }
-
-    // High Priority message
-    for (var i = 0; i < 10; i++) {
-      queueManager.publishMessage(new Message("High Message Priority", 1));
-    }
-
-    // run worker
-    var worker = new Worker(queueManager);
-    worker.run();
-
-
-  }
 }

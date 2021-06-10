@@ -23,20 +23,16 @@
 
 package com.iluwatar.flux.store;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
-
 import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.action.ContentAction;
 import com.iluwatar.flux.action.MenuAction;
 import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.view.View;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/12/15 - 10:18 PM
@@ -45,25 +41,25 @@ import org.junit.jupiter.api.Test;
  */
 public class ContentStoreTest {
 
-  @Test
-  void testOnAction() {
-    final var contentStore = new ContentStore();
+    @Test
+    void testOnAction() {
+        final var contentStore = new ContentStore();
 
-    final var view = mock(View.class);
-    contentStore.registerView(view);
+        final var view = mock(View.class);
+        contentStore.registerView(view);
 
-    verifyZeroInteractions(view);
+        verifyZeroInteractions(view);
 
-    // Content should not react on menu action ...
-    contentStore.onAction(new MenuAction(MenuItem.PRODUCTS));
-    verifyZeroInteractions(view);
+        // Content should not react on menu action ...
+        contentStore.onAction(new MenuAction(MenuItem.PRODUCTS));
+        verifyZeroInteractions(view);
 
-    // ... but it should react on a content action
-    contentStore.onAction(new ContentAction(Content.COMPANY));
-    verify(view, times(1)).storeChanged(eq(contentStore));
-    verifyNoMoreInteractions(view);
-    assertEquals(Content.COMPANY, contentStore.getContent());
+        // ... but it should react on a content action
+        contentStore.onAction(new ContentAction(Content.COMPANY));
+        verify(view, times(1)).storeChanged(eq(contentStore));
+        verifyNoMoreInteractions(view);
+        assertEquals(Content.COMPANY, contentStore.getContent());
 
-  }
+    }
 
 }

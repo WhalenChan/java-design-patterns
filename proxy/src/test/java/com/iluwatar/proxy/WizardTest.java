@@ -23,19 +23,20 @@
 
 package com.iluwatar.proxy;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for {@link Wizard}
  */
 class WizardTest {
 
-  @Test
-  void testToString() {
-    List.of("Gandalf", "Dumbledore", "Oz", "Merlin")
-        .forEach(name -> assertEquals(name, new Wizard(name).toString()));
-  }
+    @Test
+    void testToString() {
+        List.of("Gandalf", "Dumbledore", "Oz", "Merlin")
+                .forEach(name -> assertEquals(name, new Wizard(name).toString()));
+    }
 }

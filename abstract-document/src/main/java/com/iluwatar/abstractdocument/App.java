@@ -46,7 +46,6 @@ import java.util.Map;
  * </p>
  * <p>Traits：特征，特点</p>
  * <p>这篇文章写得较好，可帮助理解 https://www.cnblogs.com/evan-liang/p/12233924.html</p>
- *
  */
 @Slf4j
 public class App {

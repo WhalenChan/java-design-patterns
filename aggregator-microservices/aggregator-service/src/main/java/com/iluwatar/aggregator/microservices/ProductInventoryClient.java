@@ -28,5 +28,5 @@ package com.iluwatar.aggregator.microservices;
  */
 public interface ProductInventoryClient {
 
-  Integer getProductInventories();
+    Integer getProductInventories();
 }

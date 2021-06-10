@@ -33,8 +33,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserUpdatedEventHandler implements Handler<UserUpdatedEvent> {
 
-  @Override
-  public void onEvent(UserUpdatedEvent event) {
-    LOGGER.info("User '{}' has been Updated!", event.getUser().getUsername());
-  }
+    @Override
+    public void onEvent(UserUpdatedEvent event) {
+        LOGGER.info("User '{}' has been Updated!", event.getUser().getUsername());
+    }
 }

@@ -31,62 +31,62 @@ import java.io.Serializable;
  */
 public interface FileSelectorView extends Serializable {
 
-  /**
-   * Opens the view.
-   */
-  void open();
+    /**
+     * Opens the view.
+     */
+    void open();
 
-  /**
-   * Closes the view.
-   */
-  void close();
+    /**
+     * Closes the view.
+     */
+    void close();
 
-  /**
-   * Returns true if view is opened.
-   *
-   * @return True, if the view is opened, false otherwise.
-   */
-  boolean isOpened();
+    /**
+     * Returns true if view is opened.
+     *
+     * @return True, if the view is opened, false otherwise.
+     */
+    boolean isOpened();
 
-  /**
-   * Sets the presenter component, to the one given as parameter.
-   *
-   * @param presenter The new presenter component.
-   */
-  void setPresenter(FileSelectorPresenter presenter);
+    /**
+     * Sets the presenter component, to the one given as parameter.
+     *
+     * @param presenter The new presenter component.
+     */
+    void setPresenter(FileSelectorPresenter presenter);
 
-  /**
-   * Gets presenter component.
-   *
-   * @return The presenter Component.
-   */
-  FileSelectorPresenter getPresenter();
+    /**
+     * Gets presenter component.
+     *
+     * @return The presenter Component.
+     */
+    FileSelectorPresenter getPresenter();
 
-  /**
-   * Sets the file's name, to the value given as parameter.
-   *
-   * @param name The new name of the file.
-   */
-  void setFileName(String name);
+    /**
+     * Sets the file's name, to the value given as parameter.
+     *
+     * @param name The new name of the file.
+     */
+    void setFileName(String name);
 
-  /**
-   * Gets the name of file.
-   *
-   * @return The name of the file.
-   */
-  String getFileName();
+    /**
+     * Gets the name of file.
+     *
+     * @return The name of the file.
+     */
+    String getFileName();
 
-  /**
-   * Displays a message to the users.
-   *
-   * @param message The message to be displayed.
-   */
-  void showMessage(String message);
+    /**
+     * Displays a message to the users.
+     *
+     * @param message The message to be displayed.
+     */
+    void showMessage(String message);
 
-  /**
-   * Displays the data to the view.
-   *
-   * @param data The data to be written.
-   */
-  void displayData(String data);
+    /**
+     * Displays the data to the view.
+     *
+     * @param data The data to be written.
+     */
+    void displayData(String data);
 }

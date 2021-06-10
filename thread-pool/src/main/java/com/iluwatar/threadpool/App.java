@@ -23,10 +23,11 @@
 
 package com.iluwatar.threadpool;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Thread Pool pattern is where a number of threads are created to perform a number of tasks, which
@@ -44,48 +45,48 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
 
-    LOGGER.info("Program started");
+        LOGGER.info("Program started");
 
-    // Create a list of tasks to be executed
-    var tasks = List.of(
-        new PotatoPeelingTask(3),
-        new PotatoPeelingTask(6),
-        new CoffeeMakingTask(2),
-        new CoffeeMakingTask(6),
-        new PotatoPeelingTask(4),
-        new CoffeeMakingTask(2),
-        new PotatoPeelingTask(4),
-        new CoffeeMakingTask(9),
-        new PotatoPeelingTask(3),
-        new CoffeeMakingTask(2),
-        new PotatoPeelingTask(4),
-        new CoffeeMakingTask(2),
-        new CoffeeMakingTask(7),
-        new PotatoPeelingTask(4),
-        new PotatoPeelingTask(5));
+        // Create a list of tasks to be executed
+        var tasks = List.of(
+                new PotatoPeelingTask(3),
+                new PotatoPeelingTask(6),
+                new CoffeeMakingTask(2),
+                new CoffeeMakingTask(6),
+                new PotatoPeelingTask(4),
+                new CoffeeMakingTask(2),
+                new PotatoPeelingTask(4),
+                new CoffeeMakingTask(9),
+                new PotatoPeelingTask(3),
+                new CoffeeMakingTask(2),
+                new PotatoPeelingTask(4),
+                new CoffeeMakingTask(2),
+                new CoffeeMakingTask(7),
+                new PotatoPeelingTask(4),
+                new PotatoPeelingTask(5));
 
-    // Creates a thread pool that reuses a fixed number of threads operating off a shared
-    // unbounded queue. At any point, at most nThreads threads will be active processing
-    // tasks. If additional tasks are submitted when all threads are active, they will wait
-    // in the queue until a thread is available.
-    var executor = Executors.newFixedThreadPool(3);
+        // Creates a thread pool that reuses a fixed number of threads operating off a shared
+        // unbounded queue. At any point, at most nThreads threads will be active processing
+        // tasks. If additional tasks are submitted when all threads are active, they will wait
+        // in the queue until a thread is available.
+        var executor = Executors.newFixedThreadPool(3);
 
-    // Allocate new worker for each task
-    // The worker is executed when a thread becomes
-    // available in the thread pool
-    tasks.stream().map(Worker::new).forEach(executor::execute);
-    // All tasks were executed, now shutdown
-    executor.shutdown();
-    while (!executor.isTerminated()) {
-      Thread.yield();
+        // Allocate new worker for each task
+        // The worker is executed when a thread becomes
+        // available in the thread pool
+        tasks.stream().map(Worker::new).forEach(executor::execute);
+        // All tasks were executed, now shutdown
+        executor.shutdown();
+        while (!executor.isTerminated()) {
+            Thread.yield();
+        }
+        LOGGER.info("Program finished");
     }
-    LOGGER.info("Program finished");
-  }
 }

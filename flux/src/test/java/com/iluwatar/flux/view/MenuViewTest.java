@@ -23,19 +23,15 @@
 
 package com.iluwatar.flux.view;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-
 import com.iluwatar.flux.action.Action;
 import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.dispatcher.Dispatcher;
 import com.iluwatar.flux.store.MenuStore;
 import com.iluwatar.flux.store.Store;
 import org.junit.jupiter.api.Test;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/12/15 - 10:31 PM
@@ -44,29 +40,29 @@ import org.junit.jupiter.api.Test;
  */
 public class MenuViewTest {
 
-  @Test
-  void testStoreChanged() {
-    final var store = mock(MenuStore.class);
-    when(store.getSelected()).thenReturn(MenuItem.HOME);
+    @Test
+    void testStoreChanged() {
+        final var store = mock(MenuStore.class);
+        when(store.getSelected()).thenReturn(MenuItem.HOME);
 
-    final var view = new MenuView();
-    view.storeChanged(store);
+        final var view = new MenuView();
+        view.storeChanged(store);
 
-    verify(store, times(1)).getSelected();
-    verifyNoMoreInteractions(store);
-  }
+        verify(store, times(1)).getSelected();
+        verifyNoMoreInteractions(store);
+    }
 
-  @Test
-  void testItemClicked() {
-    final var store = mock(Store.class);
-    Dispatcher.getInstance().registerStore(store);
+    @Test
+    void testItemClicked() {
+        final var store = mock(Store.class);
+        Dispatcher.getInstance().registerStore(store);
 
-    final var view = new MenuView();
-    view.itemClicked(MenuItem.PRODUCTS);
+        final var view = new MenuView();
+        view.itemClicked(MenuItem.PRODUCTS);
 
-    // We should receive a menu click action and a content changed action
-    verify(store, times(2)).onAction(any(Action.class));
+        // We should receive a menu click action and a content changed action
+        verify(store, times(2)).onAction(any(Action.class));
 
-  }
+    }
 
 }

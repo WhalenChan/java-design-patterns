@@ -35,23 +35,23 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 @Slf4j
 public class HibernateUtil {
 
-  private static final SessionFactory SESSIONFACTORY = buildSessionFactory();
+    private static final SessionFactory SESSIONFACTORY = buildSessionFactory();
 
-  private static SessionFactory buildSessionFactory() {
+    private static SessionFactory buildSessionFactory() {
 
-    // configures settings from hibernate.cfg.xml
-    final var registry = new StandardServiceRegistryBuilder().configure().build();
-    try {
-      return new MetadataSources(registry).buildMetadata().buildSessionFactory();
-    } catch (Exception ex) {
-      StandardServiceRegistryBuilder.destroy(registry);
-      LOGGER.error("Initial SessionFactory creation failed.", ex);
-      throw new ExceptionInInitializerError(ex);
+        // configures settings from hibernate.cfg.xml
+        final var registry = new StandardServiceRegistryBuilder().configure().build();
+        try {
+            return new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        } catch (Exception ex) {
+            StandardServiceRegistryBuilder.destroy(registry);
+            LOGGER.error("Initial SessionFactory creation failed.", ex);
+            throw new ExceptionInInitializerError(ex);
+        }
     }
-  }
 
-  public static SessionFactory getSessionFactory() {
-    return SESSIONFACTORY;
-  }
+    public static SessionFactory getSessionFactory() {
+        return SESSIONFACTORY;
+    }
 
 }

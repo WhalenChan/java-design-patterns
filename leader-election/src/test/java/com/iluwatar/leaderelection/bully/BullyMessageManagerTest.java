@@ -23,113 +23,112 @@
 
 package com.iluwatar.leaderelection.bully;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Instance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageType;
+import org.junit.jupiter.api.Test;
+
 import java.util.Map;
 import java.util.Queue;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * BullyMessageManager unit test.
  */
 public class BullyMessageManagerTest {
 
-  @Test
-  void testSendHeartbeatMessage() {
-    var instance1 = new BullyInstance(null, 1, 1);
-    Map<Integer, Instance> instanceMap = Map.of(1, instance1);
-    var messageManager = new BullyMessageManager(instanceMap);
-    assertTrue(messageManager.sendHeartbeatMessage(1));
-  }
-
-  @Test
-  void testSendElectionMessageNotAccepted() {
-    try {
-      var instance1 = new BullyInstance(null, 1, 1);
-      var instance2 = new BullyInstance(null, 1, 2);
-      var instance3 = new BullyInstance(null, 1, 3);
-      var instance4 = new BullyInstance(null, 1, 4);
-      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
-      instance1.setAlive(false);
-      var messageManager = new BullyMessageManager(instanceMap);
-      var result = messageManager.sendElectionMessage(3, "3");
-      var instanceClass = AbstractInstance.class;
-      var messageQueueField = instanceClass.getDeclaredField("messageQueue");
-      messageQueueField.setAccessible(true);
-      var message2 = ((Queue<Message>) messageQueueField.get(instance2)).poll();
-      var instance4QueueSize = ((Queue<Message>) messageQueueField.get(instance4)).size();
-      var expectedMessage = new Message(MessageType.ELECTION_INVOKE, "");
-      assertEquals(message2, expectedMessage);
-      assertEquals(instance4QueueSize, 0);
-      assertEquals(result, false);
-    } catch (IllegalAccessException | NoSuchFieldException e) {
-      fail("Error to access private field.");
+    @Test
+    void testSendHeartbeatMessage() {
+        var instance1 = new BullyInstance(null, 1, 1);
+        Map<Integer, Instance> instanceMap = Map.of(1, instance1);
+        var messageManager = new BullyMessageManager(instanceMap);
+        assertTrue(messageManager.sendHeartbeatMessage(1));
     }
-  }
 
-  @Test
-  void testElectionMessageAccepted() {
-    var instance1 = new BullyInstance(null, 1, 1);
-    var instance2 = new BullyInstance(null, 1, 2);
-    var instance3 = new BullyInstance(null, 1, 3);
-    var instance4 = new BullyInstance(null, 1, 4);
-    Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
-    instance1.setAlive(false);
-    var messageManager = new BullyMessageManager(instanceMap);
-    var result = messageManager.sendElectionMessage(2, "2");
-    assertEquals(result, true);
-  }
-
-  @Test
-  void testSendLeaderMessage() {
-    try {
-      var instance1 = new BullyInstance(null, 1, 1);
-      var instance2 = new BullyInstance(null, 1, 2);
-      var instance3 = new BullyInstance(null, 1, 3);
-      var instance4 = new BullyInstance(null, 1, 4);
-      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
-      instance1.setAlive(false);
-      var messageManager = new BullyMessageManager(instanceMap);
-      messageManager.sendLeaderMessage(2, 2);
-      var instanceClass = AbstractInstance.class;
-      var messageQueueField = instanceClass.getDeclaredField("messageQueue");
-      messageQueueField.setAccessible(true);
-      var message3 = ((Queue<Message>) messageQueueField.get(instance3)).poll();
-      var message4 = ((Queue<Message>) messageQueueField.get(instance4)).poll();
-      var expectedMessage = new Message(MessageType.LEADER, "2");
-      assertEquals(message3, expectedMessage);
-      assertEquals(message4, expectedMessage);
-    } catch (IllegalAccessException | NoSuchFieldException e) {
-      fail("Error to access private field.");
+    @Test
+    void testSendElectionMessageNotAccepted() {
+        try {
+            var instance1 = new BullyInstance(null, 1, 1);
+            var instance2 = new BullyInstance(null, 1, 2);
+            var instance3 = new BullyInstance(null, 1, 3);
+            var instance4 = new BullyInstance(null, 1, 4);
+            Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
+            instance1.setAlive(false);
+            var messageManager = new BullyMessageManager(instanceMap);
+            var result = messageManager.sendElectionMessage(3, "3");
+            var instanceClass = AbstractInstance.class;
+            var messageQueueField = instanceClass.getDeclaredField("messageQueue");
+            messageQueueField.setAccessible(true);
+            var message2 = ((Queue<Message>) messageQueueField.get(instance2)).poll();
+            var instance4QueueSize = ((Queue<Message>) messageQueueField.get(instance4)).size();
+            var expectedMessage = new Message(MessageType.ELECTION_INVOKE, "");
+            assertEquals(message2, expectedMessage);
+            assertEquals(instance4QueueSize, 0);
+            assertEquals(result, false);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            fail("Error to access private field.");
+        }
     }
-  }
 
-  @Test
-  void testSendHeartbeatInvokeMessage() {
-    try {
-      var instance1 = new BullyInstance(null, 1, 1);
-      var instance2 = new BullyInstance(null, 1, 2);
-      var instance3 = new BullyInstance(null, 1, 3);
-      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3);
-      var messageManager = new BullyMessageManager(instanceMap);
-      messageManager.sendHeartbeatInvokeMessage(2);
-      var message = new Message(MessageType.HEARTBEAT_INVOKE, "");
-      var instanceClass = AbstractInstance.class;
-      var messageQueueField = instanceClass.getDeclaredField("messageQueue");
-      messageQueueField.setAccessible(true);
-      var messageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
-      assertEquals(messageSent.getType(), message.getType());
-      assertEquals(messageSent.getContent(), message.getContent());
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      fail("Error to access private field.");
+    @Test
+    void testElectionMessageAccepted() {
+        var instance1 = new BullyInstance(null, 1, 1);
+        var instance2 = new BullyInstance(null, 1, 2);
+        var instance3 = new BullyInstance(null, 1, 3);
+        var instance4 = new BullyInstance(null, 1, 4);
+        Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
+        instance1.setAlive(false);
+        var messageManager = new BullyMessageManager(instanceMap);
+        var result = messageManager.sendElectionMessage(2, "2");
+        assertEquals(result, true);
     }
-  }
+
+    @Test
+    void testSendLeaderMessage() {
+        try {
+            var instance1 = new BullyInstance(null, 1, 1);
+            var instance2 = new BullyInstance(null, 1, 2);
+            var instance3 = new BullyInstance(null, 1, 3);
+            var instance4 = new BullyInstance(null, 1, 4);
+            Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
+            instance1.setAlive(false);
+            var messageManager = new BullyMessageManager(instanceMap);
+            messageManager.sendLeaderMessage(2, 2);
+            var instanceClass = AbstractInstance.class;
+            var messageQueueField = instanceClass.getDeclaredField("messageQueue");
+            messageQueueField.setAccessible(true);
+            var message3 = ((Queue<Message>) messageQueueField.get(instance3)).poll();
+            var message4 = ((Queue<Message>) messageQueueField.get(instance4)).poll();
+            var expectedMessage = new Message(MessageType.LEADER, "2");
+            assertEquals(message3, expectedMessage);
+            assertEquals(message4, expectedMessage);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            fail("Error to access private field.");
+        }
+    }
+
+    @Test
+    void testSendHeartbeatInvokeMessage() {
+        try {
+            var instance1 = new BullyInstance(null, 1, 1);
+            var instance2 = new BullyInstance(null, 1, 2);
+            var instance3 = new BullyInstance(null, 1, 3);
+            Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3);
+            var messageManager = new BullyMessageManager(instanceMap);
+            messageManager.sendHeartbeatInvokeMessage(2);
+            var message = new Message(MessageType.HEARTBEAT_INVOKE, "");
+            var instanceClass = AbstractInstance.class;
+            var messageQueueField = instanceClass.getDeclaredField("messageQueue");
+            messageQueueField.setAccessible(true);
+            var messageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
+            assertEquals(messageSent.getType(), message.getType());
+            assertEquals(messageSent.getContent(), message.getContent());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            fail("Error to access private field.");
+        }
+    }
 
 
 }

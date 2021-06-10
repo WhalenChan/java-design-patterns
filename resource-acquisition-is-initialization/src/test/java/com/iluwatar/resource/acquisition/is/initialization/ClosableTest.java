@@ -23,17 +23,18 @@
 
 package com.iluwatar.resource.acquisition.is.initialization;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import java.util.LinkedList;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Date: 12/28/15 - 9:31 PM
@@ -42,47 +43,47 @@ import org.slf4j.LoggerFactory;
  */
 class ClosableTest {
 
-  private InMemoryAppender appender;
+    private InMemoryAppender appender;
 
-  @BeforeEach
-  public void setUp() {
-    appender = new InMemoryAppender();
-  }
-
-  @AfterEach
-  public void tearDown() {
-    appender.stop();
-  }
-
-  @Test
-  void testOpenClose() {
-    try (final var ignored = new SlidingDoor(); final var ignored1 = new TreasureChest()) {
-      assertTrue(appender.logContains("Sliding door opens."));
-      assertTrue(appender.logContains("Treasure chest opens."));
-    }
-    assertTrue(appender.logContains("Treasure chest closes."));
-    assertTrue(appender.logContains("Sliding door closes."));
-  }
-
-  /**
-   * Logging Appender Implementation
-   */
-  public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private final List<ILoggingEvent> log = new LinkedList<>();
-
-    public InMemoryAppender() {
-      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
-      start();
+    @BeforeEach
+    public void setUp() {
+        appender = new InMemoryAppender();
     }
 
-    @Override
-    protected void append(ILoggingEvent eventObject) {
-      log.add(eventObject);
+    @AfterEach
+    public void tearDown() {
+        appender.stop();
     }
 
-    public boolean logContains(String message) {
-      return log.stream().anyMatch(event -> event.getMessage().equals(message));
+    @Test
+    void testOpenClose() {
+        try (final var ignored = new SlidingDoor(); final var ignored1 = new TreasureChest()) {
+            assertTrue(appender.logContains("Sliding door opens."));
+            assertTrue(appender.logContains("Treasure chest opens."));
+        }
+        assertTrue(appender.logContains("Treasure chest closes."));
+        assertTrue(appender.logContains("Sliding door closes."));
     }
-  }
+
+    /**
+     * Logging Appender Implementation
+     */
+    public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+        private final List<ILoggingEvent> log = new LinkedList<>();
+
+        public InMemoryAppender() {
+            ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
+            start();
+        }
+
+        @Override
+        protected void append(ILoggingEvent eventObject) {
+            log.add(eventObject);
+        }
+
+        public boolean logContains(String message) {
+            return log.stream().anyMatch(event -> event.getMessage().equals(message));
+        }
+    }
 
 }

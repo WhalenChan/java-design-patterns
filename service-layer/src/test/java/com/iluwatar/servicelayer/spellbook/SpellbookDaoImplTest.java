@@ -23,11 +23,11 @@
 
 package com.iluwatar.servicelayer.spellbook;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import com.iluwatar.servicelayer.common.BaseDaoTest;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Date: 12/28/15 - 11:44 PM
@@ -36,20 +36,20 @@ import org.junit.jupiter.api.Test;
  */
 class SpellbookDaoImplTest extends BaseDaoTest<Spellbook, SpellbookDaoImpl> {
 
-  public SpellbookDaoImplTest() {
-    super(Spellbook::new, new SpellbookDaoImpl());
-  }
-
-  @Test
-  void testFindByName() {
-    final var dao = getDao();
-    final var allBooks = dao.findAll();
-    for (final var book : allBooks) {
-      final var spellByName = dao.findByName(book.getName());
-      assertNotNull(spellByName);
-      assertEquals(book.getId(), spellByName.getId());
-      assertEquals(book.getName(), spellByName.getName());
+    public SpellbookDaoImplTest() {
+        super(Spellbook::new, new SpellbookDaoImpl());
     }
-  }
+
+    @Test
+    void testFindByName() {
+        final var dao = getDao();
+        final var allBooks = dao.findAll();
+        for (final var book : allBooks) {
+            final var spellByName = dao.findByName(book.getName());
+            assertNotNull(spellByName);
+            assertEquals(book.getId(), spellByName.getId());
+            assertEquals(book.getName(), spellByName.getName());
+        }
+    }
 
 }

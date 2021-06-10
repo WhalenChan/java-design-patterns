@@ -23,8 +23,9 @@
 
 package com.iluwatar.collectionpipeline;
 
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
 
 /**
  * In imperative-style programming, it is common to use for and while loops for most kinds of data
@@ -37,32 +38,32 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    var cars = CarFactory.createCars();
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        var cars = CarFactory.createCars();
 
-    var modelsImperative = ImperativeProgramming.getModelsAfter2000(cars);
-    LOGGER.info(modelsImperative.toString());
+        var modelsImperative = ImperativeProgramming.getModelsAfter2000(cars);
+        LOGGER.info(modelsImperative.toString());
 
-    var modelsFunctional = FunctionalProgramming.getModelsAfter2000(cars);
-    LOGGER.info(modelsFunctional.toString());
+        var modelsFunctional = FunctionalProgramming.getModelsAfter2000(cars);
+        LOGGER.info(modelsFunctional.toString());
 
-    var groupingByCategoryImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
-    LOGGER.info(groupingByCategoryImperative.toString());
+        var groupingByCategoryImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
+        LOGGER.info(groupingByCategoryImperative.toString());
 
-    var groupingByCategoryFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
-    LOGGER.info(groupingByCategoryFunctional.toString());
+        var groupingByCategoryFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
+        LOGGER.info(groupingByCategoryFunctional.toString());
 
-    var john = new Person(cars);
+        var john = new Person(cars);
 
-    var sedansOwnedImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
-    LOGGER.info(sedansOwnedImperative.toString());
+        var sedansOwnedImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+        LOGGER.info(sedansOwnedImperative.toString());
 
-    var sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
-    LOGGER.info(sedansOwnedFunctional.toString());
-  }
+        var sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+        LOGGER.info(sedansOwnedFunctional.toString());
+    }
 }

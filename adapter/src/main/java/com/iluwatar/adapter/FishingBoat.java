@@ -32,8 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 final class FishingBoat {
 
-  void sail() {
-    LOGGER.info("The fishing boat is sailing");
-  }
+    void sail() {
+        LOGGER.info("The fishing boat is sailing");
+    }
 
 }

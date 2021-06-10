@@ -23,31 +23,31 @@
 
 package com;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.iluwatar.leaderfollowers.Task;
 import com.iluwatar.leaderfollowers.TaskSet;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for TaskSet
  */
 class TaskSetTest {
 
-  @Test
-  void testAddTask() throws InterruptedException {
-    var taskSet = new TaskSet();
-    taskSet.addTask(new Task(10));
-    assertEquals(1, taskSet.getSize());
-  }
+    @Test
+    void testAddTask() throws InterruptedException {
+        var taskSet = new TaskSet();
+        taskSet.addTask(new Task(10));
+        assertEquals(1, taskSet.getSize());
+    }
 
-  @Test
-  void testGetTask() throws InterruptedException {
-    var taskSet = new TaskSet();
-    taskSet.addTask(new Task(100));
-    Task task = taskSet.getTask();
-    assertEquals(100, task.getTime());
-    assertEquals(0, taskSet.getSize());
-  }
+    @Test
+    void testGetTask() throws InterruptedException {
+        var taskSet = new TaskSet();
+        taskSet.addTask(new Task(100));
+        Task task = taskSet.getTask();
+        assertEquals(100, task.getTime());
+        assertEquals(0, taskSet.getSize());
+    }
 
 }

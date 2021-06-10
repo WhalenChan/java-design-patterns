@@ -34,12 +34,12 @@ package com.iluwatar.pipeline;
  * "stage".
  */
 public class App {
-  /**
-   * Specify the initial input type for the first stage handler and the expected output type of the
-   * last stage handler as type parameters for Pipeline. Use the fluent builder by calling
-   * addHandler to add more stage handlers on the pipeline.
-   */
-  public static void main(String[] args) {
+    /**
+     * Specify the initial input type for the first stage handler and the expected output type of the
+     * last stage handler as type parameters for Pipeline. Use the fluent builder by calling
+     * addHandler to add more stage handlers on the pipeline.
+     */
+    public static void main(String[] args) {
     /*
       Suppose we wanted to pass through a String to a series of filtering stages and convert it
       as a char array on the last stage.
@@ -59,9 +59,9 @@ public class App {
       then is expected to receive an input of char[] array since that is the type being returned
       by the previous handler, ConvertToCharArrayHandler.
      */
-    var filters = new Pipeline<>(new RemoveAlphabetsHandler())
-        .addHandler(new RemoveDigitsHandler())
-        .addHandler(new ConvertToCharArrayHandler());
-    filters.execute("GoYankees123!");
-  }
+        var filters = new Pipeline<>(new RemoveAlphabetsHandler())
+                .addHandler(new RemoveDigitsHandler())
+                .addHandler(new ConvertToCharArrayHandler());
+        filters.execute("GoYankees123!");
+    }
 }

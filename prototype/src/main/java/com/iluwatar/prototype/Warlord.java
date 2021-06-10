@@ -33,10 +33,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public abstract class Warlord implements Prototype {
 
-  public Warlord(Warlord source) {
-  }
+    public Warlord(Warlord source) {
+    }
 
-  @Override
-  public abstract Warlord copy();
+    @Override
+    public abstract Warlord copy();
 
 }

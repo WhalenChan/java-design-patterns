@@ -23,45 +23,45 @@
 
 package com.iluwatar.pageobject;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.iluwatar.pageobject.pages.AlbumPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test Album Page Operations
  */
 public class AlbumPageTest {
 
-  private final AlbumPage albumPage = new AlbumPage(new WebClient());
+    private final AlbumPage albumPage = new AlbumPage(new WebClient());
 
-  @BeforeEach
-  public void setUp() {
-    albumPage.navigateToPage();
-  }
+    @BeforeEach
+    public void setUp() {
+        albumPage.navigateToPage();
+    }
 
-  @Test
-  void testSaveAlbum() {
+    @Test
+    void testSaveAlbum() {
 
-    var albumPageAfterChanges = albumPage
-        .changeAlbumTitle("25")
-        .changeArtist("Adele Laurie Blue Adkins")
-        .changeAlbumYear(2015)
-        .changeAlbumRating("B")
-        .changeNumberOfSongs(20)
-        .saveChanges();
+        var albumPageAfterChanges = albumPage
+                .changeAlbumTitle("25")
+                .changeArtist("Adele Laurie Blue Adkins")
+                .changeAlbumYear(2015)
+                .changeAlbumRating("B")
+                .changeNumberOfSongs(20)
+                .saveChanges();
 
-    assertTrue(albumPageAfterChanges.isAt());
+        assertTrue(albumPageAfterChanges.isAt());
 
-  }
+    }
 
-  @Test
-  void testCancelChanges() {
-    var albumListPage = albumPage.cancelChanges();
-    albumListPage.navigateToPage();
-    assertTrue(albumListPage.isAt());
-  }
+    @Test
+    void testCancelChanges() {
+        var albumListPage = albumPage.cancelChanges();
+        albumListPage.navigateToPage();
+        assertTrue(albumListPage.isAt());
+    }
 
 }

@@ -23,15 +23,15 @@
 
 package com.iluwatar.factory;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class AppTest {
 
-  @Test
-  void shouldExecuteWithoutExceptions() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
-  }
+    @Test
+    void shouldExecuteWithoutExceptions() {
+        assertDoesNotThrow(() -> App.main(new String[]{}));
+    }
 
 }

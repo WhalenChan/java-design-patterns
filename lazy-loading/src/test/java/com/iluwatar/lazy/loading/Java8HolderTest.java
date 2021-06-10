@@ -23,7 +23,6 @@
 
 package com.iluwatar.lazy.loading;
 
-import java.lang.reflect.Field;
 import java.util.function.Supplier;
 
 /**
@@ -33,31 +32,31 @@ import java.util.function.Supplier;
  */
 public class Java8HolderTest extends AbstractHolderTest {
 
-  private final Java8Holder holder = new Java8Holder();
+    private final Java8Holder holder = new Java8Holder();
 
 
-  @Override
-  Heavy getInternalHeavyValue() throws Exception {
-    final var holderField = Java8Holder.class.getDeclaredField("heavy");
-    holderField.setAccessible(true);
+    @Override
+    Heavy getInternalHeavyValue() throws Exception {
+        final var holderField = Java8Holder.class.getDeclaredField("heavy");
+        holderField.setAccessible(true);
 
-    final var supplier = (Supplier<Heavy>) holderField.get(this.holder);
-    final var supplierClass = supplier.getClass();
+        final var supplier = (Supplier<Heavy>) holderField.get(this.holder);
+        final var supplierClass = supplier.getClass();
 
-    // This is a little fishy, but I don't know another way to test this:
-    // The lazy holder is at first a lambda, but gets replaced with a new supplier after loading ...
-    if (supplierClass.isLocalClass()) {
-      final var instanceField = supplierClass.getDeclaredField("heavyInstance");
-      instanceField.setAccessible(true);
-      return (Heavy) instanceField.get(supplier);
-    } else {
-      return null;
+        // This is a little fishy, but I don't know another way to test this:
+        // The lazy holder is at first a lambda, but gets replaced with a new supplier after loading ...
+        if (supplierClass.isLocalClass()) {
+            final var instanceField = supplierClass.getDeclaredField("heavyInstance");
+            instanceField.setAccessible(true);
+            return (Heavy) instanceField.get(supplier);
+        } else {
+            return null;
+        }
     }
-  }
 
-  @Override
-  Heavy getHeavy() throws Exception {
-    return holder.getHeavy();
-  }
+    @Override
+    Heavy getHeavy() throws Exception {
+        return holder.getHeavy();
+    }
 
 }

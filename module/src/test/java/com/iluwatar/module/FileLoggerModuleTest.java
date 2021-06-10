@@ -23,15 +23,16 @@
 
 package com.iluwatar.module;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * The Module pattern can be considered a Creational pattern and a Structural pattern. It manages
@@ -46,128 +47,128 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public final class FileLoggerModuleTest {
 
-  private static final String OUTPUT_FILE = "output.txt";
-  private static final String ERROR_FILE = "error.txt";
+    private static final String OUTPUT_FILE = "output.txt";
+    private static final String ERROR_FILE = "error.txt";
 
-  private static final String MESSAGE = "MESSAGE";
-  private static final String ERROR = "ERROR";
+    private static final String MESSAGE = "MESSAGE";
+    private static final String ERROR = "ERROR";
 
 
-  /**
-   * This test verify that 'MESSAGE' is perfectly printed in output file
-   *
-   * @throws IOException if program is not able to find log files (output.txt and error.txt)
-   */
-  @Test
-  void testFileMessage() throws IOException {
+    /**
+     * This test verify that 'MESSAGE' is perfectly printed in output file
+     *
+     * @throws IOException if program is not able to find log files (output.txt and error.txt)
+     */
+    @Test
+    void testFileMessage() throws IOException {
 
-    /* Get singleton instance of File Logger Module */
-    final var fileLoggerModule = FileLoggerModule.getSingleton();
+        /* Get singleton instance of File Logger Module */
+        final var fileLoggerModule = FileLoggerModule.getSingleton();
 
-    /* Prepare the essential sub modules, to perform the sequence of jobs */
-    fileLoggerModule.prepare();
+        /* Prepare the essential sub modules, to perform the sequence of jobs */
+        fileLoggerModule.prepare();
 
-    /* Print 'Message' in file */
-    fileLoggerModule.printString(MESSAGE);
+        /* Print 'Message' in file */
+        fileLoggerModule.printString(MESSAGE);
 
-    /* Test if 'Message' is printed in file */
-    assertEquals(readFirstLine(OUTPUT_FILE), MESSAGE);
+        /* Test if 'Message' is printed in file */
+        assertEquals(readFirstLine(OUTPUT_FILE), MESSAGE);
 
-    /* Unprepare to cleanup the modules */
-    fileLoggerModule.unprepare();
-  }
-
-  /**
-   * This test verify that nothing is printed in output file
-   *
-   * @throws IOException if program is not able to find log files (output.txt and error.txt)
-   */
-  @Test
-  void testNoFileMessage() throws IOException {
-
-    /* Get singleton instance of File Logger Module */
-    final var fileLoggerModule = FileLoggerModule.getSingleton();
-
-    /* Prepare the essential sub modules, to perform the sequence of jobs */
-    fileLoggerModule.prepare();
-
-    /* Test if nothing is printed in file */
-    assertNull(readFirstLine(OUTPUT_FILE));
-
-    /* Unprepare to cleanup the modules */
-    fileLoggerModule.unprepare();
-  }
-
-  /**
-   * This test verify that 'ERROR' is perfectly printed in error file
-   *
-   * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *                               error.txt)
-   */
-  @Test
-  void testFileErrorMessage() throws FileNotFoundException {
-
-    /* Get singleton instance of File Logger Module */
-    final var fileLoggerModule = FileLoggerModule.getSingleton();
-
-    /* Prepare the essential sub modules, to perform the sequence of jobs */
-    fileLoggerModule.prepare();
-
-    /* Print 'Error' in file */
-    fileLoggerModule.printErrorString(ERROR);
-
-    /* Test if 'Message' is printed in file */
-    assertEquals(ERROR, readFirstLine(ERROR_FILE));
-
-    /* Un-prepare to cleanup the modules */
-    fileLoggerModule.unprepare();
-  }
-
-  /**
-   * This test verify that nothing is printed in error file
-   *
-   * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *                               error.txt)
-   */
-  @Test
-  void testNoFileErrorMessage() throws FileNotFoundException {
-
-    /* Get singleton instance of File Logger Module */
-    final var fileLoggerModule = FileLoggerModule.getSingleton();
-
-    /* Prepare the essential sub modules, to perform the sequence of jobs */
-    fileLoggerModule.prepare();
-
-    /* Test if nothing is printed in file */
-    assertNull(readFirstLine(ERROR_FILE));
-
-    /* Unprepare to cleanup the modules */
-    fileLoggerModule.unprepare();
-  }
-
-  /**
-   * Utility method to read first line of a file
-   *
-   * @param file as file name to be read
-   * @return a string value as first line in file
-   */
-  private static String readFirstLine(final String file) {
-
-    String firstLine = null;
-    try (var bufferedReader = new BufferedReader(new FileReader(file))) {
-
-      while (bufferedReader.ready()) {
-
-        /* Read the line */
-        firstLine = bufferedReader.readLine();
-      }
-
-      LOGGER.info("ModuleTest::readFirstLine() : firstLine : " + firstLine);
-
-    } catch (final IOException e) {
-      LOGGER.error("ModuleTest::readFirstLine()", e);
+        /* Unprepare to cleanup the modules */
+        fileLoggerModule.unprepare();
     }
 
-    return firstLine;
-  }
+    /**
+     * This test verify that nothing is printed in output file
+     *
+     * @throws IOException if program is not able to find log files (output.txt and error.txt)
+     */
+    @Test
+    void testNoFileMessage() throws IOException {
+
+        /* Get singleton instance of File Logger Module */
+        final var fileLoggerModule = FileLoggerModule.getSingleton();
+
+        /* Prepare the essential sub modules, to perform the sequence of jobs */
+        fileLoggerModule.prepare();
+
+        /* Test if nothing is printed in file */
+        assertNull(readFirstLine(OUTPUT_FILE));
+
+        /* Unprepare to cleanup the modules */
+        fileLoggerModule.unprepare();
+    }
+
+    /**
+     * This test verify that 'ERROR' is perfectly printed in error file
+     *
+     * @throws FileNotFoundException if program is not able to find log files (output.txt and
+     *                               error.txt)
+     */
+    @Test
+    void testFileErrorMessage() throws FileNotFoundException {
+
+        /* Get singleton instance of File Logger Module */
+        final var fileLoggerModule = FileLoggerModule.getSingleton();
+
+        /* Prepare the essential sub modules, to perform the sequence of jobs */
+        fileLoggerModule.prepare();
+
+        /* Print 'Error' in file */
+        fileLoggerModule.printErrorString(ERROR);
+
+        /* Test if 'Message' is printed in file */
+        assertEquals(ERROR, readFirstLine(ERROR_FILE));
+
+        /* Un-prepare to cleanup the modules */
+        fileLoggerModule.unprepare();
+    }
+
+    /**
+     * This test verify that nothing is printed in error file
+     *
+     * @throws FileNotFoundException if program is not able to find log files (output.txt and
+     *                               error.txt)
+     */
+    @Test
+    void testNoFileErrorMessage() throws FileNotFoundException {
+
+        /* Get singleton instance of File Logger Module */
+        final var fileLoggerModule = FileLoggerModule.getSingleton();
+
+        /* Prepare the essential sub modules, to perform the sequence of jobs */
+        fileLoggerModule.prepare();
+
+        /* Test if nothing is printed in file */
+        assertNull(readFirstLine(ERROR_FILE));
+
+        /* Unprepare to cleanup the modules */
+        fileLoggerModule.unprepare();
+    }
+
+    /**
+     * Utility method to read first line of a file
+     *
+     * @param file as file name to be read
+     * @return a string value as first line in file
+     */
+    private static String readFirstLine(final String file) {
+
+        String firstLine = null;
+        try (var bufferedReader = new BufferedReader(new FileReader(file))) {
+
+            while (bufferedReader.ready()) {
+
+                /* Read the line */
+                firstLine = bufferedReader.readLine();
+            }
+
+            LOGGER.info("ModuleTest::readFirstLine() : firstLine : " + firstLine);
+
+        } catch (final IOException e) {
+            LOGGER.error("ModuleTest::readFirstLine()", e);
+        }
+
+        return firstLine;
+    }
 }

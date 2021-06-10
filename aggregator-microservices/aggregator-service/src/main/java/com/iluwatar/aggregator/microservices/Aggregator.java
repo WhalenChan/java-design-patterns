@@ -37,34 +37,34 @@ import static java.util.Objects.requireNonNullElse;
 @RestController
 public class Aggregator {
 
-  @Resource
-  private ProductInformationClient informationClient;
+    @Resource
+    private ProductInformationClient informationClient;
 
-  @Resource
-  private ProductInventoryClient inventoryClient;
+    @Resource
+    private ProductInventoryClient inventoryClient;
 
-  /**
-   * 从不同的微服务中获取Product的信息
-   *
-   * Retrieves product data.
-   *
-   * @return a Product.
-   */
-  @GetMapping("/product")
-  public Product getProduct() {
+    /**
+     * 从不同的微服务中获取Product的信息
+     * <p>
+     * Retrieves product data.
+     *
+     * @return a Product.
+     */
+    @GetMapping("/product")
+    public Product getProduct() {
 
-    var product = new Product();
+        var product = new Product();
 
-    var productTitle = informationClient.getProductTitle();
-    var productInventory = inventoryClient.getProductInventories();
+        var productTitle = informationClient.getProductTitle();
+        var productInventory = inventoryClient.getProductInventories();
 
-    //Fallback to error message
-    product.setTitle(requireNonNullElse(productTitle, "Error: Fetching Product Title Failed"));
+        //Fallback to error message
+        product.setTitle(requireNonNullElse(productTitle, "Error: Fetching Product Title Failed"));
 
-    //Fallback to default error inventory
-    product.setProductInventories(requireNonNullElse(productInventory, -1));
+        //Fallback to default error inventory
+        product.setProductInventories(requireNonNullElse(productInventory, -1));
 
-    return product;
-  }
+        return product;
+    }
 
 }

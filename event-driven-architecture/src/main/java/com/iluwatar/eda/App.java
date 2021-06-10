@@ -42,23 +42,23 @@ import com.iluwatar.eda.model.User;
  */
 public class App {
 
-  /**
-   * Once the {@link EventDispatcher} is initialised, handlers related to specific events have to be
-   * made known to the dispatcher by registering them. In this case the {@link UserCreatedEvent} is
-   * bound to the UserCreatedEventHandler, whilst the {@link UserUpdatedEvent} is bound to the
-   * {@link UserUpdatedEventHandler}. The dispatcher can now be called to dispatch specific events.
-   * When a user is saved, the {@link UserCreatedEvent} can be dispatched. On the other hand, when a
-   * user is updated, {@link UserUpdatedEvent} can be dispatched.
-   */
-  public static void main(String[] args) {
+    /**
+     * Once the {@link EventDispatcher} is initialised, handlers related to specific events have to be
+     * made known to the dispatcher by registering them. In this case the {@link UserCreatedEvent} is
+     * bound to the UserCreatedEventHandler, whilst the {@link UserUpdatedEvent} is bound to the
+     * {@link UserUpdatedEventHandler}. The dispatcher can now be called to dispatch specific events.
+     * When a user is saved, the {@link UserCreatedEvent} can be dispatched. On the other hand, when a
+     * user is updated, {@link UserUpdatedEvent} can be dispatched.
+     */
+    public static void main(String[] args) {
 
-    var dispatcher = new EventDispatcher();
-    dispatcher.registerHandler(UserCreatedEvent.class, new UserCreatedEventHandler());
-    dispatcher.registerHandler(UserUpdatedEvent.class, new UserUpdatedEventHandler());
+        var dispatcher = new EventDispatcher();
+        dispatcher.registerHandler(UserCreatedEvent.class, new UserCreatedEventHandler());
+        dispatcher.registerHandler(UserUpdatedEvent.class, new UserUpdatedEventHandler());
 
-    var user = new User("iluwatar");
-    dispatcher.dispatch(new UserCreatedEvent(user));
-    dispatcher.dispatch(new UserUpdatedEvent(user));
-  }
+        var user = new User("iluwatar");
+        dispatcher.dispatch(new UserCreatedEvent(user));
+        dispatcher.dispatch(new UserUpdatedEvent(user));
+    }
 
 }

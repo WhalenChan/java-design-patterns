@@ -28,34 +28,34 @@ package com.iluwatar.state;
  */
 public class Mammoth {
 
-  private State state;
+    private State state;
 
-  public Mammoth() {
-    state = new PeacefulState(this);
-  }
-
-  /**
-   * Makes time pass for the mammoth.
-   */
-  public void timePasses() {
-    if (state.getClass().equals(PeacefulState.class)) {
-      changeStateTo(new AngryState(this));
-    } else {
-      changeStateTo(new PeacefulState(this));
+    public Mammoth() {
+        state = new PeacefulState(this);
     }
-  }
 
-  private void changeStateTo(State newState) {
-    this.state = newState;
-    this.state.onEnterState();
-  }
+    /**
+     * Makes time pass for the mammoth.
+     */
+    public void timePasses() {
+        if (state.getClass().equals(PeacefulState.class)) {
+            changeStateTo(new AngryState(this));
+        } else {
+            changeStateTo(new PeacefulState(this));
+        }
+    }
 
-  @Override
-  public String toString() {
-    return "The mammoth";
-  }
+    private void changeStateTo(State newState) {
+        this.state = newState;
+        this.state.onEnterState();
+    }
 
-  public void observe() {
-    this.state.observe();
-  }
+    @Override
+    public String toString() {
+        return "The mammoth";
+    }
+
+    public void observe() {
+        this.state.observe();
+    }
 }

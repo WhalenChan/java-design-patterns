@@ -23,11 +23,7 @@
 
 package com.iluwatar.transactionscript;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * A room POJO that represents the data that will be read from the data source.
@@ -39,9 +35,9 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Room {
 
-  private int id;
-  private String roomType;
-  private int price;
-  private boolean booked;
+    private int id;
+    private String roomType;
+    private int price;
+    private boolean booked;
 
 }

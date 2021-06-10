@@ -59,5 +59,5 @@ import lombok.Setter;
 @Setter
 public class AbstractDataType implements DataType {
 
-  private DataBus dataBus;
+    private DataBus dataBus;
 }

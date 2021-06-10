@@ -23,9 +23,10 @@
 
 package com.iluwatar.caching;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.text.ParseException;
 import java.util.Optional;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * AppManager helps to bridge the gap in communication between the main class and the application's
@@ -37,94 +38,94 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public final class AppManager {
 
-  private static CachingPolicy cachingPolicy;
+    private static CachingPolicy cachingPolicy;
 
-  private AppManager() {
-  }
-
-  /**
-   * Developer/Tester is able to choose whether the application should use MongoDB as its underlying
-   * data storage or a simple Java data structure to (temporarily) store the data/objects during
-   * runtime.
-   */
-  public static void initDb(boolean useMongoDb) {
-    if (useMongoDb) {
-      try {
-        DbManager.connect();
-      } catch (ParseException e) {
-        LOGGER.error("Error connecting to MongoDB", e);
-      }
-    } else {
-      DbManager.createVirtualDb();
+    private AppManager() {
     }
-  }
 
-  /**
-   * Initialize caching policy.
-   */
-  public static void initCachingPolicy(CachingPolicy policy) {
-    cachingPolicy = policy;
-    if (cachingPolicy == CachingPolicy.BEHIND) {
-      Runtime.getRuntime().addShutdownHook(new Thread(CacheStore::flushCache));
+    /**
+     * Developer/Tester is able to choose whether the application should use MongoDB as its underlying
+     * data storage or a simple Java data structure to (temporarily) store the data/objects during
+     * runtime.
+     */
+    public static void initDb(boolean useMongoDb) {
+        if (useMongoDb) {
+            try {
+                DbManager.connect();
+            } catch (ParseException e) {
+                LOGGER.error("Error connecting to MongoDB", e);
+            }
+        } else {
+            DbManager.createVirtualDb();
+        }
     }
-    CacheStore.clearCache();
-  }
 
-  public static void initCacheCapacity(int capacity) {
-    CacheStore.initCapacity(capacity);
-  }
-
-  /**
-   * Find user account.
-   */
-  public static UserAccount find(String userId) {
-    if (cachingPolicy == CachingPolicy.THROUGH || cachingPolicy == CachingPolicy.AROUND) {
-      return CacheStore.readThrough(userId);
-    } else if (cachingPolicy == CachingPolicy.BEHIND) {
-      return CacheStore.readThroughWithWriteBackPolicy(userId);
-    } else if (cachingPolicy == CachingPolicy.ASIDE) {
-      return findAside(userId);
+    /**
+     * Initialize caching policy.
+     */
+    public static void initCachingPolicy(CachingPolicy policy) {
+        cachingPolicy = policy;
+        if (cachingPolicy == CachingPolicy.BEHIND) {
+            Runtime.getRuntime().addShutdownHook(new Thread(CacheStore::flushCache));
+        }
+        CacheStore.clearCache();
     }
-    return null;
-  }
 
-  /**
-   * Save user account.
-   */
-  public static void save(UserAccount userAccount) {
-    if (cachingPolicy == CachingPolicy.THROUGH) {
-      CacheStore.writeThrough(userAccount);
-    } else if (cachingPolicy == CachingPolicy.AROUND) {
-      CacheStore.writeAround(userAccount);
-    } else if (cachingPolicy == CachingPolicy.BEHIND) {
-      CacheStore.writeBehind(userAccount);
-    } else if (cachingPolicy == CachingPolicy.ASIDE) {
-      saveAside(userAccount);
+    public static void initCacheCapacity(int capacity) {
+        CacheStore.initCapacity(capacity);
     }
-  }
 
-  public static String printCacheContent() {
-    return CacheStore.print();
-  }
+    /**
+     * Find user account.
+     */
+    public static UserAccount find(String userId) {
+        if (cachingPolicy == CachingPolicy.THROUGH || cachingPolicy == CachingPolicy.AROUND) {
+            return CacheStore.readThrough(userId);
+        } else if (cachingPolicy == CachingPolicy.BEHIND) {
+            return CacheStore.readThroughWithWriteBackPolicy(userId);
+        } else if (cachingPolicy == CachingPolicy.ASIDE) {
+            return findAside(userId);
+        }
+        return null;
+    }
 
-  /**
-   * Cache-Aside save user account helper.
-   */
-  private static void saveAside(UserAccount userAccount) {
-    DbManager.updateDb(userAccount);
-    CacheStore.invalidate(userAccount.getUserId());
-  }
+    /**
+     * Save user account.
+     */
+    public static void save(UserAccount userAccount) {
+        if (cachingPolicy == CachingPolicy.THROUGH) {
+            CacheStore.writeThrough(userAccount);
+        } else if (cachingPolicy == CachingPolicy.AROUND) {
+            CacheStore.writeAround(userAccount);
+        } else if (cachingPolicy == CachingPolicy.BEHIND) {
+            CacheStore.writeBehind(userAccount);
+        } else if (cachingPolicy == CachingPolicy.ASIDE) {
+            saveAside(userAccount);
+        }
+    }
 
-  /**
-   * Cache-Aside find user account helper.
-   */
-  private static UserAccount findAside(String userId) {
-    return Optional.ofNullable(CacheStore.get(userId))
-        .or(() -> {
-          Optional<UserAccount> userAccount = Optional.ofNullable(DbManager.readFromDb(userId));
-          userAccount.ifPresent(account -> CacheStore.set(userId, account));
-          return userAccount;
-        })
-        .orElse(null);
-  }
+    public static String printCacheContent() {
+        return CacheStore.print();
+    }
+
+    /**
+     * Cache-Aside save user account helper.
+     */
+    private static void saveAside(UserAccount userAccount) {
+        DbManager.updateDb(userAccount);
+        CacheStore.invalidate(userAccount.getUserId());
+    }
+
+    /**
+     * Cache-Aside find user account helper.
+     */
+    private static UserAccount findAside(String userId) {
+        return Optional.ofNullable(CacheStore.get(userId))
+                .or(() -> {
+                    Optional<UserAccount> userAccount = Optional.ofNullable(DbManager.readFromDb(userId));
+                    userAccount.ifPresent(account -> CacheStore.set(userId, account));
+                    return userAccount;
+                })
+                .orElse(null);
+    }
 }

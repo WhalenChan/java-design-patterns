@@ -23,49 +23,50 @@
 
 package com.iluwatar.balking;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.TimeUnit;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for {@link WashingMachine}
  */
 class WashingMachineTest {
 
-  private final FakeDelayProvider fakeDelayProvider = new FakeDelayProvider();
+    private final FakeDelayProvider fakeDelayProvider = new FakeDelayProvider();
 
-  @Test
-  void wash() {
-    var washingMachine = new WashingMachine(fakeDelayProvider);
+    @Test
+    void wash() {
+        var washingMachine = new WashingMachine(fakeDelayProvider);
 
-    washingMachine.wash();
-    washingMachine.wash();
+        washingMachine.wash();
+        washingMachine.wash();
 
-    var machineStateGlobal = washingMachine.getWashingMachineState();
+        var machineStateGlobal = washingMachine.getWashingMachineState();
 
-    fakeDelayProvider.task.run();
+        fakeDelayProvider.task.run();
 
-    // washing machine remains in washing state
-    assertEquals(WashingMachineState.WASHING, machineStateGlobal);
+        // washing machine remains in washing state
+        assertEquals(WashingMachineState.WASHING, machineStateGlobal);
 
-    // washing machine goes back to enabled state
-    assertEquals(WashingMachineState.ENABLED, washingMachine.getWashingMachineState());
-  }
-
-  @Test
-  void endOfWashing() {
-    var washingMachine = new WashingMachine();
-    washingMachine.wash();
-    assertEquals(WashingMachineState.ENABLED, washingMachine.getWashingMachineState());
-  }
-
-  private static class FakeDelayProvider implements DelayProvider {
-    private Runnable task;
-
-    @Override
-    public void executeAfterDelay(long interval, TimeUnit timeUnit, Runnable task) {
-      this.task = task;
+        // washing machine goes back to enabled state
+        assertEquals(WashingMachineState.ENABLED, washingMachine.getWashingMachineState());
     }
-  }
+
+    @Test
+    void endOfWashing() {
+        var washingMachine = new WashingMachine();
+        washingMachine.wash();
+        assertEquals(WashingMachineState.ENABLED, washingMachine.getWashingMachineState());
+    }
+
+    private static class FakeDelayProvider implements DelayProvider {
+        private Runnable task;
+
+        @Override
+        public void executeAfterDelay(long interval, TimeUnit timeUnit, Runnable task) {
+            this.task = task;
+        }
+    }
 }

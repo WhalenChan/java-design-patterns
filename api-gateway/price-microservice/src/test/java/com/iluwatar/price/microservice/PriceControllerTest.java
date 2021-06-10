@@ -32,10 +32,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class PriceControllerTest {
 
-  @Test
-  void testgetPrice() {
-    var priceController = new PriceController();
-    var price = priceController.getPrice();
-    assertEquals("20", price);
-  }
+    @Test
+    void testgetPrice() {
+        var priceController = new PriceController();
+        var price = priceController.getPrice();
+        assertEquals("20", price);
+    }
 }

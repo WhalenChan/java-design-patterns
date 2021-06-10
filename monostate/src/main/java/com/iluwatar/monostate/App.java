@@ -37,16 +37,16 @@ package com.iluwatar.monostate;
  * the second load balancer has already selected the second server.
  */
 public class App {
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    var loadBalancer1 = new LoadBalancer();
-    var loadBalancer2 = new LoadBalancer();
-    loadBalancer1.serverRequest(new Request("Hello"));
-    loadBalancer2.serverRequest(new Request("Hello World"));
-  }
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        var loadBalancer1 = new LoadBalancer();
+        var loadBalancer2 = new LoadBalancer();
+        loadBalancer1.serverRequest(new Request("Hello"));
+        loadBalancer2.serverRequest(new Request("Hello World"));
+    }
 
 }

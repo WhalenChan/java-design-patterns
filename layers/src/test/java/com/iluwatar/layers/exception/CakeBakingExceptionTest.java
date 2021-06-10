@@ -23,10 +23,10 @@
 
 package com.iluwatar.layers.exception;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/15/15 - 7:57 PM
@@ -35,19 +35,19 @@ import org.junit.jupiter.api.Test;
  */
 public class CakeBakingExceptionTest {
 
-  @Test
-  void testConstructor() {
-    final var exception = new CakeBakingException();
-    assertNull(exception.getMessage());
-    assertNull(exception.getCause());
-  }
+    @Test
+    void testConstructor() {
+        final var exception = new CakeBakingException();
+        assertNull(exception.getMessage());
+        assertNull(exception.getCause());
+    }
 
-  @Test
-  void testConstructorWithMessage() {
-    final var expectedMessage = "message";
-    final var exception = new CakeBakingException(expectedMessage);
-    assertEquals(expectedMessage, exception.getMessage());
-    assertNull(exception.getCause());
-  }
+    @Test
+    void testConstructorWithMessage() {
+        final var expectedMessage = "message";
+        final var exception = new CakeBakingException(expectedMessage);
+        assertEquals(expectedMessage, exception.getMessage());
+        assertNull(exception.getCause());
+    }
 
 }

@@ -21,19 +21,19 @@
  * THE SOFTWARE.
  */
 
+import org.junit.jupiter.api.Test;
+
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Thief test
  */
 public class ThiefTest {
-  @Test
-  void testThief() {
-    var thief = new Thief();
-    assertThat(thief, not(instanceOf(Permission.class)));
-  }
+    @Test
+    void testThief() {
+        var thief = new Thief();
+        assertThat(thief, not(instanceOf(Permission.class)));
+    }
 }

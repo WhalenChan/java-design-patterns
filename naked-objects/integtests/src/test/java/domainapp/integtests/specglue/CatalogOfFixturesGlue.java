@@ -32,8 +32,8 @@ import org.apache.isis.core.specsupport.specs.CukeGlueAbstract;
  */
 public class CatalogOfFixturesGlue extends CukeGlueAbstract {
 
-  @Before(value = {"@integration", "@SimpleObjectsFixture"}, order = 20000)
-  public void integrationFixtures() {
-    scenarioExecution().install(new RecreateSimpleObjects());
-  }
+    @Before(value = {"@integration", "@SimpleObjectsFixture"}, order = 20000)
+    public void integrationFixtures() {
+        scenarioExecution().install(new RecreateSimpleObjects());
+    }
 }

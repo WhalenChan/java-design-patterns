@@ -35,21 +35,21 @@ import java.util.List;
  */
 public class OrcsTest extends ObserverTest<GOrcs> {
 
-  @Override
-  public Collection<Object[]> dataProvider() {
-    return List.of(
-        new Object[]{WeatherType.SUNNY, "The orcs are facing Sunny weather now"},
-        new Object[]{WeatherType.RAINY, "The orcs are facing Rainy weather now"},
-        new Object[]{WeatherType.WINDY, "The orcs are facing Windy weather now"},
-        new Object[]{WeatherType.COLD, "The orcs are facing Cold weather now"}
-    );
-  }
+    @Override
+    public Collection<Object[]> dataProvider() {
+        return List.of(
+                new Object[]{WeatherType.SUNNY, "The orcs are facing Sunny weather now"},
+                new Object[]{WeatherType.RAINY, "The orcs are facing Rainy weather now"},
+                new Object[]{WeatherType.WINDY, "The orcs are facing Windy weather now"},
+                new Object[]{WeatherType.COLD, "The orcs are facing Cold weather now"}
+        );
+    }
 
-  /**
-   * Create a new test with the given weather and expected response
-   */
-  public OrcsTest() {
-    super(GOrcs::new);
-  }
+    /**
+     * Create a new test with the given weather and expected response
+     */
+    public OrcsTest() {
+        super(GOrcs::new);
+    }
 
 }

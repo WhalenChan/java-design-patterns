@@ -30,17 +30,17 @@ package com.iluwatar.specification.selector;
  */
 public class NegationSelector<T> extends AbstractSelector<T> {
 
-  private final AbstractSelector<T> component;
+    private final AbstractSelector<T> component;
 
-  NegationSelector(AbstractSelector<T> selector) {
-    this.component = selector;
-  }
+    NegationSelector(AbstractSelector<T> selector) {
+        this.component = selector;
+    }
 
-  /**
-   * Tests if the selector fails the test (yes).
-   */
-  @Override
-  public boolean test(T t) {
-    return !(component.test(t));
-  }
+    /**
+     * Tests if the selector fails the test (yes).
+     */
+    @Override
+    public boolean test(T t) {
+        return !(component.test(t));
+    }
 }

@@ -24,8 +24,8 @@
 package com.iluwatar.commander.queue;
 
 import com.iluwatar.commander.Database;
-import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.IsEmptyException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,46 +35,46 @@ import java.util.List;
 
 public class QueueDatabase extends Database<QueueTask> {
 
-  private final Queue<QueueTask> data;
-  public List<Exception> exceptionsList;
+    private final Queue<QueueTask> data;
+    public List<Exception> exceptionsList;
 
-  public QueueDatabase(Exception... exc) {
-    this.data = new Queue<>();
-    this.exceptionsList = new ArrayList<>(List.of(exc));
-  }
+    public QueueDatabase(Exception... exc) {
+        this.data = new Queue<>();
+        this.exceptionsList = new ArrayList<>(List.of(exc));
+    }
 
-  @Override
-  public QueueTask add(QueueTask t) {
-    data.enqueue(t);
-    return t;
-    //even if same thing queued twice, it is taken care of in other dbs
-  }
+    @Override
+    public QueueTask add(QueueTask t) {
+        data.enqueue(t);
+        return t;
+        //even if same thing queued twice, it is taken care of in other dbs
+    }
 
-  /**
-   * peek method returns object at front without removing it from queue.
-   *
-   * @return object at front of queue
-   * @throws IsEmptyException             if queue is empty
-   */
+    /**
+     * peek method returns object at front without removing it from queue.
+     *
+     * @return object at front of queue
+     * @throws IsEmptyException if queue is empty
+     */
 
-  public QueueTask peek() throws IsEmptyException {
-    return this.data.peek();
-  }
+    public QueueTask peek() throws IsEmptyException {
+        return this.data.peek();
+    }
 
-  /**
-   * dequeue method removes the object at front and returns it.
-   *
-   * @return object at front of queue
-   * @throws IsEmptyException             if queue is empty
-   */
+    /**
+     * dequeue method removes the object at front and returns it.
+     *
+     * @return object at front of queue
+     * @throws IsEmptyException if queue is empty
+     */
 
-  public QueueTask dequeue() throws IsEmptyException {
-    return this.data.dequeue();
-  }
+    public QueueTask dequeue() throws IsEmptyException {
+        return this.data.dequeue();
+    }
 
-  @Override
-  public QueueTask get(String taskId) {
-    return null;
-  }
+    @Override
+    public QueueTask get(String taskId) {
+        return null;
+    }
 
 }

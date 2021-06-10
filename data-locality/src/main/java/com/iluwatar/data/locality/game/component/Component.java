@@ -28,7 +28,7 @@ package com.iluwatar.data.locality.game.component;
  */
 public interface Component {
 
-  void update();
+    void update();
 
-  void render();
+    void render();
 }

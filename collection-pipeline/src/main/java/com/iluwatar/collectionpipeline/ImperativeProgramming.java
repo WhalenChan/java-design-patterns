@@ -23,12 +23,7 @@
 
 package com.iluwatar.collectionpipeline;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Imperative-style programming to iterate over the list and get the names of cars made later than
@@ -47,86 +42,86 @@ import java.util.Map;
  * how these elements work. As a result, the code contains unnecessary garbage variables
  */
 public class ImperativeProgramming {
-  private ImperativeProgramming() {
-  }
-
-  /**
-   * Method to return the car models built after year 2000 using for loops.
-   *
-   * @param cars {@link List} of {@link Car} to iterate over
-   * @return {@link List} of {@link String} of car models built after year 2000
-   */
-  public static List<String> getModelsAfter2000(List<Car> cars) {
-    List<Car> carsSortedByYear = new ArrayList<>();
-
-    for (Car car : cars) {
-      if (car.getYear() > 2000) {
-        carsSortedByYear.add(car);
-      }
+    private ImperativeProgramming() {
     }
 
-    Collections.sort(carsSortedByYear, new Comparator<Car>() {
-      @Override
-      public int compare(Car car1, Car car2) {
-        return car1.getYear() - car2.getYear();
-      }
-    });
+    /**
+     * Method to return the car models built after year 2000 using for loops.
+     *
+     * @param cars {@link List} of {@link Car} to iterate over
+     * @return {@link List} of {@link String} of car models built after year 2000
+     */
+    public static List<String> getModelsAfter2000(List<Car> cars) {
+        List<Car> carsSortedByYear = new ArrayList<>();
 
-    List<String> models = new ArrayList<>();
-    for (Car car : carsSortedByYear) {
-      models.add(car.getModel());
+        for (Car car : cars) {
+            if (car.getYear() > 2000) {
+                carsSortedByYear.add(car);
+            }
+        }
+
+        Collections.sort(carsSortedByYear, new Comparator<Car>() {
+            @Override
+            public int compare(Car car1, Car car2) {
+                return car1.getYear() - car2.getYear();
+            }
+        });
+
+        List<String> models = new ArrayList<>();
+        for (Car car : carsSortedByYear) {
+            models.add(car.getModel());
+        }
+
+        return models;
     }
 
-    return models;
-  }
-
-  /**
-   * Method to group cars by category using for loops.
-   *
-   * @param cars {@link List} of {@link Car} to be used for grouping
-   * @return {@link Map} with category as key and cars belonging to that category as value
-   */
-  public static Map<Category, List<Car>> getGroupingOfCarsByCategory(List<Car> cars) {
-    Map<Category, List<Car>> groupingByCategory = new HashMap<>();
-    for (Car car : cars) {
-      if (groupingByCategory.containsKey(car.getCategory())) {
-        groupingByCategory.get(car.getCategory()).add(car);
-      } else {
-        List<Car> categoryCars = new ArrayList<>();
-        categoryCars.add(car);
-        groupingByCategory.put(car.getCategory(), categoryCars);
-      }
-    }
-    return groupingByCategory;
-  }
-
-  /**
-   * Method to get all Sedan cars belonging to a group of persons sorted by year of manufacture
-   * using for loops.
-   *
-   * @param persons {@link List} of {@link Person} to be used
-   * @return {@link List} of {@link Car} to belonging to the group
-   */
-  public static List<Car> getSedanCarsOwnedSortedByDate(List<Person> persons) {
-    List<Car> cars = new ArrayList<>();
-    for (Person person : persons) {
-      cars.addAll(person.getCars());
+    /**
+     * Method to group cars by category using for loops.
+     *
+     * @param cars {@link List} of {@link Car} to be used for grouping
+     * @return {@link Map} with category as key and cars belonging to that category as value
+     */
+    public static Map<Category, List<Car>> getGroupingOfCarsByCategory(List<Car> cars) {
+        Map<Category, List<Car>> groupingByCategory = new HashMap<>();
+        for (Car car : cars) {
+            if (groupingByCategory.containsKey(car.getCategory())) {
+                groupingByCategory.get(car.getCategory()).add(car);
+            } else {
+                List<Car> categoryCars = new ArrayList<>();
+                categoryCars.add(car);
+                groupingByCategory.put(car.getCategory(), categoryCars);
+            }
+        }
+        return groupingByCategory;
     }
 
-    List<Car> sedanCars = new ArrayList<>();
-    for (Car car : cars) {
-      if (Category.SEDAN.equals(car.getCategory())) {
-        sedanCars.add(car);
-      }
+    /**
+     * Method to get all Sedan cars belonging to a group of persons sorted by year of manufacture
+     * using for loops.
+     *
+     * @param persons {@link List} of {@link Person} to be used
+     * @return {@link List} of {@link Car} to belonging to the group
+     */
+    public static List<Car> getSedanCarsOwnedSortedByDate(List<Person> persons) {
+        List<Car> cars = new ArrayList<>();
+        for (Person person : persons) {
+            cars.addAll(person.getCars());
+        }
+
+        List<Car> sedanCars = new ArrayList<>();
+        for (Car car : cars) {
+            if (Category.SEDAN.equals(car.getCategory())) {
+                sedanCars.add(car);
+            }
+        }
+
+        sedanCars.sort(new Comparator<Car>() {
+            @Override
+            public int compare(Car o1, Car o2) {
+                return o1.getYear() - o2.getYear();
+            }
+        });
+
+        return sedanCars;
     }
-
-    sedanCars.sort(new Comparator<Car>() {
-      @Override
-      public int compare(Car o1, Car o2) {
-        return o1.getYear() - o2.getYear();
-      }
-    });
-
-    return sedanCars;
-  }
 }

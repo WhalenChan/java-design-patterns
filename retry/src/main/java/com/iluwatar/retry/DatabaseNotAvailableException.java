@@ -29,14 +29,14 @@ package com.iluwatar.retry;
  * @author George Aristy (george.aristy@gmail.com)
  */
 public final class DatabaseNotAvailableException extends BusinessException {
-  private static final long serialVersionUID = -3750769625095997799L;
+    private static final long serialVersionUID = -3750769625095997799L;
 
-  /**
-   * Ctor.
-   *
-   * @param message the error message
-   */
-  public DatabaseNotAvailableException(String message) {
-    super(message);
-  }
+    /**
+     * Ctor.
+     *
+     * @param message the error message
+     */
+    public DatabaseNotAvailableException(String message) {
+        super(message);
+    }
 }

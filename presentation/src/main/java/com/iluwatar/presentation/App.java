@@ -8,20 +8,20 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public final class App {
-  /**
-   * the constructor.
-   */
-  private App() {
-  }
+    /**
+     * the constructor.
+     */
+    private App() {
+    }
 
-  /**
-   * main method.
-   *
-   * @param args args
-   */
-  public static void main(final String[] args) {
-    var view = new View();
-    view.createView();
-  }
+    /**
+     * main method.
+     *
+     * @param args args
+     */
+    public static void main(final String[] args) {
+        var view = new View();
+        view.createView();
+    }
 }
 

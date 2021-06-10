@@ -40,19 +40,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    var factory = WeaponFactory.factory(builder -> {
-      builder.add(WeaponType.SWORD, Sword::new);
-      builder.add(WeaponType.AXE, Axe::new);
-      builder.add(WeaponType.SPEAR, Spear::new);
-      builder.add(WeaponType.BOW, Bow::new);
-    });
-    var axe = factory.create(WeaponType.AXE);
-    LOGGER.info(axe.toString());
-  }
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        var factory = WeaponFactory.factory(builder -> {
+            builder.add(WeaponType.SWORD, Sword::new);
+            builder.add(WeaponType.AXE, Axe::new);
+            builder.add(WeaponType.SPEAR, Spear::new);
+            builder.add(WeaponType.BOW, Bow::new);
+        });
+        var axe = factory.create(WeaponType.AXE);
+        LOGGER.info(axe.toString());
+    }
 }

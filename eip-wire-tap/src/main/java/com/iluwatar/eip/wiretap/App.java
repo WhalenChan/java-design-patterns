@@ -43,33 +43,33 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class App {
 
-  /**
-   * Program entry point. It starts Spring Boot application and using Apache Camel it
-   * auto-configures routes.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) throws Exception {
-    // Run Spring Boot application and obtain ApplicationContext
-    var context = SpringApplication.run(App.class, args);
+    /**
+     * Program entry point. It starts Spring Boot application and using Apache Camel it
+     * auto-configures routes.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) throws Exception {
+        // Run Spring Boot application and obtain ApplicationContext
+        var context = SpringApplication.run(App.class, args);
 
-    // Get CamelContext from ApplicationContext
-    var camelContext = (CamelContext) context.getBean("camelContext");
+        // Get CamelContext from ApplicationContext
+        var camelContext = (CamelContext) context.getBean("camelContext");
 
-    // Add a new routes that will handle endpoints form WireTapRoute class.
-    camelContext.addRoutes(new RouteBuilder() {
+        // Add a new routes that will handle endpoints form WireTapRoute class.
+        camelContext.addRoutes(new RouteBuilder() {
 
-      @Override
-      public void configure() throws Exception {
-        from("{{endpoint}}").log("ENDPOINT: ${body}");
-        from("{{wireTapEndpoint}}").log("WIRETAPPED ENDPOINT: ${body}");
-      }
+            @Override
+            public void configure() throws Exception {
+                from("{{endpoint}}").log("ENDPOINT: ${body}");
+                from("{{wireTapEndpoint}}").log("WIRETAPPED ENDPOINT: ${body}");
+            }
 
-    });
+        });
 
-    // Add producer that will send test message to an entry point in WireTapRoute
-    camelContext.createProducerTemplate().sendBody("{{entry}}", "Test message");
+        // Add producer that will send test message to an entry point in WireTapRoute
+        camelContext.createProducerTemplate().sendBody("{{entry}}", "Test message");
 
-    SpringApplication.exit(context);
-  }
+        SpringApplication.exit(context);
+    }
 }

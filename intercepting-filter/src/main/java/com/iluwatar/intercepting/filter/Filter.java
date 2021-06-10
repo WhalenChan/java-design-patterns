@@ -31,23 +31,23 @@ package com.iluwatar.intercepting.filter;
  */
 public interface Filter {
 
-  /**
-   * Execute order processing filter.
-   */
-  String execute(Order order);
+    /**
+     * Execute order processing filter.
+     */
+    String execute(Order order);
 
-  /**
-   * Set next filter in chain after this.
-   */
-  void setNext(Filter filter);
+    /**
+     * Set next filter in chain after this.
+     */
+    void setNext(Filter filter);
 
-  /**
-   * Get next filter in chain after this.
-   */
-  Filter getNext();
+    /**
+     * Get next filter in chain after this.
+     */
+    Filter getNext();
 
-  /**
-   * Get last filter in the chain.
-   */
-  Filter getLast();
+    /**
+     * Get last filter in the chain.
+     */
+    Filter getLast();
 }

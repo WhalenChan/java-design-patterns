@@ -28,10 +28,10 @@ package com.iluwatar.mute;
  */
 @FunctionalInterface
 public interface CheckedRunnable {
-  /**
-   * Same as {@link Runnable#run()} with a possibility of exception in execution.
-   *
-   * @throws Exception if any exception occurs.
-   */
-  void run() throws Exception;
+    /**
+     * Same as {@link Runnable#run()} with a possibility of exception in execution.
+     *
+     * @throws Exception if any exception occurs.
+     */
+    void run() throws Exception;
 }

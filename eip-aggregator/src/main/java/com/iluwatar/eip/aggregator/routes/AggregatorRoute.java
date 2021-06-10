@@ -43,17 +43,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class AggregatorRoute extends RouteBuilder {
 
-  @Autowired
-  private MessageAggregationStrategy aggregator;
+    @Autowired
+    private MessageAggregationStrategy aggregator;
 
-  /**
-   * Configures the route.
-   */
-  @Override
-  public void configure() {
-    // Main route
-    from("{{entry}}").aggregate(constant(true), aggregator)
-        .completionSize(3).completionInterval(2000)
-        .to("{{endpoint}}");
-  }
+    /**
+     * Configures the route.
+     */
+    @Override
+    public void configure() {
+        // Main route
+        from("{{entry}}").aggregate(constant(true), aggregator)
+                .completionSize(3).completionInterval(2000)
+                .to("{{endpoint}}");
+    }
 }

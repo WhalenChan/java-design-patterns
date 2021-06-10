@@ -31,33 +31,33 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Worker {
 
-  private final QueueManager queueManager;
+    private final QueueManager queueManager;
 
-  public Worker(QueueManager queueManager) {
-    this.queueManager = queueManager;
-  }
-
-  /**
-   * Keep checking queue for message.
-   */
-  @SuppressWarnings("squid:S2189")
-  public void run() throws Exception {
-    while (true) {
-      var message = queueManager.receiveMessage();
-      if (message == null) {
-        LOGGER.info("No Message ... waiting");
-        Thread.sleep(200);
-      } else {
-        processMessage(message);
-      }
+    public Worker(QueueManager queueManager) {
+        this.queueManager = queueManager;
     }
-  }
 
-  /**
-   * Process message.
-   */
-  private void processMessage(Message message) {
-    LOGGER.info(message.toString());
-  }
+    /**
+     * Keep checking queue for message.
+     */
+    @SuppressWarnings("squid:S2189")
+    public void run() throws Exception {
+        while (true) {
+            var message = queueManager.receiveMessage();
+            if (message == null) {
+                LOGGER.info("No Message ... waiting");
+                Thread.sleep(200);
+            } else {
+                processMessage(message);
+            }
+        }
+    }
+
+    /**
+     * Process message.
+     */
+    private void processMessage(Message message) {
+        LOGGER.info(message.toString());
+    }
 
 }

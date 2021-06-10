@@ -32,29 +32,29 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Server {
 
-  public final String host;
-  public final int port;
-  public final int id;
+    public final String host;
+    public final int port;
+    public final int id;
 
-  /**
-   * Constructor.
-   */
-  public Server(String host, int port, int id) {
-    this.host = host;
-    this.port = port;
-    this.id = id;
-  }
+    /**
+     * Constructor.
+     */
+    public Server(String host, int port, int id) {
+        this.host = host;
+        this.port = port;
+        this.id = id;
+    }
 
-  public String getHost() {
-    return host;
-  }
+    public String getHost() {
+        return host;
+    }
 
-  public int getPort() {
-    return port;
-  }
+    public int getPort() {
+        return port;
+    }
 
-  public void serve(Request request) {
-    LOGGER.info("Server ID {} associated to host : {} and port {}. Processed request with value {}",
-        id, host, port, request.value);
-  }
+    public void serve(Request request) {
+        LOGGER.info("Server ID {} associated to host : {} and port {}. Processed request with value {}",
+                id, host, port, request.value);
+    }
 }

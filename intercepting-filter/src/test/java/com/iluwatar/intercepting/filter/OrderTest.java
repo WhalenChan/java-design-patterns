@@ -23,9 +23,9 @@
 
 package com.iluwatar.intercepting.filter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/13/15 - 2:57 PM
@@ -34,41 +34,41 @@ import org.junit.jupiter.api.Test;
  */
 public class OrderTest {
 
-  private static final String EXPECTED_VALUE = "test";
+    private static final String EXPECTED_VALUE = "test";
 
-  @Test
-  void testSetName() {
-    final var order = new Order();
-    order.setName(EXPECTED_VALUE);
-    assertEquals(EXPECTED_VALUE, order.getName());
-  }
+    @Test
+    void testSetName() {
+        final var order = new Order();
+        order.setName(EXPECTED_VALUE);
+        assertEquals(EXPECTED_VALUE, order.getName());
+    }
 
-  @Test
-  void testSetContactNumber() {
-    final var order = new Order();
-    order.setContactNumber(EXPECTED_VALUE);
-    assertEquals(EXPECTED_VALUE, order.getContactNumber());
-  }
+    @Test
+    void testSetContactNumber() {
+        final var order = new Order();
+        order.setContactNumber(EXPECTED_VALUE);
+        assertEquals(EXPECTED_VALUE, order.getContactNumber());
+    }
 
-  @Test
-  void testSetAddress() {
-    final var order = new Order();
-    order.setAddress(EXPECTED_VALUE);
-    assertEquals(EXPECTED_VALUE, order.getAddress());
-  }
+    @Test
+    void testSetAddress() {
+        final var order = new Order();
+        order.setAddress(EXPECTED_VALUE);
+        assertEquals(EXPECTED_VALUE, order.getAddress());
+    }
 
-  @Test
-  void testSetDepositNumber() {
-    final var order = new Order();
-    order.setDepositNumber(EXPECTED_VALUE);
-    assertEquals(EXPECTED_VALUE, order.getDepositNumber());
-  }
+    @Test
+    void testSetDepositNumber() {
+        final var order = new Order();
+        order.setDepositNumber(EXPECTED_VALUE);
+        assertEquals(EXPECTED_VALUE, order.getDepositNumber());
+    }
 
-  @Test
-  void testSetOrder() {
-    final var order = new Order();
-    order.setOrderItem(EXPECTED_VALUE);
-    assertEquals(EXPECTED_VALUE, order.getOrderItem());
-  }
+    @Test
+    void testSetOrder() {
+        final var order = new Order();
+        order.setOrderItem(EXPECTED_VALUE);
+        assertEquals(EXPECTED_VALUE, order.getOrderItem());
+    }
 
 }

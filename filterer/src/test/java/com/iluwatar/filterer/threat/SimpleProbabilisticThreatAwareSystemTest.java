@@ -23,29 +23,30 @@
 
 package com.iluwatar.filterer.threat;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SimpleProbabilisticThreatAwareSystemTest {
 
-  @Test
-  void shouldFilterByProbability() {
-    //given
-    var trojan = new SimpleProbableThreat("Troyan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
-    var rootkit = new SimpleProbableThreat("Rootkit-System", 2, ThreatType.ROOTKIT, 0.8);
-    List<ProbableThreat> probableThreats = List.of(trojan, rootkit);
+    @Test
+    void shouldFilterByProbability() {
+        //given
+        var trojan = new SimpleProbableThreat("Troyan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
+        var rootkit = new SimpleProbableThreat("Rootkit-System", 2, ThreatType.ROOTKIT, 0.8);
+        List<ProbableThreat> probableThreats = List.of(trojan, rootkit);
 
-    var simpleProbabilisticThreatAwareSystem =
-        new SimpleProbabilisticThreatAwareSystem("System-1", probableThreats);
+        var simpleProbabilisticThreatAwareSystem =
+                new SimpleProbabilisticThreatAwareSystem("System-1", probableThreats);
 
-    //when
-    var filtered = simpleProbabilisticThreatAwareSystem.filtered()
-        .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
+        //when
+        var filtered = simpleProbabilisticThreatAwareSystem.filtered()
+                .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
 
-    //then
-    assertEquals(filtered.threats().size(), 1);
-    assertEquals(filtered.threats().get(0), trojan);
-  }
+        //then
+        assertEquals(filtered.threats().size(), 1);
+        assertEquals(filtered.threats().get(0), trojan);
+    }
 }

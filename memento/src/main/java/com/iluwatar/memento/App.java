@@ -23,8 +23,9 @@
 
 package com.iluwatar.memento;
 
-import java.util.Stack;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Stack;
 
 /**
  * The Memento pattern is a software design pattern that provides the ability to restore an object
@@ -46,29 +47,29 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   */
-  public static void main(String[] args) {
-    var states = new Stack<StarMemento>();
+    /**
+     * Program entry point.
+     */
+    public static void main(String[] args) {
+        var states = new Stack<StarMemento>();
 
-    var star = new Star(StarType.SUN, 10000000, 500000);
-    LOGGER.info(star.toString());
-    states.add(star.getMemento());
-    star.timePasses();
-    LOGGER.info(star.toString());
-    states.add(star.getMemento());
-    star.timePasses();
-    LOGGER.info(star.toString());
-    states.add(star.getMemento());
-    star.timePasses();
-    LOGGER.info(star.toString());
-    states.add(star.getMemento());
-    star.timePasses();
-    LOGGER.info(star.toString());
-    while (states.size() > 0) {
-      star.setMemento(states.pop());
-      LOGGER.info(star.toString());
+        var star = new Star(StarType.SUN, 10000000, 500000);
+        LOGGER.info(star.toString());
+        states.add(star.getMemento());
+        star.timePasses();
+        LOGGER.info(star.toString());
+        states.add(star.getMemento());
+        star.timePasses();
+        LOGGER.info(star.toString());
+        states.add(star.getMemento());
+        star.timePasses();
+        LOGGER.info(star.toString());
+        states.add(star.getMemento());
+        star.timePasses();
+        LOGGER.info(star.toString());
+        while (states.size() > 0) {
+            star.setMemento(states.pop());
+            LOGGER.info(star.toString());
+        }
     }
-  }
 }

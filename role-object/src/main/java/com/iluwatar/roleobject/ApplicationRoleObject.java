@@ -23,10 +23,10 @@
 
 package com.iluwatar.roleobject;
 
+import lombok.extern.slf4j.Slf4j;
+
 import static com.iluwatar.roleobject.Role.Borrower;
 import static com.iluwatar.roleobject.Role.Investor;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Role Object pattern suggests to model context-specific views of an object as separate role
@@ -58,35 +58,35 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ApplicationRoleObject {
 
-  /**
-   * Main entry point.
-   *
-   * @param args program arguments
-   */
-  public static void main(String[] args) {
-    var customer = Customer.newCustomer(Borrower, Investor);
+    /**
+     * Main entry point.
+     *
+     * @param args program arguments
+     */
+    public static void main(String[] args) {
+        var customer = Customer.newCustomer(Borrower, Investor);
 
-    LOGGER.info(" the new customer created : {}", customer);
+        LOGGER.info(" the new customer created : {}", customer);
 
-    var hasBorrowerRole = customer.hasRole(Borrower);
-    LOGGER.info(" customer has a borrowed role - {}", hasBorrowerRole);
-    var hasInvestorRole = customer.hasRole(Investor);
-    LOGGER.info(" customer has an investor role - {}", hasInvestorRole);
+        var hasBorrowerRole = customer.hasRole(Borrower);
+        LOGGER.info(" customer has a borrowed role - {}", hasBorrowerRole);
+        var hasInvestorRole = customer.hasRole(Investor);
+        LOGGER.info(" customer has an investor role - {}", hasInvestorRole);
 
-    customer.getRole(Investor, InvestorRole.class)
-        .ifPresent(inv -> {
-          inv.setAmountToInvest(1000);
-          inv.setName("Billy");
-        });
-    customer.getRole(Borrower, BorrowerRole.class)
-        .ifPresent(inv -> inv.setName("Johny"));
+        customer.getRole(Investor, InvestorRole.class)
+                .ifPresent(inv -> {
+                    inv.setAmountToInvest(1000);
+                    inv.setName("Billy");
+                });
+        customer.getRole(Borrower, BorrowerRole.class)
+                .ifPresent(inv -> inv.setName("Johny"));
 
-    customer.getRole(Investor, InvestorRole.class)
-        .map(InvestorRole::invest)
-        .ifPresent(LOGGER::info);
+        customer.getRole(Investor, InvestorRole.class)
+                .map(InvestorRole::invest)
+                .ifPresent(LOGGER::info);
 
-    customer.getRole(Borrower, BorrowerRole.class)
-        .map(BorrowerRole::borrow)
-        .ifPresent(LOGGER::info);
-  }
+        customer.getRole(Borrower, BorrowerRole.class)
+                .map(BorrowerRole::borrow)
+                .ifPresent(LOGGER::info);
+    }
 }

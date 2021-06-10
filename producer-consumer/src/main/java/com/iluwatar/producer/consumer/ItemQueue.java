@@ -31,21 +31,21 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class ItemQueue {
 
-  private final BlockingQueue<Item> queue;
+    private final BlockingQueue<Item> queue;
 
-  public ItemQueue() {
+    public ItemQueue() {
 
-    queue = new LinkedBlockingQueue<>(5);
-  }
+        queue = new LinkedBlockingQueue<>(5);
+    }
 
-  public void put(Item item) throws InterruptedException {
+    public void put(Item item) throws InterruptedException {
 
-    queue.put(item);
-  }
+        queue.put(item);
+    }
 
-  public Item take() throws InterruptedException {
+    public Item take() throws InterruptedException {
 
-    return queue.take();
-  }
+        return queue.take();
+    }
 
 }

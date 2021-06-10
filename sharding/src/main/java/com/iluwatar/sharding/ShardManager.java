@@ -23,9 +23,10 @@
 
 package com.iluwatar.sharding;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.HashMap;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract class for ShardManager.
@@ -33,68 +34,68 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class ShardManager {
 
-  protected Map<Integer, Shard> shardMap;
+    protected Map<Integer, Shard> shardMap;
 
-  public ShardManager() {
-    shardMap = new HashMap<>();
-  }
-
-  /**
-   * Add a provided shard instance to shardMap.
-   *
-   * @param shard new shard instance.
-   * @return {@code true} if succeed to add the new instance.
-   *         {@code false} if the shardId is already existed.
-   */
-  public boolean addNewShard(final Shard shard) {
-    var shardId = shard.getId();
-    if (!shardMap.containsKey(shardId)) {
-      shardMap.put(shardId, shard);
-      return true;
-    } else {
-      return false;
+    public ShardManager() {
+        shardMap = new HashMap<>();
     }
-  }
 
-  /**
-   * Remove a shard instance by provided Id.
-   *
-   * @param shardId Id of shard instance to remove.
-   * @return {@code true} if removed. {@code false} if the shardId is not existed.
-   */
-  public boolean removeShardById(final int shardId) {
-    if (shardMap.containsKey(shardId)) {
-      shardMap.remove(shardId);
-      return true;
-    } else {
-      return false;
+    /**
+     * Add a provided shard instance to shardMap.
+     *
+     * @param shard new shard instance.
+     * @return {@code true} if succeed to add the new instance.
+     * {@code false} if the shardId is already existed.
+     */
+    public boolean addNewShard(final Shard shard) {
+        var shardId = shard.getId();
+        if (!shardMap.containsKey(shardId)) {
+            shardMap.put(shardId, shard);
+            return true;
+        } else {
+            return false;
+        }
     }
-  }
 
-  /**
-   * Get shard instance by provided shardId.
-   *
-   * @param shardId id of shard instance to get
-   * @return required shard instance
-   */
-  public Shard getShardById(final int shardId) {
-    return shardMap.get(shardId);
-  }
+    /**
+     * Remove a shard instance by provided Id.
+     *
+     * @param shardId Id of shard instance to remove.
+     * @return {@code true} if removed. {@code false} if the shardId is not existed.
+     */
+    public boolean removeShardById(final int shardId) {
+        if (shardMap.containsKey(shardId)) {
+            shardMap.remove(shardId);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-  /**
-   * Store data in proper shard instance.
-   *
-   * @param data new data
-   * @return id of shard that the data is stored in
-   */
-  public abstract int storeData(final Data data);
+    /**
+     * Get shard instance by provided shardId.
+     *
+     * @param shardId id of shard instance to get
+     * @return required shard instance
+     */
+    public Shard getShardById(final int shardId) {
+        return shardMap.get(shardId);
+    }
 
-  /**
-   * Allocate proper shard to provided data.
-   *
-   * @param data new data
-   * @return id of shard that the data should be stored
-   */
-  protected abstract int allocateShard(final Data data);
+    /**
+     * Store data in proper shard instance.
+     *
+     * @param data new data
+     * @return id of shard that the data is stored in
+     */
+    public abstract int storeData(final Data data);
+
+    /**
+     * Allocate proper shard to provided data.
+     *
+     * @param data new data
+     * @return id of shard that the data should be stored
+     */
+    protected abstract int allocateShard(final Data data);
 
 }

@@ -47,21 +47,21 @@ import org.apache.camel.impl.DefaultCamelContext;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   */
-  public static void main(String[] args) throws Exception {
-    var context = new DefaultCamelContext();
-    context.addRoutes(new RouteBuilder() {
-      @Override
-      public void configure() throws Exception {
-        from("direct:origin").multicast().to("mock:foo", "mock:bar", "stream:out");
-      }
-    });
-    var template = context.createProducerTemplate();
-    context.start();
-    context.getRoutes().forEach(r -> LOGGER.info(r.toString()));
-    template.sendBody("direct:origin", "Hello from origin");
-    context.stop();
-  }
+    /**
+     * Program entry point.
+     */
+    public static void main(String[] args) throws Exception {
+        var context = new DefaultCamelContext();
+        context.addRoutes(new RouteBuilder() {
+            @Override
+            public void configure() throws Exception {
+                from("direct:origin").multicast().to("mock:foo", "mock:bar", "stream:out");
+            }
+        });
+        var template = context.createProducerTemplate();
+        context.start();
+        context.getRoutes().forEach(r -> LOGGER.info(r.toString()));
+        template.sendBody("direct:origin", "Hello from origin");
+        context.stop();
+    }
 }

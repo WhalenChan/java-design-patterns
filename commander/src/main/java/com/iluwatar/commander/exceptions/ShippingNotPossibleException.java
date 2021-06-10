@@ -29,5 +29,5 @@ package com.iluwatar.commander.exceptions;
  */
 
 public class ShippingNotPossibleException extends Exception {
-  private static final long serialVersionUID = 342055L;
+    private static final long serialVersionUID = 342055L;
 }

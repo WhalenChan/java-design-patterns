@@ -23,18 +23,18 @@
 
 package com.iluwatar.combinator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FinderTest {
 
-  @Test
-  void contains() {
-    var example = "the first one \nthe second one \n";
+    @Test
+    void contains() {
+        var example = "the first one \nthe second one \n";
 
-    var result = Finder.contains("second").find(example);
-    assertEquals(1, result.size());
-    assertEquals( "the second one ", result.get(0));
-  }
+        var result = Finder.contains("second").find(example);
+        assertEquals(1, result.size());
+        assertEquals("the second one ", result.get(0));
+    }
 }

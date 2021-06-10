@@ -35,24 +35,24 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LotteryTicketCheckResult {
 
-  /**
-   * Enumeration of Type of Outcomes of a Lottery.
-   */
-  public enum CheckResult {
-    WIN_PRIZE,
-    NO_PRIZE,
-    TICKET_NOT_SUBMITTED
-  }
+    /**
+     * Enumeration of Type of Outcomes of a Lottery.
+     */
+    public enum CheckResult {
+        WIN_PRIZE,
+        NO_PRIZE,
+        TICKET_NOT_SUBMITTED
+    }
 
-  private final CheckResult result;
-  private final int prizeAmount;
+    private final CheckResult result;
+    private final int prizeAmount;
 
-  /**
-   * Constructor.
-   */
-  public LotteryTicketCheckResult(CheckResult result) {
-    this.result = result;
-    prizeAmount = 0;
-  }
+    /**
+     * Constructor.
+     */
+    public LotteryTicketCheckResult(CheckResult result) {
+        this.result = result;
+        prizeAmount = 0;
+    }
 
 }

@@ -23,12 +23,13 @@
 
 package com.iluwatar.collectionpipeline;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests that Collection Pipeline methods work as expected.
@@ -36,52 +37,52 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class AppTest {
 
-  private final List<Car> cars = CarFactory.createCars();
+    private final List<Car> cars = CarFactory.createCars();
 
-  @Test
-  void testGetModelsAfter2000UsingFor() {
-    var models = ImperativeProgramming.getModelsAfter2000(cars);
-    assertEquals(List.of("Avenger", "Wrangler", "Focus", "Cascada"), models);
-  }
+    @Test
+    void testGetModelsAfter2000UsingFor() {
+        var models = ImperativeProgramming.getModelsAfter2000(cars);
+        assertEquals(List.of("Avenger", "Wrangler", "Focus", "Cascada"), models);
+    }
 
-  @Test
-  void testGetModelsAfter2000UsingPipeline() {
-    var models = FunctionalProgramming.getModelsAfter2000(cars);
-    assertEquals(List.of("Avenger", "Wrangler", "Focus", "Cascada"), models);
-  }
+    @Test
+    void testGetModelsAfter2000UsingPipeline() {
+        var models = FunctionalProgramming.getModelsAfter2000(cars);
+        assertEquals(List.of("Avenger", "Wrangler", "Focus", "Cascada"), models);
+    }
 
-  @Test
-  void testGetGroupingOfCarsByCategory() {
-    var modelsExpected = Map.of(
-        Category.CONVERTIBLE, List.of(
-            new Car("Buick", "Cascada", 2016, Category.CONVERTIBLE),
-            new Car("Chevrolet", "Geo Metro", 1992, Category.CONVERTIBLE)
-        ),
-        Category.SEDAN, List.of(
-            new Car("Dodge", "Avenger", 2010, Category.SEDAN),
-            new Car("Ford", "Focus", 2012, Category.SEDAN)
-        ),
-        Category.JEEP, List.of(
-            new Car("Jeep", "Wrangler", 2011, Category.JEEP),
-            new Car("Jeep", "Comanche", 1990, Category.JEEP))
-    );
-    var modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
-    var modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
-    LOGGER.info("Category " + modelsFunctional);
-    assertEquals(modelsExpected, modelsFunctional);
-    assertEquals(modelsExpected, modelsImperative);
-  }
+    @Test
+    void testGetGroupingOfCarsByCategory() {
+        var modelsExpected = Map.of(
+                Category.CONVERTIBLE, List.of(
+                        new Car("Buick", "Cascada", 2016, Category.CONVERTIBLE),
+                        new Car("Chevrolet", "Geo Metro", 1992, Category.CONVERTIBLE)
+                ),
+                Category.SEDAN, List.of(
+                        new Car("Dodge", "Avenger", 2010, Category.SEDAN),
+                        new Car("Ford", "Focus", 2012, Category.SEDAN)
+                ),
+                Category.JEEP, List.of(
+                        new Car("Jeep", "Wrangler", 2011, Category.JEEP),
+                        new Car("Jeep", "Comanche", 1990, Category.JEEP))
+        );
+        var modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
+        var modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
+        LOGGER.info("Category " + modelsFunctional);
+        assertEquals(modelsExpected, modelsFunctional);
+        assertEquals(modelsExpected, modelsImperative);
+    }
 
-  @Test
-  void testGetSedanCarsOwnedSortedByDate() {
-    var john = new Person(cars);
-    var modelsExpected = List.of(
-        new Car("Dodge", "Avenger", 2010, Category.SEDAN),
-        new Car("Ford", "Focus", 2012, Category.SEDAN)
-    );
-    var modelsFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
-    var modelsImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
-    assertEquals(modelsExpected, modelsFunctional);
-    assertEquals(modelsExpected, modelsImperative);
-  }
+    @Test
+    void testGetSedanCarsOwnedSortedByDate() {
+        var john = new Person(cars);
+        var modelsExpected = List.of(
+                new Car("Dodge", "Avenger", 2010, Category.SEDAN),
+                new Car("Ford", "Focus", 2012, Category.SEDAN)
+        );
+        var modelsFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+        var modelsImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+        assertEquals(modelsExpected, modelsFunctional);
+        assertEquals(modelsExpected, modelsImperative);
+    }
 }

@@ -29,14 +29,14 @@ package com.iluwatar.flux.action;
  */
 public class MenuAction extends Action {
 
-  private final MenuItem menuItem;
+    private final MenuItem menuItem;
 
-  public MenuAction(MenuItem menuItem) {
-    super(ActionType.MENU_ITEM_SELECTED);
-    this.menuItem = menuItem;
-  }
+    public MenuAction(MenuItem menuItem) {
+        super(ActionType.MENU_ITEM_SELECTED);
+        this.menuItem = menuItem;
+    }
 
-  public MenuItem getMenuItem() {
-    return menuItem;
-  }
+    public MenuItem getMenuItem() {
+        return menuItem;
+    }
 }

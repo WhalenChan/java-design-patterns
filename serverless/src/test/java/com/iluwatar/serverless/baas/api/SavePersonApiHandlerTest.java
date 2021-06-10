@@ -23,10 +23,6 @@
 
 package com.iluwatar.serverless.baas.api;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
@@ -41,61 +37,63 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.Mockito.*;
+
 /**
  * Unit tests for SavePersonApiHandler Created by dheeraj.mummar on 3/4/18.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class SavePersonApiHandlerTest {
 
-  private SavePersonApiHandler savePersonApiHandler;
+    private SavePersonApiHandler savePersonApiHandler;
 
-  @Mock
-  private DynamoDBMapper dynamoDbMapper;
+    @Mock
+    private DynamoDBMapper dynamoDbMapper;
 
-  private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-  @Before
-  public void setUp() {
-    this.savePersonApiHandler = new SavePersonApiHandler();
-    this.savePersonApiHandler.setDynamoDbMapper(dynamoDbMapper);
-  }
+    @Before
+    public void setUp() {
+        this.savePersonApiHandler = new SavePersonApiHandler();
+        this.savePersonApiHandler.setDynamoDbMapper(dynamoDbMapper);
+    }
 
-  @Test
-  public void handleRequestSavePersonSuccessful() throws JsonProcessingException {
-    var person = newPerson();
-    var body = objectMapper.writeValueAsString(person);
-    var request = apiGatewayProxyRequestEvent(body);
-    var ctx = mock(Context.class);
-    var apiGatewayProxyResponseEvent = this.savePersonApiHandler.handleRequest(request, ctx);
-    verify(dynamoDbMapper, times(1)).save(person);
-    Assert.assertNotNull(apiGatewayProxyResponseEvent);
-    Assert.assertEquals(Integer.valueOf(201), apiGatewayProxyResponseEvent.getStatusCode());
-  }
+    @Test
+    public void handleRequestSavePersonSuccessful() throws JsonProcessingException {
+        var person = newPerson();
+        var body = objectMapper.writeValueAsString(person);
+        var request = apiGatewayProxyRequestEvent(body);
+        var ctx = mock(Context.class);
+        var apiGatewayProxyResponseEvent = this.savePersonApiHandler.handleRequest(request, ctx);
+        verify(dynamoDbMapper, times(1)).save(person);
+        Assert.assertNotNull(apiGatewayProxyResponseEvent);
+        Assert.assertEquals(Integer.valueOf(201), apiGatewayProxyResponseEvent.getStatusCode());
+    }
 
-  @Test
-  public void handleRequestSavePersonException() {
-    var request = apiGatewayProxyRequestEvent("invalid sample request");
-    var ctx = mock(Context.class);
-    var apiGatewayProxyResponseEvent = this.savePersonApiHandler.handleRequest(request, ctx);
-    Assert.assertNotNull(apiGatewayProxyResponseEvent);
-    Assert.assertEquals(Integer.valueOf(400), apiGatewayProxyResponseEvent.getStatusCode());
-  }
+    @Test
+    public void handleRequestSavePersonException() {
+        var request = apiGatewayProxyRequestEvent("invalid sample request");
+        var ctx = mock(Context.class);
+        var apiGatewayProxyResponseEvent = this.savePersonApiHandler.handleRequest(request, ctx);
+        Assert.assertNotNull(apiGatewayProxyResponseEvent);
+        Assert.assertEquals(Integer.valueOf(400), apiGatewayProxyResponseEvent.getStatusCode());
+    }
 
-  private APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent(String body) {
-    var apiGatewayProxyRequestEvent = new APIGatewayProxyRequestEvent();
-    return apiGatewayProxyRequestEvent.withBody(body);
-  }
+    private APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent(String body) {
+        var apiGatewayProxyRequestEvent = new APIGatewayProxyRequestEvent();
+        return apiGatewayProxyRequestEvent.withBody(body);
+    }
 
-  private Person newPerson() {
-    var person = new Person();
-    person.setFirstName("Thor");
-    person.setLastName("Odinson");
-    var address = new Address();
-    address.setAddressLineOne("1 Odin ln");
-    address.setCity("Asgard");
-    address.setState("country of the Gods");
-    address.setZipCode("00001");
-    person.setAddress(address);
-    return person;
-  }
+    private Person newPerson() {
+        var person = new Person();
+        person.setFirstName("Thor");
+        person.setLastName("Odinson");
+        var address = new Address();
+        address.setAddressLineOne("1 Odin ln");
+        address.setCity("Asgard");
+        address.setState("country of the Gods");
+        address.setZipCode("00001");
+        person.setAddress(address);
+        return person;
+    }
 }

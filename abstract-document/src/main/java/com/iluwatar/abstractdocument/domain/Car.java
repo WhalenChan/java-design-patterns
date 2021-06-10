@@ -24,6 +24,7 @@
 package com.iluwatar.abstractdocument.domain;
 
 import com.iluwatar.abstractdocument.AbstractDocument;
+
 import java.util.Map;
 
 /**
@@ -32,8 +33,8 @@ import java.util.Map;
  */
 public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts, HasWeight {
 
-  public Car(Map<String, Object> properties) {
-    super(properties);
-  }
+    public Car(Map<String, Object> properties) {
+        super(properties);
+    }
 
 }

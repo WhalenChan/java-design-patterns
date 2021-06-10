@@ -34,25 +34,24 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>In this example we have sentences composed of words composed of letters. All of the objects
  * can be treated through the same interface ({@link LetterComposite}).
- *
  */
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    LOGGER.info("Message from the orcs: ");
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        LOGGER.info("Message from the orcs: ");
 
-    var orcMessage = new Messenger().messageFromOrcs();
-    orcMessage.print();
+        var orcMessage = new Messenger().messageFromOrcs();
+        orcMessage.print();
 
-    LOGGER.info("\nMessage from the elves: ");
+        LOGGER.info("\nMessage from the elves: ");
 
-    var elfMessage = new Messenger().messageFromElves();
-    elfMessage.print();
-  }
+        var elfMessage = new Messenger().messageFromElves();
+        elfMessage.print();
+    }
 }

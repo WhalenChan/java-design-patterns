@@ -23,9 +23,10 @@
 
 package com.iluwatar.command;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Deque;
 import java.util.LinkedList;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Wizard is the invoker of the commands.
@@ -33,44 +34,44 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Wizard {
 
-  private final Deque<Runnable> undoStack = new LinkedList<>();
-  private final Deque<Runnable> redoStack = new LinkedList<>();
+    private final Deque<Runnable> undoStack = new LinkedList<>();
+    private final Deque<Runnable> redoStack = new LinkedList<>();
 
-  public Wizard() {
-  }
-
-  /**
-   * Cast spell.
-   */
-  public void castSpell(Runnable runnable) {
-    runnable.run();
-    undoStack.offerLast(runnable);
-  }
-
-  /**
-   * Undo last spell.
-   */
-  public void undoLastSpell() {
-    if (!undoStack.isEmpty()) {
-      var previousSpell = undoStack.pollLast();
-      redoStack.offerLast(previousSpell);
-      previousSpell.run();
+    public Wizard() {
     }
-  }
 
-  /**
-   * Redo last spell.
-   */
-  public void redoLastSpell() {
-    if (!redoStack.isEmpty()) {
-      var previousSpell = redoStack.pollLast();
-      undoStack.offerLast(previousSpell);
-      previousSpell.run();
+    /**
+     * Cast spell.
+     */
+    public void castSpell(Runnable runnable) {
+        runnable.run();
+        undoStack.offerLast(runnable);
     }
-  }
 
-  @Override
-  public String toString() {
-    return "Wizard";
-  }
+    /**
+     * Undo last spell.
+     */
+    public void undoLastSpell() {
+        if (!undoStack.isEmpty()) {
+            var previousSpell = undoStack.pollLast();
+            redoStack.offerLast(previousSpell);
+            previousSpell.run();
+        }
+    }
+
+    /**
+     * Redo last spell.
+     */
+    public void redoLastSpell() {
+        if (!redoStack.isEmpty()) {
+            var previousSpell = redoStack.pollLast();
+            undoStack.offerLast(previousSpell);
+            previousSpell.run();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Wizard";
+    }
 }

@@ -23,15 +23,11 @@
 
 package com.iluwatar.intercepting.filter;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
-
-import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/13/15 - 3:01 PM
@@ -40,30 +36,30 @@ import org.junit.jupiter.api.Test;
  */
 public class FilterManagerTest {
 
-  @Test
-  void testFilterRequest() {
-    final var target = mock(Target.class);
-    final var filterManager = new FilterManager();
-    assertEquals("RUNNING...", filterManager.filterRequest(mock(Order.class)));
-    verifyZeroInteractions(target);
-  }
+    @Test
+    void testFilterRequest() {
+        final var target = mock(Target.class);
+        final var filterManager = new FilterManager();
+        assertEquals("RUNNING...", filterManager.filterRequest(mock(Order.class)));
+        verifyZeroInteractions(target);
+    }
 
-  @Test
-  void testAddFilter() {
-    final var target = mock(Target.class);
-    final var filterManager = new FilterManager();
+    @Test
+    void testAddFilter() {
+        final var target = mock(Target.class);
+        final var filterManager = new FilterManager();
 
-    verifyZeroInteractions(target);
+        verifyZeroInteractions(target);
 
-    final var filter = mock(Filter.class);
-    when(filter.execute(any(Order.class))).thenReturn("filter");
+        final var filter = mock(Filter.class);
+        when(filter.execute(any(Order.class))).thenReturn("filter");
 
-    filterManager.addFilter(filter);
+        filterManager.addFilter(filter);
 
-    final Order order = mock(Order.class);
-    assertEquals("filter", filterManager.filterRequest(order));
+        final Order order = mock(Order.class);
+        assertEquals("filter", filterManager.filterRequest(order));
 
-    verify(filter, times(1)).execute(any(Order.class));
-    verifyZeroInteractions(target, filter, order);
-  }
+        verify(filter, times(1)).execute(any(Order.class));
+        verifyZeroInteractions(target, filter, order);
+    }
 }

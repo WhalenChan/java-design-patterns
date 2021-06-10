@@ -28,14 +28,14 @@ package com.iluwatar.flux.action;
  */
 public class ContentAction extends Action {
 
-  private final Content content;
+    private final Content content;
 
-  public ContentAction(Content content) {
-    super(ActionType.CONTENT_CHANGED);
-    this.content = content;
-  }
+    public ContentAction(Content content) {
+        super(ActionType.CONTENT_CHANGED);
+        this.content = content;
+    }
 
-  public Content getContent() {
-    return content;
-  }
+    public Content getContent() {
+        return content;
+    }
 }

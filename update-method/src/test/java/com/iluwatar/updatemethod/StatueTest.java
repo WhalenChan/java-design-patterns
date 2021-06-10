@@ -31,29 +31,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StatueTest {
 
-  private static Statue statue;
+    private static Statue statue;
 
-  @BeforeAll
-  public static void setup() {
-    statue = new Statue(1, 20);
-  }
+    @BeforeAll
+    public static void setup() {
+        statue = new Statue(1, 20);
+    }
 
-  @AfterAll
-  public static void tearDown() {
-    statue = null;
-  }
+    @AfterAll
+    public static void tearDown() {
+        statue = null;
+    }
 
-  @Test
-  void testUpdateForPendingShoot() {
-    statue.frames = 10;
-    statue.update();
-    assertEquals(11, statue.frames);
-  }
+    @Test
+    void testUpdateForPendingShoot() {
+        statue.frames = 10;
+        statue.update();
+        assertEquals(11, statue.frames);
+    }
 
-  @Test
-  void testUpdateForShooting() {
-    statue.frames = 19;
-    statue.update();
-    assertEquals(0, statue.frames);
-  }
+    @Test
+    void testUpdateForShooting() {
+        statue.frames = 19;
+        statue.update();
+        assertEquals(0, statue.frames);
+    }
 }

@@ -31,16 +31,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AiComponent implements Component {
 
-  /**
-   * Update ai component.
-   */
-  @Override
-  public void update() {
-    LOGGER.info("update AI component");
-  }
+    /**
+     * Update ai component.
+     */
+    @Override
+    public void update() {
+        LOGGER.info("update AI component");
+    }
 
-  @Override
-  public void render() {
-    // Do Nothing.
-  }
+    @Override
+    public void render() {
+        // Do Nothing.
+    }
 }

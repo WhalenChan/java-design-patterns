@@ -27,6 +27,7 @@ import com.iluwatar.layers.dto.CakeInfo;
 import com.iluwatar.layers.dto.CakeLayerInfo;
 import com.iluwatar.layers.dto.CakeToppingInfo;
 import com.iluwatar.layers.exception.CakeBakingException;
+
 import java.util.List;
 
 /**
@@ -34,33 +35,33 @@ import java.util.List;
  */
 public interface CakeBakingService {
 
-  /**
-   * Bakes new cake according to parameters.
-   */
-  void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
+    /**
+     * Bakes new cake according to parameters.
+     */
+    void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
 
-  /**
-   * Get all cakes.
-   */
-  List<CakeInfo> getAllCakes();
+    /**
+     * Get all cakes.
+     */
+    List<CakeInfo> getAllCakes();
 
-  /**
-   * Store new cake topping.
-   */
-  void saveNewTopping(CakeToppingInfo toppingInfo);
+    /**
+     * Store new cake topping.
+     */
+    void saveNewTopping(CakeToppingInfo toppingInfo);
 
-  /**
-   * Get available cake toppings.
-   */
-  List<CakeToppingInfo> getAvailableToppings();
+    /**
+     * Get available cake toppings.
+     */
+    List<CakeToppingInfo> getAvailableToppings();
 
-  /**
-   * Add new cake layer.
-   */
-  void saveNewLayer(CakeLayerInfo layerInfo);
+    /**
+     * Add new cake layer.
+     */
+    void saveNewLayer(CakeLayerInfo layerInfo);
 
-  /**
-   * Get available cake layers.
-   */
-  List<CakeLayerInfo> getAvailableLayers();
+    /**
+     * Get available cake layers.
+     */
+    List<CakeLayerInfo> getAvailableLayers();
 }

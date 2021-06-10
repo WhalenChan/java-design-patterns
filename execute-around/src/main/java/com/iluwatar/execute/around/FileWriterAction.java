@@ -32,6 +32,6 @@ import java.io.IOException;
 @FunctionalInterface
 public interface FileWriterAction {
 
-  void writeFile(FileWriter writer) throws IOException;
+    void writeFile(FileWriter writer) throws IOException;
 
 }

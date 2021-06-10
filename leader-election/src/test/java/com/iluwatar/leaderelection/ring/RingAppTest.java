@@ -32,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
  */
 class RingAppTest {
 
-  @Test
-  void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> RingApp.main(new String[]{}));
-  }
+    @Test
+    void shouldExecuteApplicationWithoutException() {
+        assertDoesNotThrow(() -> RingApp.main(new String[]{}));
+    }
 
 }

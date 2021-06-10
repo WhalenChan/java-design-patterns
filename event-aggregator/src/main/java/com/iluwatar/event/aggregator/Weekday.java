@@ -31,18 +31,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Weekday {
 
-  MONDAY("Monday"),
-  TUESDAY("Tuesday"),
-  WEDNESDAY("Wednesday"),
-  THURSDAY("Thursday"),
-  FRIDAY("Friday"),
-  SATURDAY("Saturday"),
-  SUNDAY("Sunday");
+    MONDAY("Monday"),
+    TUESDAY("Tuesday"),
+    WEDNESDAY("Wednesday"),
+    THURSDAY("Thursday"),
+    FRIDAY("Friday"),
+    SATURDAY("Saturday"),
+    SUNDAY("Sunday");
 
-  private final String description;
+    private final String description;
 
-  @Override
-  public String toString() {
-    return description;
-  }
+    @Override
+    public String toString() {
+        return description;
+    }
 }

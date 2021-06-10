@@ -23,9 +23,10 @@
 
 package com.iluwatar.typeobject;
 
-import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 /**
  * <p>Type object pattern is the pattern we use when the OOP concept of creating a base class and
@@ -48,41 +49,41 @@ import org.json.simple.parser.ParseException;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) throws IOException, ParseException {
-    var givenTime = 50; //50ms
-    var toWin = 500; //points
-    var pointsWon = 0;
-    var numOfRows = 3;
-    var start = System.currentTimeMillis();
-    var end = System.currentTimeMillis();
-    var round = 0;
-    while (pointsWon < toWin && end - start < givenTime) {
-      round++;
-      var pool = new CellPool(numOfRows * numOfRows + 5);
-      var cg = new CandyGame(numOfRows, pool);
-      if (round > 1) {
-        LOGGER.info("Refreshing..");
-      } else {
-        LOGGER.info("Starting game..");
-      }
-      cg.printGameStatus();
-      end = System.currentTimeMillis();
-      cg.round((int) (end - start), givenTime);
-      pointsWon += cg.totalPoints;
-      end = System.currentTimeMillis();
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) throws IOException, ParseException {
+        var givenTime = 50; //50ms
+        var toWin = 500; //points
+        var pointsWon = 0;
+        var numOfRows = 3;
+        var start = System.currentTimeMillis();
+        var end = System.currentTimeMillis();
+        var round = 0;
+        while (pointsWon < toWin && end - start < givenTime) {
+            round++;
+            var pool = new CellPool(numOfRows * numOfRows + 5);
+            var cg = new CandyGame(numOfRows, pool);
+            if (round > 1) {
+                LOGGER.info("Refreshing..");
+            } else {
+                LOGGER.info("Starting game..");
+            }
+            cg.printGameStatus();
+            end = System.currentTimeMillis();
+            cg.round((int) (end - start), givenTime);
+            pointsWon += cg.totalPoints;
+            end = System.currentTimeMillis();
+        }
+        LOGGER.info("Game Over");
+        if (pointsWon >= toWin) {
+            LOGGER.info("" + pointsWon);
+            LOGGER.info("You win!!");
+        } else {
+            LOGGER.info("" + pointsWon);
+            LOGGER.info("Sorry, you lose!");
+        }
     }
-    LOGGER.info("Game Over");
-    if (pointsWon >= toWin) {
-      LOGGER.info("" + pointsWon);
-      LOGGER.info("You win!!");
-    } else {
-      LOGGER.info("" + pointsWon);
-      LOGGER.info("Sorry, you lose!");
-    }
-  }
 }

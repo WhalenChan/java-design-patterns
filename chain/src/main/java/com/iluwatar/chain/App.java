@@ -36,16 +36,16 @@ package com.iluwatar.chain;
  */
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
 
-    var king = new OrcKing();
-    king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle"));
-    king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner"));
-    king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax"));
-  }
+        var king = new OrcKing();
+        king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle"));
+        king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner"));
+        king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax"));
+    }
 }

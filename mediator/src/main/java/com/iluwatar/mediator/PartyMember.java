@@ -28,9 +28,9 @@ package com.iluwatar.mediator;
  */
 public interface PartyMember {
 
-  void joinedParty(Party party);
+    void joinedParty(Party party);
 
-  void partyAction(Action action);
+    void partyAction(Action action);
 
-  void act(Action action);
+    void act(Action action);
 }

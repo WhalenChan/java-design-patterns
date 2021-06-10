@@ -28,9 +28,9 @@ package com.iluwatar.monostate;
  */
 
 public class Request {
-  public final String value;
+    public final String value;
 
-  public Request(String value) {
-    this.value = value;
-  }
+    public Request(String value) {
+        this.value = value;
+    }
 }

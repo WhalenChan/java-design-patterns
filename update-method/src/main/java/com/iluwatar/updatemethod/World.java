@@ -23,11 +23,11 @@
 
 package com.iluwatar.updatemethod;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * The game world class. Maintain all the objects existed in the game frames.
@@ -35,81 +35,81 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class World {
 
-  protected List<Entity> entities;
+    protected List<Entity> entities;
 
-  protected volatile boolean isRunning;
+    protected volatile boolean isRunning;
 
-  public World() {
-    entities = new ArrayList<>();
-    isRunning = false;
-  }
-
-  /**
-   * Main game loop. This loop will always run until the game is over. For
-   * each loop it will process user input, update internal status, and render
-   * the next frames. For more detail please refer to the game-loop pattern.
-   */
-  private void gameLoop() {
-    while (isRunning) {
-      processInput();
-      update();
-      render();
+    public World() {
+        entities = new ArrayList<>();
+        isRunning = false;
     }
-  }
 
-  /**
-   * Handle any user input that has happened since the last call. In order to
-   * simulate the situation in real-life game, here we add a random time lag.
-   * The time lag ranges from 50 ms to 250 ms.
-   */
-  private void processInput() {
-    try {
-      int lag = new SecureRandom().nextInt(200) + 50;
-      Thread.sleep(lag);
-    } catch (InterruptedException e) {
-      LOGGER.error(e.getMessage());
-      Thread.currentThread().interrupt();
+    /**
+     * Main game loop. This loop will always run until the game is over. For
+     * each loop it will process user input, update internal status, and render
+     * the next frames. For more detail please refer to the game-loop pattern.
+     */
+    private void gameLoop() {
+        while (isRunning) {
+            processInput();
+            update();
+            render();
+        }
     }
-  }
 
-  /**
-   * Update internal status. The update method pattern invoke udpate method for
-   * each entity in the game.
-   */
-  private void update() {
-    for (var entity : entities) {
-      entity.update();
+    /**
+     * Handle any user input that has happened since the last call. In order to
+     * simulate the situation in real-life game, here we add a random time lag.
+     * The time lag ranges from 50 ms to 250 ms.
+     */
+    private void processInput() {
+        try {
+            int lag = new SecureRandom().nextInt(200) + 50;
+            Thread.sleep(lag);
+        } catch (InterruptedException e) {
+            LOGGER.error(e.getMessage());
+            Thread.currentThread().interrupt();
+        }
     }
-  }
 
-  /**
-   * Render the next frame. Here we do nothing since it is not related to the
-   * pattern.
-   */
-  private void render() {
-    // Does Nothing
-  }
+    /**
+     * Update internal status. The update method pattern invoke udpate method for
+     * each entity in the game.
+     */
+    private void update() {
+        for (var entity : entities) {
+            entity.update();
+        }
+    }
 
-  /**
-   * Run game loop.
-   */
-  public void run() {
-    LOGGER.info("Start game.");
-    isRunning = true;
-    var thread = new Thread(this::gameLoop);
-    thread.start();
-  }
+    /**
+     * Render the next frame. Here we do nothing since it is not related to the
+     * pattern.
+     */
+    private void render() {
+        // Does Nothing
+    }
 
-  /**
-   * Stop game loop.
-   */
-  public void stop() {
-    LOGGER.info("Stop game.");
-    isRunning = false;
-  }
+    /**
+     * Run game loop.
+     */
+    public void run() {
+        LOGGER.info("Start game.");
+        isRunning = true;
+        var thread = new Thread(this::gameLoop);
+        thread.start();
+    }
 
-  public void addEntity(Entity entity) {
-    entities.add(entity);
-  }
+    /**
+     * Stop game loop.
+     */
+    public void stop() {
+        LOGGER.info("Stop game.");
+        isRunning = false;
+    }
+
+    public void addEntity(Entity entity) {
+        entities.add(entity);
+    }
 
 }

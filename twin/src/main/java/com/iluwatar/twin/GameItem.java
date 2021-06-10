@@ -31,16 +31,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class GameItem {
 
-  /**
-   * Template method, do some common logic before draw.
-   */
-  public void draw() {
-    LOGGER.info("draw");
-    doDraw();
-  }
+    /**
+     * Template method, do some common logic before draw.
+     */
+    public void draw() {
+        LOGGER.info("draw");
+        doDraw();
+    }
 
-  public abstract void doDraw();
+    public abstract void doDraw();
 
 
-  public abstract void click();
+    public abstract void click();
 }

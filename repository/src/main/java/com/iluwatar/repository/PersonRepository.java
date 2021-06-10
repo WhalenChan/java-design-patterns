@@ -32,7 +32,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PersonRepository
-    extends CrudRepository<Person, Long>, JpaSpecificationExecutor<Person> {
+        extends CrudRepository<Person, Long>, JpaSpecificationExecutor<Person> {
 
-  Person findByName(String name);
+    Person findByName(String name);
 }

@@ -27,55 +27,53 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SkeletonTest {
 
-  private static Skeleton skeleton;
+    private static Skeleton skeleton;
 
-  @BeforeAll
-  public static void setup() {
-    skeleton = new Skeleton(1);
-  }
+    @BeforeAll
+    public static void setup() {
+        skeleton = new Skeleton(1);
+    }
 
-  @AfterAll
-  public static void tearDown() {
-    skeleton = null;
-  }
+    @AfterAll
+    public static void tearDown() {
+        skeleton = null;
+    }
 
-  @Test
-  void testUpdateForPatrollingLeft() {
-    skeleton.patrollingLeft = true;
-    skeleton.setPosition(50);
-    skeleton.update();
-    assertEquals(49, skeleton.getPosition());
-  }
+    @Test
+    void testUpdateForPatrollingLeft() {
+        skeleton.patrollingLeft = true;
+        skeleton.setPosition(50);
+        skeleton.update();
+        assertEquals(49, skeleton.getPosition());
+    }
 
-  @Test
-  void testUpdateForPatrollingRight() {
-    skeleton.patrollingLeft = false;
-    skeleton.setPosition(50);
-    skeleton.update();
-    assertEquals(51, skeleton.getPosition());
-  }
+    @Test
+    void testUpdateForPatrollingRight() {
+        skeleton.patrollingLeft = false;
+        skeleton.setPosition(50);
+        skeleton.update();
+        assertEquals(51, skeleton.getPosition());
+    }
 
-  @Test
-  void testUpdateForReverseDirectionFromLeftToRight() {
-    skeleton.patrollingLeft = true;
-    skeleton.setPosition(1);
-    skeleton.update();
-    assertEquals(0, skeleton.getPosition());
-    assertFalse(skeleton.patrollingLeft);
-  }
+    @Test
+    void testUpdateForReverseDirectionFromLeftToRight() {
+        skeleton.patrollingLeft = true;
+        skeleton.setPosition(1);
+        skeleton.update();
+        assertEquals(0, skeleton.getPosition());
+        assertFalse(skeleton.patrollingLeft);
+    }
 
-  @Test
-  void testUpdateForReverseDirectionFromRightToLeft() {
-    skeleton.patrollingLeft = false;
-    skeleton.setPosition(99);
-    skeleton.update();
-    assertEquals(100, skeleton.getPosition());
-    assertTrue(skeleton.patrollingLeft);
-  }
+    @Test
+    void testUpdateForReverseDirectionFromRightToLeft() {
+        skeleton.patrollingLeft = false;
+        skeleton.setPosition(99);
+        skeleton.update();
+        assertEquals(100, skeleton.getPosition());
+        assertTrue(skeleton.patrollingLeft);
+    }
 }

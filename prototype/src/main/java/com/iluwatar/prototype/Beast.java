@@ -33,10 +33,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public abstract class Beast implements Prototype {
 
-  public Beast(Beast source) {
-  }
+    public Beast(Beast source) {
+    }
 
-  @Override
-  public abstract Beast copy();
+    @Override
+    public abstract Beast copy();
 
 }

@@ -23,10 +23,11 @@
 
 package com.iluwatar.mute;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Optional;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Mute pattern is utilized when we need to suppress an exception due to an API flaw or in situation
@@ -46,57 +47,57 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args.
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args.
+     */
+    public static void main(String[] args) {
 
-    useOfLoggedMute();
+        useOfLoggedMute();
 
-    useOfMute();
-  }
-
-  /*
-   * Typically used when the API declares some exception but cannot do so. Usually a
-   * signature mistake.In this example out is not supposed to throw exception as it is a
-   * ByteArrayOutputStream. So we utilize mute, which will throw AssertionError if unexpected
-   * exception occurs.
-   */
-  private static void useOfMute() {
-    var out = new ByteArrayOutputStream();
-    Mute.mute(() -> out.write("Hello".getBytes()));
-  }
-
-  private static void useOfLoggedMute() {
-    Optional<Resource> resource = Optional.empty();
-    try {
-      resource = Optional.of(acquireResource());
-      utilizeResource(resource.get());
-    } finally {
-      resource.ifPresent(App::closeResource);
+        useOfMute();
     }
-  }
 
-  /*
-   * All we can do while failed close of a resource is to log it.
-   */
-  private static void closeResource(Resource resource) {
-    Mute.loggedMute(resource::close);
-  }
+    /*
+     * Typically used when the API declares some exception but cannot do so. Usually a
+     * signature mistake.In this example out is not supposed to throw exception as it is a
+     * ByteArrayOutputStream. So we utilize mute, which will throw AssertionError if unexpected
+     * exception occurs.
+     */
+    private static void useOfMute() {
+        var out = new ByteArrayOutputStream();
+        Mute.mute(() -> out.write("Hello".getBytes()));
+    }
 
-  private static void utilizeResource(Resource resource) {
-    LOGGER.info("Utilizing acquired resource: {}", resource);
-  }
+    private static void useOfLoggedMute() {
+        Optional<Resource> resource = Optional.empty();
+        try {
+            resource = Optional.of(acquireResource());
+            utilizeResource(resource.get());
+        } finally {
+            resource.ifPresent(App::closeResource);
+        }
+    }
 
-  private static Resource acquireResource() {
-    return new Resource() {
+    /*
+     * All we can do while failed close of a resource is to log it.
+     */
+    private static void closeResource(Resource resource) {
+        Mute.loggedMute(resource::close);
+    }
 
-      @Override
-      public void close() throws IOException {
-        throw new IOException("Error in closing resource: " + this);
-      }
-    };
-  }
+    private static void utilizeResource(Resource resource) {
+        LOGGER.info("Utilizing acquired resource: {}", resource);
+    }
+
+    private static Resource acquireResource() {
+        return new Resource() {
+
+            @Override
+            public void close() throws IOException {
+                throw new IOException("Error in closing resource: " + this);
+            }
+        };
+    }
 }

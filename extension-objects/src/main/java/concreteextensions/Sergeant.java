@@ -37,11 +37,11 @@ import units.SergeantUnit;
 @Slf4j
 public class Sergeant implements SergeantExtension {
 
-  private final SergeantUnit unit;
+    private final SergeantUnit unit;
 
-  @Override
-  public void sergeantReady() {
-    LOGGER.info("[Sergeant] " + unit.getName() + " is ready!");
-  }
+    @Override
+    public void sergeantReady() {
+        LOGGER.info("[Sergeant] " + unit.getName() + " is ready!");
+    }
 
 }

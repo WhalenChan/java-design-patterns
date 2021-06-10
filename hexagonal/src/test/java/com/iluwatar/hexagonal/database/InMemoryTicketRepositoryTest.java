@@ -23,34 +23,34 @@
 
 package com.iluwatar.hexagonal.database;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.iluwatar.hexagonal.test.LotteryTestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests for {@link LotteryTicketRepository}
  */
 class InMemoryTicketRepositoryTest {
 
-  private final LotteryTicketRepository repository = new InMemoryTicketRepository();
+    private final LotteryTicketRepository repository = new InMemoryTicketRepository();
 
-  @BeforeEach
-  void clear() {
-    repository.deleteAll();
-  }
+    @BeforeEach
+    void clear() {
+        repository.deleteAll();
+    }
 
-  @Test
-  void testCrudOperations() {
-    var repository = new InMemoryTicketRepository();
-    assertTrue(repository.findAll().isEmpty());
-    var ticket = LotteryTestUtils.createLotteryTicket();
-    var id = repository.save(ticket);
-    assertTrue(id.isPresent());
-    assertEquals(1, repository.findAll().size());
-    var optionalTicket = repository.findById(id.get());
-    assertTrue(optionalTicket.isPresent());
-  }
+    @Test
+    void testCrudOperations() {
+        var repository = new InMemoryTicketRepository();
+        assertTrue(repository.findAll().isEmpty());
+        var ticket = LotteryTestUtils.createLotteryTicket();
+        var id = repository.save(ticket);
+        assertTrue(id.isPresent());
+        assertEquals(1, repository.findAll().size());
+        var optionalTicket = repository.findById(id.get());
+        assertTrue(optionalTicket.isPresent());
+    }
 }

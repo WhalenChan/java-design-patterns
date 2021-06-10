@@ -36,5 +36,5 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class UserUpdatedEvent extends AbstractEvent {
 
-  private final User user;
+    private final User user;
 }

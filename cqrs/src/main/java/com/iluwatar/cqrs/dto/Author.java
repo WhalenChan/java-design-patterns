@@ -23,11 +23,7 @@
 
 package com.iluwatar.cqrs.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * This is a DTO (Data Transfer Object) author, contains only useful information to be returned.
@@ -39,8 +35,8 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Author {
 
-  private String name;
-  private String email;
-  private String username;
+    private String name;
+    private String email;
+    private String username;
 
 }

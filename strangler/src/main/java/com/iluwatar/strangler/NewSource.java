@@ -23,8 +23,9 @@
 
 package com.iluwatar.strangler;
 
-import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Arrays;
 
 /**
  * New source. Completely covers functionalities of old source with new techniques
@@ -32,25 +33,25 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class NewSource {
-  private static final String VERSION = "2.0";
-  public static final String SOURCE_MODULE = "Source module {}";
+    private static final String VERSION = "2.0";
+    public static final String SOURCE_MODULE = "Source module {}";
 
-  public int accumulateSum(int... nums) {
-    LOGGER.info(SOURCE_MODULE, VERSION);
-    return Arrays.stream(nums).reduce(0, Integer::sum);
-  }
+    public int accumulateSum(int... nums) {
+        LOGGER.info(SOURCE_MODULE, VERSION);
+        return Arrays.stream(nums).reduce(0, Integer::sum);
+    }
 
-  /**
-   * Implement accumulate multiply with new technique.
-   * Replace old one in {@link OldSource}
-   */
-  public int accumulateMul(int... nums) {
-    LOGGER.info(SOURCE_MODULE, VERSION);
-    return Arrays.stream(nums).reduce(1, (a, b) -> a * b);
-  }
+    /**
+     * Implement accumulate multiply with new technique.
+     * Replace old one in {@link OldSource}
+     */
+    public int accumulateMul(int... nums) {
+        LOGGER.info(SOURCE_MODULE, VERSION);
+        return Arrays.stream(nums).reduce(1, (a, b) -> a * b);
+    }
 
-  public boolean ifNonZero(int... nums) {
-    LOGGER.info(SOURCE_MODULE, VERSION);
-    return Arrays.stream(nums).allMatch(num -> num != 0);
-  }
+    public boolean ifNonZero(int... nums) {
+        LOGGER.info(SOURCE_MODULE, VERSION);
+        return Arrays.stream(nums).allMatch(num -> num != 0);
+    }
 }

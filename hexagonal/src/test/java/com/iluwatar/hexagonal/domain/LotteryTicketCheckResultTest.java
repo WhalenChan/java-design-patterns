@@ -23,23 +23,23 @@
 
 package com.iluwatar.hexagonal.domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * Unit tests for {@link LotteryTicketCheckResult}
  */
 class LotteryTicketCheckResultTest {
 
-  @Test
-  void testEquals() {
-    var result1 = new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
-    var result2 = new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
-    assertEquals(result1, result2);
-    var result3 = new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 300000);
-    assertNotEquals(result1, result3);
-  }
+    @Test
+    void testEquals() {
+        var result1 = new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
+        var result2 = new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
+        assertEquals(result1, result2);
+        var result3 = new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 300000);
+        assertNotEquals(result1, result3);
+    }
 }

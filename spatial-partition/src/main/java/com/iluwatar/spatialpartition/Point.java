@@ -35,34 +35,34 @@ import java.util.HashMap;
 
 public abstract class Point<T> {
 
-  public int coordinateX;
-  public int coordinateY;
-  public final int id;
+    public int coordinateX;
+    public int coordinateY;
+    public final int id;
 
-  Point(int x, int y, int id) {
-    this.coordinateX = x;
-    this.coordinateY = y;
-    this.id = id;
-  }
+    Point(int x, int y, int id) {
+        this.coordinateX = x;
+        this.coordinateY = y;
+        this.id = id;
+    }
 
-  /**
-   * defines how the object moves.
-   */
-  abstract void move();
+    /**
+     * defines how the object moves.
+     */
+    abstract void move();
 
-  /**
-   * defines conditions for interacting with an object obj.
-   *
-   * @param obj is another object on field which also extends Point
-   * @return whether the object can interact with the other or not
-   */
-  abstract boolean touches(T obj);
+    /**
+     * defines conditions for interacting with an object obj.
+     *
+     * @param obj is another object on field which also extends Point
+     * @return whether the object can interact with the other or not
+     */
+    abstract boolean touches(T obj);
 
-  /**
-   * handling interactions/collisions with other objects.
-   *
-   * @param toCheck contains the objects which need to be checked
-   * @param all     contains hashtable of all points on field at this time
-   */
-  abstract void handleCollision(Collection<? extends Point> toCheck, HashMap<Integer, T> all);
+    /**
+     * handling interactions/collisions with other objects.
+     *
+     * @param toCheck contains the objects which need to be checked
+     * @param all     contains hashtable of all points on field at this time
+     */
+    abstract void handleCollision(Collection<? extends Point> toCheck, HashMap<Integer, T> all);
 }

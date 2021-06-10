@@ -23,12 +23,9 @@
 
 package com.iluwatar.datamapper;
 
+import lombok.*;
+
 import java.io.Serializable;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  * Class defining Student.
@@ -40,11 +37,11 @@ import lombok.ToString;
 @AllArgsConstructor
 public final class Student implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @EqualsAndHashCode.Include
-  private int studentId;
-  private String name;
-  private char grade;
+    @EqualsAndHashCode.Include
+    private int studentId;
+    private String name;
+    private char grade;
 
 }

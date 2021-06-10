@@ -32,10 +32,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class InventoryControllerTest {
 
-  @Test
-  void testGetProductInventories() {
-    var inventoryController = new InventoryController();
-    var numberOfInventories = inventoryController.getProductInventories();
-    assertEquals(5, numberOfInventories);
-  }
+    @Test
+    void testGetProductInventories() {
+        var inventoryController = new InventoryController();
+        var numberOfInventories = inventoryController.getProductInventories();
+        assertEquals(5, numberOfInventories);
+    }
 }

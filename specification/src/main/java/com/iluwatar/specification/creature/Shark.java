@@ -33,11 +33,11 @@ import com.iluwatar.specification.property.Size;
  */
 public class Shark extends AbstractCreature {
 
-  public Shark() {
-    this(new Mass(500.0));
-  }
+    public Shark() {
+        this(new Mass(500.0));
+    }
 
-  public Shark(Mass mass) {
-    super("Shark", Size.NORMAL, Movement.SWIMMING, Color.LIGHT, mass);
-  }
+    public Shark(Mass mass) {
+        super("Shark", Size.NORMAL, Movement.SWIMMING, Color.LIGHT, mass);
+    }
 }

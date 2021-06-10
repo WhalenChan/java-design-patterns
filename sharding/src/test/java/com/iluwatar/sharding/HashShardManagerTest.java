@@ -23,37 +23,37 @@
 
 package com.iluwatar.sharding;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Unit tests for HashShardManager class.
  */
 class HashShardManagerTest {
 
-  private HashShardManager hashShardManager;
+    private HashShardManager hashShardManager;
 
-  /**
-   * Initialize hashShardManager instance.
-   */
-  @BeforeEach
-  public void setup() {
-    hashShardManager = new HashShardManager();
-    var shard1 = new Shard(1);
-    var shard2 = new Shard(2);
-    var shard3 = new Shard(3);
-    hashShardManager.addNewShard(shard1);
-    hashShardManager.addNewShard(shard2);
-    hashShardManager.addNewShard(shard3);
-  }
+    /**
+     * Initialize hashShardManager instance.
+     */
+    @BeforeEach
+    public void setup() {
+        hashShardManager = new HashShardManager();
+        var shard1 = new Shard(1);
+        var shard2 = new Shard(2);
+        var shard3 = new Shard(3);
+        hashShardManager.addNewShard(shard1);
+        hashShardManager.addNewShard(shard2);
+        hashShardManager.addNewShard(shard3);
+    }
 
-  @Test
-  void testStoreData() {
-    var data = new Data(1, "test", Data.DataType.TYPE_1);
-    hashShardManager.storeData(data);
-    assertEquals(data, hashShardManager.getShardById(1).getDataById(1));
-  }
+    @Test
+    void testStoreData() {
+        var data = new Data(1, "test", Data.DataType.TYPE_1);
+        hashShardManager.storeData(data);
+        assertEquals(data, hashShardManager.getShardById(1).getDataById(1));
+    }
 
 }

@@ -31,43 +31,46 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class HalfArithmetic {
-  private static final String VERSION = "1.5";
+    private static final String VERSION = "1.5";
 
-  private final HalfSource newSource;
-  private final OldSource oldSource;
+    private final HalfSource newSource;
+    private final OldSource oldSource;
 
-  public HalfArithmetic(HalfSource newSource, OldSource oldSource) {
-    this.newSource = newSource;
-    this.oldSource = oldSource;
-  }
+    public HalfArithmetic(HalfSource newSource, OldSource oldSource) {
+        this.newSource = newSource;
+        this.oldSource = oldSource;
+    }
 
-  /**
-   * Accumulate sum.
-   * @param nums numbers need to add together
-   * @return accumulate sum
-   */
-  public int sum(int... nums) {
-    LOGGER.info("Arithmetic sum {}", VERSION);
-    return newSource.accumulateSum(nums);
-  }
+    /**
+     * Accumulate sum.
+     *
+     * @param nums numbers need to add together
+     * @return accumulate sum
+     */
+    public int sum(int... nums) {
+        LOGGER.info("Arithmetic sum {}", VERSION);
+        return newSource.accumulateSum(nums);
+    }
 
-  /**
-   * Accumulate multiplication.
-   * @param nums numbers need to multiply together
-   * @return accumulate multiplication
-   */
-  public int mul(int... nums) {
-    LOGGER.info("Arithmetic mul {}", VERSION);
-    return oldSource.accumulateMul(nums);
-  }
+    /**
+     * Accumulate multiplication.
+     *
+     * @param nums numbers need to multiply together
+     * @return accumulate multiplication
+     */
+    public int mul(int... nums) {
+        LOGGER.info("Arithmetic mul {}", VERSION);
+        return oldSource.accumulateMul(nums);
+    }
 
-  /**
-   * Chech if has any zero.
-   * @param nums numbers need to check
-   * @return if has any zero, return true, else, return false
-   */
-  public boolean ifHasZero(int... nums) {
-    LOGGER.info("Arithmetic check zero {}", VERSION);
-    return !newSource.ifNonZero(nums);
-  }
+    /**
+     * Chech if has any zero.
+     *
+     * @param nums numbers need to check
+     * @return if has any zero, return true, else, return false
+     */
+    public boolean ifHasZero(int... nums) {
+        LOGGER.info("Arithmetic check zero {}", VERSION);
+        return !newSource.ifNonZero(nums);
+    }
 }

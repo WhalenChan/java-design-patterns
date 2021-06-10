@@ -30,29 +30,29 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class OldSource {
-  private static final String VERSION = "1.0";
+    private static final String VERSION = "1.0";
 
-  /**
-   * Implement accumulate sum with old technique.
-   */
-  public int accumulateSum(int... nums) {
-    LOGGER.info("Source module {}", VERSION);
-    var sum = 0;
-    for (final var num : nums) {
-      sum += num;
+    /**
+     * Implement accumulate sum with old technique.
+     */
+    public int accumulateSum(int... nums) {
+        LOGGER.info("Source module {}", VERSION);
+        var sum = 0;
+        for (final var num : nums) {
+            sum += num;
+        }
+        return sum;
     }
-    return sum;
-  }
 
-  /**
-   * Implement accumulate multiply with old technique.
-   */
-  public int accumulateMul(int... nums) {
-    LOGGER.info("Source module {}", VERSION);
-    var sum = 1;
-    for (final var num : nums) {
-      sum *= num;
+    /**
+     * Implement accumulate multiply with old technique.
+     */
+    public int accumulateMul(int... nums) {
+        LOGGER.info("Source module {}", VERSION);
+        var sum = 1;
+        for (final var num : nums) {
+            sum *= num;
+        }
+        return sum;
     }
-    return sum;
-  }
 }

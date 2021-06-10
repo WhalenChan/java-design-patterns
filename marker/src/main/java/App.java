@@ -21,7 +21,6 @@
  * THE SOFTWARE.
  */
 
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -40,29 +39,29 @@ import org.slf4j.LoggerFactory;
  */
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    final var logger = LoggerFactory.getLogger(App.class);
-    var guard = new Guard();
-    var thief = new Thief();
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        final var logger = LoggerFactory.getLogger(App.class);
+        var guard = new Guard();
+        var thief = new Thief();
 
-    //noinspection ConstantConditions
-    if (guard instanceof Permission) {
-      guard.enter();
-    } else {
-      logger.info("You have no permission to enter, please leave this area");
-    }
+        //noinspection ConstantConditions
+        if (guard instanceof Permission) {
+            guard.enter();
+        } else {
+            logger.info("You have no permission to enter, please leave this area");
+        }
 
-    //noinspection ConstantConditions
-    if (thief instanceof Permission) {
-      thief.steal();
-    } else {
-      thief.doNothing();
+        //noinspection ConstantConditions
+        if (thief instanceof Permission) {
+            thief.steal();
+        } else {
+            thief.doNothing();
+        }
     }
-  }
 }
 

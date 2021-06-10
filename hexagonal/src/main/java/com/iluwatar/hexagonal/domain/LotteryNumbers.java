@@ -24,13 +24,14 @@
 package com.iluwatar.hexagonal.domain;
 
 import com.google.common.base.Joiner;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.PrimitiveIterator;
 import java.util.Set;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 /**
  * Value object representing lottery numbers. This lottery uses sets of 4 numbers. The numbers must
@@ -40,102 +41,102 @@ import lombok.ToString;
 @ToString
 public class LotteryNumbers {
 
-  private final Set<Integer> numbers;
+    private final Set<Integer> numbers;
 
-  public static final int MIN_NUMBER = 1;
-  public static final int MAX_NUMBER = 20;
-  public static final int NUM_NUMBERS = 4;
-
-  /**
-   * Constructor. Creates random lottery numbers.
-   */
-  private LotteryNumbers() {
-    numbers = new HashSet<>();
-    generateRandomNumbers();
-  }
-
-  /**
-   * Constructor. Uses given numbers.
-   */
-  private LotteryNumbers(Set<Integer> givenNumbers) {
-    numbers = new HashSet<>();
-    numbers.addAll(givenNumbers);
-  }
-
-  /**
-   * Creates a random lottery number.
-   *
-   * @return random LotteryNumbers
-   */
-  public static LotteryNumbers createRandom() {
-    return new LotteryNumbers();
-  }
-
-  /**
-   * Creates lottery number from given set of numbers.
-   *
-   * @return given LotteryNumbers
-   */
-  public static LotteryNumbers create(Set<Integer> givenNumbers) {
-    return new LotteryNumbers(givenNumbers);
-  }
-
-  /**
-   * Get numbers.
-   *
-   * @return lottery numbers
-   */
-  public Set<Integer> getNumbers() {
-    return Collections.unmodifiableSet(numbers);
-  }
-
-  /**
-   * Get numbers as string.
-   *
-   * @return numbers as comma separated string
-   */
-  public String getNumbersAsString() {
-    return Joiner.on(',').join(numbers);
-  }
-
-  /**
-   * Generates 4 unique random numbers between 1-20 into numbers set.
-   */
-  private void generateRandomNumbers() {
-    numbers.clear();
-    var generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
-    while (numbers.size() < NUM_NUMBERS) {
-      var num = generator.nextInt();
-      numbers.add(num);
-    }
-  }
-
-  /**
-   * Helper class for generating random numbers.
-   */
-  private static class RandomNumberGenerator {
-
-    private final PrimitiveIterator.OfInt randomIterator;
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 20;
+    public static final int NUM_NUMBERS = 4;
 
     /**
-     * Initialize a new random number generator that generates random numbers in the range [min,
-     * max].
-     *
-     * @param min the min value (inclusive)
-     * @param max the max value (inclusive)
+     * Constructor. Creates random lottery numbers.
      */
-    public RandomNumberGenerator(int min, int max) {
-      randomIterator = new SecureRandom().ints(min, max + 1).iterator();
+    private LotteryNumbers() {
+        numbers = new HashSet<>();
+        generateRandomNumbers();
     }
 
     /**
-     * Gets next random integer in [min, max] range.
-     *
-     * @return a random number in the range (min, max)
+     * Constructor. Uses given numbers.
      */
-    public int nextInt() {
-      return randomIterator.nextInt();
+    private LotteryNumbers(Set<Integer> givenNumbers) {
+        numbers = new HashSet<>();
+        numbers.addAll(givenNumbers);
     }
-  }
+
+    /**
+     * Creates a random lottery number.
+     *
+     * @return random LotteryNumbers
+     */
+    public static LotteryNumbers createRandom() {
+        return new LotteryNumbers();
+    }
+
+    /**
+     * Creates lottery number from given set of numbers.
+     *
+     * @return given LotteryNumbers
+     */
+    public static LotteryNumbers create(Set<Integer> givenNumbers) {
+        return new LotteryNumbers(givenNumbers);
+    }
+
+    /**
+     * Get numbers.
+     *
+     * @return lottery numbers
+     */
+    public Set<Integer> getNumbers() {
+        return Collections.unmodifiableSet(numbers);
+    }
+
+    /**
+     * Get numbers as string.
+     *
+     * @return numbers as comma separated string
+     */
+    public String getNumbersAsString() {
+        return Joiner.on(',').join(numbers);
+    }
+
+    /**
+     * Generates 4 unique random numbers between 1-20 into numbers set.
+     */
+    private void generateRandomNumbers() {
+        numbers.clear();
+        var generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
+        while (numbers.size() < NUM_NUMBERS) {
+            var num = generator.nextInt();
+            numbers.add(num);
+        }
+    }
+
+    /**
+     * Helper class for generating random numbers.
+     */
+    private static class RandomNumberGenerator {
+
+        private final PrimitiveIterator.OfInt randomIterator;
+
+        /**
+         * Initialize a new random number generator that generates random numbers in the range [min,
+         * max].
+         *
+         * @param min the min value (inclusive)
+         * @param max the max value (inclusive)
+         */
+        public RandomNumberGenerator(int min, int max) {
+            randomIterator = new SecureRandom().ints(min, max + 1).iterator();
+        }
+
+        /**
+         * Gets next random integer in [min, max] range.
+         *
+         * @return a random number in the range (min, max)
+         */
+        public int nextInt() {
+            return randomIterator.nextInt();
+        }
+    }
 
 }

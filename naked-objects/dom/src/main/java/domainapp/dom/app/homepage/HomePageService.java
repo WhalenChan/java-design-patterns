@@ -24,11 +24,7 @@
 package domainapp.dom.app.homepage;
 
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.DomainService;
-import org.apache.isis.applib.annotation.HomePage;
-import org.apache.isis.applib.annotation.NatureOfService;
-import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.annotation.*;
 
 /**
  * HomePage Domain Service.
@@ -38,21 +34,21 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 @DomainService(nature = NatureOfService.VIEW_CONTRIBUTIONS_ONLY)
 public class HomePageService {
 
-  // endregion
+    // endregion
 
-  // region > injected services
+    // region > injected services
 
-  @javax.inject.Inject
-  DomainObjectContainer container;
+    @javax.inject.Inject
+    DomainObjectContainer container;
 
-  // endregion
+    // endregion
 
-  // region > homePage (action)
+    // region > homePage (action)
 
-  @Action(semantics = SemanticsOf.SAFE)
-  @HomePage
-  public HomePageViewModel homePage() {
-    return container.injectServicesInto(new HomePageViewModel());
-  }
+    @Action(semantics = SemanticsOf.SAFE)
+    @HomePage
+    public HomePageViewModel homePage() {
+        return container.injectServicesInto(new HomePageViewModel());
+    }
 
 }

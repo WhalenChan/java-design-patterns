@@ -31,9 +31,9 @@ package com.iluwatar.masterworker;
 
 public abstract class Result<T> {
 
-  public final T data;
+    public final T data;
 
-  public Result(T data) {
-    this.data = data;
-  }
+    public Result(T data) {
+        this.data = data;
+    }
 }

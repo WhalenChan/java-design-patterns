@@ -32,10 +32,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class ImageControllerTest {
 
-  @Test
-  void testGetImagePath() {
-    var imageController = new ImageController();
-    var imagePath = imageController.getImagePath();
-    assertEquals("/product-image.png", imagePath);
-  }
+    @Test
+    void testGetImagePath() {
+        var imageController = new ImageController();
+        var imagePath = imageController.getImagePath();
+        assertEquals("/product-image.png", imagePath);
+    }
 }

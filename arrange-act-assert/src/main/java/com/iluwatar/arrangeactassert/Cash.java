@@ -28,29 +28,32 @@ import lombok.AllArgsConstructor;
 /**
  * Arrange/Act/Assert (AAA) is a unit test pattern. In this simple example, we have a ({@link Cash})
  * object for plus, minus and counting amount.
+ *
+ * <p>安排/行动/断言 (AAA) 是一种单元测试模式。 在这个简单的例子中，我们有一个 ({@link Cash}) 对象，用于加、减和计算金额。
+ * <p>具体请查看test测试文件夹下面的测试用例
  */
 @AllArgsConstructor
 public class Cash {
 
-  private int amount;
+    private int amount;
 
-  //plus
-  void plus(int addend) {
-    amount += addend;
-  }
-
-  //minus
-  boolean minus(int subtrahend) {
-    if (amount >= subtrahend) {
-      amount -= subtrahend;
-      return true;
-    } else {
-      return false;
+    //plus
+    void plus(int addend) {
+        amount += addend;
     }
-  }
 
-  //count
-  int count() {
-    return amount;
-  }
+    //minus
+    boolean minus(int subtrahend) {
+        if (amount >= subtrahend) {
+            amount -= subtrahend;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //count
+    int count() {
+        return amount;
+    }
 }

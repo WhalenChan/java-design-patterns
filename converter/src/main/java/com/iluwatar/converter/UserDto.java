@@ -37,9 +37,9 @@ import lombok.ToString;
 @ToString
 public class UserDto {
 
-  private final String firstName;
-  private final String lastName;
-  private final boolean active;
-  private final String email;
+    private final String firstName;
+    private final String lastName;
+    private final boolean active;
+    private final String email;
 
 }

@@ -24,9 +24,10 @@
 package com.iluwatar.event.sourcing.event;
 
 import com.iluwatar.event.sourcing.state.AccountAggregate;
+import lombok.Getter;
+
 import java.math.BigDecimal;
 import java.util.Optional;
-import lombok.Getter;
 
 /**
  * This is the class that implements money deposit event. Holds the necessary info for a money
@@ -38,27 +39,27 @@ import lombok.Getter;
 @Getter
 public class MoneyDepositEvent extends DomainEvent {
 
-  private final BigDecimal money;
-  private final int accountNo;
+    private final BigDecimal money;
+    private final int accountNo;
 
-  /**
-   * Instantiates a new Money deposit event.
-   *
-   * @param sequenceId  the sequence id
-   * @param createdTime the created time
-   * @param accountNo   the account no
-   * @param money       the money
-   */
-  public MoneyDepositEvent(long sequenceId, long createdTime, int accountNo, BigDecimal money) {
-    super(sequenceId, createdTime, "MoneyDepositEvent");
-    this.money = money;
-    this.accountNo = accountNo;
-  }
+    /**
+     * Instantiates a new Money deposit event.
+     *
+     * @param sequenceId  the sequence id
+     * @param createdTime the created time
+     * @param accountNo   the account no
+     * @param money       the money
+     */
+    public MoneyDepositEvent(long sequenceId, long createdTime, int accountNo, BigDecimal money) {
+        super(sequenceId, createdTime, "MoneyDepositEvent");
+        this.money = money;
+        this.accountNo = accountNo;
+    }
 
-  @Override
-  public void process() {
-    var account = Optional.ofNullable(AccountAggregate.getAccount(accountNo))
-        .orElseThrow(() -> new RuntimeException("Account not found"));
-    account.handleEvent(this);
-  }
+    @Override
+    public void process() {
+        var account = Optional.ofNullable(AccountAggregate.getAccount(accountNo))
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+        account.handleEvent(this);
+    }
 }

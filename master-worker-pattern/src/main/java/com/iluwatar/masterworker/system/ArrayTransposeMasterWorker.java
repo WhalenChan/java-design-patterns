@@ -33,12 +33,12 @@ import com.iluwatar.masterworker.system.systemmaster.Master;
 
 public class ArrayTransposeMasterWorker extends MasterWorker {
 
-  public ArrayTransposeMasterWorker() {
-    super(4);
-  }
+    public ArrayTransposeMasterWorker() {
+        super(4);
+    }
 
-  @Override
-  Master setMaster(int numOfWorkers) {
-    return new ArrayTransposeMaster(numOfWorkers);
-  }
+    @Override
+    Master setMaster(int numOfWorkers) {
+        return new ArrayTransposeMaster(numOfWorkers);
+    }
 }

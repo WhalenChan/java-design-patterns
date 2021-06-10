@@ -30,15 +30,15 @@ import java.util.List;
  */
 public class Sentence extends LetterComposite {
 
-  /**
-   * Constructor.
-   */
-  public Sentence(List<Word> words) {
-    words.forEach(this::add);
-  }
+    /**
+     * Constructor.
+     */
+    public Sentence(List<Word> words) {
+        words.forEach(this::add);
+    }
 
-  @Override
-  protected void printThisAfter() {
-    System.out.print(".");
-  }
+    @Override
+    protected void printThisAfter() {
+        System.out.print(".");
+    }
 }

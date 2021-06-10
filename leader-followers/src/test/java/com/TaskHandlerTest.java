@@ -23,23 +23,23 @@
 
 package com;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.iluwatar.leaderfollowers.Task;
 import com.iluwatar.leaderfollowers.TaskHandler;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests for TaskHandler
  */
 class TaskHandlerTest {
 
-  @Test
-  void testHandleTask() throws InterruptedException {
-    var taskHandler = new TaskHandler();
-    var handle = new Task(100);
-    taskHandler.handleTask(handle);
-    assertTrue(handle.isFinished());
-  }
+    @Test
+    void testHandleTask() throws InterruptedException {
+        var taskHandler = new TaskHandler();
+        var handle = new Task(100);
+        taskHandler.handleTask(handle);
+        assertTrue(handle.isFinished());
+    }
 
 }

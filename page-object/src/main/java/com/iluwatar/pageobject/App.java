@@ -23,7 +23,7 @@
 
 package com.iluwatar.pageobject;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -49,40 +49,40 @@ import java.io.IOException;
  */
 public final class App {
 
-  private App() {
-  }
-
-  /**
-   * Application entry point
-   *
-   * <p>The application under development is a web application. Normally you would probably have a
-   * backend that is probably implemented in an object-oriented language (e.g. Java) that serves the
-   * frontend which comprises of a series of HTML, CSS, JS etc...
-   *
-   * <p>For illustrations purposes only, a very simple static html app is used here. This main
-   * method just fires up this simple web app in a default browser.
-   *
-   * @param args arguments
-   */
-  public static void main(String[] args) {
-
-    try {
-      var classLoader = App.class.getClassLoader();
-      var applicationFile = new File(classLoader.getResource("sample-ui/login.html").getPath());
-
-      // Should work for unix like OS (mac, unix etc...)
-      if (Desktop.isDesktopSupported()) {
-        Desktop.getDesktop().open(applicationFile);
-
-      } else {
-        // Java Desktop not supported - above unlikely to work for Windows so try the
-        // following instead...
-        Runtime.getRuntime().exec("cmd.exe start " + applicationFile);
-      }
-
-    } catch (IOException ex) {
-      ex.printStackTrace();
+    private App() {
     }
 
-  }
+    /**
+     * Application entry point
+     *
+     * <p>The application under development is a web application. Normally you would probably have a
+     * backend that is probably implemented in an object-oriented language (e.g. Java) that serves the
+     * frontend which comprises of a series of HTML, CSS, JS etc...
+     *
+     * <p>For illustrations purposes only, a very simple static html app is used here. This main
+     * method just fires up this simple web app in a default browser.
+     *
+     * @param args arguments
+     */
+    public static void main(String[] args) {
+
+        try {
+            var classLoader = App.class.getClassLoader();
+            var applicationFile = new File(classLoader.getResource("sample-ui/login.html").getPath());
+
+            // Should work for unix like OS (mac, unix etc...)
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(applicationFile);
+
+            } else {
+                // Java Desktop not supported - above unlikely to work for Windows so try the
+                // following instead...
+                Runtime.getRuntime().exec("cmd.exe start " + applicationFile);
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 }

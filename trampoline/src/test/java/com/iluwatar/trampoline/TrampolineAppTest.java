@@ -23,19 +23,19 @@
 
 package com.iluwatar.trampoline;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for trampoline pattern.
  */
 class TrampolineAppTest {
 
-  @Test
-  void testTrampolineWithFactorialFunction() {
-    long result = TrampolineApp.loop(10, 1).result();
-    assertEquals(3_628_800, result);
-  }
+    @Test
+    void testTrampolineWithFactorialFunction() {
+        long result = TrampolineApp.loop(10, 1).result();
+        assertEquals(3_628_800, result);
+    }
 
 }

@@ -37,30 +37,30 @@ import lombok.Getter;
 @Getter
 public class AccountCreateEvent extends DomainEvent {
 
-  private final int accountNo;
-  private final String owner;
+    private final int accountNo;
+    private final String owner;
 
-  /**
-   * Instantiates a new Account create event.
-   *
-   * @param sequenceId  the sequence id
-   * @param createdTime the created time
-   * @param accountNo   the account no
-   * @param owner       the owner
-   */
-  public AccountCreateEvent(long sequenceId, long createdTime, int accountNo, String owner) {
-    super(sequenceId, createdTime, "AccountCreateEvent");
-    this.accountNo = accountNo;
-    this.owner = owner;
-  }
-
-  @Override
-  public void process() {
-    var account = AccountAggregate.getAccount(accountNo);
-    if (account != null) {
-      throw new RuntimeException("Account already exists");
+    /**
+     * Instantiates a new Account create event.
+     *
+     * @param sequenceId  the sequence id
+     * @param createdTime the created time
+     * @param accountNo   the account no
+     * @param owner       the owner
+     */
+    public AccountCreateEvent(long sequenceId, long createdTime, int accountNo, String owner) {
+        super(sequenceId, createdTime, "AccountCreateEvent");
+        this.accountNo = accountNo;
+        this.owner = owner;
     }
-    account = new Account(accountNo, owner);
-    account.handleEvent(this);
-  }
+
+    @Override
+    public void process() {
+        var account = AccountAggregate.getAccount(accountNo);
+        if (account != null) {
+            throw new RuntimeException("Account already exists");
+        }
+        account = new Account(accountNo, owner);
+        account.handleEvent(this);
+    }
 }

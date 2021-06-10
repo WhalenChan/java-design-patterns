@@ -27,11 +27,12 @@ import com.iluwatar.caching.constants.CachingConstants;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
+import lombok.extern.slf4j.Slf4j;
+import org.bson.Document;
+
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
-import org.bson.Document;
 
 /**
  * <p>DBManager handles the communication with the underlying data store i.e. Database. It contains
@@ -45,127 +46,127 @@ import org.bson.Document;
 @Slf4j
 public final class DbManager {
 
-  private static MongoClient mongoClient;
-  private static MongoDatabase db;
-  private static boolean useMongoDB;
+    private static MongoClient mongoClient;
+    private static MongoDatabase db;
+    private static boolean useMongoDB;
 
-  private static Map<String, UserAccount> virtualDB;
+    private static Map<String, UserAccount> virtualDB;
 
-  private DbManager() {
-  }
+    private DbManager() {
+    }
 
-  /**
-   * Create DB.
-   */
-  public static void createVirtualDb() {
-    useMongoDB = false;
-    virtualDB = new HashMap<>();
-  }
+    /**
+     * Create DB.
+     */
+    public static void createVirtualDb() {
+        useMongoDB = false;
+        virtualDB = new HashMap<>();
+    }
 
-  /**
-   * Connect to DB.
-   */
-  public static void connect() throws ParseException {
-    useMongoDB = true;
-    mongoClient = new MongoClient();
-    db = mongoClient.getDatabase("test");
-  }
+    /**
+     * Connect to DB.
+     */
+    public static void connect() throws ParseException {
+        useMongoDB = true;
+        mongoClient = new MongoClient();
+        db = mongoClient.getDatabase("test");
+    }
 
-  /**
-   * Read user account from DB.
-   */
-  public static UserAccount readFromDb(String userId) {
-    if (!useMongoDB) {
-      if (virtualDB.containsKey(userId)) {
-        return virtualDB.get(userId);
-      }
-      return null;
+    /**
+     * Read user account from DB.
+     */
+    public static UserAccount readFromDb(String userId) {
+        if (!useMongoDB) {
+            if (virtualDB.containsKey(userId)) {
+                return virtualDB.get(userId);
+            }
+            return null;
+        }
+        if (db == null) {
+            try {
+                connect();
+            } catch (ParseException e) {
+                LOGGER.error("Error connecting to MongoDB", e);
+            }
+        }
+        var iterable = db
+                .getCollection(CachingConstants.USER_ACCOUNT)
+                .find(new Document(CachingConstants.USER_ID, userId));
+        if (iterable == null) {
+            return null;
+        }
+        Document doc = iterable.first();
+        String userName = doc.getString(CachingConstants.USER_NAME);
+        String appInfo = doc.getString(CachingConstants.ADD_INFO);
+        return new UserAccount(userId, userName, appInfo);
     }
-    if (db == null) {
-      try {
-        connect();
-      } catch (ParseException e) {
-        LOGGER.error("Error connecting to MongoDB", e);
-      }
-    }
-    var iterable = db
-        .getCollection(CachingConstants.USER_ACCOUNT)
-        .find(new Document(CachingConstants.USER_ID, userId));
-    if (iterable == null) {
-      return null;
-    }
-    Document doc = iterable.first();
-    String userName = doc.getString(CachingConstants.USER_NAME);
-    String appInfo = doc.getString(CachingConstants.ADD_INFO);
-    return new UserAccount(userId, userName, appInfo);
-  }
 
-  /**
-   * Write user account to DB.
-   */
-  public static void writeToDb(UserAccount userAccount) {
-    if (!useMongoDB) {
-      virtualDB.put(userAccount.getUserId(), userAccount);
-      return;
+    /**
+     * Write user account to DB.
+     */
+    public static void writeToDb(UserAccount userAccount) {
+        if (!useMongoDB) {
+            virtualDB.put(userAccount.getUserId(), userAccount);
+            return;
+        }
+        if (db == null) {
+            try {
+                connect();
+            } catch (ParseException e) {
+                LOGGER.error("Error connecting to MongoDB", e);
+            }
+        }
+        db.getCollection(CachingConstants.USER_ACCOUNT).insertOne(
+                new Document(CachingConstants.USER_ID, userAccount.getUserId())
+                        .append(CachingConstants.USER_NAME, userAccount.getUserName())
+                        .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())
+        );
     }
-    if (db == null) {
-      try {
-        connect();
-      } catch (ParseException e) {
-        LOGGER.error("Error connecting to MongoDB", e);
-      }
-    }
-    db.getCollection(CachingConstants.USER_ACCOUNT).insertOne(
-        new Document(CachingConstants.USER_ID, userAccount.getUserId())
-            .append(CachingConstants.USER_NAME, userAccount.getUserName())
-            .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())
-    );
-  }
 
-  /**
-   * Update DB.
-   */
-  public static void updateDb(UserAccount userAccount) {
-    if (!useMongoDB) {
-      virtualDB.put(userAccount.getUserId(), userAccount);
-      return;
+    /**
+     * Update DB.
+     */
+    public static void updateDb(UserAccount userAccount) {
+        if (!useMongoDB) {
+            virtualDB.put(userAccount.getUserId(), userAccount);
+            return;
+        }
+        if (db == null) {
+            try {
+                connect();
+            } catch (ParseException e) {
+                LOGGER.error("Error connecting to MongoDB", e);
+            }
+        }
+        db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
+                new Document(CachingConstants.USER_ID, userAccount.getUserId()),
+                new Document("$set", new Document(CachingConstants.USER_NAME, userAccount.getUserName())
+                        .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())));
     }
-    if (db == null) {
-      try {
-        connect();
-      } catch (ParseException e) {
-        LOGGER.error("Error connecting to MongoDB", e);
-      }
-    }
-    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
-        new Document(CachingConstants.USER_ID, userAccount.getUserId()),
-        new Document("$set", new Document(CachingConstants.USER_NAME, userAccount.getUserName())
-            .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())));
-  }
 
-  /**
-   * Insert data into DB if it does not exist. Else, update it.
-   */
-  public static void upsertDb(UserAccount userAccount) {
-    if (!useMongoDB) {
-      virtualDB.put(userAccount.getUserId(), userAccount);
-      return;
+    /**
+     * Insert data into DB if it does not exist. Else, update it.
+     */
+    public static void upsertDb(UserAccount userAccount) {
+        if (!useMongoDB) {
+            virtualDB.put(userAccount.getUserId(), userAccount);
+            return;
+        }
+        if (db == null) {
+            try {
+                connect();
+            } catch (ParseException e) {
+                LOGGER.error("Error connecting to MongoDB", e);
+            }
+        }
+        db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
+                new Document(CachingConstants.USER_ID, userAccount.getUserId()),
+                new Document("$set",
+                        new Document(CachingConstants.USER_ID, userAccount.getUserId())
+                                .append(CachingConstants.USER_NAME, userAccount.getUserName())
+                                .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())
+                ),
+                new UpdateOptions().upsert(true)
+        );
     }
-    if (db == null) {
-      try {
-        connect();
-      } catch (ParseException e) {
-        LOGGER.error("Error connecting to MongoDB", e);
-      }
-    }
-    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
-        new Document(CachingConstants.USER_ID, userAccount.getUserId()),
-        new Document("$set",
-            new Document(CachingConstants.USER_ID, userAccount.getUserId())
-                .append(CachingConstants.USER_NAME, userAccount.getUserName())
-                .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())
-        ),
-        new UpdateOptions().upsert(true)
-    );
-  }
 }

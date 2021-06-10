@@ -32,10 +32,10 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum CachingPolicy {
-  THROUGH("through"),
-  AROUND("around"),
-  BEHIND("behind"),
-  ASIDE("aside");
+    THROUGH("through"),
+    AROUND("around"),
+    BEHIND("behind"),
+    ASIDE("aside");
 
-  private final String policy;
+    private final String policy;
 }

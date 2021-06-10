@@ -23,48 +23,49 @@
 
 package com.iluwatar.proxy;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.iluwatar.proxy.utils.InMemoryAppender;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests for {@link IvoryTower}
  */
 class IvoryTowerTest {
 
-  private InMemoryAppender appender;
+    private InMemoryAppender appender;
 
-  @BeforeEach
-  public void setUp() {
-    appender = new InMemoryAppender(IvoryTower.class);
-  }
+    @BeforeEach
+    public void setUp() {
+        appender = new InMemoryAppender(IvoryTower.class);
+    }
 
-  @AfterEach
-  public void tearDown() {
-    appender.stop();
-  }
+    @AfterEach
+    public void tearDown() {
+        appender.stop();
+    }
 
-  @Test
-  void testEnter() {
-    final var wizards = List.of(
-        new Wizard("Gandalf"),
-        new Wizard("Dumbledore"),
-        new Wizard("Oz"),
-        new Wizard("Merlin")
-    );
+    @Test
+    void testEnter() {
+        final var wizards = List.of(
+                new Wizard("Gandalf"),
+                new Wizard("Dumbledore"),
+                new Wizard("Oz"),
+                new Wizard("Merlin")
+        );
 
-    var tower = new IvoryTower();
-    wizards.forEach(tower::enter);
+        var tower = new IvoryTower();
+        wizards.forEach(tower::enter);
 
-    assertTrue(appender.logContains("Gandalf enters the tower."));
-    assertTrue(appender.logContains("Dumbledore enters the tower."));
-    assertTrue(appender.logContains("Oz enters the tower."));
-    assertTrue(appender.logContains("Merlin enters the tower."));
-    assertEquals(4, appender.getLogSize());
-  }
+        assertTrue(appender.logContains("Gandalf enters the tower."));
+        assertTrue(appender.logContains("Dumbledore enters the tower."));
+        assertTrue(appender.logContains("Oz enters the tower."));
+        assertTrue(appender.logContains("Merlin enters the tower."));
+        assertEquals(4, appender.getLogSize());
+    }
 }

@@ -27,49 +27,50 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.iluwatar.serverless.faas.ApiGatewayResponse;
 import com.iluwatar.serverless.faas.LambdaInfo;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Map;
 
 /**
  * LambdaInfoApiHandler - simple api to get lambda context Created by dheeraj.mummar on 2/5/18.
  */
 public class LambdaInfoApiHandler
-    implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
+        implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(LambdaInfoApiHandler.class);
-  private static final Integer SUCCESS_STATUS_CODE = 200;
+    private static final Logger LOG = LoggerFactory.getLogger(LambdaInfoApiHandler.class);
+    private static final Integer SUCCESS_STATUS_CODE = 200;
 
 
-  @Override
-  public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
-    LOG.info("received: " + input);
+    @Override
+    public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
+        LOG.info("received: " + input);
 
-    return new ApiGatewayResponse.ApiGatewayResponseBuilder<LambdaInfo>()
-        .headers(headers())
-        .statusCode(SUCCESS_STATUS_CODE)
-        .body(lambdaInfo(context))
-        .build();
-  }
+        return new ApiGatewayResponse.ApiGatewayResponseBuilder<LambdaInfo>()
+                .headers(headers())
+                .statusCode(SUCCESS_STATUS_CODE)
+                .body(lambdaInfo(context))
+                .build();
+    }
 
-  /**
-   * lambdaInfo.
-   *
-   * @param context - Lambda context
-   * @return LambdaInfo
-   */
-  private LambdaInfo lambdaInfo(Context context) {
-    var lambdaInfo = new LambdaInfo();
-    lambdaInfo.setAwsRequestId(context.getAwsRequestId());
-    lambdaInfo.setFunctionName(context.getFunctionName());
-    lambdaInfo.setFunctionVersion(context.getFunctionVersion());
-    lambdaInfo.setLogGroupName(context.getLogGroupName());
-    lambdaInfo.setLogStreamName(context.getLogStreamName());
-    lambdaInfo.setMemoryLimitInMb(context.getMemoryLimitInMB());
-    return lambdaInfo;
-  }
+    /**
+     * lambdaInfo.
+     *
+     * @param context - Lambda context
+     * @return LambdaInfo
+     */
+    private LambdaInfo lambdaInfo(Context context) {
+        var lambdaInfo = new LambdaInfo();
+        lambdaInfo.setAwsRequestId(context.getAwsRequestId());
+        lambdaInfo.setFunctionName(context.getFunctionName());
+        lambdaInfo.setFunctionVersion(context.getFunctionVersion());
+        lambdaInfo.setLogGroupName(context.getLogGroupName());
+        lambdaInfo.setLogStreamName(context.getLogStreamName());
+        lambdaInfo.setMemoryLimitInMb(context.getMemoryLimitInMB());
+        return lambdaInfo;
+    }
 
-  private Map<String, String> headers() {
-    return Map.of("Content-Type", "application/json");
-  }
+    private Map<String, String> headers() {
+        return Map.of("Content-Type", "application/json");
+    }
 }

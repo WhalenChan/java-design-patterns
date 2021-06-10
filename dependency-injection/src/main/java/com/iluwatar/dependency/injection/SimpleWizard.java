@@ -29,9 +29,9 @@ package com.iluwatar.dependency.injection;
  */
 public class SimpleWizard implements Wizard {
 
-  private final OldTobyTobacco tobacco = new OldTobyTobacco();
+    private final OldTobyTobacco tobacco = new OldTobyTobacco();
 
-  public void smoke() {
-    tobacco.smoke(this);
-  }
+    public void smoke() {
+        tobacco.smoke(this);
+    }
 }

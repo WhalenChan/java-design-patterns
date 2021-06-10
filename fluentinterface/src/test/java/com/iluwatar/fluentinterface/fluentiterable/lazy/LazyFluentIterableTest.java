@@ -33,9 +33,9 @@ import com.iluwatar.fluentinterface.fluentiterable.FluentIterableTest;
  */
 class LazyFluentIterableTest extends FluentIterableTest {
 
-  @Override
-  protected FluentIterable<Integer> createFluentIterable(Iterable<Integer> integers) {
-    return LazyFluentIterable.from(integers);
-  }
+    @Override
+    protected FluentIterable<Integer> createFluentIterable(Iterable<Integer> integers) {
+        return LazyFluentIterable.from(integers);
+    }
 
 }

@@ -31,11 +31,11 @@ import org.slf4j.LoggerFactory;
  * Application test
  */
 class AppTest {
-  private static final Logger LOGGER = LoggerFactory.getLogger(AppTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AppTest.class);
 
-  @Test
-  void shouldExecuteApplicationWithoutException() {
-    App.main(new String[]{});
-    LOGGER.info("Executed successfully without exception.");
-  }
+    @Test
+    void shouldExecuteApplicationWithoutException() {
+        App.main(new String[]{});
+        LOGGER.info("Executed successfully without exception.");
+    }
 }

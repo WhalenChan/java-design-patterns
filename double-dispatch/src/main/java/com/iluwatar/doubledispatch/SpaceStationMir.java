@@ -32,43 +32,43 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SpaceStationMir extends GameObject {
 
-  public SpaceStationMir(int left, int top, int right, int bottom) {
-    super(left, top, right, bottom);
-  }
+    public SpaceStationMir(int left, int top, int right, int bottom) {
+        super(left, top, right, bottom);
+    }
 
-  @Override
-  public void collision(GameObject gameObject) {
-    gameObject.collisionResolve(this);
-  }
+    @Override
+    public void collision(GameObject gameObject) {
+        gameObject.collisionResolve(this);
+    }
 
-  @Override
-  public void collisionResolve(FlamingAsteroid asteroid) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged! {} is set on fire!", asteroid.getClass()
-            .getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName(), this.getClass()
-            .getSimpleName());
-    setDamaged(true);
-    setOnFire(true);
-  }
+    @Override
+    public void collisionResolve(FlamingAsteroid asteroid) {
+        LOGGER.info(AppConstants.HITS + " {} is damaged! {} is set on fire!", asteroid.getClass()
+                        .getSimpleName(),
+                this.getClass().getSimpleName(), this.getClass().getSimpleName(), this.getClass()
+                        .getSimpleName());
+        setDamaged(true);
+        setOnFire(true);
+    }
 
-  @Override
-  public void collisionResolve(Meteoroid meteoroid) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged!", meteoroid.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName());
-    setDamaged(true);
-  }
+    @Override
+    public void collisionResolve(Meteoroid meteoroid) {
+        LOGGER.info(AppConstants.HITS + " {} is damaged!", meteoroid.getClass().getSimpleName(),
+                this.getClass().getSimpleName(), this.getClass().getSimpleName());
+        setDamaged(true);
+    }
 
-  @Override
-  public void collisionResolve(SpaceStationMir mir) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged!", mir.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName());
-    setDamaged(true);
-  }
+    @Override
+    public void collisionResolve(SpaceStationMir mir) {
+        LOGGER.info(AppConstants.HITS + " {} is damaged!", mir.getClass().getSimpleName(),
+                this.getClass().getSimpleName(), this.getClass().getSimpleName());
+        setDamaged(true);
+    }
 
-  @Override
-  public void collisionResolve(SpaceStationIss iss) {
-    LOGGER.info(AppConstants.HITS, " {} is damaged!", iss.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName());
-    setDamaged(true);
-  }
+    @Override
+    public void collisionResolve(SpaceStationIss iss) {
+        LOGGER.info(AppConstants.HITS, " {} is damaged!", iss.getClass().getSimpleName(),
+                this.getClass().getSimpleName(), this.getClass().getSimpleName());
+        setDamaged(true);
+    }
 }

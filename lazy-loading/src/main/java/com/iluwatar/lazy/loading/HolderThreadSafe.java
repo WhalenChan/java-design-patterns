@@ -32,22 +32,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class HolderThreadSafe {
 
-  private Heavy heavy;
+    private Heavy heavy;
 
-  /**
-   * Constructor.
-   */
-  public HolderThreadSafe() {
-    LOGGER.info("HolderThreadSafe created");
-  }
-
-  /**
-   * Get heavy object.
-   */
-  public synchronized Heavy getHeavy() {
-    if (heavy == null) {
-      heavy = new Heavy();
+    /**
+     * Constructor.
+     */
+    public HolderThreadSafe() {
+        LOGGER.info("HolderThreadSafe created");
     }
-    return heavy;
-  }
+
+    /**
+     * Get heavy object.
+     */
+    public synchronized Heavy getHeavy() {
+        if (heavy == null) {
+            heavy = new Heavy();
+        }
+        return heavy;
+    }
 }

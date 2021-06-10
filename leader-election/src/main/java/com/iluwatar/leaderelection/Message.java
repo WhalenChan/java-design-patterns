@@ -23,11 +23,7 @@
 
 package com.iluwatar.leaderelection;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * Message used to transport data between instances.
@@ -39,7 +35,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Message {
 
-  private MessageType type;
-  private String content;
+    private MessageType type;
+    private String content;
 
 }

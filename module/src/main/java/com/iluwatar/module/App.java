@@ -37,58 +37,58 @@ import java.io.FileNotFoundException;
  */
 public class App {
 
-  private static final String ERROR = "Error";
-  private static final String MESSAGE = "Message";
-  public static FileLoggerModule fileLoggerModule;
-  public static ConsoleLoggerModule consoleLoggerModule;
+    private static final String ERROR = "Error";
+    private static final String MESSAGE = "Message";
+    public static FileLoggerModule fileLoggerModule;
+    public static ConsoleLoggerModule consoleLoggerModule;
 
-  /**
-   * Following method performs the initialization.
-   *
-   * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *                               error.txt)
-   */
-  public static void prepare() throws FileNotFoundException {
+    /**
+     * Following method performs the initialization.
+     *
+     * @throws FileNotFoundException if program is not able to find log files (output.txt and
+     *                               error.txt)
+     */
+    public static void prepare() throws FileNotFoundException {
 
-    /* Create new singleton objects and prepare their modules */
-    fileLoggerModule = FileLoggerModule.getSingleton().prepare();
-    consoleLoggerModule = ConsoleLoggerModule.getSingleton().prepare();
-  }
+        /* Create new singleton objects and prepare their modules */
+        fileLoggerModule = FileLoggerModule.getSingleton().prepare();
+        consoleLoggerModule = ConsoleLoggerModule.getSingleton().prepare();
+    }
 
-  /**
-   * Following method performs the finalization.
-   */
-  public static void unprepare() {
+    /**
+     * Following method performs the finalization.
+     */
+    public static void unprepare() {
 
-    /* Close all resources */
-    fileLoggerModule.unprepare();
-    consoleLoggerModule.unprepare();
-  }
+        /* Close all resources */
+        fileLoggerModule.unprepare();
+        consoleLoggerModule.unprepare();
+    }
 
-  /**
-   * Following method is main executor.
-   */
-  public static void execute() {
+    /**
+     * Following method is main executor.
+     */
+    public static void execute() {
 
-    /* Send logs on file system */
-    fileLoggerModule.printString(MESSAGE);
-    fileLoggerModule.printErrorString(ERROR);
+        /* Send logs on file system */
+        fileLoggerModule.printString(MESSAGE);
+        fileLoggerModule.printErrorString(ERROR);
 
-    /* Send logs on console */
-    consoleLoggerModule.printString(MESSAGE);
-    consoleLoggerModule.printErrorString(ERROR);
-  }
+        /* Send logs on console */
+        consoleLoggerModule.printString(MESSAGE);
+        consoleLoggerModule.printErrorString(ERROR);
+    }
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args.
-   * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *                               error.txt)
-   */
-  public static void main(final String... args) throws FileNotFoundException {
-    prepare();
-    execute();
-    unprepare();
-  }
+    /**
+     * Program entry point.
+     *
+     * @param args command line args.
+     * @throws FileNotFoundException if program is not able to find log files (output.txt and
+     *                               error.txt)
+     */
+    public static void main(final String... args) throws FileNotFoundException {
+        prepare();
+        execute();
+        unprepare();
+    }
 }

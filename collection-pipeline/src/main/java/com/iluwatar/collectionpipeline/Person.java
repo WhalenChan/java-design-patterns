@@ -23,9 +23,10 @@
 
 package com.iluwatar.collectionpipeline;
 
-import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 /**
  * A Person class that has the list of cars that the person owns and use.
@@ -34,6 +35,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Person {
 
-  private final List<Car> cars;
+    private final List<Car> cars;
 
 }

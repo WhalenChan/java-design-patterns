@@ -30,8 +30,8 @@ import org.junit.jupiter.api.Test;
  */
 class SagaApplicationTest {
 
-  @Test
-  void mainTest() {
-    SagaApplication.main(new String[]{});
-  }
+    @Test
+    void mainTest() {
+        SagaApplication.main(new String[]{});
+    }
 }

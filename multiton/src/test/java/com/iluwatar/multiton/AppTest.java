@@ -30,8 +30,8 @@ import org.junit.jupiter.api.Test;
  */
 public class AppTest {
 
-  @Test
-  void test() {
-    App.main(new String[]{});
-  }
+    @Test
+    void test() {
+        App.main(new String[]{});
+    }
 }

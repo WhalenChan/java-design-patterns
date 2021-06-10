@@ -35,17 +35,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Entry point of the main program.
-   * @param args Program runtime arguments.
-   */
-  public static void main(String[] args) {
-    LOGGER.info("Use superpower: sky launch");
-    var skyLaunch = new SkyLaunch();
-    skyLaunch.activate();
-    LOGGER.info("Use superpower: ground dive");
-    var groundDive = new GroundDive();
-    groundDive.activate();
-  }
+    /**
+     * Entry point of the main program.
+     *
+     * @param args Program runtime arguments.
+     */
+    public static void main(String[] args) {
+        LOGGER.info("Use superpower: sky launch");
+        var skyLaunch = new SkyLaunch();
+        skyLaunch.activate();
+        LOGGER.info("Use superpower: ground dive");
+        var groundDive = new GroundDive();
+        groundDive.activate();
+    }
 
 }

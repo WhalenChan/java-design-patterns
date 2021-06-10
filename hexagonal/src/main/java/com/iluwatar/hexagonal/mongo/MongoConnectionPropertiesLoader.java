@@ -31,28 +31,28 @@ import java.util.Properties;
  */
 public class MongoConnectionPropertiesLoader {
 
-  private static final String DEFAULT_HOST = "localhost";
-  private static final int DEFAULT_PORT = 27017;
+    private static final String DEFAULT_HOST = "localhost";
+    private static final int DEFAULT_PORT = 27017;
 
-  /**
-   * Try to load connection properties from file. Fall back to default connection properties.
-   */
-  public static void load() {
-    var host = DEFAULT_HOST;
-    var port = DEFAULT_PORT;
-    var path = System.getProperty("hexagonal.properties.path");
-    var properties = new Properties();
-    if (path != null) {
-      try (var fin = new FileInputStream(path)) {
-        properties.load(fin);
-        host = properties.getProperty("mongo-host");
-        port = Integer.parseInt(properties.getProperty("mongo-port"));
-      } catch (Exception e) {
-        // error occurred, use default properties
-        e.printStackTrace();
-      }
+    /**
+     * Try to load connection properties from file. Fall back to default connection properties.
+     */
+    public static void load() {
+        var host = DEFAULT_HOST;
+        var port = DEFAULT_PORT;
+        var path = System.getProperty("hexagonal.properties.path");
+        var properties = new Properties();
+        if (path != null) {
+            try (var fin = new FileInputStream(path)) {
+                properties.load(fin);
+                host = properties.getProperty("mongo-host");
+                port = Integer.parseInt(properties.getProperty("mongo-port"));
+            } catch (Exception e) {
+                // error occurred, use default properties
+                e.printStackTrace();
+            }
+        }
+        System.setProperty("mongo-host", host);
+        System.setProperty("mongo-port", String.format("%d", port));
     }
-    System.setProperty("mongo-host", host);
-    System.setProperty("mongo-port", String.format("%d", port));
-  }
 }

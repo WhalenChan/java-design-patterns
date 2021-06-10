@@ -37,35 +37,35 @@ import static org.mockito.Mockito.when;
  */
 class AggregatorTest {
 
-  @InjectMocks
-  private Aggregator aggregator;
+    @InjectMocks
+    private Aggregator aggregator;
 
-  @Mock
-  private ProductInformationClient informationClient;
+    @Mock
+    private ProductInformationClient informationClient;
 
-  @Mock
-  private ProductInventoryClient inventoryClient;
+    @Mock
+    private ProductInventoryClient inventoryClient;
 
-  @BeforeEach
-  public void setup() {
-    MockitoAnnotations.initMocks(this);
-  }
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
 
-  /**
-   * Tests getting the data for a desktop client
-   */
-  @Test
-  void testGetProduct() {
-    var title = "The Product Title.";
-    var inventories = 5;
+    /**
+     * Tests getting the data for a desktop client
+     */
+    @Test
+    void testGetProduct() {
+        var title = "The Product Title.";
+        var inventories = 5;
 
-    when(informationClient.getProductTitle()).thenReturn(title);
-    when(inventoryClient.getProductInventories()).thenReturn(inventories);
+        when(informationClient.getProductTitle()).thenReturn(title);
+        when(inventoryClient.getProductInventories()).thenReturn(inventories);
 
-    var testProduct = aggregator.getProduct();
+        var testProduct = aggregator.getProduct();
 
-    assertEquals(title, testProduct.getTitle());
-    assertEquals(inventories, testProduct.getProductInventories());
-  }
+        assertEquals(title, testProduct.getTitle());
+        assertEquals(inventories, testProduct.getProductInventories());
+    }
 
 }

@@ -31,26 +31,26 @@ import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
  */
 public class LotteryUtils {
 
-  private LotteryUtils() {
-  }
-
-  /**
-   * Checks if lottery ticket has won.
-   */
-  public static LotteryTicketCheckResult checkTicketForPrize(
-      LotteryTicketRepository repository,
-      LotteryTicketId id,
-      LotteryNumbers winningNumbers
-  ) {
-    var optional = repository.findById(id);
-    if (optional.isPresent()) {
-      if (optional.get().getLotteryNumbers().equals(winningNumbers)) {
-        return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 1000);
-      } else {
-        return new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
-      }
-    } else {
-      return new LotteryTicketCheckResult(CheckResult.TICKET_NOT_SUBMITTED);
+    private LotteryUtils() {
     }
-  }
+
+    /**
+     * Checks if lottery ticket has won.
+     */
+    public static LotteryTicketCheckResult checkTicketForPrize(
+            LotteryTicketRepository repository,
+            LotteryTicketId id,
+            LotteryNumbers winningNumbers
+    ) {
+        var optional = repository.findById(id);
+        if (optional.isPresent()) {
+            if (optional.get().getLotteryNumbers().equals(winningNumbers)) {
+                return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 1000);
+            } else {
+                return new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
+            }
+        } else {
+            return new LotteryTicketCheckResult(CheckResult.TICKET_NOT_SUBMITTED);
+        }
+    }
 }

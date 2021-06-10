@@ -35,15 +35,15 @@ import java.util.Map;
  */
 
 public class EmployeeDatabase extends Database<Order> {
-  private final Map<String, Order> data = new HashMap<>();
+    private final Map<String, Order> data = new HashMap<>();
 
-  @Override
-  public Order add(Order o) throws DatabaseUnavailableException {
-    return data.put(o.id, o);
-  }
+    @Override
+    public Order add(Order o) throws DatabaseUnavailableException {
+        return data.put(o.id, o);
+    }
 
-  @Override
-  public Order get(String orderId) throws DatabaseUnavailableException {
-    return data.get(orderId);
-  }
+    @Override
+    public Order get(String orderId) throws DatabaseUnavailableException {
+        return data.get(orderId);
+    }
 }

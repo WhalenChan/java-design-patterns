@@ -31,5 +31,5 @@ package com.iluwatar.pipeline;
  * @param <O> the processed output type of the handler
  */
 interface Handler<I, O> {
-  O process(I input);
+    O process(I input);
 }

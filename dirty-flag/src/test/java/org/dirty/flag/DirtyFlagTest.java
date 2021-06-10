@@ -32,18 +32,18 @@ import org.junit.jupiter.api.Test;
  */
 class DirtyFlagTest {
 
-  @Test
-  void testIsDirty() {
-    var df = new DataFetcher();
-    var countries = df.fetch();
-    Assertions.assertFalse(countries.isEmpty());
-  }
+    @Test
+    void testIsDirty() {
+        var df = new DataFetcher();
+        var countries = df.fetch();
+        Assertions.assertFalse(countries.isEmpty());
+    }
 
-  @Test
-  void testIsNotDirty() {
-    var df = new DataFetcher();
-    df.fetch();
-    var countries = df.fetch();
-    Assertions.assertTrue(countries.isEmpty());
-  }
+    @Test
+    void testIsNotDirty() {
+        var df = new DataFetcher();
+        df.fetch();
+        var countries = df.fetch();
+        Assertions.assertTrue(countries.isEmpty());
+    }
 }

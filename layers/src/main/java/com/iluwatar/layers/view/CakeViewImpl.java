@@ -32,13 +32,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CakeViewImpl implements View {
 
-  private final CakeBakingService cakeBakingService;
+    private final CakeBakingService cakeBakingService;
 
-  public CakeViewImpl(CakeBakingService cakeBakingService) {
-    this.cakeBakingService = cakeBakingService;
-  }
+    public CakeViewImpl(CakeBakingService cakeBakingService) {
+        this.cakeBakingService = cakeBakingService;
+    }
 
-  public void render() {
-    cakeBakingService.getAllCakes().forEach(cake -> LOGGER.info(cake.toString()));
-  }
+    public void render() {
+        cakeBakingService.getAllCakes().forEach(cake -> LOGGER.info(cake.toString()));
+    }
 }

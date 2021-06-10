@@ -32,19 +32,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GWeather extends Observable<GWeather, Race, WeatherType> {
 
-  private WeatherType currentWeather;
+    private WeatherType currentWeather;
 
-  public GWeather() {
-    currentWeather = WeatherType.SUNNY;
-  }
+    public GWeather() {
+        currentWeather = WeatherType.SUNNY;
+    }
 
-  /**
-   * Makes time pass for weather.
-   */
-  public void timePasses() {
-    var enumValues = WeatherType.values();
-    currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
-    LOGGER.info("The weather changed to {}.", currentWeather);
-    notifyObservers(currentWeather);
-  }
+    /**
+     * Makes time pass for weather.
+     */
+    public void timePasses() {
+        var enumValues = WeatherType.values();
+        currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
+        LOGGER.info("The weather changed to {}.", currentWeather);
+        notifyObservers(currentWeather);
+    }
 }

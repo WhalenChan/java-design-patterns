@@ -38,19 +38,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Wizard {
 
-  private int health;
-  private int agility;
-  private int wisdom;
-  private int numberOfPlayedSounds;
-  private int numberOfSpawnedParticles;
+    private int health;
+    private int agility;
+    private int wisdom;
+    private int numberOfPlayedSounds;
+    private int numberOfSpawnedParticles;
 
-  public void playSound() {
-    LOGGER.info("Playing sound");
-    numberOfPlayedSounds++;
-  }
+    public void playSound() {
+        LOGGER.info("Playing sound");
+        numberOfPlayedSounds++;
+    }
 
-  public void spawnParticles() {
-    LOGGER.info("Spawning particles");
-    numberOfSpawnedParticles++;
-  }
+    public void spawnParticles() {
+        LOGGER.info("Spawning particles");
+        numberOfSpawnedParticles++;
+    }
 }

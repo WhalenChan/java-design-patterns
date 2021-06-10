@@ -28,6 +28,6 @@ package com.iluwatar.layers.view;
  */
 public interface View {
 
-  void render();
+    void render();
 
 }

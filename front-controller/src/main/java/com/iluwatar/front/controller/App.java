@@ -41,15 +41,15 @@ package com.iluwatar.front.controller;
  */
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    var controller = new FrontController();
-    controller.handleRequest("Archer");
-    controller.handleRequest("Catapult");
-    controller.handleRequest("foobar");
-  }
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        var controller = new FrontController();
+        controller.handleRequest("Archer");
+        controller.handleRequest("Catapult");
+        controller.handleRequest("foobar");
+    }
 }

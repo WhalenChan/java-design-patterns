@@ -28,8 +28,8 @@ package com.iluwatar.front.controller;
  */
 public class UnknownCommand implements Command {
 
-  @Override
-  public void process() {
-    new ErrorView().display();
-  }
+    @Override
+    public void process() {
+        new ErrorView().display();
+    }
 }

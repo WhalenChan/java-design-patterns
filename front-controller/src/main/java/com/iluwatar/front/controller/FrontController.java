@@ -29,25 +29,25 @@ package com.iluwatar.front.controller;
  */
 public class FrontController {
 
-  public void handleRequest(String request) {
-    var command = getCommand(request);
-    command.process();
-  }
-
-  private Command getCommand(String request) {
-    var commandClass = getCommandClass(request);
-    try {
-      return (Command) commandClass.newInstance();
-    } catch (Exception e) {
-      throw new ApplicationException(e);
+    public void handleRequest(String request) {
+        var command = getCommand(request);
+        command.process();
     }
-  }
 
-  private static Class<?> getCommandClass(String request) {
-    try {
-      return Class.forName("com.iluwatar.front.controller." + request + "Command");
-    } catch (ClassNotFoundException e) {
-      return UnknownCommand.class;
+    private Command getCommand(String request) {
+        var commandClass = getCommandClass(request);
+        try {
+            return (Command) commandClass.newInstance();
+        } catch (Exception e) {
+            throw new ApplicationException(e);
+        }
     }
-  }
+
+    private static Class<?> getCommandClass(String request) {
+        try {
+            return Class.forName("com.iluwatar.front.controller." + request + "Command");
+        } catch (ClassNotFoundException e) {
+            return UnknownCommand.class;
+        }
+    }
 }

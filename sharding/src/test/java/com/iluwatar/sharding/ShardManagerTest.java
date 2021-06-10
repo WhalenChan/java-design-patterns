@@ -23,78 +23,77 @@
 
 package com.iluwatar.sharding;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for ShardManager class.
  */
 class ShardManagerTest {
 
-  private ShardManager shardManager;
+    private ShardManager shardManager;
 
-  /**
-   * Initialize shardManager instance.
-   */
-  @BeforeEach
-  void setup() {
-    shardManager = new TestShardManager();
-  }
-
-  @Test
-  void testAddNewShard() {
-    try {
-      var shard = new Shard(1);
-      shardManager.addNewShard(shard);
-      var field = ShardManager.class.getDeclaredField("shardMap");
-      field.setAccessible(true);
-      var map = (Map<Integer, Shard>) field.get(shardManager);
-      assertEquals(1, map.size());
-      assertEquals(shard, map.get(1));
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      fail("Fail to modify field access.");
-    }
-  }
-
-  @Test
-  void testRemoveShardById() {
-    try {
-      var shard = new Shard(1);
-      shardManager.addNewShard(shard);
-      boolean flag = shardManager.removeShardById(1);
-      var field = ShardManager.class.getDeclaredField("shardMap");
-      field.setAccessible(true);
-      var map = (Map<Integer, Shard>) field.get(shardManager);
-      assertTrue(flag);
-      assertEquals(0, map.size());
-    } catch (IllegalAccessException | NoSuchFieldException e) {
-      fail("Fail to modify field access.");
-    }
-  }
-
-  @Test
-  void testGetShardById() {
-    var shard = new Shard(1);
-    shardManager.addNewShard(shard);
-    var tmpShard = shardManager.getShardById(1);
-    assertEquals(shard, tmpShard);
-  }
-
-  static class TestShardManager extends ShardManager {
-
-    @Override
-    public int storeData(Data data) {
-      return 0;
+    /**
+     * Initialize shardManager instance.
+     */
+    @BeforeEach
+    void setup() {
+        shardManager = new TestShardManager();
     }
 
-    @Override
-    protected int allocateShard(Data data) {
-      return 0;
+    @Test
+    void testAddNewShard() {
+        try {
+            var shard = new Shard(1);
+            shardManager.addNewShard(shard);
+            var field = ShardManager.class.getDeclaredField("shardMap");
+            field.setAccessible(true);
+            var map = (Map<Integer, Shard>) field.get(shardManager);
+            assertEquals(1, map.size());
+            assertEquals(shard, map.get(1));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            fail("Fail to modify field access.");
+        }
     }
-  }
+
+    @Test
+    void testRemoveShardById() {
+        try {
+            var shard = new Shard(1);
+            shardManager.addNewShard(shard);
+            boolean flag = shardManager.removeShardById(1);
+            var field = ShardManager.class.getDeclaredField("shardMap");
+            field.setAccessible(true);
+            var map = (Map<Integer, Shard>) field.get(shardManager);
+            assertTrue(flag);
+            assertEquals(0, map.size());
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            fail("Fail to modify field access.");
+        }
+    }
+
+    @Test
+    void testGetShardById() {
+        var shard = new Shard(1);
+        shardManager.addNewShard(shard);
+        var tmpShard = shardManager.getShardById(1);
+        assertEquals(shard, tmpShard);
+    }
+
+    static class TestShardManager extends ShardManager {
+
+        @Override
+        public int storeData(Data data) {
+            return 0;
+        }
+
+        @Override
+        protected int allocateShard(Data data) {
+            return 0;
+        }
+    }
 }

@@ -2,7 +2,7 @@
 <!--
 
     The MIT License
-    Copyright Â© 2014-2021 Ilkka SeppÃ¤lÃ¤
+    Copyright © 2014-2021 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,8 @@
 <additionalHeaders>
     <slashstar_custom_style>
         <firstLine>/*</firstLine>
-        <beforeEachLine> * </beforeEachLine>
-        <endLine> */EOL</endLine><!-- Added EOL here -->
+        <beforeEachLine>*</beforeEachLine>
+        <endLine>*/EOL</endLine><!-- Added EOL here -->
         <firstLineDetectionPattern>(\\s|\\t)*/\\*.*$</firstLineDetectionPattern>
         <lastLineDetectionPattern>.*\\*/(\\s|\\t)*$</lastLineDetectionPattern>
         <allowBlankLines>false</allowBlankLines>

@@ -46,29 +46,29 @@ import com.iluwatar.flux.view.MenuView;
  */
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
 
-    // initialize and wire the system
-    var menuStore = new MenuStore();
-    Dispatcher.getInstance().registerStore(menuStore);
-    var contentStore = new ContentStore();
-    Dispatcher.getInstance().registerStore(contentStore);
-    var menuView = new MenuView();
-    menuStore.registerView(menuView);
-    var contentView = new ContentView();
-    contentStore.registerView(contentView);
+        // initialize and wire the system
+        var menuStore = new MenuStore();
+        Dispatcher.getInstance().registerStore(menuStore);
+        var contentStore = new ContentStore();
+        Dispatcher.getInstance().registerStore(contentStore);
+        var menuView = new MenuView();
+        menuStore.registerView(menuView);
+        var contentView = new ContentView();
+        contentStore.registerView(contentView);
 
-    // render initial view
-    menuView.render();
-    contentView.render();
+        // render initial view
+        menuView.render();
+        contentView.render();
 
-    // user clicks another menu item
-    // this triggers action dispatching and eventually causes views to render with new content
-    menuView.itemClicked(MenuItem.COMPANY);
-  }
+        // user clicks another menu item
+        // this triggers action dispatching and eventually causes views to render with new content
+        menuView.itemClicked(MenuItem.COMPANY);
+    }
 }

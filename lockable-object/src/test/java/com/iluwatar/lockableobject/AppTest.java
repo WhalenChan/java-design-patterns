@@ -23,19 +23,19 @@
 
 package com.iluwatar.lockableobject;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class AppTest {
 
-  @Test
-  void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[] {}));
-  }
+    @Test
+    void shouldExecuteApplicationWithoutException() {
+        assertDoesNotThrow(() -> App.main(new String[]{}));
+    }
 
-  @Test
-  void shouldExecuteApplicationAsRunnableWithoutException() {
-    assertDoesNotThrow(() -> (new App()).run());
-  }
+    @Test
+    void shouldExecuteApplicationAsRunnableWithoutException() {
+        assertDoesNotThrow(() -> (new App()).run());
+    }
 }

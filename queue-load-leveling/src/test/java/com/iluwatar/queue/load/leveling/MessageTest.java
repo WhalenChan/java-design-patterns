@@ -23,21 +23,21 @@
 
 package com.iluwatar.queue.load.leveling;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test case for creating and checking the Message.
  */
 class MessageTest {
 
-  @Test
-  void messageTest() {
+    @Test
+    void messageTest() {
 
-    // Parameterized constructor test.
-    var testMsg = "Message Test";
-    var msg = new Message(testMsg);
-    assertEquals(testMsg, msg.getMsg());
-  }
+        // Parameterized constructor test.
+        var testMsg = "Message Test";
+        var msg = new Message(testMsg);
+        assertEquals(testMsg, msg.getMsg());
+    }
 }

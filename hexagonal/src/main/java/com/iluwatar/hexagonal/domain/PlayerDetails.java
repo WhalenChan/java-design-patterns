@@ -37,8 +37,8 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class PlayerDetails {
 
-  private final String email;
-  private final String bankAccount;
-  private final String phoneNumber;
+    private final String email;
+    private final String bankAccount;
+    private final String phoneNumber;
 
 }

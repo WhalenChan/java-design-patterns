@@ -42,7 +42,6 @@ package com.iluwatar.acyclicvisitor;
  * 非循环访问者模式
  * </p>
  * 这个模式结合etc下面的png图片会更好理解一点
- *
  */
 public class App {
 

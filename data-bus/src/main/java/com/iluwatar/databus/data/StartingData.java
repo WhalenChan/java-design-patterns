@@ -25,9 +25,10 @@ package com.iluwatar.databus.data;
 
 import com.iluwatar.databus.AbstractDataType;
 import com.iluwatar.databus.DataType;
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.time.LocalDateTime;
 
 /**
  * An event raised when applications starts, containing the start time of the application.
@@ -38,9 +39,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class StartingData extends AbstractDataType {
 
-  private final LocalDateTime when;
+    private final LocalDateTime when;
 
-  public static DataType of(final LocalDateTime when) {
-    return new StartingData(when);
-  }
+    public static DataType of(final LocalDateTime when) {
+        return new StartingData(when);
+    }
 }

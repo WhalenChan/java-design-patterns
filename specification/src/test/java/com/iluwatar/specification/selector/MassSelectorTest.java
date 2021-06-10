@@ -23,30 +23,30 @@
 
 package com.iluwatar.specification.selector;
 
+import com.iluwatar.specification.creature.Creature;
+import com.iluwatar.specification.property.Mass;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Mass;
-import org.junit.jupiter.api.Test;
-
 public class MassSelectorTest {
 
-  /**
-   * Verify if the mass selector gives the correct results.
-   */
-  @Test
-  void testMass() {
-    final var lightCreature = mock(Creature.class);
-    when(lightCreature.getMass()).thenReturn(new Mass(50.0));
+    /**
+     * Verify if the mass selector gives the correct results.
+     */
+    @Test
+    void testMass() {
+        final var lightCreature = mock(Creature.class);
+        when(lightCreature.getMass()).thenReturn(new Mass(50.0));
 
-    final var heavyCreature = mock(Creature.class);
-    when(heavyCreature.getMass()).thenReturn(new Mass(2500.0));
+        final var heavyCreature = mock(Creature.class);
+        when(heavyCreature.getMass()).thenReturn(new Mass(2500.0));
 
-    final var lightSelector = new MassSmallerThanOrEqSelector(500.0);
-    assertTrue(lightSelector.test(lightCreature));
-    assertFalse(lightSelector.test(heavyCreature));
-  }
+        final var lightSelector = new MassSmallerThanOrEqSelector(500.0);
+        assertTrue(lightSelector.test(lightCreature));
+        assertFalse(lightSelector.test(heavyCreature));
+    }
 }

@@ -28,6 +28,6 @@ package com.iluwatar.event.aggregator;
  */
 public interface EventObserver {
 
-  void onEvent(Event e);
+    void onEvent(Event e);
 
 }

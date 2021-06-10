@@ -31,26 +31,26 @@ import java.security.SecureRandom;
  */
 public class Producer {
 
-  private static final SecureRandom RANDOM = new SecureRandom();
+    private static final SecureRandom RANDOM = new SecureRandom();
 
-  private final ItemQueue queue;
+    private final ItemQueue queue;
 
-  private final String name;
+    private final String name;
 
-  private int itemId;
+    private int itemId;
 
-  public Producer(String name, ItemQueue queue) {
-    this.name = name;
-    this.queue = queue;
-  }
+    public Producer(String name, ItemQueue queue) {
+        this.name = name;
+        this.queue = queue;
+    }
 
-  /**
-   * Put item in the queue.
-   */
-  public void produce() throws InterruptedException {
+    /**
+     * Put item in the queue.
+     */
+    public void produce() throws InterruptedException {
 
-    var item = new Item(name, itemId++);
-    queue.put(item);
-    Thread.sleep(RANDOM.nextInt(2000));
-  }
+        var item = new Item(name, itemId++);
+        queue.put(item);
+        Thread.sleep(RANDOM.nextInt(2000));
+    }
 }

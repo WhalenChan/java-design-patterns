@@ -32,15 +32,15 @@ import java.util.Map;
  */
 public class OrcBlacksmith implements Blacksmith {
 
-  private static final Map<WeaponType, OrcWeapon> ORCARSENAL;
+    private static final Map<WeaponType, OrcWeapon> ORCARSENAL;
 
-  static {
-    ORCARSENAL = new EnumMap<>(WeaponType.class);
-    Arrays.stream(WeaponType.values()).forEach(type -> ORCARSENAL.put(type, new OrcWeapon(type)));
-  }
+    static {
+        ORCARSENAL = new EnumMap<>(WeaponType.class);
+        Arrays.stream(WeaponType.values()).forEach(type -> ORCARSENAL.put(type, new OrcWeapon(type)));
+    }
 
-  @Override
-  public Weapon manufactureWeapon(WeaponType weaponType) {
-    return ORCARSENAL.get(weaponType);
-  }
+    @Override
+    public Weapon manufactureWeapon(WeaponType weaponType) {
+        return ORCARSENAL.get(weaponType);
+    }
 }

@@ -23,45 +23,45 @@
 
 package com;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import com.iluwatar.leaderfollowers.TaskHandler;
 import com.iluwatar.leaderfollowers.TaskSet;
 import com.iluwatar.leaderfollowers.WorkCenter;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Tests for WorkCenter
  */
 class WorkCenterTest {
 
-  @Test
-  void testCreateWorkers() {
-    var taskSet = new TaskSet();
-    var taskHandler = new TaskHandler();
-    var workCenter = new WorkCenter();
-    workCenter.createWorkers(5, taskSet, taskHandler);
-    assertEquals(5, workCenter.getWorkers().size());
-    assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
-  }
+    @Test
+    void testCreateWorkers() {
+        var taskSet = new TaskSet();
+        var taskHandler = new TaskHandler();
+        var workCenter = new WorkCenter();
+        workCenter.createWorkers(5, taskSet, taskHandler);
+        assertEquals(5, workCenter.getWorkers().size());
+        assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
+    }
 
-  @Test
-  void testNullLeader() {
-    var workCenter = new WorkCenter();
-    workCenter.promoteLeader();
-    assertNull(workCenter.getLeader());
-  }
+    @Test
+    void testNullLeader() {
+        var workCenter = new WorkCenter();
+        workCenter.promoteLeader();
+        assertNull(workCenter.getLeader());
+    }
 
-  @Test
-  void testPromoteLeader() {
-    var taskSet = new TaskSet();
-    var taskHandler = new TaskHandler();
-    var workCenter = new WorkCenter();
-    workCenter.createWorkers(5, taskSet, taskHandler);
-    workCenter.removeWorker(workCenter.getLeader());
-    workCenter.promoteLeader();
-    assertEquals(4, workCenter.getWorkers().size());
-    assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
-  }
+    @Test
+    void testPromoteLeader() {
+        var taskSet = new TaskSet();
+        var taskHandler = new TaskHandler();
+        var workCenter = new WorkCenter();
+        workCenter.createWorkers(5, taskSet, taskHandler);
+        workCenter.removeWorker(workCenter.getLeader());
+        workCenter.promoteLeader();
+        assertEquals(4, workCenter.getWorkers().size());
+        assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
+    }
 }

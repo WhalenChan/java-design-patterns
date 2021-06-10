@@ -34,17 +34,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ContentView implements View {
 
-  private Content content = Content.PRODUCTS;
+    private Content content = Content.PRODUCTS;
 
-  @Override
-  public void storeChanged(Store store) {
-    var contentStore = (ContentStore) store;
-    content = contentStore.getContent();
-    render();
-  }
+    @Override
+    public void storeChanged(Store store) {
+        var contentStore = (ContentStore) store;
+        content = contentStore.getContent();
+        render();
+    }
 
-  @Override
-  public void render() {
-    LOGGER.info(content.toString());
-  }
+    @Override
+    public void render() {
+        LOGGER.info(content.toString());
+    }
 }

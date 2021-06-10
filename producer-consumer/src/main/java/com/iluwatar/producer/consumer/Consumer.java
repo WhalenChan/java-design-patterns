@@ -31,22 +31,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Consumer {
 
-  private final ItemQueue queue;
+    private final ItemQueue queue;
 
-  private final String name;
+    private final String name;
 
-  public Consumer(String name, ItemQueue queue) {
-    this.name = name;
-    this.queue = queue;
-  }
+    public Consumer(String name, ItemQueue queue) {
+        this.name = name;
+        this.queue = queue;
+    }
 
-  /**
-   * Consume item from the queue.
-   */
-  public void consume() throws InterruptedException {
-    var item = queue.take();
-    LOGGER.info("Consumer [{}] consume item [{}] produced by [{}]", name,
-        item.getId(), item.getProducer());
+    /**
+     * Consume item from the queue.
+     */
+    public void consume() throws InterruptedException {
+        var item = queue.take();
+        LOGGER.info("Consumer [{}] consume item [{}] produced by [{}]", name,
+                item.getId(), item.getProducer());
 
-  }
+    }
 }

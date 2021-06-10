@@ -29,5 +29,5 @@ package com.iluwatar.commander.exceptions;
  */
 
 public class PaymentDetailsErrorException extends Exception {
-  private static final long serialVersionUID = 867203L;
+    private static final long serialVersionUID = 867203L;
 }

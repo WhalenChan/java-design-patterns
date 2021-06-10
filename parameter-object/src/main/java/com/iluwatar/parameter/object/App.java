@@ -44,19 +44,19 @@ import org.slf4j.LoggerFactory;
  */
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    ParameterObject params = ParameterObject.newBuilder()
-        .withType("sneakers")
-        .sortBy("brand")
-        .build();
-    LOGGER.info(params.toString());
-    LOGGER.info(new SearchService().search(params));
-  }
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        ParameterObject params = ParameterObject.newBuilder()
+                .withType("sneakers")
+                .sortBy("brand")
+                .build();
+        LOGGER.info(params.toString());
+        LOGGER.info(new SearchService().search(params));
+    }
 }

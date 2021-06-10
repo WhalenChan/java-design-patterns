@@ -24,7 +24,6 @@
 package com.iluwatar.strangler;
 
 /**
- *
  * <p>The Strangler pattern is a software design pattern that incrementally migrate a legacy
  * system by gradually replacing specific pieces of functionality with new applications and
  * services. As features from the legacy system are replaced, the new system eventually
@@ -42,28 +41,28 @@ package com.iluwatar.strangler;
  * this version system with new features, which also supports old version system functionalities.
  * After whole migration, the new system ({@link NewArithmetic}) only depends on new source
  * ({@link NewSource}).</p>
- *
  */
 public class App {
-  /**
-   * Program entry point.
-   * @param args command line args
-   */
-  public static void main(final String[] args) {
-    final var nums = new int[]{1, 2, 3, 4, 5};
-    //Before migration
-    final var oldSystem = new OldArithmetic(new OldSource());
-    oldSystem.sum(nums);
-    oldSystem.mul(nums);
-    //In process of migration
-    final var halfSystem = new HalfArithmetic(new HalfSource(), new OldSource());
-    halfSystem.sum(nums);
-    halfSystem.mul(nums);
-    halfSystem.ifHasZero(nums);
-    //After migration
-    final var newSystem = new NewArithmetic(new NewSource());
-    newSystem.sum(nums);
-    newSystem.mul(nums);
-    newSystem.ifHasZero(nums);
-  }
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(final String[] args) {
+        final var nums = new int[]{1, 2, 3, 4, 5};
+        //Before migration
+        final var oldSystem = new OldArithmetic(new OldSource());
+        oldSystem.sum(nums);
+        oldSystem.mul(nums);
+        //In process of migration
+        final var halfSystem = new HalfArithmetic(new HalfSource(), new OldSource());
+        halfSystem.sum(nums);
+        halfSystem.mul(nums);
+        halfSystem.ifHasZero(nums);
+        //After migration
+        final var newSystem = new NewArithmetic(new NewSource());
+        newSystem.sum(nums);
+        newSystem.mul(nums);
+        newSystem.ifHasZero(nums);
+    }
 }

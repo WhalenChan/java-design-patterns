@@ -23,35 +23,35 @@
 
 package com.iluwatar.gameloop;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class GameControllerTest {
 
-  private GameController controller;
+    private GameController controller;
 
-  @BeforeEach
-  public void setup() {
-    controller = new GameController();
-  }
+    @BeforeEach
+    public void setup() {
+        controller = new GameController();
+    }
 
-  @AfterEach
-  public void tearDown() {
-    controller = null;
-  }
+    @AfterEach
+    public void tearDown() {
+        controller = null;
+    }
 
-  @Test
-  void testMoveBullet() {
-    controller.moveBullet(1.5f);
-    assertEquals(1.5f, controller.bullet.getPosition(), 0);
-  }
+    @Test
+    void testMoveBullet() {
+        controller.moveBullet(1.5f);
+        assertEquals(1.5f, controller.bullet.getPosition(), 0);
+    }
 
-  @Test
-  void testGetBulletPosition() {
-    assertEquals(controller.bullet.getPosition(), controller.getBulletPosition(), 0);
-  }
+    @Test
+    void testGetBulletPosition() {
+        assertEquals(controller.bullet.getPosition(), controller.getBulletPosition(), 0);
+    }
 
 }

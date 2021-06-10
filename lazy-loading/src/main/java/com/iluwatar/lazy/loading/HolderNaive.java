@@ -31,22 +31,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class HolderNaive {
 
-  private Heavy heavy;
+    private Heavy heavy;
 
-  /**
-   * Constructor.
-   */
-  public HolderNaive() {
-    LOGGER.info("HolderNaive created");
-  }
-
-  /**
-   * Get heavy object.
-   */
-  public Heavy getHeavy() {
-    if (heavy == null) {
-      heavy = new Heavy();
+    /**
+     * Constructor.
+     */
+    public HolderNaive() {
+        LOGGER.info("HolderNaive created");
     }
-    return heavy;
-  }
+
+    /**
+     * Get heavy object.
+     */
+    public Heavy getHeavy() {
+        if (heavy == null) {
+            heavy = new Heavy();
+        }
+        return heavy;
+    }
 }

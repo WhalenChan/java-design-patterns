@@ -25,11 +25,12 @@ package com.iluwatar.serverless.baas.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
-import java.io.Serializable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.io.Serializable;
 
 /**
  * Address class Created by dheeraj.mummarareddy on 3/4/18.
@@ -41,21 +42,21 @@ import lombok.ToString;
 @DynamoDBDocument
 public class Address implements Serializable {
 
-  private static final long serialVersionUID = 6760844284799736970L;
+    private static final long serialVersionUID = 6760844284799736970L;
 
-  @DynamoDBAttribute(attributeName = "addressLineOne")
-  private String addressLineOne;
+    @DynamoDBAttribute(attributeName = "addressLineOne")
+    private String addressLineOne;
 
-  @DynamoDBAttribute(attributeName = "addressLineTwo")
-  private String addressLineTwo;
+    @DynamoDBAttribute(attributeName = "addressLineTwo")
+    private String addressLineTwo;
 
-  @DynamoDBAttribute(attributeName = "city")
-  private String city;
+    @DynamoDBAttribute(attributeName = "city")
+    private String city;
 
-  @DynamoDBAttribute(attributeName = "state")
-  private String state;
+    @DynamoDBAttribute(attributeName = "state")
+    private String state;
 
-  @DynamoDBAttribute(attributeName = "zipCode")
-  private String zipCode;
+    @DynamoDBAttribute(attributeName = "zipCode")
+    private String zipCode;
 
 }

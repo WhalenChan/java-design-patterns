@@ -33,8 +33,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Student {
 
-  private final Integer id;
-  private final String name;
-  private final String address;
+    private final Integer id;
+    private final String name;
+    private final String address;
 
 }

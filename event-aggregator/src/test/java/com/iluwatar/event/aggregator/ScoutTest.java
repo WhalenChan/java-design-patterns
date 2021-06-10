@@ -30,11 +30,11 @@ package com.iluwatar.event.aggregator;
  */
 class ScoutTest extends EventEmitterTest<Scout> {
 
-  /**
-   * Create a new test instance, using the correct object factory
-   */
-  public ScoutTest() {
-    super(Weekday.TUESDAY, Event.WARSHIPS_APPROACHING, Scout::new, Scout::new);
-  }
+    /**
+     * Create a new test instance, using the correct object factory
+     */
+    public ScoutTest() {
+        super(Weekday.TUESDAY, Event.WARSHIPS_APPROACHING, Scout::new, Scout::new);
+    }
 
 }

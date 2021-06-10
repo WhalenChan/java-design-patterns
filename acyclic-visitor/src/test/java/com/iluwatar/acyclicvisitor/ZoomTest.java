@@ -35,21 +35,21 @@ import static org.mockito.Mockito.verify;
  */
 class ZoomTest {
 
-  @Test
-  void testAcceptForDos() {
-    var zoom = new Zoom();
-    var mockVisitor = mock(ConfigureForDosVisitor.class);
+    @Test
+    void testAcceptForDos() {
+        var zoom = new Zoom();
+        var mockVisitor = mock(ConfigureForDosVisitor.class);
 
-    zoom.accept(mockVisitor);
-    verify((ZoomVisitor) mockVisitor).visit(eq(zoom));
-  }
+        zoom.accept(mockVisitor);
+        verify((ZoomVisitor) mockVisitor).visit(eq(zoom));
+    }
 
-  @Test
-  void testAcceptForUnix() {
-    var zoom = new Zoom();
-    var mockVisitor = mock(ConfigureForUnixVisitor.class);
+    @Test
+    void testAcceptForUnix() {
+        var zoom = new Zoom();
+        var mockVisitor = mock(ConfigureForUnixVisitor.class);
 
-    zoom.accept(mockVisitor);
-    verify((ZoomVisitor) mockVisitor).visit(eq(zoom));
-  }
+        zoom.accept(mockVisitor);
+        verify((ZoomVisitor) mockVisitor).visit(eq(zoom));
+    }
 }

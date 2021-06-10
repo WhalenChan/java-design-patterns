@@ -28,16 +28,16 @@ import org.slf4j.LoggerFactory;
 
 public class InvalidUser implements ReceiptViewModel {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(InvalidUser.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(InvalidUser.class);
 
-  private final String userName;
+    private final String userName;
 
-  public InvalidUser(String userName) {
-    this.userName = userName;
-  }
+    public InvalidUser(String userName) {
+        this.userName = userName;
+    }
 
-  @Override
-  public void show() {
-    LOGGER.info("Invalid user: " + userName);
-  }
+    @Override
+    public void show() {
+        LOGGER.info("Invalid user: " + userName);
+    }
 }

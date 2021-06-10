@@ -23,9 +23,10 @@
 
 package com.iluwatar.producer.consumer;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Producer Consumer Design pattern is a classic concurrency or threading pattern which reduces
@@ -40,41 +41,41 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
 
-    var queue = new ItemQueue();
+        var queue = new ItemQueue();
 
-    var executorService = Executors.newFixedThreadPool(5);
-    for (var i = 0; i < 2; i++) {
+        var executorService = Executors.newFixedThreadPool(5);
+        for (var i = 0; i < 2; i++) {
 
-      final var producer = new Producer("Producer_" + i, queue);
-      executorService.submit(() -> {
-        while (true) {
-          producer.produce();
+            final var producer = new Producer("Producer_" + i, queue);
+            executorService.submit(() -> {
+                while (true) {
+                    producer.produce();
+                }
+            });
         }
-      });
-    }
 
-    for (var i = 0; i < 3; i++) {
-      final var consumer = new Consumer("Consumer_" + i, queue);
-      executorService.submit(() -> {
-        while (true) {
-          consumer.consume();
+        for (var i = 0; i < 3; i++) {
+            final var consumer = new Consumer("Consumer_" + i, queue);
+            executorService.submit(() -> {
+                while (true) {
+                    consumer.consume();
+                }
+            });
         }
-      });
-    }
 
-    executorService.shutdown();
-    try {
-      executorService.awaitTermination(10, TimeUnit.SECONDS);
-      executorService.shutdownNow();
-    } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown");
+        executorService.shutdown();
+        try {
+            executorService.awaitTermination(10, TimeUnit.SECONDS);
+            executorService.shutdownNow();
+        } catch (InterruptedException e) {
+            LOGGER.error("Error waiting for ExecutorService shutdown");
+        }
     }
-  }
 }

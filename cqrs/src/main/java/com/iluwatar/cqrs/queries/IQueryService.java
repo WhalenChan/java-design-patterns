@@ -25,6 +25,7 @@ package com.iluwatar.cqrs.queries;
 
 import com.iluwatar.cqrs.dto.Author;
 import com.iluwatar.cqrs.dto.Book;
+
 import java.math.BigInteger;
 import java.util.List;
 
@@ -33,14 +34,14 @@ import java.util.List;
  */
 public interface IQueryService {
 
-  Author getAuthorByUsername(String username);
+    Author getAuthorByUsername(String username);
 
-  Book getBook(String title);
+    Book getBook(String title);
 
-  List<Book> getAuthorBooks(String username);
+    List<Book> getAuthorBooks(String username);
 
-  BigInteger getAuthorBooksCount(String username);
+    BigInteger getAuthorBooksCount(String username);
 
-  BigInteger getAuthorsCount();
+    BigInteger getAuthorsCount();
 
 }

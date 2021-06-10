@@ -32,8 +32,8 @@ import lombok.ToString;
  * HeroStat is a value object.
  *
  * @see <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html">
- *     http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html
- *     </a>
+ * http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html
+ * </a>
  */
 @Getter
 @ToString
@@ -41,17 +41,17 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class HeroStat {
 
-  // Stats for a hero
+    // Stats for a hero
 
-  private final int strength;
-  private final int intelligence;
-  private final int luck;
+    private final int strength;
+    private final int intelligence;
+    private final int luck;
 
-  // Static factory method to create new instances.
-  public static HeroStat valueOf(int strength, int intelligence, int luck) {
-    return new HeroStat(strength, intelligence, luck);
-  }
+    // Static factory method to create new instances.
+    public static HeroStat valueOf(int strength, int intelligence, int luck) {
+        return new HeroStat(strength, intelligence, luck);
+    }
 
-  // The clone() method should not be public. Just don't override it.
+    // The clone() method should not be public. Just don't override it.
 
 }

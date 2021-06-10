@@ -32,10 +32,10 @@ import lombok.Setter;
 @Setter
 public class AdvancedSorceress implements Wizard {
 
-  private Tobacco tobacco;
+    private Tobacco tobacco;
 
-  @Override
-  public void smoke() {
-    tobacco.smoke(this);
-  }
+    @Override
+    public void smoke() {
+        tobacco.smoke(this);
+    }
 }

@@ -23,17 +23,17 @@
 
 package com.iluwatar.specialcase;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * Application test.
  */
 public class AppTest {
 
-  @Test
-  void shouldExecuteWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
-  }
+    @Test
+    void shouldExecuteWithoutException() {
+        assertDoesNotThrow(() -> App.main(new String[]{}));
+    }
 }

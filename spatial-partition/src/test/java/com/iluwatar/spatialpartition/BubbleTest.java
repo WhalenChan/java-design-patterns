@@ -23,14 +23,12 @@
 
 package com.iluwatar.spatialpartition;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Testing methods in Bubble class.
@@ -38,56 +36,56 @@ import org.junit.jupiter.api.Test;
 
 class BubbleTest {
 
-  @Test
-  void moveTest() {
-    var b = new Bubble(10, 10, 1, 2);
-    var initialX = b.coordinateX;
-    var initialY = b.coordinateY;
-    b.move();
-    //change in x and y < |2|
-    assertTrue(b.coordinateX - initialX < 2 && b.coordinateX - initialX > -2);
-    assertTrue(b.coordinateY - initialY < 2 && b.coordinateY - initialY > -2);
-  }
+    @Test
+    void moveTest() {
+        var b = new Bubble(10, 10, 1, 2);
+        var initialX = b.coordinateX;
+        var initialY = b.coordinateY;
+        b.move();
+        //change in x and y < |2|
+        assertTrue(b.coordinateX - initialX < 2 && b.coordinateX - initialX > -2);
+        assertTrue(b.coordinateY - initialY < 2 && b.coordinateY - initialY > -2);
+    }
 
-  @Test
-  void touchesTest() {
-    var b1 = new Bubble(0, 0, 1, 2);
-    var b2 = new Bubble(1, 1, 2, 1);
-    var b3 = new Bubble(10, 10, 3, 1);
-    //b1 touches b2 but not b3
-    assertTrue(b1.touches(b2));
-    assertFalse(b1.touches(b3));
-  }
+    @Test
+    void touchesTest() {
+        var b1 = new Bubble(0, 0, 1, 2);
+        var b2 = new Bubble(1, 1, 2, 1);
+        var b3 = new Bubble(10, 10, 3, 1);
+        //b1 touches b2 but not b3
+        assertTrue(b1.touches(b2));
+        assertFalse(b1.touches(b3));
+    }
 
-  @Test
-  void popTest() {
-    var b1 = new Bubble(10, 10, 1, 2);
-    var b2 = new Bubble(0, 0, 2, 2);
-    var bubbles = new HashMap<Integer, Bubble>();
-    bubbles.put(1, b1);
-    bubbles.put(2, b2);
-    b1.pop(bubbles);
-    //after popping, bubble no longer in hashMap containing all bubbles
-    assertNull(bubbles.get(1));
-    assertNotNull(bubbles.get(2));
-  }
+    @Test
+    void popTest() {
+        var b1 = new Bubble(10, 10, 1, 2);
+        var b2 = new Bubble(0, 0, 2, 2);
+        var bubbles = new HashMap<Integer, Bubble>();
+        bubbles.put(1, b1);
+        bubbles.put(2, b2);
+        b1.pop(bubbles);
+        //after popping, bubble no longer in hashMap containing all bubbles
+        assertNull(bubbles.get(1));
+        assertNotNull(bubbles.get(2));
+    }
 
-  @Test
-  void handleCollisionTest() {
-    var b1 = new Bubble(0, 0, 1, 2);
-    var b2 = new Bubble(1, 1, 2, 1);
-    var b3 = new Bubble(10, 10, 3, 1);
-    var bubbles = new HashMap<Integer, Bubble>();
-    bubbles.put(1, b1);
-    bubbles.put(2, b2);
-    bubbles.put(3, b3);
-    var bubblesToCheck = new ArrayList<Point>();
-    bubblesToCheck.add(b2);
-    bubblesToCheck.add(b3);
-    b1.handleCollision(bubblesToCheck, bubbles);
-    //b1 touches b2 and not b3, so b1, b2 will be popped
-    assertNull(bubbles.get(1));
-    assertNull(bubbles.get(2));
-    assertNotNull(bubbles.get(3));
-  }
+    @Test
+    void handleCollisionTest() {
+        var b1 = new Bubble(0, 0, 1, 2);
+        var b2 = new Bubble(1, 1, 2, 1);
+        var b3 = new Bubble(10, 10, 3, 1);
+        var bubbles = new HashMap<Integer, Bubble>();
+        bubbles.put(1, b1);
+        bubbles.put(2, b2);
+        bubbles.put(3, b3);
+        var bubblesToCheck = new ArrayList<Point>();
+        bubblesToCheck.add(b2);
+        bubblesToCheck.add(b3);
+        b1.handleCollision(bubblesToCheck, bubbles);
+        //b1 touches b2 and not b3, so b1, b2 will be popped
+        assertNull(bubbles.get(1));
+        assertNull(bubbles.get(2));
+        assertNotNull(bubbles.get(3));
+    }
 }

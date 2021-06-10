@@ -23,7 +23,6 @@
 
 package com.iluwatar.promise;
 
-import java.util.concurrent.ExecutionException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -33,8 +32,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
  */
 class AppTest {
 
-  @Test
-  void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> App.main(null));
-  }
+    @Test
+    void shouldExecuteApplicationWithoutException() {
+        assertDoesNotThrow(() -> App.main(null));
+    }
 }

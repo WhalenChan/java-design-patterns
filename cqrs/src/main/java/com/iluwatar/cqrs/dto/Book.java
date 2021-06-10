@@ -23,11 +23,7 @@
 
 package com.iluwatar.cqrs.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * This is a DTO (Data Transfer Object) book, contains only useful information to be returned.
@@ -39,7 +35,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Book {
 
-  private String title;
-  private double price;
+    private String title;
+    private double price;
 
 }

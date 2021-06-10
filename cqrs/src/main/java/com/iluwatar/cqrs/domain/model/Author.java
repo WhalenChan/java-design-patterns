@@ -23,13 +23,14 @@
 
 package com.iluwatar.cqrs.domain.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  * This is an Author entity. It is used by Hibernate for persistence.
@@ -39,27 +40,27 @@ import lombok.ToString;
 @Setter
 @Entity
 public class Author {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-  private String username;
-  private String name;
-  private String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String username;
+    private String name;
+    private String email;
 
-  /**
-   * Constructor.
-   *
-   * @param username username of the author
-   * @param name     name of the author
-   * @param email    email of the author
-   */
-  public Author(String username, String name, String email) {
-    this.username = username;
-    this.name = name;
-    this.email = email;
-  }
+    /**
+     * Constructor.
+     *
+     * @param username username of the author
+     * @param name     name of the author
+     * @param email    email of the author
+     */
+    public Author(String username, String name, String email) {
+        this.username = username;
+        this.name = name;
+        this.email = email;
+    }
 
-  protected Author() {
-  }
+    protected Author() {
+    }
 
 }

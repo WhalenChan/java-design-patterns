@@ -32,22 +32,22 @@ import org.hibernate.criterion.Restrictions;
  */
 public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 
-  @Override
-  public Wizard findByName(String name) {
-    Transaction tx = null;
-    Wizard result;
-    try (var session = getSessionFactory().openSession()) {
-      tx = session.beginTransaction();
-      var criteria = session.createCriteria(persistentClass);
-      criteria.add(Restrictions.eq("name", name));
-      result = (Wizard) criteria.uniqueResult();
-      tx.commit();
-    } catch (Exception e) {
-      if (tx != null) {
-        tx.rollback();
-      }
-      throw e;
+    @Override
+    public Wizard findByName(String name) {
+        Transaction tx = null;
+        Wizard result;
+        try (var session = getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            var criteria = session.createCriteria(persistentClass);
+            criteria.add(Restrictions.eq("name", name));
+            result = (Wizard) criteria.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw e;
+        }
+        return result;
     }
-    return result;
-  }
 }

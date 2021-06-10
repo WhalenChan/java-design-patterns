@@ -31,17 +31,17 @@ import com.iluwatar.specification.property.Mass;
  */
 public class MassGreaterThanSelector extends AbstractSelector<Creature> {
 
-  private final Mass mass;
+    private final Mass mass;
 
-  /**
-   * The use of a double as a parameter will spare some typing when instantiating this class.
-   */
-  public MassGreaterThanSelector(double mass) {
-    this.mass = new Mass(mass);
-  }
+    /**
+     * The use of a double as a parameter will spare some typing when instantiating this class.
+     */
+    public MassGreaterThanSelector(double mass) {
+        this.mass = new Mass(mass);
+    }
 
-  @Override
-  public boolean test(Creature t) {
-    return t.getMass().greaterThan(mass);
-  }
+    @Override
+    public boolean test(Creature t) {
+        return t.getMass().greaterThan(mass);
+    }
 }

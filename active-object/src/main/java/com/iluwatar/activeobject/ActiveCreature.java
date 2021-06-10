@@ -72,7 +72,7 @@ public abstract class ActiveCreature {
 
     /**
      * Eats the porridge.
-     *
+     * <p>
      * porridge：稀饭
      *
      * @throws InterruptedException due to firing a new Runnable.
@@ -88,6 +88,7 @@ public abstract class ActiveCreature {
      * Roam in the wastelands.
      * roam: 漫游, 遨游, 漫步, 流转, 徘徊, 游, 巡回
      * wastelands: 荒地
+     *
      * @throws InterruptedException due to firing a new Runnable.
      */
     public void roam() throws InterruptedException {

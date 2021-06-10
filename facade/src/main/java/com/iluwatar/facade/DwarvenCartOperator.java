@@ -31,13 +31,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DwarvenCartOperator extends DwarvenMineWorker {
 
-  @Override
-  public void work() {
-    LOGGER.info("{} moves gold chunks out of the mine.", name());
-  }
+    @Override
+    public void work() {
+        LOGGER.info("{} moves gold chunks out of the mine.", name());
+    }
 
-  @Override
-  public String name() {
-    return "Dwarf cart operator";
-  }
+    @Override
+    public String name() {
+        return "Dwarf cart operator";
+    }
 }

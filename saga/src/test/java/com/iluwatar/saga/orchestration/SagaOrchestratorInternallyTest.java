@@ -25,123 +25,123 @@ package com.iluwatar.saga.orchestration;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.iluwatar.saga.orchestration.Saga.Result;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * test to test orchestration logic
  */
 class SagaOrchestratorInternallyTest {
 
-  private final List<String> records = new ArrayList<>();
+    private final List<String> records = new ArrayList<>();
 
-  @Test
-  void executeTest() {
-    var sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
-    var result = sagaOrchestrator.execute(1);
-    assertEquals(Result.ROLLBACK, result);
-    assertArrayEquals(
-            new String[]{"+1", "+2", "+3", "+4", "-4", "-3", "-2", "-1"},
-            records.toArray(new String[]{}));
-  }
-
-  private static Saga newSaga() {
-    return Saga.create()
-        .chapter("1")
-        .chapter("2")
-        .chapter("3")
-        .chapter("4");
-  }
-
-  private ServiceDiscoveryService serviceDiscovery() {
-    return new ServiceDiscoveryService()
-        .discover(new Service1())
-        .discover(new Service2())
-        .discover(new Service3())
-        .discover(new Service4());
-  }
-
-  class Service1 extends Service<Integer> {
-
-    @Override
-    public String getName() {
-      return "1";
+    @Test
+    void executeTest() {
+        var sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
+        var result = sagaOrchestrator.execute(1);
+        assertEquals(Result.ROLLBACK, result);
+        assertArrayEquals(
+                new String[]{"+1", "+2", "+3", "+4", "-4", "-3", "-2", "-1"},
+                records.toArray(new String[]{}));
     }
 
-    @Override
-    public ChapterResult<Integer> process(Integer value) {
-      records.add("+1");
-      return ChapterResult.success(value);
+    private static Saga newSaga() {
+        return Saga.create()
+                .chapter("1")
+                .chapter("2")
+                .chapter("3")
+                .chapter("4");
     }
 
-    @Override
-    public ChapterResult<Integer> rollback(Integer value) {
-      records.add("-1");
-      return ChapterResult.success(value);
-    }
-  }
-
-  class Service2 extends Service<Integer> {
-
-    @Override
-    public String getName() {
-      return "2";
+    private ServiceDiscoveryService serviceDiscovery() {
+        return new ServiceDiscoveryService()
+                .discover(new Service1())
+                .discover(new Service2())
+                .discover(new Service3())
+                .discover(new Service4());
     }
 
-    @Override
-    public ChapterResult<Integer> process(Integer value) {
-      records.add("+2");
-      return ChapterResult.success(value);
+    class Service1 extends Service<Integer> {
+
+        @Override
+        public String getName() {
+            return "1";
+        }
+
+        @Override
+        public ChapterResult<Integer> process(Integer value) {
+            records.add("+1");
+            return ChapterResult.success(value);
+        }
+
+        @Override
+        public ChapterResult<Integer> rollback(Integer value) {
+            records.add("-1");
+            return ChapterResult.success(value);
+        }
     }
 
-    @Override
-    public ChapterResult<Integer> rollback(Integer value) {
-      records.add("-2");
-      return ChapterResult.success(value);
-    }
-  }
+    class Service2 extends Service<Integer> {
 
-  class Service3 extends Service<Integer> {
+        @Override
+        public String getName() {
+            return "2";
+        }
 
-    @Override
-    public String getName() {
-      return "3";
-    }
+        @Override
+        public ChapterResult<Integer> process(Integer value) {
+            records.add("+2");
+            return ChapterResult.success(value);
+        }
 
-    @Override
-    public ChapterResult<Integer> process(Integer value) {
-      records.add("+3");
-      return ChapterResult.success(value);
-    }
-
-    @Override
-    public ChapterResult<Integer> rollback(Integer value) {
-      records.add("-3");
-      return ChapterResult.success(value);
-    }
-  }
-
-  class Service4 extends Service<Integer> {
-
-    @Override
-    public String getName() {
-      return "4";
+        @Override
+        public ChapterResult<Integer> rollback(Integer value) {
+            records.add("-2");
+            return ChapterResult.success(value);
+        }
     }
 
-    @Override
-    public ChapterResult<Integer> process(Integer value) {
-      records.add("+4");
-      return ChapterResult.failure(value);
+    class Service3 extends Service<Integer> {
+
+        @Override
+        public String getName() {
+            return "3";
+        }
+
+        @Override
+        public ChapterResult<Integer> process(Integer value) {
+            records.add("+3");
+            return ChapterResult.success(value);
+        }
+
+        @Override
+        public ChapterResult<Integer> rollback(Integer value) {
+            records.add("-3");
+            return ChapterResult.success(value);
+        }
     }
 
-    @Override
-    public ChapterResult<Integer> rollback(Integer value) {
-      records.add("-4");
-      return ChapterResult.success(value);
+    class Service4 extends Service<Integer> {
+
+        @Override
+        public String getName() {
+            return "4";
+        }
+
+        @Override
+        public ChapterResult<Integer> process(Integer value) {
+            records.add("+4");
+            return ChapterResult.failure(value);
+        }
+
+        @Override
+        public ChapterResult<Integer> rollback(Integer value) {
+            records.add("-4");
+            return ChapterResult.success(value);
+        }
     }
-  }
 }

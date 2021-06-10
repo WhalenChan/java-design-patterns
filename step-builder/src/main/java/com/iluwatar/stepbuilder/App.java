@@ -58,42 +58,42 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
 
-    var warrior = CharacterStepBuilder
-        .newBuilder()
-        .name("Amberjill")
-        .fighterClass("Paladin")
-        .withWeapon("Sword")
-        .noAbilities()
-        .build();
+        var warrior = CharacterStepBuilder
+                .newBuilder()
+                .name("Amberjill")
+                .fighterClass("Paladin")
+                .withWeapon("Sword")
+                .noAbilities()
+                .build();
 
-    LOGGER.info(warrior.toString());
+        LOGGER.info(warrior.toString());
 
-    var mage = CharacterStepBuilder
-        .newBuilder()
-        .name("Riobard")
-        .wizardClass("Sorcerer")
-        .withSpell("Fireball")
-        .withAbility("Fire Aura")
-        .withAbility("Teleport")
-        .noMoreAbilities()
-        .build();
+        var mage = CharacterStepBuilder
+                .newBuilder()
+                .name("Riobard")
+                .wizardClass("Sorcerer")
+                .withSpell("Fireball")
+                .withAbility("Fire Aura")
+                .withAbility("Teleport")
+                .noMoreAbilities()
+                .build();
 
-    LOGGER.info(mage.toString());
+        LOGGER.info(mage.toString());
 
-    var thief = CharacterStepBuilder
-        .newBuilder()
-        .name("Desmond")
-        .fighterClass("Rogue")
-        .noWeapon()
-        .build();
+        var thief = CharacterStepBuilder
+                .newBuilder()
+                .name("Desmond")
+                .fighterClass("Rogue")
+                .noWeapon()
+                .build();
 
-    LOGGER.info(thief.toString());
-  }
+        LOGGER.info(thief.toString());
+    }
 }

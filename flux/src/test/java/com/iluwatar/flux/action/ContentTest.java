@@ -23,10 +23,10 @@
 
 package com.iluwatar.flux.action;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 10:11 PM
@@ -35,13 +35,13 @@ import org.junit.jupiter.api.Test;
  */
 public class ContentTest {
 
-  @Test
-  void testToString() {
-    for (final var content : Content.values()) {
-      final var toString = content.toString();
-      assertNotNull(toString);
-      assertFalse(toString.trim().isEmpty());
+    @Test
+    void testToString() {
+        for (final var content : Content.values()) {
+            final var toString = content.toString();
+            assertNotNull(toString);
+            assertFalse(toString.trim().isEmpty());
+        }
     }
-  }
 
 }

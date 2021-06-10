@@ -36,16 +36,16 @@ import java.io.IOException;
  */
 public class App {
 
-  /**
-   * Program entry point.
-   */
-  public static void main(String[] args) throws IOException {
+    /**
+     * Program entry point.
+     */
+    public static void main(String[] args) throws IOException {
 
-    FileWriterAction writeHello = writer -> {
-      writer.write("Hello");
-      writer.append(" ");
-      writer.append("there!");
-    };
-    new SimpleFileWriter("testfile.txt", writeHello);
-  }
+        FileWriterAction writeHello = writer -> {
+            writer.write("Hello");
+            writer.append(" ");
+            writer.append("there!");
+        };
+        new SimpleFileWriter("testfile.txt", writeHello);
+    }
 }

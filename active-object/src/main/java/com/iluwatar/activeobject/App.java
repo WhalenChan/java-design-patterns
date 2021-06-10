@@ -36,12 +36,11 @@ import java.util.List;
  * into an invocator(usually a Runnable) and store it in the DSA.
  *
  * <p>
- *     In this example, we fire 20 threads to modify a value in the target class.
+ * In this example, we fire 20 threads to modify a value in the target class.
  * </p>
- *     主动对象模式：主动对象模式用于降低方法执行和方法调用之间的耦合。该模式描述了另外一种更为透明的任务间通信方法。
+ * 主动对象模式：主动对象模式用于降低方法执行和方法调用之间的耦合。该模式描述了另外一种更为透明的任务间通信方法。
  * </p>
  * 其他实现参考：http://ifeve.com/java-active-object/
- *
  */
 public class App implements Runnable {
 

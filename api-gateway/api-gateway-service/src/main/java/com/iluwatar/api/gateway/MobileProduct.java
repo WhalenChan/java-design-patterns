@@ -32,8 +32,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MobileProduct {
-  /**
-   * The price of the product.
-   */
-  private String price;
+    /**
+     * The price of the product.
+     */
+    private String price;
 }

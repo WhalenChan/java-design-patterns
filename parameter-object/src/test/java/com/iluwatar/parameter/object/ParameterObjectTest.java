@@ -31,33 +31,33 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParameterObjectTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ParameterObjectTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ParameterObjectTest.class);
 
-  @Test
-  public void testForDefaultSortBy() {
-    //Creating parameter object with default value for SortBy set
-    ParameterObject params = ParameterObject.newBuilder()
-        .withType("sneakers")
-        .sortOrder(SortOrder.DESC)
-        .build();
+    @Test
+    public void testForDefaultSortBy() {
+        //Creating parameter object with default value for SortBy set
+        ParameterObject params = ParameterObject.newBuilder()
+                .withType("sneakers")
+                .sortOrder(SortOrder.DESC)
+                .build();
 
-    assertEquals(ParameterObject.DEFAULT_SORT_BY, params.getSortBy(),
-        "Default SortBy is not set.");
-    LOGGER.info("{} Default parameter value is set during object creation as no value is passed."
-        , "SortBy");
-  }
+        assertEquals(ParameterObject.DEFAULT_SORT_BY, params.getSortBy(),
+                "Default SortBy is not set.");
+        LOGGER.info("{} Default parameter value is set during object creation as no value is passed."
+                , "SortBy");
+    }
 
-  @Test
-  public void testForDefaultSortOrder() {
-    //Creating parameter object with default value for SortOrder set
-    ParameterObject params = ParameterObject.newBuilder()
-        .withType("sneakers")
-        .sortBy("brand")
-        .build();
+    @Test
+    public void testForDefaultSortOrder() {
+        //Creating parameter object with default value for SortOrder set
+        ParameterObject params = ParameterObject.newBuilder()
+                .withType("sneakers")
+                .sortBy("brand")
+                .build();
 
-    assertEquals(ParameterObject.DEFAULT_SORT_ORDER, params.getSortOrder(),
-        "Default SortOrder is not set.");
-    LOGGER.info("{} Default parameter value is set during object creation as no value is passed."
-        , "SortOrder");
-  }
+        assertEquals(ParameterObject.DEFAULT_SORT_ORDER, params.getSortOrder(),
+                "Default SortOrder is not set.");
+        LOGGER.info("{} Default parameter value is set during object creation as no value is passed."
+                , "SortOrder");
+    }
 }

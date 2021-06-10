@@ -23,116 +23,113 @@
 
 package com.iluwatar.event.asynchronous;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Application test
  */
 class EventAsynchronousTest {
-  private static final Logger LOGGER = LoggerFactory.getLogger(EventAsynchronousTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventAsynchronousTest.class);
 
-  @Test
-  void testAsynchronousEvent() {
-    var eventManager = new EventManager();
-    try {
-      var aEventId = eventManager.createAsync(60);
-      eventManager.start(aEventId);
-      assertEquals(1, eventManager.getEventPool().size());
-      assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
-      assertEquals(-1, eventManager.numOfCurrentlyRunningSyncEvent());
-      eventManager.cancel(aEventId);
-      assertTrue(eventManager.getEventPool().isEmpty());
-    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-      LOGGER.error(e.getMessage());
+    @Test
+    void testAsynchronousEvent() {
+        var eventManager = new EventManager();
+        try {
+            var aEventId = eventManager.createAsync(60);
+            eventManager.start(aEventId);
+            assertEquals(1, eventManager.getEventPool().size());
+            assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
+            assertEquals(-1, eventManager.numOfCurrentlyRunningSyncEvent());
+            eventManager.cancel(aEventId);
+            assertTrue(eventManager.getEventPool().isEmpty());
+        } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
+            LOGGER.error(e.getMessage());
+        }
     }
-  }
 
-  @Test
-  void testSynchronousEvent() {
-    var eventManager = new EventManager();
-    try {
-      var sEventId = eventManager.create(60);
-      eventManager.start(sEventId);
-      assertEquals(1, eventManager.getEventPool().size());
-      assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
-      assertNotEquals(-1, eventManager.numOfCurrentlyRunningSyncEvent());
-      eventManager.cancel(sEventId);
-      assertTrue(eventManager.getEventPool().isEmpty());
-    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
-        | InvalidOperationException e) {
-      LOGGER.error(e.getMessage());
+    @Test
+    void testSynchronousEvent() {
+        var eventManager = new EventManager();
+        try {
+            var sEventId = eventManager.create(60);
+            eventManager.start(sEventId);
+            assertEquals(1, eventManager.getEventPool().size());
+            assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
+            assertNotEquals(-1, eventManager.numOfCurrentlyRunningSyncEvent());
+            eventManager.cancel(sEventId);
+            assertTrue(eventManager.getEventPool().isEmpty());
+        } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
+                | InvalidOperationException e) {
+            LOGGER.error(e.getMessage());
+        }
     }
-  }
 
-  @Test
-  void testUnsuccessfulSynchronousEvent() {
-    assertThrows(InvalidOperationException.class, () -> {
-      var eventManager = new EventManager();
-      try {
-        var sEventId = eventManager.create(60);
-        eventManager.start(sEventId);
-        sEventId = eventManager.create(60);
-        eventManager.start(sEventId);
-      } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-        LOGGER.error(e.getMessage());
-      }
-    });
-  }
-
-  @Test
-  void testFullSynchronousEvent() {
-    var eventManager = new EventManager();
-    try {
-      var eventTime = 1;
-
-      var sEventId = eventManager.create(eventTime);
-      assertEquals(1, eventManager.getEventPool().size());
-      eventManager.start(sEventId);
-
-      var currentTime = System.currentTimeMillis();
-      // +2 to give a bit of buffer time for event to complete properly.
-      var endTime = currentTime + (eventTime + 2 * 1000);
-      while (System.currentTimeMillis() < endTime) ;
-
-      assertTrue(eventManager.getEventPool().isEmpty());
-
-    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
-        | InvalidOperationException e) {
-      LOGGER.error(e.getMessage());
+    @Test
+    void testUnsuccessfulSynchronousEvent() {
+        assertThrows(InvalidOperationException.class, () -> {
+            var eventManager = new EventManager();
+            try {
+                var sEventId = eventManager.create(60);
+                eventManager.start(sEventId);
+                sEventId = eventManager.create(60);
+                eventManager.start(sEventId);
+            } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
+                LOGGER.error(e.getMessage());
+            }
+        });
     }
-  }
 
-  @Test
-  void testFullAsynchronousEvent() {
-    var eventManager = new EventManager();
-    try {
-      var eventTime = 1;
+    @Test
+    void testFullSynchronousEvent() {
+        var eventManager = new EventManager();
+        try {
+            var eventTime = 1;
 
-      var aEventId1 = eventManager.createAsync(eventTime);
-      var aEventId2 = eventManager.createAsync(eventTime);
-      var aEventId3 = eventManager.createAsync(eventTime);
-      assertEquals(3, eventManager.getEventPool().size());
+            var sEventId = eventManager.create(eventTime);
+            assertEquals(1, eventManager.getEventPool().size());
+            eventManager.start(sEventId);
 
-      eventManager.start(aEventId1);
-      eventManager.start(aEventId2);
-      eventManager.start(aEventId3);
+            var currentTime = System.currentTimeMillis();
+            // +2 to give a bit of buffer time for event to complete properly.
+            var endTime = currentTime + (eventTime + 2 * 1000);
+            while (System.currentTimeMillis() < endTime) ;
 
-      var currentTime = System.currentTimeMillis();
-      // +2 to give a bit of buffer time for event to complete properly.
-      var endTime = currentTime + (eventTime + 2 * 1000);
-      while (System.currentTimeMillis() < endTime) ;
+            assertTrue(eventManager.getEventPool().isEmpty());
 
-      assertTrue(eventManager.getEventPool().isEmpty());
-
-    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-      LOGGER.error(e.getMessage());
+        } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
+                | InvalidOperationException e) {
+            LOGGER.error(e.getMessage());
+        }
     }
-  }
+
+    @Test
+    void testFullAsynchronousEvent() {
+        var eventManager = new EventManager();
+        try {
+            var eventTime = 1;
+
+            var aEventId1 = eventManager.createAsync(eventTime);
+            var aEventId2 = eventManager.createAsync(eventTime);
+            var aEventId3 = eventManager.createAsync(eventTime);
+            assertEquals(3, eventManager.getEventPool().size());
+
+            eventManager.start(aEventId1);
+            eventManager.start(aEventId2);
+            eventManager.start(aEventId3);
+
+            var currentTime = System.currentTimeMillis();
+            // +2 to give a bit of buffer time for event to complete properly.
+            var endTime = currentTime + (eventTime + 2 * 1000);
+            while (System.currentTimeMillis() < endTime) ;
+
+            assertTrue(eventManager.getEventPool().isEmpty());
+
+        } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
+            LOGGER.error(e.getMessage());
+        }
+    }
 }

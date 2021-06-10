@@ -23,11 +23,12 @@
 
 package com.iluwatar.event.queue;
 
+import lombok.extern.slf4j.Slf4j;
+
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Event or message queues provide an asynchronous communications protocol, meaning that the sender
@@ -42,23 +43,23 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   * @throws IOException                   when there is a problem with the audio file loading
-   * @throws UnsupportedAudioFileException when the loaded audio file is unsupported
-   */
-  public static void main(String[] args) throws UnsupportedAudioFileException, IOException,
-      InterruptedException {
-    var audio = Audio.getInstance();
-    audio.playSound(audio.getAudioStream("./etc/Bass-Drum-1.wav"), -10.0f);
-    audio.playSound(audio.getAudioStream("./etc/Closed-Hi-Hat-1.wav"), -8.0f);
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     * @throws IOException                   when there is a problem with the audio file loading
+     * @throws UnsupportedAudioFileException when the loaded audio file is unsupported
+     */
+    public static void main(String[] args) throws UnsupportedAudioFileException, IOException,
+            InterruptedException {
+        var audio = Audio.getInstance();
+        audio.playSound(audio.getAudioStream("./etc/Bass-Drum-1.wav"), -10.0f);
+        audio.playSound(audio.getAudioStream("./etc/Closed-Hi-Hat-1.wav"), -8.0f);
 
-    LOGGER.info("Press Enter key to stop the program...");
-    try (var br = new BufferedReader(new InputStreamReader(System.in))) {
-      br.read();
+        LOGGER.info("Press Enter key to stop the program...");
+        try (var br = new BufferedReader(new InputStreamReader(System.in))) {
+            br.read();
+        }
+        audio.stopService();
     }
-    audio.stopService();
-  }
 }

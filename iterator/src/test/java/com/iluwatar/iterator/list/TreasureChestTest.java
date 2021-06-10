@@ -23,13 +23,12 @@
 
 package com.iluwatar.iterator.list;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Date: 12/14/15 - 2:58 PM
@@ -38,78 +37,78 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 public class TreasureChestTest {
 
-  /**
-   * Create a list of all expected items in the chest.
-   *
-   * @return The set of all expected items in the chest
-   */
-  public static List<Object[]> dataProvider() {
-    return List.of(
-        new Object[]{new Item(ItemType.POTION, "Potion of courage")},
-        new Object[]{new Item(ItemType.RING, "Ring of shadows")},
-        new Object[]{new Item(ItemType.POTION, "Potion of wisdom")},
-        new Object[]{new Item(ItemType.POTION, "Potion of blood")},
-        new Object[]{new Item(ItemType.WEAPON, "Sword of silver +1")},
-        new Object[]{new Item(ItemType.POTION, "Potion of rust")},
-        new Object[]{new Item(ItemType.POTION, "Potion of healing")},
-        new Object[]{new Item(ItemType.RING, "Ring of armor")},
-        new Object[]{new Item(ItemType.WEAPON, "Steel halberd")},
-        new Object[]{new Item(ItemType.WEAPON, "Dagger of poison")}
-    );
-  }
-
-  /**
-   * Test if the expected item can be retrieved from the chest using the {@link
-   * TreasureChestItemIterator}
-   */
-  @ParameterizedTest
-  @MethodSource("dataProvider")
-  public void testIterator(Item expectedItem) {
-    final var chest = new TreasureChest();
-    final var iterator = chest.iterator(expectedItem.getType());
-    assertNotNull(iterator);
-
-    while (iterator.hasNext()) {
-      final var item = iterator.next();
-      assertNotNull(item);
-      assertEquals(expectedItem.getType(), item.getType());
-
-      final var name = item.toString();
-      assertNotNull(name);
-      if (expectedItem.toString().equals(name)) {
-        return;
-      }
+    /**
+     * Create a list of all expected items in the chest.
+     *
+     * @return The set of all expected items in the chest
+     */
+    public static List<Object[]> dataProvider() {
+        return List.of(
+                new Object[]{new Item(ItemType.POTION, "Potion of courage")},
+                new Object[]{new Item(ItemType.RING, "Ring of shadows")},
+                new Object[]{new Item(ItemType.POTION, "Potion of wisdom")},
+                new Object[]{new Item(ItemType.POTION, "Potion of blood")},
+                new Object[]{new Item(ItemType.WEAPON, "Sword of silver +1")},
+                new Object[]{new Item(ItemType.POTION, "Potion of rust")},
+                new Object[]{new Item(ItemType.POTION, "Potion of healing")},
+                new Object[]{new Item(ItemType.RING, "Ring of armor")},
+                new Object[]{new Item(ItemType.WEAPON, "Steel halberd")},
+                new Object[]{new Item(ItemType.WEAPON, "Dagger of poison")}
+        );
     }
 
-    fail("Expected to find item [" + expectedItem + "] using iterator, but we didn't.");
+    /**
+     * Test if the expected item can be retrieved from the chest using the {@link
+     * TreasureChestItemIterator}
+     */
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    public void testIterator(Item expectedItem) {
+        final var chest = new TreasureChest();
+        final var iterator = chest.iterator(expectedItem.getType());
+        assertNotNull(iterator);
 
-  }
+        while (iterator.hasNext()) {
+            final var item = iterator.next();
+            assertNotNull(item);
+            assertEquals(expectedItem.getType(), item.getType());
 
-  /**
-   * Test if the expected item can be retrieved from the chest using the {@link
-   * TreasureChest#getItems()} method
-   */
-  @ParameterizedTest
-  @MethodSource("dataProvider")
-  public void testGetItems(Item expectedItem) throws Exception {
-    final var chest = new TreasureChest();
-    final var items = chest.getItems();
-    assertNotNull(items);
+            final var name = item.toString();
+            assertNotNull(name);
+            if (expectedItem.toString().equals(name)) {
+                return;
+            }
+        }
 
-    for (final var item : items) {
-      assertNotNull(item);
-      assertNotNull(item.getType());
-      assertNotNull(item.toString());
+        fail("Expected to find item [" + expectedItem + "] using iterator, but we didn't.");
 
-      final var sameType = expectedItem.getType() == item.getType();
-      final var sameName = expectedItem.toString().equals(item.toString());
-      if (sameType && sameName) {
-        return;
-      }
     }
 
-    fail("Expected to find item [" + expectedItem + "] in the item list, but we didn't.");
+    /**
+     * Test if the expected item can be retrieved from the chest using the {@link
+     * TreasureChest#getItems()} method
+     */
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    public void testGetItems(Item expectedItem) throws Exception {
+        final var chest = new TreasureChest();
+        final var items = chest.getItems();
+        assertNotNull(items);
 
-  }
+        for (final var item : items) {
+            assertNotNull(item);
+            assertNotNull(item.getType());
+            assertNotNull(item.toString());
+
+            final var sameType = expectedItem.getType() == item.getType();
+            final var sameName = expectedItem.toString().equals(item.toString());
+            if (sameType && sameName) {
+                return;
+            }
+        }
+
+        fail("Expected to find item [" + expectedItem + "] in the item list, but we didn't.");
+
+    }
 
 }

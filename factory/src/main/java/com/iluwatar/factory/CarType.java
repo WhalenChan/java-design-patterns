@@ -23,9 +23,10 @@
 
 package com.iluwatar.factory;
 
-import java.util.function.Supplier;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.util.function.Supplier;
 
 /**
  * Enumeration for different types of cars.
@@ -34,9 +35,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum CarType {
 
-  FORD(Ford::new),
-  FERRARI(Ferrari::new);
+    FORD(Ford::new),
+    FERRARI(Ferrari::new);
 
-  private final Supplier<Car> constructor;
+    private final Supplier<Car> constructor;
 
 }

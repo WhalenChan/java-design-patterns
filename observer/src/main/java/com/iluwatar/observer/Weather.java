@@ -23,9 +23,10 @@
 
 package com.iluwatar.observer;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Weather can be observed by implementing {@link WeatherObserver} interface and registering as
@@ -34,35 +35,35 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Weather {
 
-  private WeatherType currentWeather;
-  private final List<WeatherObserver> observers;
+    private WeatherType currentWeather;
+    private final List<WeatherObserver> observers;
 
-  public Weather() {
-    observers = new ArrayList<>();
-    currentWeather = WeatherType.SUNNY;
-  }
-
-  public void addObserver(WeatherObserver obs) {
-    observers.add(obs);
-  }
-
-  public void removeObserver(WeatherObserver obs) {
-    observers.remove(obs);
-  }
-
-  /**
-   * Makes time pass for weather.
-   */
-  public void timePasses() {
-    var enumValues = WeatherType.values();
-    currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
-    LOGGER.info("The weather changed to {}.", currentWeather);
-    notifyObservers();
-  }
-
-  private void notifyObservers() {
-    for (var obs : observers) {
-      obs.update(currentWeather);
+    public Weather() {
+        observers = new ArrayList<>();
+        currentWeather = WeatherType.SUNNY;
     }
-  }
+
+    public void addObserver(WeatherObserver obs) {
+        observers.add(obs);
+    }
+
+    public void removeObserver(WeatherObserver obs) {
+        observers.remove(obs);
+    }
+
+    /**
+     * Makes time pass for weather.
+     */
+    public void timePasses() {
+        var enumValues = WeatherType.values();
+        currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
+        LOGGER.info("The weather changed to {}.", currentWeather);
+        notifyObservers();
+    }
+
+    private void notifyObservers() {
+        for (var obs : observers) {
+            obs.update(currentWeather);
+        }
+    }
 }

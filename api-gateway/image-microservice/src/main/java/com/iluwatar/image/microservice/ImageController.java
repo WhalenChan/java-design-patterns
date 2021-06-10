@@ -35,14 +35,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ImageController {
 
-  /**
-   * An endpoint for a user to retrieve an image path.
-   *
-   * @return An image path
-   */
-  @GetMapping("/image-path")
-  public String getImagePath() {
-    LOGGER.info("Successfully found image path");
-    return "/product-image.png";
-  }
+    /**
+     * An endpoint for a user to retrieve an image path.
+     *
+     * @return An image path
+     */
+    @GetMapping("/image-path")
+    public String getImagePath() {
+        LOGGER.info("Successfully found image path");
+        return "/product-image.png";
+    }
 }

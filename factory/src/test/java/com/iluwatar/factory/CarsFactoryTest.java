@@ -23,16 +23,16 @@
 
 package com.iluwatar.factory;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CarsFactoryTest {
 
-  @Test
-  void shouldReturnFerrariInstance() {
-    final var ferrari = CarsFactory.getCar(CarType.FERRARI);
-    assertTrue(ferrari instanceof Ferrari);
-  }
+    @Test
+    void shouldReturnFerrariInstance() {
+        final var ferrari = CarsFactory.getCar(CarType.FERRARI);
+        assertTrue(ferrari instanceof Ferrari);
+    }
 
 }

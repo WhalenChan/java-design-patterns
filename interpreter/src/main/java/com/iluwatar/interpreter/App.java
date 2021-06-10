@@ -23,8 +23,9 @@
 
 package com.iluwatar.interpreter;
 
-import java.util.Stack;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Stack;
 
 /**
  * The Interpreter pattern is a design pattern that specifies how to evaluate sentences in a
@@ -38,57 +39,57 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   *
-   * <p>Expressions can be evaluated using prefix, infix or postfix notations This sample uses
-   * postfix, where operator comes after the operands.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    var tokenString = "4 3 2 - 1 + *";
-    var stack = new Stack<Expression>();
+    /**
+     * Program entry point.
+     *
+     * <p>Expressions can be evaluated using prefix, infix or postfix notations This sample uses
+     * postfix, where operator comes after the operands.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
+        var tokenString = "4 3 2 - 1 + *";
+        var stack = new Stack<Expression>();
 
-    var tokenList = tokenString.split(" ");
-    for (var s : tokenList) {
-      if (isOperator(s)) {
-        var rightExpression = stack.pop();
-        var leftExpression = stack.pop();
-        LOGGER.info("popped from stack left: {} right: {}",
-            leftExpression.interpret(), rightExpression.interpret());
-        var operator = getOperatorInstance(s, leftExpression, rightExpression);
-        LOGGER.info("operator: {}", operator);
-        var result = operator.interpret();
-        var resultExpression = new NumberExpression(result);
-        stack.push(resultExpression);
-        LOGGER.info("push result to stack: {}", resultExpression.interpret());
-      } else {
-        var i = new NumberExpression(s);
-        stack.push(i);
-        LOGGER.info("push to stack: {}", i.interpret());
-      }
+        var tokenList = tokenString.split(" ");
+        for (var s : tokenList) {
+            if (isOperator(s)) {
+                var rightExpression = stack.pop();
+                var leftExpression = stack.pop();
+                LOGGER.info("popped from stack left: {} right: {}",
+                        leftExpression.interpret(), rightExpression.interpret());
+                var operator = getOperatorInstance(s, leftExpression, rightExpression);
+                LOGGER.info("operator: {}", operator);
+                var result = operator.interpret();
+                var resultExpression = new NumberExpression(result);
+                stack.push(resultExpression);
+                LOGGER.info("push result to stack: {}", resultExpression.interpret());
+            } else {
+                var i = new NumberExpression(s);
+                stack.push(i);
+                LOGGER.info("push to stack: {}", i.interpret());
+            }
+        }
+        LOGGER.info("result: {}", stack.pop().interpret());
     }
-    LOGGER.info("result: {}", stack.pop().interpret());
-  }
 
-  public static boolean isOperator(String s) {
-    return s.equals("+") || s.equals("-") || s.equals("*");
-  }
-
-  /**
-   * Get expression for string.
-   */
-  public static Expression getOperatorInstance(String s, Expression left, Expression right) {
-    switch (s) {
-      case "+":
-        return new PlusExpression(left, right);
-      case "-":
-        return new MinusExpression(left, right);
-      case "*":
-        return new MultiplyExpression(left, right);
-      default:
-        return new MultiplyExpression(left, right);
+    public static boolean isOperator(String s) {
+        return s.equals("+") || s.equals("-") || s.equals("*");
     }
-  }
+
+    /**
+     * Get expression for string.
+     */
+    public static Expression getOperatorInstance(String s, Expression left, Expression right) {
+        switch (s) {
+            case "+":
+                return new PlusExpression(left, right);
+            case "-":
+                return new MinusExpression(left, right);
+            case "*":
+                return new MultiplyExpression(left, right);
+            default:
+                return new MultiplyExpression(left, right);
+        }
+    }
 }

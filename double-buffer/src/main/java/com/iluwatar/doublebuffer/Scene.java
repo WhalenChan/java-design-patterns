@@ -23,9 +23,10 @@
 
 package com.iluwatar.doublebuffer;
 
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.List;
 
 /**
  * Scene class. Render the output frame.
@@ -33,52 +34,52 @@ import org.apache.commons.lang3.tuple.Pair;
 @Slf4j
 public class Scene {
 
-  private final Buffer[] frameBuffers;
+    private final Buffer[] frameBuffers;
 
-  private int current;
+    private int current;
 
-  private int next;
+    private int next;
 
-  /**
-   * Constructor of Scene.
-   */
-  public Scene() {
-    frameBuffers = new FrameBuffer[2];
-    frameBuffers[0] = new FrameBuffer();
-    frameBuffers[1] = new FrameBuffer();
-    current = 0;
-    next = 1;
-  }
+    /**
+     * Constructor of Scene.
+     */
+    public Scene() {
+        frameBuffers = new FrameBuffer[2];
+        frameBuffers[0] = new FrameBuffer();
+        frameBuffers[1] = new FrameBuffer();
+        current = 0;
+        next = 1;
+    }
 
-  /**
-   * Draw the next frame.
-   *
-   * @param coordinateList list of pixels of which the color should be black
-   */
-  public void draw(List<? extends Pair<Integer, Integer>> coordinateList) {
-    LOGGER.info("Start drawing next frame");
-    LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
-    frameBuffers[next].clearAll();
-    coordinateList.forEach(coordinate -> {
-      var x = coordinate.getKey();
-      var y = coordinate.getValue();
-      frameBuffers[next].draw(x, y);
-    });
-    LOGGER.info("Swap current and next buffer");
-    swap();
-    LOGGER.info("Finish swapping");
-    LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
-  }
+    /**
+     * Draw the next frame.
+     *
+     * @param coordinateList list of pixels of which the color should be black
+     */
+    public void draw(List<? extends Pair<Integer, Integer>> coordinateList) {
+        LOGGER.info("Start drawing next frame");
+        LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
+        frameBuffers[next].clearAll();
+        coordinateList.forEach(coordinate -> {
+            var x = coordinate.getKey();
+            var y = coordinate.getValue();
+            frameBuffers[next].draw(x, y);
+        });
+        LOGGER.info("Swap current and next buffer");
+        swap();
+        LOGGER.info("Finish swapping");
+        LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
+    }
 
-  public Buffer getBuffer() {
-    LOGGER.info("Get current buffer: " + current);
-    return frameBuffers[current];
-  }
+    public Buffer getBuffer() {
+        LOGGER.info("Get current buffer: " + current);
+        return frameBuffers[current];
+    }
 
-  private void swap() {
-    current = current ^ next;
-    next = current ^ next;
-    current = current ^ next;
-  }
+    private void swap() {
+        current = current ^ next;
+        next = current ^ next;
+        current = current ^ next;
+    }
 
 }

@@ -23,11 +23,9 @@
 
 package com.iluwatar.templatemethod;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-
 import org.junit.jupiter.api.Test;
+
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/29/15 - 18:15 PM
@@ -36,38 +34,38 @@ import org.junit.jupiter.api.Test;
  */
 public class HalflingThiefTest {
 
-  /**
-   * Verify if the thief uses the provided stealing method
-   */
-  @Test
-  void testSteal() {
-    final var method = mock(StealingMethod.class);
-    final var thief = new HalflingThief(method);
+    /**
+     * Verify if the thief uses the provided stealing method
+     */
+    @Test
+    void testSteal() {
+        final var method = mock(StealingMethod.class);
+        final var thief = new HalflingThief(method);
 
-    thief.steal();
-    verify(method).steal();
+        thief.steal();
+        verify(method).steal();
 
-    verifyNoMoreInteractions(method);
-  }
+        verifyNoMoreInteractions(method);
+    }
 
-  /**
-   * Verify if the thief uses the provided stealing method, and the new method after changing it
-   */
-  @Test
-  void testChangeMethod() {
-    final var initialMethod = mock(StealingMethod.class);
-    final var thief = new HalflingThief(initialMethod);
+    /**
+     * Verify if the thief uses the provided stealing method, and the new method after changing it
+     */
+    @Test
+    void testChangeMethod() {
+        final var initialMethod = mock(StealingMethod.class);
+        final var thief = new HalflingThief(initialMethod);
 
-    thief.steal();
-    verify(initialMethod).steal();
+        thief.steal();
+        verify(initialMethod).steal();
 
-    final var newMethod = mock(StealingMethod.class);
-    thief.changeMethod(newMethod);
+        final var newMethod = mock(StealingMethod.class);
+        thief.changeMethod(newMethod);
 
-    thief.steal();
-    verify(newMethod).steal();
+        thief.steal();
+        verify(newMethod).steal();
 
-    verifyNoMoreInteractions(initialMethod, newMethod);
+        verifyNoMoreInteractions(initialMethod, newMethod);
 
-  }
+    }
 }

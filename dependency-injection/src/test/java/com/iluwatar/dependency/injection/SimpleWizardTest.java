@@ -23,12 +23,12 @@
 
 package com.iluwatar.dependency.injection;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.iluwatar.dependency.injection.utils.InMemoryAppender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/10/15 - 8:26 PM
@@ -37,28 +37,28 @@ import org.junit.jupiter.api.Test;
  */
 class SimpleWizardTest {
 
-  private InMemoryAppender appender;
+    private InMemoryAppender appender;
 
-  @BeforeEach
-  void setUp() {
-    appender = new InMemoryAppender(Tobacco.class);
-  }
+    @BeforeEach
+    void setUp() {
+        appender = new InMemoryAppender(Tobacco.class);
+    }
 
-  @AfterEach
-  void tearDown() {
-    appender.stop();
-  }
+    @AfterEach
+    void tearDown() {
+        appender.stop();
+    }
 
-  /**
-   * Test if the {@link SimpleWizard} does the only thing it can do: Smoke it's {@link
-   * OldTobyTobacco}
-   */
-  @Test
-  void testSmoke() {
-    final var simpleWizard = new SimpleWizard();
-    simpleWizard.smoke();
-    assertEquals("SimpleWizard smoking OldTobyTobacco", appender.getLastMessage());
-    assertEquals(1, appender.getLogSize());
-  }
+    /**
+     * Test if the {@link SimpleWizard} does the only thing it can do: Smoke it's {@link
+     * OldTobyTobacco}
+     */
+    @Test
+    void testSmoke() {
+        final var simpleWizard = new SimpleWizard();
+        simpleWizard.smoke();
+        assertEquals("SimpleWizard smoking OldTobyTobacco", appender.getLastMessage());
+        assertEquals(1, appender.getLogSize());
+    }
 
 }

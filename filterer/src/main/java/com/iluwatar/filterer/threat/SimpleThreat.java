@@ -35,32 +35,32 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class SimpleThreat implements Threat {
 
-  private final ThreatType threatType;
-  private final int id;
-  private final String name;
+    private final ThreatType threatType;
+    private final int id;
+    private final String name;
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public String name() {
-    return name;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String name() {
+        return name;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public int id() {
-    return id;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int id() {
+        return id;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public ThreatType type() {
-    return threatType;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ThreatType type() {
+        return threatType;
+    }
 
 }

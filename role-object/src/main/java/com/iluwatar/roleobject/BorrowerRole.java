@@ -25,18 +25,18 @@ package com.iluwatar.roleobject;
 
 public class BorrowerRole extends CustomerRole {
 
-  private String name;
+    private String name;
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String borrow() {
-    return String.format("Borrower %s wants to get some money.", name);
-  }
+    public String borrow() {
+        return String.format("Borrower %s wants to get some money.", name);
+    }
 
 }

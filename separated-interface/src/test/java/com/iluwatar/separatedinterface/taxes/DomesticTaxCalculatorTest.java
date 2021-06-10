@@ -28,14 +28,14 @@ import org.junit.jupiter.api.Test;
 
 class DomesticTaxCalculatorTest {
 
-  private DomesticTaxCalculator target;
+    private DomesticTaxCalculator target;
 
-  @Test
-  void testTaxCalculation() {
-    target = new DomesticTaxCalculator();
+    @Test
+    void testTaxCalculation() {
+        target = new DomesticTaxCalculator();
 
-    var tax = target.calculate(100.0);
-    Assertions.assertEquals(tax, 20.0);
-  }
+        var tax = target.calculate(100.0);
+        Assertions.assertEquals(tax, 20.0);
+    }
 
 }

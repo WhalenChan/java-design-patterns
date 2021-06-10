@@ -23,13 +23,14 @@
 
 package com.iluwatar.dependency.injection;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.iluwatar.dependency.injection.utils.InMemoryAppender;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
@@ -39,42 +40,42 @@ import org.junit.jupiter.api.Test;
  */
 class AdvancedWizardTest {
 
-  private InMemoryAppender appender;
+    private InMemoryAppender appender;
 
-  @BeforeEach
-  void setUp() {
-    appender = new InMemoryAppender(Tobacco.class);
-  }
+    @BeforeEach
+    void setUp() {
+        appender = new InMemoryAppender(Tobacco.class);
+    }
 
-  @AfterEach
-  void tearDown() {
-    appender.stop();
-  }
+    @AfterEach
+    void tearDown() {
+        appender.stop();
+    }
 
-  /**
-   * Test if the {@link AdvancedWizard} smokes whatever instance of {@link Tobacco} is passed to him
-   * through the constructor parameter
-   */
-  @Test
-  void testSmokeEveryThing() throws Exception {
+    /**
+     * Test if the {@link AdvancedWizard} smokes whatever instance of {@link Tobacco} is passed to him
+     * through the constructor parameter
+     */
+    @Test
+    void testSmokeEveryThing() throws Exception {
 
-    List<Tobacco> tobaccos = List.of(
-        new OldTobyTobacco(),
-        new RivendellTobacco(),
-        new SecondBreakfastTobacco()
-    );
+        List<Tobacco> tobaccos = List.of(
+                new OldTobyTobacco(),
+                new RivendellTobacco(),
+                new SecondBreakfastTobacco()
+        );
 
-    // Verify if the wizard is smoking the correct tobacco ...
-    tobaccos.forEach(tobacco -> {
-      final AdvancedWizard advancedWizard = new AdvancedWizard(tobacco);
-      advancedWizard.smoke();
-      String lastMessage = appender.getLastMessage();
-      assertEquals("AdvancedWizard smoking " + tobacco.getClass().getSimpleName(), lastMessage);
-    });
+        // Verify if the wizard is smoking the correct tobacco ...
+        tobaccos.forEach(tobacco -> {
+            final AdvancedWizard advancedWizard = new AdvancedWizard(tobacco);
+            advancedWizard.smoke();
+            String lastMessage = appender.getLastMessage();
+            assertEquals("AdvancedWizard smoking " + tobacco.getClass().getSimpleName(), lastMessage);
+        });
 
-    // ... and nothing else is happening.
-    assertEquals(tobaccos.size(), appender.getLogSize());
+        // ... and nothing else is happening.
+        assertEquals(tobaccos.size(), appender.getLogSize());
 
-  }
+    }
 
 }

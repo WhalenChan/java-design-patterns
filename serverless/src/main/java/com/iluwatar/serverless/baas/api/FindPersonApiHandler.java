@@ -35,21 +35,21 @@ import org.slf4j.LoggerFactory;
  * find person from persons collection Created by dheeraj.mummar on 3/5/18.
  */
 public class FindPersonApiHandler extends AbstractDynamoDbHandler<Person>
-    implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+        implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(FindPersonApiHandler.class);
-  private static final Integer SUCCESS_STATUS_CODE = 200;
+    private static final Logger LOG = LoggerFactory.getLogger(FindPersonApiHandler.class);
+    private static final Integer SUCCESS_STATUS_CODE = 200;
 
-  @Override
-  public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent req, Context ctx) {
-    req.getPathParameters().forEach(FindPersonApiHandler::logKeyValue);
-    var id = req.getPathParameters().get("id");
-    var person = this.getDynamoDbMapper().load(Person.class, id);
-    return apiGatewayProxyResponseEvent(SUCCESS_STATUS_CODE, person);
-  }
+    @Override
+    public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent req, Context ctx) {
+        req.getPathParameters().forEach(FindPersonApiHandler::logKeyValue);
+        var id = req.getPathParameters().get("id");
+        var person = this.getDynamoDbMapper().load(Person.class, id);
+        return apiGatewayProxyResponseEvent(SUCCESS_STATUS_CODE, person);
+    }
 
-  private static void logKeyValue(String key, String value) {
-    LOG.info(key + "=" + value);
-  }
+    private static void logKeyValue(String key, String value) {
+        LOG.info(key + "=" + value);
+    }
 
 }

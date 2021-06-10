@@ -23,13 +23,14 @@
 
 package com.iluwatar.reactor.app;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import com.iluwatar.reactor.framework.SameThreadDispatcher;
 import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
-import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * This class tests the Distributed Logging service by starting a Reactor and then sending it
@@ -38,67 +39,67 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class ReactorTest {
 
-  /**
-   * Test the application using pooled thread dispatcher.
-   *
-   * @throws IOException          if any I/O error occurs.
-   * @throws InterruptedException if interrupted while stopping the application.
-   */
-  @Test
-  void testAppUsingThreadPoolDispatcher() throws IOException, InterruptedException {
-    LOGGER.info("testAppUsingThreadPoolDispatcher start");
-    var app = new App(new ThreadPoolDispatcher(2));
-    app.start();
+    /**
+     * Test the application using pooled thread dispatcher.
+     *
+     * @throws IOException          if any I/O error occurs.
+     * @throws InterruptedException if interrupted while stopping the application.
+     */
+    @Test
+    void testAppUsingThreadPoolDispatcher() throws IOException, InterruptedException {
+        LOGGER.info("testAppUsingThreadPoolDispatcher start");
+        var app = new App(new ThreadPoolDispatcher(2));
+        app.start();
 
-    assertNotNull(app);
+        assertNotNull(app);
 
-    var client = new AppClient();
-    client.start();
+        var client = new AppClient();
+        client.start();
 
-    assertNotNull(client);
+        assertNotNull(client);
 
-    // allow clients to send requests. Artificial delay.
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      LOGGER.error("sleep interrupted", e);
+        // allow clients to send requests. Artificial delay.
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            LOGGER.error("sleep interrupted", e);
+        }
+
+        client.stop();
+
+        app.stop();
+        LOGGER.info("testAppUsingThreadPoolDispatcher stop");
     }
 
-    client.stop();
+    /**
+     * Test the application using same thread dispatcher.
+     *
+     * @throws IOException          if any I/O error occurs.
+     * @throws InterruptedException if interrupted while stopping the application.
+     */
+    @Test
+    void testAppUsingSameThreadDispatcher() throws IOException, InterruptedException {
+        LOGGER.info("testAppUsingSameThreadDispatcher start");
+        var app = new App(new SameThreadDispatcher());
+        app.start();
 
-    app.stop();
-    LOGGER.info("testAppUsingThreadPoolDispatcher stop");
-  }
+        assertNotNull(app);
 
-  /**
-   * Test the application using same thread dispatcher.
-   *
-   * @throws IOException          if any I/O error occurs.
-   * @throws InterruptedException if interrupted while stopping the application.
-   */
-  @Test
-  void testAppUsingSameThreadDispatcher() throws IOException, InterruptedException {
-    LOGGER.info("testAppUsingSameThreadDispatcher start");
-    var app = new App(new SameThreadDispatcher());
-    app.start();
+        var client = new AppClient();
+        client.start();
 
-    assertNotNull(app);
+        assertNotNull(client);
 
-    var client = new AppClient();
-    client.start();
+        // allow clients to send requests. Artificial delay.
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            LOGGER.error("sleep interrupted", e);
+        }
 
-    assertNotNull(client);
+        client.stop();
 
-    // allow clients to send requests. Artificial delay.
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      LOGGER.error("sleep interrupted", e);
+        app.stop();
+        LOGGER.info("testAppUsingSameThreadDispatcher stop");
     }
-
-    client.stop();
-
-    app.stop();
-    LOGGER.info("testAppUsingSameThreadDispatcher stop");
-  }
 }

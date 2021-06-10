@@ -33,19 +33,19 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class Entity {
 
-  protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-  protected int id;
+    protected int id;
 
-  @Getter
-  @Setter
-  protected int position;
+    @Getter
+    @Setter
+    protected int position;
 
-  public Entity(int id) {
-    this.id = id;
-    this.position = 0;
-  }
+    public Entity(int id) {
+        this.id = id;
+        this.position = 0;
+    }
 
-  public abstract void update();
+    public abstract void update();
 
 }

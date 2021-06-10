@@ -23,65 +23,66 @@
 
 package com.iluwatar.reader.writer.lock;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.spy;
-
 import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.spy;
+
 /**
  * @author hongshuwei@gmail.com
  */
 class ReaderTest {
 
-  private InMemoryAppender appender;
+    private InMemoryAppender appender;
 
-  @BeforeEach
-  public void setUp() {
-    appender = new InMemoryAppender(Reader.class);
-  }
-
-  @AfterEach
-  public void tearDown() {
-    appender.stop();
-  }
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderTest.class);
-
-  /**
-   * Verify that multiple readers can get the read lock concurrently
-   */
-  @Test
-  void testRead() throws Exception {
-
-    var executeService = Executors.newFixedThreadPool(2);
-    var lock = new ReaderWriterLock();
-
-    var reader1 = spy(new Reader("Reader 1", lock.readLock()));
-    var reader2 = spy(new Reader("Reader 2", lock.readLock()));
-
-    executeService.submit(reader1);
-    Thread.sleep(150);
-    executeService.submit(reader2);
-
-    executeService.shutdown();
-    try {
-      executeService.awaitTermination(10, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown", e);
+    @BeforeEach
+    public void setUp() {
+        appender = new InMemoryAppender(Reader.class);
     }
 
-    // Read operation will hold the read lock 250 milliseconds, so here we prove that multiple reads
-    // can be performed in the same time.
-    assertTrue(appender.logContains("Reader 1 begin"));
-    assertTrue(appender.logContains("Reader 2 begin"));
-    assertTrue(appender.logContains("Reader 1 finish"));
-    assertTrue(appender.logContains("Reader 2 finish"));
-  }
+    @AfterEach
+    public void tearDown() {
+        appender.stop();
+    }
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReaderTest.class);
+
+    /**
+     * Verify that multiple readers can get the read lock concurrently
+     */
+    @Test
+    void testRead() throws Exception {
+
+        var executeService = Executors.newFixedThreadPool(2);
+        var lock = new ReaderWriterLock();
+
+        var reader1 = spy(new Reader("Reader 1", lock.readLock()));
+        var reader2 = spy(new Reader("Reader 2", lock.readLock()));
+
+        executeService.submit(reader1);
+        Thread.sleep(150);
+        executeService.submit(reader2);
+
+        executeService.shutdown();
+        try {
+            executeService.awaitTermination(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            LOGGER.error("Error waiting for ExecutorService shutdown", e);
+        }
+
+        // Read operation will hold the read lock 250 milliseconds, so here we prove that multiple reads
+        // can be performed in the same time.
+        assertTrue(appender.logContains("Reader 1 begin"));
+        assertTrue(appender.logContains("Reader 2 begin"));
+        assertTrue(appender.logContains("Reader 1 finish"));
+        assertTrue(appender.logContains("Reader 2 finish"));
+    }
 }

@@ -23,9 +23,10 @@
 
 package com.iluwatar.tolerantreader;
 
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * RainbowFish is the initial schema.
@@ -34,11 +35,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RainbowFish implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  private final String name;
-  private final int age;
-  private final int lengthMeters;
-  private final int weightTons;
+    private final String name;
+    private final int age;
+    private final int lengthMeters;
+    private final int weightTons;
 
 }

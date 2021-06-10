@@ -35,12 +35,12 @@ import org.apache.isis.applib.services.fixturespec.FixtureScriptsSpecificationPr
  */
 @DomainService(nature = NatureOfService.DOMAIN)
 public class DomainAppFixturesProvider implements FixtureScriptsSpecificationProvider {
-  @Override
-  public FixtureScriptsSpecification getSpecification() {
-    return FixtureScriptsSpecification.builder(DomainAppFixturesProvider.class)
-        .with(FixtureScripts.MultipleExecutionStrategy.EXECUTE)
-        .withRunScriptDefault(RecreateSimpleObjects.class)
-        .withRunScriptDropDown(FixtureScriptsSpecification.DropDownPolicy.CHOICES)
-        .withRecreate(RecreateSimpleObjects.class).build();
-  }
+    @Override
+    public FixtureScriptsSpecification getSpecification() {
+        return FixtureScriptsSpecification.builder(DomainAppFixturesProvider.class)
+                .with(FixtureScripts.MultipleExecutionStrategy.EXECUTE)
+                .withRunScriptDefault(RecreateSimpleObjects.class)
+                .withRunScriptDropDown(FixtureScriptsSpecification.DropDownPolicy.CHOICES)
+                .withRecreate(RecreateSimpleObjects.class).build();
+    }
 }

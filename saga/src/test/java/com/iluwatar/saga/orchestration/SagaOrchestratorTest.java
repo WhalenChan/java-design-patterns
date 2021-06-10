@@ -32,31 +32,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class SagaOrchestratorTest {
 
-  @Test
-  void execute() {
-    SagaOrchestrator sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
-    Saga.Result badOrder = sagaOrchestrator.execute("bad_order");
-    Saga.Result crashedOrder = sagaOrchestrator.execute("crashed_order");
+    @Test
+    void execute() {
+        SagaOrchestrator sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
+        Saga.Result badOrder = sagaOrchestrator.execute("bad_order");
+        Saga.Result crashedOrder = sagaOrchestrator.execute("crashed_order");
 
-    assertEquals(Saga.Result.ROLLBACK, badOrder);
-    assertEquals(Saga.Result.CRASHED, crashedOrder);
-  }
+        assertEquals(Saga.Result.ROLLBACK, badOrder);
+        assertEquals(Saga.Result.CRASHED, crashedOrder);
+    }
 
-  private static Saga newSaga() {
-    return Saga
-        .create()
-        .chapter("init an order")
-        .chapter("booking a Fly")
-        .chapter("booking a Hotel")
-        .chapter("withdrawing Money");
-  }
+    private static Saga newSaga() {
+        return Saga
+                .create()
+                .chapter("init an order")
+                .chapter("booking a Fly")
+                .chapter("booking a Hotel")
+                .chapter("withdrawing Money");
+    }
 
-  private static ServiceDiscoveryService serviceDiscovery() {
-    return
-        new ServiceDiscoveryService()
-            .discover(new OrderService())
-            .discover(new FlyBookingService())
-            .discover(new HotelBookingService())
-            .discover(new WithdrawMoneyService());
-  }
+    private static ServiceDiscoveryService serviceDiscovery() {
+        return
+                new ServiceDiscoveryService()
+                        .discover(new OrderService())
+                        .discover(new FlyBookingService())
+                        .discover(new HotelBookingService())
+                        .discover(new WithdrawMoneyService());
+    }
 }

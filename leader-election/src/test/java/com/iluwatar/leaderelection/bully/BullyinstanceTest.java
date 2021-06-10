@@ -23,56 +23,55 @@
 
 package com.iluwatar.leaderelection.bully;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageType;
-import java.util.Queue;
 import org.junit.jupiter.api.Test;
+
+import java.util.Queue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * BullyInstance unit test.
  */
 public class BullyinstanceTest {
 
-  @Test
-  void testOnMessage() {
-    try {
-      final var bullyInstance = new BullyInstance(null, 1, 1);
-      var bullyMessage = new Message(MessageType.HEARTBEAT, "");
-      bullyInstance.onMessage(bullyMessage);
-      var instanceClass = AbstractInstance.class;
-      var messageQueueField = instanceClass.getDeclaredField("messageQueue");
-      messageQueueField.setAccessible(true);
-      assertEquals(bullyMessage, ((Queue<Message>) messageQueueField.get(bullyInstance)).poll());
-    } catch (IllegalAccessException | NoSuchFieldException e) {
-      fail("fail to access messasge queue.");
+    @Test
+    void testOnMessage() {
+        try {
+            final var bullyInstance = new BullyInstance(null, 1, 1);
+            var bullyMessage = new Message(MessageType.HEARTBEAT, "");
+            bullyInstance.onMessage(bullyMessage);
+            var instanceClass = AbstractInstance.class;
+            var messageQueueField = instanceClass.getDeclaredField("messageQueue");
+            messageQueueField.setAccessible(true);
+            assertEquals(bullyMessage, ((Queue<Message>) messageQueueField.get(bullyInstance)).poll());
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            fail("fail to access messasge queue.");
+        }
+
     }
 
-  }
-
-  @Test
-  void testIsAlive() {
-    try {
-      final var bullyInstance = new BullyInstance(null, 1, 1);
-      var instanceClass = AbstractInstance.class;
-      var aliveField = instanceClass.getDeclaredField("alive");
-      aliveField.setAccessible(true);
-      aliveField.set(bullyInstance, false);
-      assertFalse(bullyInstance.isAlive());
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      fail("Fail to access field alive.");
+    @Test
+    void testIsAlive() {
+        try {
+            final var bullyInstance = new BullyInstance(null, 1, 1);
+            var instanceClass = AbstractInstance.class;
+            var aliveField = instanceClass.getDeclaredField("alive");
+            aliveField.setAccessible(true);
+            aliveField.set(bullyInstance, false);
+            assertFalse(bullyInstance.isAlive());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            fail("Fail to access field alive.");
+        }
     }
-  }
 
-  @Test
-  void testSetAlive() {
-    final var bullyInstance = new BullyInstance(null, 1, 1);
-    bullyInstance.setAlive(false);
-    assertFalse(bullyInstance.isAlive());
-  }
+    @Test
+    void testSetAlive() {
+        final var bullyInstance = new BullyInstance(null, 1, 1);
+        bullyInstance.setAlive(false);
+        assertFalse(bullyInstance.isAlive());
+    }
 
 }

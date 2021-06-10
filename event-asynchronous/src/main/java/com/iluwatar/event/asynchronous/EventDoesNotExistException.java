@@ -28,9 +28,9 @@ package com.iluwatar.event.asynchronous;
  */
 public class EventDoesNotExistException extends Exception {
 
-  private static final long serialVersionUID = -3398463738273811509L;
+    private static final long serialVersionUID = -3398463738273811509L;
 
-  public EventDoesNotExistException(String message) {
-    super(message);
-  }
+    public EventDoesNotExistException(String message) {
+        super(message);
+    }
 }
