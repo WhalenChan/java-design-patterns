@@ -38,6 +38,14 @@ import java.util.concurrent.TimeUnit;
  * using a thread-safe method. On the other hand, if it already has been washing and any other
  * thread executes {@link WashingMachine#wash()} it won't do that and returns without doing
  * anything.
+ *
+ * 慢行设计模式：
+ * 在 Balking(犹豫不决)设计模式中，如果一个对象的方法在它处于不适当的状态时被调用，那么该方法将返回而不做任何事情。
+ * 使用此模式的对象通常仅处于易于暂时停止但持续时间未知的状态
+ * <p>
+ * 在此示例实现中，{@link WashingMachine} 是一个具有两种状态的对象：启用和洗涤。 如果机器已启用，则使用线程安全方法将状态更改为 WASHING。
+ * 另一方面，如果它已经在清洗并且任何其他线程执行 {@link WashingMachine#wash()} 它不会这样做并返回而不做任何事情。
+ *
  */
 @Slf4j
 public class App {
