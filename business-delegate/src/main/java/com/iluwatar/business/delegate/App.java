@@ -36,6 +36,15 @@ package com.iluwatar.business.delegate;
  * <p>In this example the client ({@link MobileClient}) utilizes a business delegate (
  * {@link BusinessDelegate}) to search for movies in video streaming services. The Business Delegate
  * then selects the appropriate service and makes the service call.
+ *
+ * <p>业务委托模式在表示层和业务层之间添加了一个抽象层。 通过使用该模式，我们可以获得层之间的松散耦合。
+ * 业务委托封装了有关如何定位、连接到构成应用程序的业务对象并与之交互的知识。
+ *
+ * <p>Business Delegate 使用的一些服务是直接实例化的，一些可以通过服务查找来检索。 业务委托本身也可能包含业务逻辑，
+ * 可能将多个服务调用、异常处理、重试等联系在一起。
+ *
+ * <p>在此示例中，客户端 ({@link MobileClient}) 利用业务委托 ({@link BusinessDelegate}) 在视频流服务中搜索电影。
+ * 然后业务代表选择适当的服务并进行服务呼叫。
  */
 public class App {
 
