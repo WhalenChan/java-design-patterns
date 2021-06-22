@@ -24,7 +24,7 @@
 package com.iluwatar.bridge;
 
 /**
- * Enchantment.
+ * Enchantment. 魅力/魔法，感觉翻译成能力比较好？
  */
 public interface Enchantment {
 

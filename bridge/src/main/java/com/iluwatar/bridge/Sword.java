@@ -27,7 +27,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Sword.
+ * Sword. 剑
  */
 @Slf4j
 @AllArgsConstructor

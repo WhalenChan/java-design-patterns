@@ -26,23 +26,26 @@ package com.iluwatar.bridge;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * SoulEatingEnchantment.
+ * SoulEatingEnchantment. 吞食灵魂的能力
  */
 @Slf4j
 public class SoulEatingEnchantment implements Enchantment {
 
     @Override
     public void onActivate() {
+        //武器开始嗜血
         LOGGER.info("The item spreads bloodlust.");
     }
 
     @Override
     public void apply() {
+        //武器吞噬敌人的灵魂
         LOGGER.info("The item eats the soul of enemies.");
     }
 
     @Override
     public void onDeactivate() {
+        //武器嗜血慢慢消失
         LOGGER.info("Bloodlust slowly disappears.");
     }
 }

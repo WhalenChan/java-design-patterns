@@ -26,23 +26,26 @@ package com.iluwatar.bridge;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * FlyingEnchantment.
+ * FlyingEnchantment. 飞行能力
  */
 @Slf4j
 public class FlyingEnchantment implements Enchantment {
 
     @Override
     public void onActivate() {
+        //武器开始发光
         LOGGER.info("The item begins to glow faintly.");
     }
 
     @Override
     public void apply() {
+        //武器飞行并击中敌人，最终回到主人手中
         LOGGER.info("The item flies and strikes the enemies finally returning to owner's hand.");
     }
 
     @Override
     public void onDeactivate() {
+        //武器的光芒逐渐消失。
         LOGGER.info("The item's glow fades.");
     }
 }

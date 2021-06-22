@@ -24,14 +24,23 @@
 package com.iluwatar.bridge;
 
 /**
- * Weapon.
+ * Weapon. 武器
  */
 public interface Weapon {
 
+    /**
+     * 挥
+     */
     void wield();
 
+    /**
+     * 摇摆
+     */
     void swing();
 
+    /**
+     * 不使用
+     */
     void unwield();
 
     Enchantment getEnchantment();
