@@ -46,6 +46,19 @@ import lombok.extern.slf4j.Slf4j;
  * the minimum parameters to build {@link Hero} object in its constructor. After that additional
  * configuration for the {@link Hero} object can be done using the fluent {@link Builder} interface.
  * When configuration is ready the build method is called to receive the final {@link Hero} object.
+ *
+ * <p>建造者模式的意图是找到一种解决伸缩构造函数反模式的方法。 当对象构造函数参数组合的增加导致构造函数的指数列表时，就会出现伸缩构造函数反模式。
+ * 构建器模式没有使用大量的构造器，而是使用另一个对象，一个构建器，它逐步接收每个初始化参数，然后立即返回生成的构造对象。
+ *
+ * <p>建造者模式还有一个好处。 它可用于包含平面数据（html 代码、SQL 查询、X.509 证书...）的对象，即无法轻松编辑的数据。
+ * 这种类型的数据不能一步一步编辑，必须一次性编辑。 构造此类对象的最佳方法是使用构建器类。
+ *
+ * <p>在这个例子中，我们有 Joshua Bloch 在 Effective Java 2nd Edition 中描述的 Builder 模式变体。
+ *
+ * <p>我们想构建 {@link Hero} 对象，但由于需要很多参数，它的构建很复杂。 为了帮助用户，我们引入了 {@link Builder} 类。
+ * {@link Hero.Builder} 在其构造函数中使用最少的参数来构建 {@link Hero} 对象。 之后，可以使用流畅的 {@link Builder}
+ * 界面完成 {@link Hero} 对象的附加配置。 当配置准备好后，会调用 build 方法来接收最终的 {@link Hero} 对象。
+ *
  */
 @Slf4j
 public class App {
