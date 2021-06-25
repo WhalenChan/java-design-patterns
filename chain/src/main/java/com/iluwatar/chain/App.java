@@ -33,6 +33,14 @@ package com.iluwatar.chain;
  * each handler has a chance to act on the request on its turn. Here the king ({@link OrcKing})
  * makes requests and the military orcs ({@link OrcCommander}, {@link OrcOfficer}, {@link
  * OrcSoldier}) form the handler chain.
+ *
+ * <p>责任链模式是一种由命令对象和处理对象组成的设计模式。 每个处理对象都包含定义它可以处理的命令对象类型的逻辑；
+ * 其余的将传递给链中的下一个处理对象。 还存在将新处理对象添加到该链末端的机制。
+ *
+ * <p>在这个例子中，我们将请求处理程序 ({@link RequestHandler}) 组织成一个链，其中每个处理程序都有机会轮到对请求采取行动。
+ * 在这里，国王 ({@link OrcKing}) 提出请求，军事兽人 ({@link OrcCommander}、{@link OrcOfficer}、{@link OrcSoldier}) 形成处理链。
+ *
+ *
  */
 public class App {
 
