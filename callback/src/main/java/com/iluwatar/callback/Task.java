@@ -26,7 +26,9 @@ package com.iluwatar.callback;
 import java.util.Optional;
 
 /**
- * Template-method class for callback hook execution.
+ * Template-method class for callback hook execution. <br/>
+ *
+ * 有点像模板设计模式
  */
 public abstract class Task {
 

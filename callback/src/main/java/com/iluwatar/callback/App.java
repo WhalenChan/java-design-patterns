@@ -29,6 +29,9 @@ import lombok.extern.slf4j.Slf4j;
  * Callback pattern is more native for functional languages where functions are treated as
  * first-class citizens. Prior to Java 8 callbacks can be simulated using simple (alike command)
  * interfaces.
+ *
+ * <p>回调模式更适合函数式语言，其中函数被视为一等公民。 在 Java 8 之前，可以使用简单（类似命令）接口模拟回调。
+ *
  */
 @Slf4j
 public final class App {
