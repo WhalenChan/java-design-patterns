@@ -70,6 +70,16 @@ import java.util.List;
  * 5 classes - {@link AppShippingFailCases}, {@link AppPaymentFailCases}, {@link
  * AppMessagingFailCases}, {@link AppQueueFailCases} and {@link AppEmployeeDbFailCases}, which look
  * at the different scenarios that may be encountered during the placing of an order.</p>
+ *
+ * <p>指挥官模式用于处理在进行分布式事务时可能出现的所有问题。 这个想法是有一个指挥官，它协调所有指令的执行并确保使用重试和幂等性正确完成。
+ * 通过将尚未完成的指令排队，我们可以确保“最终一致性”的状态。
+ *
+ * <p>在我们的示例中，我们有一个电子商务应用程序。用户下单时，先通知发货服务。如果服务由于某种原因没有响应，则不会下订单。
+ * 如果收到响应，则指挥官然后要求通知支付服务。如果此操作失败，仍会进行运输（订单转换为 COD）并且该项目将排队。如果还发现队列不可用，
+ * 则注意到付款未完成，并将其添加到员工数据库中。向用户发送三种类型的消息 - 一种，如果付款成功；二、如果付款最终失败；
+ * 第三，如果第一次尝试付款失败。如果消息没有发送，它也会排队并添加到员工数据库中。我们对每条指令的完成时间也有一个时间限制，之后不执行该指令，
+ * 从而保证资源不会被占用太久。在一切都失败的罕见情况下，个人将不得不介入以找出解决问题的方法。
+ *
  */
 
 public class Commander {
