@@ -53,6 +53,20 @@ import lombok.extern.slf4j.Slf4j;
  * this state is called the Half-Open state, where it stays till the service is down, and once it
  * recovers, it goes back to the closed state and the cycle continues.
  * </p>
+ *
+ * <p>电路构建器模式的目的是稳健地处理远程故障，这意味着如果一个服务依赖于 n 个其他服务，并且其中 m 个服务失败，我们应该能够通过确保
+ * 用户仍然可以使用实际运行的服务，资源不会被不运行的服务无用地占用。 但是，我们还应该能够检测到 m 个失败的服务中的任何一个何时再次运行，以便我们可以使用它
+ *
+ * <p>在此示例中，断路器模式通过使用三个服务进行演示：{@linkDelayedRemoteService}、{@link QuickRemoteService} 和
+ * {@link MonitoringService}。 监控服务负责调用三个服务：本地服务、快速移除服务{@link QuickRemoteService} 和
+ * 延迟远程服务{@link DelayedRemoteService} ，通过使用断路器构建我们确保如果调用远程服务 将会失败，我们将通过将我们对远程服务的调用包装
+ * 在 {@link DefaultCircuitBreaker} 实现对象中来节省我们的资源并且根本不进行函数调用。
+ *
+ * <p>其工作原理如下：{@link DefaultCircuitBreaker} 对象可以处于以下三种状态之一：<b>Open</b>、<b>Closed</b> 和 <b>Half-Open</b>，
+ * 其中 代表真实世界的电路。 如果状态是关闭的（初始），我们假设一切正常并执行函数调用。 但是，每次调用失败时，我们都会记录下来，一旦超过阈值，
+ * 我们就会将状态设置为 Open，从而阻止对远程服务器的任何进一步调用。 然后，经过一定的重试期（在此期间我们希望您的服务恢复），我们再次调用远程服务器，
+ * 这种状态称为半开放状态，它一直保持到服务关闭，一旦恢复 ，它回到关闭状态，循环继续。
+ *
  */
 @Slf4j
 public class App {

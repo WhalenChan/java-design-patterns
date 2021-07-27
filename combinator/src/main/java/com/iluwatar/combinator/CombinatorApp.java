@@ -39,6 +39,14 @@ import lombok.extern.slf4j.Slf4j;
  * {@link Finder#not(Finder)},
  * {@link Finder#and(Finder)}
  * Using them the became possible to get more complex functions {@link Finders}
+ *
+ * <P>函数模式代表了一种以组合函数的思想为中心的组织库的风格。 简单地说，有一些类型 T，一些用于构造类型 T 的“原始”值的函数，
+ * 以及一些可以以各种方式组合类型 T 的值以构建更复杂的类型 T 值的“组合器”。
+ * <p> {@link Finder} 类定义了一个简单的函数
+ * {@link Finder#find(String)} 和连接函数
+ * {@link Finder#or(Finder)}, {@link Finder#not(Finder)},
+ * {@link Finder#and(Finder)} 使用它们可以获得更复杂的功能 {@link Finders}
+ *
  */
 @Slf4j
 public class CombinatorApp {

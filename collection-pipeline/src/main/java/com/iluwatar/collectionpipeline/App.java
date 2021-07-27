@@ -34,6 +34,14 @@ import java.util.List;
  * pipeline. Together, the Function Composition and Collection Pipeline patterns enable you to
  * create sophisticated programs where data flow from upstream to downstream and is passed through a
  * series of transformations.
+ * <p>
+ *
+ * 在命令式编程中，对于大多数类型的数据处理，通常使用 for 和 while 循环。 函数组合是一种简单的技术，
+ * 可让您对模块化函数进行排序以创建更复杂的操作。 当您通过序列运行数据时，您就有了一个收集管道。
+ * 函数组合和集合管道模式一起使您能够创建复杂的程序，其中数据从上游流向下游并通过一系列转换。
+ *
+ * for循环和jdk1.8的stream特性
+ *
  */
 @Slf4j
 public class App {
