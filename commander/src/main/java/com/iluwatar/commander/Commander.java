@@ -80,6 +80,13 @@ import java.util.List;
  * 第三，如果第一次尝试付款失败。如果消息没有发送，它也会排队并添加到员工数据库中。我们对每条指令的完成时间也有一个时间限制，之后不执行该指令，
  * 从而保证资源不会被占用太久。在一切都失败的罕见情况下，个人将不得不介入以找出解决问题的方法。
  *
+ * <p>我们有抽象类 {@link Database} 和 {@link Service}，它们被所有的数据库和服务扩展。 每个服务都有一个要更新的数据库，
+ * 并接收来自外部用户的请求（此处为 {@link Commander} 类）。 有 5 个微服务 - {@link ShippingService}、{@link PaymentService}、
+ * {@link MessagingService}、{@link EmployeeHandle} 和一个 {@link QueueDatabase}。 我们使用重试来执行使用 {@link Retry} 类的任何指令，
+ * 并且通过在向服务发出请求之前经过一些检查并在请求成功或最终失败时在 {@link Order} 类字段中进行更改来确保幂等性。
+ * 有 5 个类 - {@link AppShippingFailCases}、{@link AppPaymentFailCases}、{@link AppMessagingFailCases}、
+ * {@link AppQueueFailCases} 和 {@link AppEmployeeDbFailCases}，它们查看在放置一个 命令。
+ *
  */
 
 public class Commander {
