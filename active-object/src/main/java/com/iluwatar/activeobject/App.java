@@ -38,7 +38,8 @@ import java.util.List;
  * <p>
  * In this example, we fire 20 threads to modify a value in the target class.
  * </p>
- * 主动对象模式：主动对象模式用于降低方法执行和方法调用之间的耦合。该模式描述了另外一种更为透明的任务间通信方法。
+ * 主动对象模式有助于解决在不使用同步方法的情况下同步的困难。主动对象将包含一个线程安全的数据结构
+ * (例如BlockingQueue)，并通过将方法的逻辑移动到调用程序(通常是Runnable)中并将其存储在DSA中来同步方法调用。
  * </p>
  * 其他实现参考：http://ifeve.com/java-active-object/
  */
@@ -46,7 +47,7 @@ public class App implements Runnable {
 
     private static final Logger logger = LoggerFactory.getLogger(App.class.getName());
 
-    private static final int NUM_CREATURES = 20;
+    private static final int NUM_CREATURES = 5;
 
     /**
      * Program entry point.

@@ -23,8 +23,6 @@
 
 package com.iluwatar.visitor;
 
-import java.util.Arrays;
-
 /**
  * Interface for the nodes in hierarchy.
  */
@@ -40,6 +38,10 @@ public abstract class Unit {
      * Accept visitor.
      */
     public void accept(UnitVisitor visitor) {
-        Arrays.stream(children).forEach(child -> child.accept(visitor));
+        //Arrays.stream(children).forEach(child -> child.accept(visitor));
+        for (Unit unit : children) {
+            System.out.println("===============" + unit);
+            unit.accept(visitor);
+        }
     }
 }

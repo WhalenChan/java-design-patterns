@@ -35,11 +35,10 @@ package com.iluwatar.acyclicvisitor;
  * method only if it is required
  *
  * <p>
- * 通过使访问者基类退化，非循环访问者模式允许将新函数添加到现有的类层次结构而不影响这些层次结构，并且不会创建 GoF
- * 访问者模式固有的依赖循环
- * </p>
- * <p>
- * 非循环访问者模式
+ * 非循环访问者模式允许在不影响类层次结构的情况下向其中添加新的功能，同时又避免了由GoF访问者模式固有的依赖循环。这是通过使访问者基类退化来实现的。
+ * 在这个例子中，访问者基类是{@link ModemVisitor}。被访问层次结构的基类是{@link Modem}，
+ * 它有两个子类{@link Hayes}和{@link Zoom}，每个子类都有自己的访问者接口{@link HayesVisitor}和{@link ZoomVisitor}。
+ * {@link ConfigureForUnixVisitor}和{@link ConfigureForDosVisitor}仅在需要时实现了每个派生类的visit方法。
  * </p>
  * 这个模式结合etc下面的png图片会更好理解一点
  */
