@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Peaceful state.
+ * 平静状态
  */
 @Slf4j
 public class PeacefulState implements State {

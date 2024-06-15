@@ -27,6 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Angry state.
+ * 狂暴状态
+ * furious:狂暴地；狂怒地，有力地，猛烈地
  */
 @Slf4j
 public class AngryState implements State {

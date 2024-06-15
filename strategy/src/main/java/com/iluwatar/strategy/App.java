@@ -35,6 +35,11 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>In this example ({@link DragonSlayingStrategy}) encapsulates an algorithm. The containing
  * object ({@link DragonSlayer}) can alter its behavior by changing its strategy.</p>
+ *
+ *
+ * <p>策略模式（也称为政策模式）是一种软件设计模式，可以在运行时选择算法的行为。</p>
+ * <p>在Java 8之前，策略需要是单独的类，这迫使开发者编写大量样板代码。使用现代Java，通过方法引用和lambda表达式传递行为变得容易，使代码更简洁和可读。</p>
+ * <p>在这个例子中，{@link DragonSlayingStrategy} 封装了一个算法。包含对象 {@link DragonSlayer} 可以通过改变其策略来改变其行为。</p>
  */
 @Slf4j
 public class App {
@@ -46,13 +51,13 @@ public class App {
      */
     public static void main(String[] args) {
         // GoF Strategy pattern
-        LOGGER.info("Green dragon spotted ahead!");
+        LOGGER.info("青龙在前方！Green dragon spotted ahead!");
         var dragonSlayer = new DragonSlayer(new MeleeStrategy());
         dragonSlayer.goToBattle();
-        LOGGER.info("Red dragon emerges.");
+        LOGGER.info("红龙出现了！Red dragon emerges.");
         dragonSlayer.changeStrategy(new ProjectileStrategy());
         dragonSlayer.goToBattle();
-        LOGGER.info("Black dragon lands before you.");
+        LOGGER.info("黑龙在你面前降落！Black dragon lands before you.");
         dragonSlayer.changeStrategy(new SpellStrategy());
         dragonSlayer.goToBattle();
 
@@ -61,10 +66,12 @@ public class App {
         dragonSlayer = new DragonSlayer(
                 () -> LOGGER.info("With your Excalibur you severe the dragon's head!"));
         dragonSlayer.goToBattle();
+
         LOGGER.info("Red dragon emerges.");
         dragonSlayer.changeStrategy(() -> LOGGER.info(
                 "You shoot the dragon with the magical crossbow and it falls dead on the ground!"));
         dragonSlayer.goToBattle();
+
         LOGGER.info("Black dragon lands before you.");
         dragonSlayer.changeStrategy(() -> LOGGER.info(
                 "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));

@@ -27,12 +27,14 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Projectile strategy.
+ * 投射策略
  */
 @Slf4j
 public class ProjectileStrategy implements DragonSlayingStrategy {
 
     @Override
     public void execute() {
+        //你用神奇的弩射了龙，它就死在了地上！
         LOGGER.info("You shoot the dragon with the magical crossbow and it falls dead on the ground!");
     }
 }

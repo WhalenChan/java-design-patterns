@@ -25,6 +25,9 @@ package com.iluwatar.strategy;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * lambda策略
+ */
 @Slf4j
 public class LambdaStrategy {
 

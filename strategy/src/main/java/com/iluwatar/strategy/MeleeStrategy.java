@@ -27,12 +27,14 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Melee strategy.
+ * 近战策略
  */
 @Slf4j
 public class MeleeStrategy implements DragonSlayingStrategy {
 
     @Override
     public void execute() {
+        //Excalibur 亚瑟王的神剑
         LOGGER.info("With your Excalibur you sever the dragon's head!");
     }
 }

@@ -31,6 +31,11 @@ package com.iluwatar.state;
  * to large monolithic conditional statements and thus improves maintainability.
  *
  * <p>In this example the {@link Mammoth} changes its behavior as time passes by.
+ *
+ * 在状态模式中，容器对象具有一个内部状态对象，该对象定义当前的行为。可以通过更改状态对象来改变行为。
+ * <p>这种方式可以使对象在运行时改变其行为，而不必依赖大型的单一条件语句，从而提高可维护性。
+ * <p>在这个例子中，{@link Mammoth} 随着时间的推移改变了其行为。
+ *
  */
 public class App {
 
