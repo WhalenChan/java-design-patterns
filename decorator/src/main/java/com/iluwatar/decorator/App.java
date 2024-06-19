@@ -34,6 +34,10 @@ import lombok.extern.slf4j.Slf4j;
  * <p>In this example we show how the simple {@link SimpleTroll} first attacks and then flees the
  * battle. Then we decorate the {@link SimpleTroll} with a {@link ClubbedTroll} and perform the
  * attack again. You can see how the behavior changes after the decoration.
+ *
+ * 装饰器模式是比子类化更灵活的替代方案。装饰器类实现与目标相同的接口，并使用组合来“装饰”对目标的调用。使用装饰器模式，可以在运行时更改类的行为。
+ * <p>在这个例子中，我们展示了简单的 {@link SimpleTroll} 如何先攻击然后逃离战斗。
+ * 然后我们用 {@link ClubbedTroll} 装饰 {@link SimpleTroll} 并再次执行攻击。你可以看到装饰后的行为变化。
  */
 @Slf4j
 public class App {

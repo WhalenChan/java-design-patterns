@@ -59,10 +59,7 @@ public class DwarvenGoldmineFacade {
         makeActions(workers, DwarvenMineWorker.Action.GO_HOME, DwarvenMineWorker.Action.GO_TO_SLEEP);
     }
 
-    private static void makeActions(
-            Collection<DwarvenMineWorker> workers,
-            DwarvenMineWorker.Action... actions
-    ) {
+    private static void makeActions(Collection<DwarvenMineWorker> workers, DwarvenMineWorker.Action... actions) {
         workers.forEach(worker -> worker.action(actions));
     }
 }

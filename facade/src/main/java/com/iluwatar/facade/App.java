@@ -33,6 +33,12 @@ package com.iluwatar.facade;
  *
  * <p>In this example the Facade is ({@link DwarvenGoldmineFacade}) and it provides a simpler
  * interface to the goldmine subsystem.
+ *
+ * 当系统非常复杂或难以理解时，经常使用外观设计模式，因为系统有大量相互依赖的类或其源代码不可用。
+ * 该模式隐藏了大型系统的复杂性，并向客户端提供了一个更简单的接口。它通常涉及一个包装类，该类包含客户端所需的一组成员。
+ * 这些成员代表外观客户端访问系统，并隐藏实现细节。
+ * <p>在这个例子中，外观是 {@link DwarvenGoldmineFacade}，它为金矿子系统提供了一个更简单的接口。</p>
+ *
  */
 public class App {
 

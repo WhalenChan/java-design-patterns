@@ -36,6 +36,12 @@ package com.iluwatar.proxy;
  *
  * <p>In this example the proxy ({@link WizardTowerProxy}) controls access to the actual object (
  * {@link IvoryTower}).
+ * <p>
+ *
+ * 代理在最一般的形式中是作为其他事物接口的一个类。代理可以接口到任何东西：网络连接、内存中的大对象、文件，或其他一些昂贵或无法复制的资源。
+ * 简而言之，代理是一个包装或代理对象，客户端通过它来访问后台的真实服务对象。
+ * <p>代理设计模式通过创建一个包装类作为代理，允许你为其他对象提供接口。作为代理的包装类可以在不改变目标对象代码的情况下，为其添加额外的功能。
+ * <p>在这个例子中，代理（{@link WizardTowerProxy}）控制对实际对象（{@link IvoryTower}）的访问。</p>
  */
 public class App {
 

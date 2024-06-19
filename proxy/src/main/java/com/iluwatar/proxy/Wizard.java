@@ -27,6 +27,8 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * Wizard.
+ *
+ * 巫师
  */
 @RequiredArgsConstructor
 public class Wizard {

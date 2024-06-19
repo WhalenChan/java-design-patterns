@@ -34,6 +34,12 @@ package com.iluwatar.flyweight;
  *
  * <p>To enable safe sharing, between clients and threads, Flyweight objects must be immutable.
  * Flyweight objects are by definition value objects.
+ *
+ * 享元模式在程序需要大量对象时非常有用。它通过共享对象实例来减少资源使用。
+ * <p>在这个例子中，{@link AlchemistShop} 的货架上有大量的药水。为了填满货架，
+ * {@link AlchemistShop} 使用了 {@link PotionFactory}（在此示例中代表享元）。
+ * 在内部，{@link PotionFactory} 持有一个药水的映射表，并在需要时懒惰地创建新的药水。
+ * <p>为了在客户端和线程之间安全共享，享元对象必须是不可变的。享元对象本质上是值对象。
  */
 public class App {
 

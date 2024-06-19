@@ -41,6 +41,12 @@ import java.util.concurrent.Executors;
  * wrapped into a {@link Worker} object that implements {@link Runnable}. We create an {@link
  * ExecutorService} with fixed number of threads (Thread Pool) and use them to execute the {@link
  * Worker}s.
+ *
+ * 线程池模式是在其中创建多个线程来执行一系列任务，这些任务通常组织在一个队列中。执行任务的结果也可能被放置在一个队列中，
+ * 或者任务可能不返回任何结果。通常，任务数量远多于线程数量。一旦线程完成其任务，它将从队列中请求下一个任务，直到所有任务都完成。
+ * 然后线程可以终止，或者休眠直到有新的任务可用。
+ * <p>在这个例子中，我们创建了一个任务列表来表示要完成的工作。然后将每个任务包装成实现了 {@link Runnable} 的 {@link Worker} 对象。
+ * 我们创建一个具有固定线程数（线程池）的 {@link ExecutorService}，并使用它们来执行这些 {@link Worker}。
  */
 @Slf4j
 public class App {

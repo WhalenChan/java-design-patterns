@@ -38,6 +38,10 @@ import static com.iluwatar.iterator.list.ItemType.*;
  * <p>In this example the Iterator ({@link Iterator}) adds abstraction layer on top of a collection
  * ({@link TreasureChest}). This way the collection can change its internal implementation without
  * affecting its clients.
+ *
+ * 迭代器模式是一种设计模式，其中使用迭代器遍历容器并访问容器的元素。迭代器模式将算法与容器分离。
+ * <p>在这个例子中，迭代器（{@link Iterator}）在集合（{@link TreasureChest}）之上添加了抽象层。
+ * 这样，集合可以改变其内部实现而不影响其客户端。
  */
 @Slf4j
 public class App {

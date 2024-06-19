@@ -38,6 +38,11 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>In this example {@link Weather} has a state that can be observed. The {@link Orcs} and {@link
  * Hobbits} register as observers and receive notifications when the {@link Weather} changes.
+ *
+ * 观察者模式是一种软件设计模式，其中一个称为主体的对象维护一个其依赖者（称为观察者）的列表，并在状态发生任何变化时自动通知它们，
+ * 通常是通过调用它们的方法。它主要用于实现分布式事件处理系统。观察者模式也是熟悉的模型–视图–控制器（MVC）架构模式中的关键部分。
+ * 几乎所有的GUI工具包都实现了观察者模式。<p>在这个例子中，{@link Weather} 有一个可以被观察的状态。
+ * {@link Orcs} 和 {@link Hobbits} 注册为观察者，并在 {@link Weather} 发生变化时接收通知。
  */
 @Slf4j
 public class App {
