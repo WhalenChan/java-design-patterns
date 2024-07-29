@@ -30,6 +30,10 @@ package com.iluwatar.gameloop;
  * will spin so fast users won’t be able to see what’s going on. On a slow machine, the
  * game will crawl. If you have a part of the game that’s content-heavy or does more AI
  * or physics, the game will actually play slower there.
+ *
+ * 基于帧的游戏循环是最简单的实现。循环始终进行以下三个过程：处理输入、更新和渲染。
+ * 问题在于你无法控制游戏运行的速度。在快速的机器上，循环会运行得非常快，以至于用户无法看清发生了什么。
+ * 在慢速机器上，游戏会非常缓慢。如果游戏中有部分内容非常多或执行更多的AI或物理计算，游戏在那部分的运行速度实际上会变慢。
  */
 public class FrameBasedGameLoop extends GameLoop {
 

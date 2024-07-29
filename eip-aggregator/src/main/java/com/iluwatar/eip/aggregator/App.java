@@ -36,6 +36,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * <p>Aggregator allows you to merge messages based on defined criteria and parameters. It gathers
  * original messages, applies aggregation strategy and upon fulfilling given criteria, releasing
  * merged messages.
+ *
+ * 有时在企业系统中需要对传入的数据进行分组，以便整体处理。例如，你可能需要收集报价，并在收到定义数量的报价后选择参数最佳的一个。
  */
 @SpringBootApplication
 public class App {

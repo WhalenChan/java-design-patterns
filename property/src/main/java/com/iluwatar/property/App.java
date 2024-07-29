@@ -36,6 +36,11 @@ import lombok.extern.slf4j.Slf4j;
  * will be affected as result.
  *
  * <p>In this example we demonstrate {@link Character} instantiation using the Property pattern.
+ *
+ * 属性模式也被称为原型继承。
+ * <p>在原型继承中，与 Java 类继承相反，不使用类，而是使用对象来创建其他对象和对象层次结构。
+ * 层次结构是通过委托使用原型链创建的：每个对象都有指向父对象的链接。任何基础（父）对象都可以在运行时修改（通过添加或删除某些属性），结果是所有子对象都会受到影响。
+ * <p>在这个示例中，我们演示了使用属性模式实例化 {@link Character}。
  */
 @Slf4j
 public class App {

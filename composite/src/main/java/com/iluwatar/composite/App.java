@@ -34,6 +34,10 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>In this example we have sentences composed of words composed of letters. All of the objects
  * can be treated through the same interface ({@link LetterComposite}).
+ *
+ * 组合模式是一种分区设计模式。组合模式描述了一组对象应被当作一个对象实例来处理。组合的目的是将对象“组合”成树结构，
+ * 以表示部分-整体的层次结构。实现组合模式可以让客户端统一地处理单个对象和组合对象。
+ * <p>在这个示例中，我们有由单词组成的句子，由字母组成的单词。所有对象都可以通过相同的接口（{@link LetterComposite}）进行处理。
  */
 @Slf4j
 public class App {

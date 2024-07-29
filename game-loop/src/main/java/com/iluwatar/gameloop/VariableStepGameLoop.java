@@ -28,6 +28,9 @@ package com.iluwatar.gameloop;
  * real time passed since the last frame. The longer the frame takes, the bigger
  * steps the game takes. It always keeps up with real time because it will take
  * bigger and bigger steps to get there.
+ *
+ * 可变步长游戏循环根据自上一帧以来经过的实际时间选择前进的时间步长。帧持续时间越长，游戏的步长就越大。
+ * 它总是跟上实际时间，因为它会采取越来越大的步长来达到这一点。
  */
 public class VariableStepGameLoop extends GameLoop {
 

@@ -27,6 +27,9 @@ package com.iluwatar.gameloop;
  * For fixed-step game loop, a certain amount of real time has elapsed since the
  * last turn of the game loop. This is how much game time need to be simulated for
  * the game’s “now” to catch up with the player’s.
+ *
+ * 对于固定步长游戏循环，自上次游戏循环以来已经过去了一定量的实际时间。这就是需要模拟的游戏时间，
+ * 以便游戏的“现在”能赶上玩家的操作。
  */
 public class FixedStepGameLoop extends GameLoop {
 

@@ -29,6 +29,9 @@ import lombok.extern.slf4j.Slf4j;
  * A game loop runs continuously during gameplay. Each turn of the loop, it processes
  * user input without blocking, updates the game state, and renders the game. It tracks
  * the passage of time to control the rate of gameplay.
+ *
+ * 游戏循环在游戏过程中持续运行。每次循环时，它处理用户输入而不阻塞，更新游戏状态，并渲染游戏。
+ * 它跟踪时间的流逝以控制游戏的节奏。
  */
 @Slf4j
 public class App {

@@ -47,7 +47,9 @@ public class ConsoleAdministration {
         var injector = Guice.createInjector(new LotteryModule());
         var administration = injector.getInstance(LotteryAdministration.class);
         var service = injector.getInstance(LotteryService.class);
+
         SampleData.submitTickets(service, 20);
+
         var consoleAdministration = new ConsoleAdministrationSrvImpl(administration, LOGGER);
         try (var scanner = new Scanner(System.in)) {
             var exit = false;

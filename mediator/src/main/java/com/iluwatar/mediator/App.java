@@ -43,6 +43,12 @@ package com.iluwatar.mediator;
  * <p>In this example the mediator encapsulates how a set of objects ({@link PartyMember})
  * interact. Instead of referring to each other directly they use the mediator ({@link Party})
  * interface.
+ *
+ * 中介者模式定义了一个对象，该对象封装了一组对象之间的交互方式。由于它可以改变程序的运行行为，这种模式被认为是一种行为模式。
+ * <p>通常，一个程序由大量类组成。因此，逻辑和计算分布在这些类之间。然而，随着程序中开发的类越来越多，特别是在维护和/或重构过程中，
+ * 这些类之间的通信问题可能变得更加复杂。这使得程序更难阅读和维护。此外，改变程序也可能变得困难，因为任何更改可能会影响到其他几个类中的代码。
+ * <p>通过使用中介者模式，对象之间的通信被封装在一个中介者对象中。对象不再直接相互通信，而是通过中介者进行通信。这减少了通信对象之间的依赖关系，从而降低了耦合度。
+ * <p>在这个示例中，中介者封装了一组对象（{@link PartyMember}）之间的交互方式。它们不再直接相互引用，而是使用中介者（{@link Party}）接口进行通信。
  */
 public class App {
 

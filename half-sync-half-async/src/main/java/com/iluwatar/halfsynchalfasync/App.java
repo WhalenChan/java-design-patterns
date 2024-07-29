@@ -59,6 +59,21 @@ import java.util.concurrent.LinkedBlockingQueue;
  * between both layers. Such as Priority Queue can be used as queuing layer to prioritize the way
  * tasks are executed. Our implementation is just one simple way of implementing this pattern, there
  * are many variants possible as described in its applications.
+ *
+ * 本应用程序演示了半同步/半异步模式。模式的关键部分是 {@link AsyncTask} 和 {@link AsynchronousService}。
+ * <p><i>问题</i> <br>
+ * 并发系统中包含短时、中时和长时任务。为了满足服务质量要求，中时或长时任务应异步执行。
+ * <p><i>意图</i> <br>
+ * 此模式的意图是通过引入两个相互通信的层——一个用于同步，一个用于异步，将并发应用程序中的同步和异步处理分开。这简化了编程，而不会过度影响性能。
+ * <p><i>适用性</i> <br>
+ * UNIX 网络子系统——在操作系统中，网络操作在硬件级别中断的帮助下异步进行。<br>
+ * CORBA——在异步层中，每个连接到客户端的套接字都关联一个线程。线程阻塞等待来自客户端的 CORBA 请求。收到请求后，它被插入到排队层，
+ * 然后由同步层处理请求并将响应发送回客户端。<br>
+ * Android AsyncTask 框架——框架提供了一种在后台线程中执行长时间阻塞调用（例如下载文件）的方法，以便 UI 线程保持空闲，响应用户输入。<br>
+ * <p><i>实现</i> <br>
+ * 主方法创建一个异步服务，在执行任务时不阻塞主线程。主线程继续其工作，这类似于异步方法调用模式。它们之间的区别在于，
+ * 在异步层和同步层之间有一个排队层，这允许两层之间的不同通信模式。例如，可以使用优先队列作为排队层来优先执行任务。
+ * 我们的实现只是实现此模式的一种简单方法，根据其应用场景，还可能有许多变体。
  */
 @Slf4j
 public class App {

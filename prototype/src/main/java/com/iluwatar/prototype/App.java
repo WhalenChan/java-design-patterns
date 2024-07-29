@@ -34,6 +34,11 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>In this example we have a factory class ({@link HeroFactoryImpl}) producing objects by
  * cloning the existing ones. The factory's prototype objects are given as constructor parameters.
+ *
+ * 原型模式是一种软件开发中的创建型设计模式。它用于在创建对象的类型由一个原型实例确定，该实例通过克隆来生成新对象。使用这种模式可以：
+ * 避免在客户端应用程序中使用对象创建者的子类，就像抽象工厂模式那样。
+ * 避免以标准方式（例如，使用 'new' 关键字）创建新对象的固有成本。
+ * <p>在这个示例中，我们有一个工厂类（{@link HeroFactoryImpl}）通过克隆现有对象来生产对象。工厂的原型对象作为构造函数参数提供。
  */
 @Slf4j
 public class App {

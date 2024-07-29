@@ -54,6 +54,16 @@ import com.iluwatar.hexagonal.sampledata.SampleData;
  * com.iluwatar.hexagonal.eventlog.LotteryEventLog} that delivers eventlog as lottery events occur
  * and {@link com.iluwatar.hexagonal.database.LotteryTicketRepository} that is the storage for the
  * lottery tickets.
+ *
+ * 六边形架构模式将应用程序核心与其使用的服务解耦。这使得服务可以插入，应用程序无论有无服务都可以运行。
+ * <p>应用程序的核心逻辑或业务逻辑由实现其目标的算法组成。它们实现了应用程序的核心用例。当你改变它们时，你就改变了应用程序的本质。
+ * <p>服务不是必不可少的。它们可以被替换而不改变应用程序的目的。示例包括：数据库访问和其他类型的存储、用户界面组件、电子邮件和其他通信组件、硬件设备。
+ * <p>此示例通过一个彩票系统演示了六边形架构。应用程序核心与驱动它的服务以及它使用的服务是分离的。
+ * <p>应用程序的主要端口是控制台接口 {@link com.iluwatar.hexagonal.administration.ConsoleAdministration}，
+ * 通过它可以启动和运行彩票回合，以及 {@link com.iluwatar.hexagonal.service.ConsoleLottery}，允许玩家提交彩票票进行抽奖。
+ * <p>应用程序核心使用的次要端口是 {@link com.iluwatar.hexagonal.banking.WireTransfers}，
+ * 这是一个银行服务，{@link com.iluwatar.hexagonal.eventlog.LotteryEventLog}，在发生彩票事件时提供事件日志，
+ * 以及 {@link com.iluwatar.hexagonal.database.LotteryTicketRepository}，这是彩票票的存储库。
  */
 public class App {
 

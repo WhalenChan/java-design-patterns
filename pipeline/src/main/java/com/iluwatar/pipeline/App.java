@@ -32,6 +32,10 @@ package com.iluwatar.pipeline;
  *
  * <p>Classes used in this example are suffixed with "Handlers", and synonymously refers to the
  * "stage".
+ *
+ * 管道模式使用有序的阶段来处理一系列输入值。每个已实现的任务由管道的一个阶段表示。你可以将管道视为工厂中的装配线，
+ * 每个装配线上的项目分阶段构建。部分组装的项目从一个装配阶段传递到另一个装配阶段。装配线的输出顺序与输入顺序相同。
+ * <p>在此示例中使用的类后缀为 "Handlers"，并且同义地指代 "stage"（阶段）。
  */
 public class App {
     /**

@@ -80,6 +80,42 @@ import java.util.List;
  * separate thread for each client, which provides better scalability under load (number of clients
  * increase).
  * The example uses Java NIO framework to implement the Reactor.
+ *
+ * 本应用程序演示了Reactor模式。示例展示了一个分布式日志服务，它监听多个TCP或UDP套接字以接收日志请求。
+ * <p><i>意图</i> <br>
+ * Reactor设计模式处理由一个或多个客户端并发发送到应用程序的服务请求。应用程序可以注册特定的处理器，由Reactor在特定事件上调用这些处理器进行处理。
+ * <p><i>问题</i> <br>
+ * 分布式系统中的服务器应用程序必须处理多个客户端发送的服务请求。需要解决以下问题：
+ * <ul>
+ * <li>可用性</li>
+ * <li>效率</li>
+ * <li>编程简易性</li>
+ * <li>适应性</li>
+ * </ul>
+ * <p><i>参与者</i> <br>
+ * <ul>
+ * <li>同步事件分发器
+ * <p>
+ * {@link NioReactor} 扮演同步事件分发器的角色。它在事件循环中等待在注册到它的多个通道上的事件。
+ * </p>
+ * </li>
+ * <li>启动分发器
+ * <p>
+ * {@link NioReactor} 扮演这个角色，因为应用程序特定的 {@link ChannelHandler} 注册到Reactor。
+ * </p>
+ * </li>
+ * <li>句柄
+ * <p>
+ * {@link AbstractNioChannel} 作为注册到Reactor的句柄。当句柄上发生任何事件时，Reactor会调用相应的处理器。
+ * </p>
+ * </li>
+ * <li>事件处理器
+ * <p>
+ * {@link ChannelHandler} 作为事件处理器，它绑定到一个通道，并在其相关句柄上发生任何事件时被回调。应用逻辑位于事件处理器中。
+ * </p>
+ * </li>
+ * </ul>
+ * 应用程序使用单线程监听所有端口上的请求。它不会为每个客户端创建单独的线程，这在负载增加（客户端数量增加）时提供了更好的可扩展性。示例使用Java NIO框架实现Reactor模式。
  */
 public class App {
 

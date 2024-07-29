@@ -30,6 +30,10 @@ package com.iluwatar.priority.queue;
  * message with different priority to worker queue. Worker execute higher priority message first
  *
  * @see "https://docs.microsoft.com/en-us/previous-versions/msp-n-p/dn589794(v=pandp.10)"
+ *
+ * 优先处理发送到服务的请求，使得优先级较高的请求比优先级较低的请求更快地接收和处理。此模式在为个别客户端提供不同服务级别保证的应用程序中非常有用。
+ * 例如：向工作队列发送多个具有不同优先级的消息。工作线程优先执行优先级较高的消息。
+ * @see "https://docs.microsoft.com/en-us/previous-versions/msp-n-p/dn589794(v=pandp.10)"
  */
 public class Application {
     /**
