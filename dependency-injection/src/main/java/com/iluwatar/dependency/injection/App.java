@@ -45,6 +45,19 @@ import com.google.inject.Guice;
  * <p>The fourth example takes the pattern a step further. It uses Guice framework for Dependency
  * Injection. {@link TobaccoModule} binds a concrete implementation to abstraction. Injector is then
  * used to create {@link GuiceWizard} object with correct dependencies.
+ *
+ * 依赖注入模式处理对象如何处理其依赖关系。该模式实现了所谓的控制反转原则。控制反转有两个特定规则：
+ * 高级模块不应依赖于低级模块。两者都应依赖于抽象。
+ * 抽象不应依赖于细节。细节应依赖于抽象。
+ * <p>在这个示例中，我们展示了三个不同的巫师。第一个（{@link SimpleWizard}）是一个违反控制反转原则的简单实现。它直接依赖于一个不能更改的具体实现。
+ * <p>第二个和第三个巫师（{@link AdvancedWizard} 和 {@link AdvancedSorceress}）更灵活。它们不依赖于任何具体实现，而是依赖于抽象。
+ *
+ * 它们利用依赖注入模式，通过构造函数（{@link AdvancedWizard}）或 setter（{@link AdvancedSorceress}）注入它们的 {@link Tobacco} 依赖项。
+ * 这样，处理依赖关系不再是巫师的责任，而是在巫师类外部解决。
+ *
+ * <p>第四个示例更进一步。它使用 Guice 框架进行依赖注入。{@link TobaccoModule} 将具体实现绑定到抽象。
+ * 然后使用注入器创建具有正确依赖关系的 {@link GuiceWizard} 对象。
+ *
  */
 public class App {
 
